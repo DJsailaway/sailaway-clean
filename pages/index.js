@@ -55,6 +55,8 @@ export default function Home() {
   backgroundImage: "url('/secondary.jpg')",
   backgroundSize: "cover",
   backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  width: "100%",
   marginTop: "60px"
 }} />
 
