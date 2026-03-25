@@ -19,7 +19,12 @@ export default function Home() {
       <h1>Boat Hire on the Helford River</h1>
       <p>Relaxed, family-friendly experiences from St Anthony</p>
 
-      <h2>Book your experience</h2>
+      <h2 style={{ fontSize: "2rem", marginBottom: "10px" }}>
+  Plan your time on the water
+</h2>
+<p style={{ color: "#666", marginBottom: "30px" }}>
+  Choose your boat, duration, and preferred start time
+</p>
 
       <p>
         I want a{" "}
@@ -43,6 +48,16 @@ export default function Home() {
       <h3>£{price}</h3>
 
       <button>Request booking</button>
-    </div>
-  );
+
+{/* NEW IMAGE SECTION 👇 */}
+<div style={{
+  height: "60vh",
+  backgroundImage: "url('/secondary.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  marginTop: "60px"
+}} />
+
+</div>
+);
 }
