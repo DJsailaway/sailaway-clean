@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily: "sans-serif", padding: 20 }}>
-      <h1>Boat Trips on the River Fal</h1>
+      <h1>Boat Hire on the Helford River</h1>
       <p>Relaxed, family-friendly experiences from St Anthony</p>
 
       <h2>Book your experience</h2>
