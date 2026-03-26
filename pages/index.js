@@ -17,40 +17,43 @@ export default function Home() {
 return (
   <div style={{ fontFamily: "sans-serif" }}>
 
-   {/* HERO SECTION */}
-    <div style={{
-      position: "relative",
-      width: "100%",
-      height: "70vh",
-      backgroundImage: "url('/secondary.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center"
-    }}>
+{/* HERO SECTION */}
+<div style={{
+  position: "relative",
+  width: "100%",
+  height: "70vh",
+  backgroundImage: "url('/hero.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "left center"
+}}>
 
-      <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0,0,0,0.3)"
-      }} />
+  {/* Dark overlay */}
+  <div style={{
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0,0,0,0.45)"
+  }} />
 
-      <div style={{
-        position: "absolute",
-        bottom: "40px",
-        left: "40px",
-        color: "white"
-      }}>
-        <h1 style={{ fontSize: "3rem", margin: 0 }}>
-          Boat Hire on the Helford River
-        </h1>
-        <p style={{ fontSize: "1.2rem" }}>
-          Relaxed, family-friendly experiences from St Anthony
-        </p>
-      </div>
+  {/* Text */}
+  <div style={{
+    position: "absolute",
+    bottom: "40px",
+    left: "40px",
+    color: "white",
+    textShadow: "0 2px 12px rgba(0,0,0,0.8)"
+  }}>
+    <h1 style={{ fontSize: "3rem", margin: 0 }}>
+      Boat Hire on the Helford River
+    </h1>
+    <p style={{ fontSize: "1.2rem" }}>
+      Relaxed, family-friendly experiences from St Anthony
+    </p>
+  </div>
 
-    </div>
+</div>
 
     {/* CENTERED CONTENT */}
     <div style={{ padding: 20, maxWidth: "600px", margin: "0 auto" }}>
@@ -80,16 +83,15 @@ return (
       <button>Request booking</button>
     </div>
 
-    {/* 👇 IMPORTANT: IMAGE OUTSIDE */}
-    <img 
-      src="/secondary.jpg"
-      style={{
-        width: "100%",
-        height: "auto",
-        display: "block",
-        marginTop: "60px"
-      }}
-    />
+<img 
+  src="/secondary.jpg"
+  style={{
+    width: "100%",
+    height: "auto",
+    display: "block",
+    marginTop: "60px"
+  }}
+/>
 
   </div>
 );
