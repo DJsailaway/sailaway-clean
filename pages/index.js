@@ -53,7 +53,7 @@ export default function Home() {
 
 {/* NEW IMAGE SECTION 👇 */}
 <div style={{
-  height: "400px",
+  height: "70vh",
   backgroundImage: "url('/secondary.jpg')",
   backgroundSize: "cover",
   backgroundPosition: "center",
