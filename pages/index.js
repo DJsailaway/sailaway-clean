@@ -15,7 +15,8 @@ export default function Home() {
   const price = PRICING[boat][duration];
 
   return (
-    <div style={{ fontFamily: "sans-serif", padding: 20 }}>
+    <div style={{ fontFamily: "sans-serif" }}>
+  <div style={{ padding: 20, maxWidth: "600px", margin: "0 auto" }}>
       <h1>Boat Hire on the Helford River</h1>
       <p>Relaxed, family-friendly experiences from St Anthony</p>
 
@@ -48,6 +49,7 @@ export default function Home() {
       <h3>£{price}</h3>
 
       <button>Request booking</button>
+</div>
 
 {/* NEW IMAGE SECTION 👇 */}
 <div style={{
