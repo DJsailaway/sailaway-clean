@@ -54,8 +54,6 @@ return (
 
     {/* CENTERED CONTENT */}
     <div style={{ padding: 20, maxWidth: "600px", margin: "0 auto" }}>
-      <h1>Boat Hire on the Helford River</h1>
-      <p>Relaxed, family-friendly experiences from St Anthony</p>
 
       <h2>Plan your time on the water</h2>
 
