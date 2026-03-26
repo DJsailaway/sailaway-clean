@@ -89,18 +89,21 @@ return (
 
       <h3>£{price}</h3>
       <button>Request booking</button>
-    </div>
+       </div> {/* END centered content */}
 
-<img 
-  src="/secondary.jpg"
-  style={{
-    width: "100%",
-    height: "auto",
-    display: "block",
-    marginTop: "60px"
-  }}
-/>
+  </div> {/* END bordered section */}
 
-  </div>
+  {/* SECONDARY IMAGE */}
+  <img 
+    src="/secondary.jpg"
+    style={{
+      width: "100%",
+      height: "auto",
+      display: "block",
+      marginTop: "60px"
+    }}
+  />
+
+</div>
 );
 }
