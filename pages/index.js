@@ -18,23 +18,25 @@ return (
   <div style={{ fontFamily: "sans-serif" }}>
 
 {/* HERO SECTION */}
-<div style={{
-  position: "relative",
-  width: "100%",
-  height: "70vh",
-  backgroundImage: "url('/hero.jpg')",
-  backgroundSize: "cover",
-  backgroundPosition: "left center"
-}}>
+<div style={{ position: "relative" }}>
 
-  {/* Dark overlay */}
+  <img 
+    src="/hero.jpg"
+    style={{
+      width: "100%",
+      height: "auto",
+      display: "block"
+    }}
+  />
+
+  {/* Overlay */}
   <div style={{
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0,0,0,0.45)"
+    backgroundColor: "rgba(0,0,0,0.35)"
   }} />
 
   {/* Text */}
