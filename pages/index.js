@@ -40,20 +40,22 @@ return (
   }} />
 
   {/* Text */}
-  <div style={{
-    position: "absolute",
-    bottom: "60px",
-    left: "40px",
-    color: "white",
-    textShadow: "0 2px 12px rgba(0,0,0,0.8)"
-  }}>
-    <h1 style={{ fontSize: "3.5rem", margin: 0 }}>
-      Boat Hire on the Helford River
-    </h1>
-    <p style={{ fontSize: "1.2rem" }}>
-      Relaxed, family-friendly experiences from St Anthony
-    </p>
-  </div>
+<div style={{
+  position: "absolute",
+  top: "45%",
+  left: "30%",
+  transform: "translate(-30%, -50%)",
+  color: "white",
+  textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+  maxWidth: "500px"
+}}>
+  <h1 style={{ fontSize: "3.5rem", margin: 0 }}>
+    Boat Hire on the Helford River
+  </h1>
+  <p style={{ fontSize: "1.2rem" }}>
+    Relaxed, family-friendly experiences from St Anthony
+  </p>
+</div>
 
 </div>
 
