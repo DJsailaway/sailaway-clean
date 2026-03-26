@@ -42,7 +42,7 @@ return (
   {/* Text */}
   <div style={{
     position: "absolute",
-    bottom: "40px",
+    bottom: "60px",
     left: "40px",
     color: "white",
     textShadow: "0 2px 12px rgba(0,0,0,0.8)"
