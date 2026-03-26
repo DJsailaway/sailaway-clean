@@ -17,6 +17,41 @@ export default function Home() {
 return (
   <div style={{ fontFamily: "sans-serif" }}>
 
+   {/* HERO SECTION */}
+    <div style={{
+      position: "relative",
+      width: "100%",
+      height: "70vh",
+      backgroundImage: "url('/secondary.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }}>
+
+      <div style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0,0,0,0.3)"
+      }} />
+
+      <div style={{
+        position: "absolute",
+        bottom: "40px",
+        left: "40px",
+        color: "white"
+      }}>
+        <h1 style={{ fontSize: "3rem", margin: 0 }}>
+          Boat Hire on the Helford River
+        </h1>
+        <p style={{ fontSize: "1.2rem" }}>
+          Relaxed, family-friendly experiences from St Anthony
+        </p>
+      </div>
+
+    </div>
+
     {/* CENTERED CONTENT */}
     <div style={{ padding: 20, maxWidth: "600px", margin: "0 auto" }}>
       <h1>Boat Hire on the Helford River</h1>
