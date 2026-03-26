@@ -16,6 +16,7 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily: "sans-serif" }}>
+<h1>TEST – NEW VERSION LIVE</h1>
 
       {/* CENTERED CONTENT */}
       <div style={{ padding: 20, maxWidth: "600px", margin: "0 auto" }}>
