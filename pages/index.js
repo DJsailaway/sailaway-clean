@@ -39,14 +39,14 @@ return (
 
     {/* FULL WIDTH IMAGE */}
     <div style={{
-      height: "70vh",
-      backgroundImage: "url('/secondary.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center bottom",
-      backgroundRepeat: "no-repeat",
-      width: "100%",
-      marginTop: "60px"
-    }} />
+  backgroundImage: "url('/secondary.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  width: "100%",
+  paddingTop: "40%",
+  marginTop: "60px"
+}} />
 
   </div>
 );
