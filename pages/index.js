@@ -42,14 +42,13 @@ return (
   {/* Text */}
 <div style={{
   position: "absolute",
-  top: "45%",
-  left: "30%",
-  transform: "translate(-30%, -50%)",
+  top: "80px",
+  left: "60px",
   color: "white",
   textShadow: "0 2px 12px rgba(0,0,0,0.8)",
   maxWidth: "500px"
 }}>
-  <h1 style={{ fontSize: "3.5rem", margin: 0 }}>
+  <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
     Boat Hire on the Helford River
   </h1>
   <p style={{ fontSize: "1.2rem" }}>
