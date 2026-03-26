@@ -57,8 +57,11 @@ return (
 
 </div>
 
-borderTop: "1px solid #eee",
-paddingTop: "40px",
+<div style={{
+  borderTop: "1px solid #eee",
+  paddingTop: "40px"
+}}>
+  <h2>Plan your time on the water</h2>
 
     {/* CENTERED CONTENT */}
     <div style={{ padding: 20, maxWidth: "700px", margin: "0 auto" }}>
