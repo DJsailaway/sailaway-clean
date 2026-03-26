@@ -55,15 +55,14 @@ export default function Home() {
       </div>
 
       {/* FULL WIDTH IMAGE */}
-      <div style={{
-        backgroundImage: "url('/secondary.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        paddingTop: "40%",
-        marginTop: "60px"
-      }} />
+      <img 
+  src="/secondary.jpg"
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "60px"
+  }}
+/>
 
     </div>
   );
