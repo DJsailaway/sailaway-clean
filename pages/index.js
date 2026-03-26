@@ -47,7 +47,7 @@ return (
     color: "white",
     textShadow: "0 2px 12px rgba(0,0,0,0.8)"
   }}>
-    <h1 style={{ fontSize: "3rem", margin: 0 }}>
+    <h1 style={{ fontSize: "3.5rem", margin: 0 }}>
       Boat Hire on the Helford River
     </h1>
     <p style={{ fontSize: "1.2rem" }}>
@@ -57,8 +57,11 @@ return (
 
 </div>
 
+borderTop: "1px solid #eee",
+paddingTop: "40px",
+
     {/* CENTERED CONTENT */}
-    <div style={{ padding: 20, maxWidth: "600px", margin: "0 auto" }}>
+    <div style={{ padding: 20, maxWidth: "700px", margin: "0 auto" }}>
 
       <h2>Plan your time on the water</h2>
 
