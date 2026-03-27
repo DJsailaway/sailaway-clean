@@ -77,6 +77,7 @@ return (
 
 </div>
 
+{/* BOOKING SECTION */}
 <div
   id="booking"
   style={{
@@ -84,38 +85,106 @@ return (
     paddingTop: "40px"
   }}
 >
+  <div style={{
+    padding: "40px 20px",
+    maxWidth: "700px",
+    margin: "0 auto"
+  }}>
 
-    {/* CENTERED CONTENT */}
-   <div style={{
-  padding: "40px 20px",
-  maxWidth: "700px",
-  margin: "0 auto"
-}}>
+    <div style={{
+      backgroundColor: "#f9f9f9",
+      padding: "30px",
+      borderRadius: "10px"
+    }}>
 
-      <h2>Plan your time on the water</h2>
+      <h2 style={{ marginBottom: "20px" }}>
+        Plan your time on the water
+      </h2>
 
-      <p>
-        I want a{" "}
-        <select onChange={(e) => setBoat(e.target.value)}>
-          <option>Motor Boat</option>
-          <option>Sailing Boat</option>
-          <option>Kayak / Paddleboard</option>
-          <option>Rowing Boat</option>
-        </select>{" "}
-        for{" "}
-        <select onChange={(e) => setDuration(e.target.value)}>
-          <option>1 hour</option>
-          <option>2 hours</option>
-          <option>Half day (4 hours)</option>
-          <option>Full day</option>
-        </select>{" "}
-        starting from{" "}
-        <input type="datetime-local" onChange={(e) => setDate(e.target.value)} />
-      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
 
-      <h3>£{price}</h3>
-      <button>Request booking</button>
-       </div> {/* END centered content */}
+        <label>
+          Boat type
+          <br />
+          <select
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              fontSize: "1rem"
+            }}
+            onChange={(e) => setBoat(e.target.value)}
+          >
+            <option>Motor Boat</option>
+            <option>Sailing Boat</option>
+            <option>Kayak / Paddleboard</option>
+            <option>Rowing Boat</option>
+          </select>
+        </label>
+
+        <label>
+          Duration
+          <br />
+          <select
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              fontSize: "1rem"
+            }}
+            onChange={(e) => setDuration(e.target.value)}
+          >
+            <option>1 hour</option>
+            <option>2 hours</option>
+            <option>Half day (4 hours)</option>
+            <option>Full day</option>
+          </select>
+        </label>
+
+        <label>
+          Start time
+          <br />
+          <input
+            type="datetime-local"
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+              fontSize: "1rem"
+            }}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </label>
+
+      </div>
+
+      <h3 style={{ fontSize: "2rem", marginTop: "20px" }}>
+        £{price}
+      </h3>
+
+      <button
+        style={{
+          marginTop: "20px",
+          padding: "14px",
+          width: "100%",
+          fontSize: "1.1rem",
+          backgroundColor: "#1e3a5f",
+          color: "white",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+          fontWeight: "bold"
+        }}
+      >
+        Request booking
+      </button>
+
+    </div>
+  </div>
+</div>
 
   </div> {/* END bordered section */}
 
