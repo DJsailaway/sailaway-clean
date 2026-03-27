@@ -66,6 +66,7 @@ return (
     borderRadius: "6px",
     cursor: "pointer",
     fontWeight: "bold"
+    transition: "all 0.2s ease"
   }}
 >
   Check availability
