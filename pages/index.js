@@ -60,7 +60,7 @@ return (
     marginTop: "20px",
     padding: "12px 24px",
     fontSize: "1rem",
-    backgroundColor: "#0ea5a4",
+    backgroundColor: "#1e3a5f",
     color: "white",
     border: "none",
     borderRadius: "6px",
