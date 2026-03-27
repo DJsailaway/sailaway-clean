@@ -55,18 +55,20 @@ return (
     Relaxed, family-friendly experiences from St Anthony
   </p>
       
-      <button
+<button
   style={{
-    marginTop: "20px",
-    padding: "12px 24px",
-    fontSize: "1rem",
+    marginTop: "24px",
+    padding: "14px 28px",
+    fontSize: "1.1rem",
     backgroundColor: "#1e3a5f",
     color: "white",
     border: "none",
     borderRadius: "6px",
     cursor: "pointer",
-    fontWeight: "bold"
-    transition: "all 0.2s ease"
+    fontWeight: "bold",
+    transition: "all 0.2s ease",
+    width: "100%",
+    maxWidth: "280px"
   }}
 >
   Check availability
