@@ -42,8 +42,8 @@ return (
   {/* Text */}
 <div style={{
   position: "absolute",
-  top: "80px",
-  left: "60px",
+  top: "120px",
+  left: "80px",
   color: "white",
   textShadow: "0 2px 12px rgba(0,0,0,0.8)",
   maxWidth: "500px"
@@ -54,9 +54,6 @@ return (
   <p style={{ fontSize: "1.2rem" }}>
     Relaxed, family-friendly experiences from St Anthony
   </p>
-  <p style={{ fontSize: "1rem", marginTop: "10px", opacity: 0.9 }}>
-  Self-drive motor boats and sailing on the Helford River, Cornwall
-</p>
 </div>
 
 </div>
