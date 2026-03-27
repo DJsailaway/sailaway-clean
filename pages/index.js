@@ -58,10 +58,13 @@ return (
 
 </div>
 
-<div style={{
-  borderTop: "1px solid #eee",
-  paddingTop: "40px"
-}}>
+<div
+  id="booking"
+  style={{
+    borderTop: "1px solid #eee",
+    paddingTop: "40px"
+  }}
+>
 
     {/* CENTERED CONTENT */}
     <div style={{ padding: 20, maxWidth: "700px", margin: "0 auto" }}>
