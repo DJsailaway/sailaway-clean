@@ -54,6 +54,22 @@ return (
   <p style={{ fontSize: "1.2rem" }}>
     Relaxed, family-friendly experiences from St Anthony
   </p>
+      
+      <button
+  style={{
+    marginTop: "20px",
+    padding: "12px 24px",
+    fontSize: "1rem",
+    backgroundColor: "#0ea5a4",
+    color: "white",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: "bold"
+  }}
+>
+  Check availability
+</button>
 </div>
 
 </div>
