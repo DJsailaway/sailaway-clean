@@ -86,7 +86,11 @@ return (
 >
 
     {/* CENTERED CONTENT */}
-    <div style={{ padding: 20, maxWidth: "700px", margin: "0 auto" }}>
+   <div style={{
+  padding: "40px 20px",
+  maxWidth: "700px",
+  margin: "0 auto"
+}}>
 
       <h2>Plan your time on the water</h2>
 
