@@ -54,6 +54,9 @@ return (
   <p style={{ fontSize: "1.2rem" }}>
     Relaxed, family-friendly experiences from St Anthony
   </p>
+  <p style={{ fontSize: "1rem", marginTop: "10px", opacity: 0.9 }}>
+  Self-drive motor boats and sailing on the Helford River, Cornwall
+</p>
 </div>
 
 </div>
