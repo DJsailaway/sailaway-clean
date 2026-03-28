@@ -186,8 +186,6 @@ return (
   </div>
 </div>
 
-  </div> {/* END bordered section */}
-
   {/* SECONDARY IMAGE */}
   <img 
     src="/secondary.jpg"
