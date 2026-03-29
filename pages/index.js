@@ -193,9 +193,9 @@ return (
       fontSize: "1rem"
     }}
   >
-    {BOATS[category].map((b) => (
-      <option key={b}>{b}</option>
-    ))}
+  {(BOATS[category] || []).map((b) => (
+  <option key={b}>{b}</option>
+))}
   </select>
 </label>
 
