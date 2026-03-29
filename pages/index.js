@@ -186,7 +186,20 @@ return (
       >
         Request booking
       </button>
-
+<div style={{
+  marginTop: "20px",
+  color: "white",
+  fontSize: "0.95rem",
+  opacity: 0.95
+  display: "flex",
+  flexDirection: "column",
+  gap: "6px"
+}}>
+  <div>✓ No experience needed</div>
+  <div>✓ Life jackets included</div>
+  <div>✓ Based in St Anthony</div>
+</div>
+          
     </div>
   </div>
 </div>
