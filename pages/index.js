@@ -172,6 +172,7 @@ return (
     <option>Motor Boats</option>
     <option>Sailing Boats</option>
     <option>Kayaks</option>
+    <option>Paddleboards</option>
     <option>Rowing Boats</option>
   </select>
 </label>
