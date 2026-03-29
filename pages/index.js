@@ -15,6 +15,15 @@ export default function Home() {
   const price = PRICING[boat][duration];
 
 return (
+  <>
+    <Head>
+      <title>Boat Hire Helford River | Self Drive Boats Cornwall</title>
+      <meta
+        name="description"
+        content="Boat hire on the Helford River in Cornwall. Self-drive boats available — no experience needed. Established since 1936."
+      />
+    </Head>
+  
   <div style={{ fontFamily: "sans-serif" }}>
 
 {/* HERO SECTION */}
@@ -49,7 +58,7 @@ return (
   maxWidth: "500px"
 }}>
   <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
-    Boat Hire on the Helford River
+    Boat Hire on the Helford River, Cornwall
   </h1>
   <p style={{ fontSize: "1.2rem" }}>
     Relaxed, family-friendly experiences from St Anthony
@@ -193,9 +202,10 @@ return (
   opacity: 0.95,
   display: "flex",
   flexDirection: "column",
-  gap: "6px"
+  gap: "8px"
 }}>
-  <div>✓ No experience needed</div>
+  <div>✓ Motor-boats for hire - no experience needed</div>
+  <div>✓ Sail-boats for more experienced sailors</div>
   <div>✓ Life jackets and full briefing included</div>
   <div>✓ Hiring boats since 1936</div>
 </div>
