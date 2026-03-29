@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Head from "next/head";
 
-const PRICING = {
-  const BOATS = {
+
+// 👇 PUT BOATS HERE
+const BOATS = {
   "Motor Boats": [
     "Plymouth Pilot (8 people)",
     "Bass Boat (5 people)"
@@ -20,17 +21,21 @@ const PRICING = {
   ],
   "Paddleboards": [
     "Stand-Up Paddleboard (1 person)"
-  ],  
+  ],
   "Rowing Boats": [
     "Anarth Rowing Dinghy (4 people)"
   ]
 };
+
+
+// 👇 THEN PRICING DIRECTLY BELOW
+const PRICING = {
   "Plymouth Pilot (8 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
   "Bass Boat (5 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
   "Drascombe Longboat (6 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
   "Wayfarer Dinghy (4 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
   "Topaz Dinghy (2 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
-  "Pico Sailing Dinghy (2 people)": { "1 hour": 80, "2 hours": 140, "Half day (4 hours)": 260, "Full day": 420 },
+  "Pico Dinghy (2 people)": { "1 hour": 80, "2 hours": 140, "Half day (4 hours)": 260, "Full day": 420 },
   "Topper Dinghy (1 person)": { "1 hour": 80, "2 hours": 140, "Half day (4 hours)": 260, "Full day": 420 },
   "Double Kayak (2 people)": { "1 hour": 20, "2 hours": 35, "Half day (4 hours)": 60, "Full day": 90 },
   "Single Kayak (1 person)": { "1 hour": 20, "2 hours": 35, "Half day (4 hours)": 60, "Full day": 90 },
