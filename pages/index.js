@@ -245,36 +245,7 @@ return (
 </h3>
 
 <button
-  onClick={async () => {
-    try {
-      const res = await fetch('/api/send-booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ boat, duration, date })
-      });
-
-      if (res.ok) {
-        alert("Booking request sent!");
-      } else {
-        alert("Something went wrong.");
-      }
-    } catch (err) {
-      alert("Error sending request");
-      console.error(err);
-    }
-  }}
-  style={{
-    marginTop: "30px",
-    padding: "14px",
-    width: "100%",
-    fontSize: "1.1rem",
-    backgroundColor: "#1e3a5f",
-    color: "white",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold"
-  }}
+  onClick={() => alert("CLICK WORKS")}
 >
   Request booking
 </button>
