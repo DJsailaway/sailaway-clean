@@ -2,14 +2,45 @@ import { useState } from "react";
 import Head from "next/head";
 
 const PRICING = {
-  "Motor Boat": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
-  "Sailing Boat": { "1 hour": 80, "2 hours": 140, "Half day (4 hours)": 260, "Full day": 420 },
-  "Kayak / Paddleboard": { "1 hour": 20, "2 hours": 35, "Half day (4 hours)": 60, "Full day": 90 },
-  "Rowing Boat": { "1 hour": 25, "2 hours": 45, "Half day (4 hours)": 70, "Full day": 110 }
+  const BOATS = {
+  "Motor Boats": [
+    "Plymouth Pilot (8 people)",
+    "Bass Boat (5 people)"
+  ],
+  "Sailing Boats": [
+    "Drascombe Longboat (6 people)",
+    "Wayfarer Dinghy (4 people)",
+    "Topaz Dinghy (2 people)",
+    "Pico Dinghy (2 people)",
+    "Topper Dinghy (1 person)"
+  ],
+  "Kayaks": [
+    "Double Kayak (2 people)",
+    "Single Kayak (1 person)"
+  ],
+  "Paddleboards": [
+    "Stand-Up Paddleboard (1 person)"
+  ],  
+  "Rowing Boats": [
+    "Anarth Rowing Dinghy (4 people)"
+  ]
+};
+  "Plymouth Pilot (8 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
+  "Bass Boat (5 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
+  "Drascombe Longboat (6 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
+  "Wayfarer Dinghy (4 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
+  "Topaz Dinghy (2 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
+  "Pico Sailing Dinghy (2 people)": { "1 hour": 80, "2 hours": 140, "Half day (4 hours)": 260, "Full day": 420 },
+  "Topper Dinghy (1 person)": { "1 hour": 80, "2 hours": 140, "Half day (4 hours)": 260, "Full day": 420 },
+  "Double Kayak (2 people)": { "1 hour": 20, "2 hours": 35, "Half day (4 hours)": 60, "Full day": 90 },
+  "Single Kayak (1 person)": { "1 hour": 20, "2 hours": 35, "Half day (4 hours)": 60, "Full day": 90 },
+  "Stand-Up Paddleboard (1 person)": { "1 hour": 20, "2 hours": 35, "Half day (4 hours)": 60, "Full day": 90 },
+  "Anarth Rowing Dinghy (4 people)": { "1 hour": 25, "2 hours": 45, "Half day (4 hours)": 70, "Full day": 110 }
 };
 
 export default function Home() {
-  const [boat, setBoat] = useState("Motor Boat");
+  const [category, setCategory] = useState("Motor Boats");
+const [boat, setBoat] = useState("Plymouth Pilot (8 people)");
   const [duration, setDuration] = useState("2 hours");
   const [date, setDate] = useState("");
 
@@ -114,25 +145,53 @@ return (
 
       <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
 
+{/* BOAT CATEGORY */}
 <label style={{ fontWeight: "500" }}>
   Boat type
   <br /><br />
   <select
-            style={{
-              width: "100%",
-              padding: "10px",
-              borderRadius: "6px",
-              border: "1px solid #ccc",
-              fontSize: "1rem"
-            }}
-            onChange={(e) => setBoat(e.target.value)}
-          >
-            <option>Motor Boat</option>
-            <option>Sailing Boat</option>
-            <option>Kayak / Paddleboard</option>
-            <option>Rowing Boat</option>
-          </select>
-        </label>
+    name="category"
+    value={category}
+    onChange={(e) => {
+      setCategory(e.target.value);
+      setBoat(BOATS[e.target.value][0]);
+    }}
+    style={{
+      width: "100%",
+      padding: "10px",
+      borderRadius: "6px",
+      border: "1px solid #ccc",
+      fontSize: "1rem"
+    }}
+  >
+    <option>Motor Boats</option>
+    <option>Sailing Boats</option>
+    <option>Kayaks</option>
+    <option>Rowing Boats</option>
+  </select>
+</label>
+
+{/* SPECIFIC BOAT */}
+<label style={{ fontWeight: "500" }}>
+  Select boat
+  <br /><br />
+  <select
+    name="boat"
+    value={boat}
+    onChange={(e) => setBoat(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "10px",
+      borderRadius: "6px",
+      border: "1px solid #ccc",
+      fontSize: "1rem"
+    }}
+  >
+    {BOATS[category].map((b) => (
+      <option key={b}>{b}</option>
+    ))}
+  </select>
+</label>
 
 <label style={{ fontWeight: "500" }}>
   Duration
