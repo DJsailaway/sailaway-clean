@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     await resend.emails.send({
       from: 'Bookings <onboarding@resend.dev>',
-      to: ['your@email.com'], // 👈 CHANGE THIS
+      to: ['your@email.com'], // ← CHANGE THIS
       subject: 'New Boat Booking Request',
       html: `
         <h2>New Booking Request</h2>
@@ -22,9 +22,9 @@ export default async function handler(req, res) {
       `
     });
 
-    res.status(200).json({ success: true });
+    return res.status(200).json({ success: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Email failed' });
+    return res.status(500).json({ error: 'Email failed' });
   }
 }
