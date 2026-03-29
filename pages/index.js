@@ -204,9 +204,9 @@ return (
   flexDirection: "column",
   gap: "8px"
 }}>
-  <div>✓ Motor-boats for hire - no experience needed</div>
-  <div>✓ Sail-boats for more experienced sailors</div>
-  <div>✓ Life jackets and full briefing included</div>
+  <div>✓ Motor boats — no experience needed</div>
+  <div>✓ Sailing boats for experienced sailors</div>
+  <div>✓ Life jackets & full briefing included</div>
   <div>✓ Hiring boats since 1936</div>
 </div>
           
