@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     await resend.emails.send({
       from: 'Bookings <onboarding@resend.dev>',
-      to: ['your@email.com'], // ← CHANGE THIS
+      to: ['info@stanthony.co.uk'], //
       subject: 'New Boat Booking Request',
       html: `
         <h2>New Booking Request</h2>
