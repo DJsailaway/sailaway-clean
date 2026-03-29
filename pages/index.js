@@ -91,11 +91,12 @@ return (
     margin: "0 auto"
   }}>
 
-    <div style={{
-      backgroundColor: "#f9f9f9",
-      padding: "30px",
-      borderRadius: "10px"
-    }}>
+<div style={{
+  backgroundColor: "#f5f5f5",
+  padding: "30px",
+  borderRadius: "10px",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.05)"
+}}>
 
       <h2 style={{ marginBottom: "20px" }}>
         Plan your time on the water
@@ -103,10 +104,10 @@ return (
 
       <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
 
-        <label>
-          Boat type
-          <br />
-          <select
+<label style={{ fontWeight: "500" }}>
+  Boat type
+  <br /><br />
+  <select ...
             style={{
               width: "100%",
               padding: "10px",
@@ -123,10 +124,10 @@ return (
           </select>
         </label>
 
-        <label>
-          Duration
-          <br />
-          <select
+<label style={{ fontWeight: "500" }}>
+  Duration
+  <br /><br />
+  <select ...
             style={{
               width: "100%",
               padding: "10px",
@@ -143,9 +144,9 @@ return (
           </select>
         </label>
 
-        <label>
+<label style={{ fontWeight: "500" }}>
           Start time
-          <br />
+          <br /><br />
           <input
             type="datetime-local"
             style={{
@@ -161,9 +162,13 @@ return (
 
       </div>
 
-      <h3 style={{ fontSize: "2rem", marginTop: "20px" }}>
-        £{price}
-      </h3>
+<h3 style={{
+  fontSize: "2rem",
+  marginTop: "20px",
+  color: "#1e3a5f"
+}}>
+  £{price}
+</h3>
 
       <button
         style={{
