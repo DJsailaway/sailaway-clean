@@ -107,7 +107,7 @@ return (
 <label style={{ fontWeight: "500" }}>
   Boat type
   <br /><br />
-  <select ...
+  <select
             style={{
               width: "100%",
               padding: "10px",
@@ -127,7 +127,7 @@ return (
 <label style={{ fontWeight: "500" }}>
   Duration
   <br /><br />
-  <select ...
+  <select
             style={{
               width: "100%",
               padding: "10px",
@@ -188,9 +188,9 @@ return (
       </button>
 <div style={{
   marginTop: "20px",
-  color: "white",
+  color: "#333",
   fontSize: "0.95rem",
-  opacity: 0.95
+  opacity: 0.95,
   display: "flex",
   flexDirection: "column",
   gap: "6px"
