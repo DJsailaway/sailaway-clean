@@ -196,8 +196,8 @@ return (
   gap: "6px"
 }}>
   <div>✓ No experience needed</div>
-  <div>✓ Life jackets included</div>
-  <div>✓ Based in St Anthony</div>
+  <div>✓ Life jackets and full briefing included</div>
+  <div>✓ Hiring boats since 1936</div>
 </div>
           
     </div>
