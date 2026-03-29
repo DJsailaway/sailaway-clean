@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 
 const PRICING = {
   "Motor Boat": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
