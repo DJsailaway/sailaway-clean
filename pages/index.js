@@ -164,7 +164,7 @@ return (
 
 <h3 style={{
   fontSize: "2rem",
-  marginTop: "20px",
+  marginTop: "30px",
   color: "#1e3a5f"
 }}>
   £{price}
@@ -172,7 +172,7 @@ return (
 
       <button
         style={{
-          marginTop: "20px",
+          marginTop: "30px",
           padding: "14px",
           width: "100%",
           fontSize: "1.1rem",
