@@ -7,7 +7,7 @@ export default function MotorBoatHire() {
         <title>Motor Boat Hire Helford River | Self Drive Boats Cornwall</title>
         <meta
           name="description"
-          content="Hire a motor boat on the Helford River in Cornwall. Self-drive boats available with no experience needed. Family-friendly boating from St Anthony."
+          content="Hire a motor boat on the Helford River in Cornwall. Self-drive boats available with no experience needed. Family-friendly boating on The Lizard."
         />
       </Head>
 
