@@ -59,6 +59,7 @@ export default function MotorBoatHire() {
 
         <h2>Our Motor Boats</h2>
 
+{/* PILOT BOAT */}
 <div style={{ position: "relative", marginBottom: "40px" }}>
   <img
     src="/pilot.jpg"
@@ -76,9 +77,24 @@ export default function MotorBoatHire() {
     <h2>Plymouth Pilot</h2>
     <p>Spacious and stable motor boat for up to 8 people — perfect for families and groups.</p>
 
-    <a href="/#booking?boat=Plymouth%20Pilot%20(8%20people)">
+    <a href="/?boat=Plymouth%20Pilot%20(8%20people)#booking">
+      <button style={{
+        marginTop: "10px",
+        padding: "12px 20px",
+        backgroundColor: "#1e3a5f",
+        color: "white",
+        border: "none",
+        borderRadius: "6px"
+      }}>
+        Check availability
+      </button>
+    </a>
+  </div>
+</div>
 
-    <div style={{ position: "relative", marginBottom: "40px" }}>
+
+{/* BASS BOAT */}
+<div style={{ position: "relative", marginBottom: "40px" }}>
   <img
     src="/bass.jpg"
     style={{ width: "100%", borderRadius: "10px" }}
@@ -95,7 +111,7 @@ export default function MotorBoatHire() {
     <h2>Bass Boat</h2>
     <p>Ideal for smaller groups of up to 5 people. Easy to handle and great for exploring the river.</p>
 
-    <a href="/#booking?boat=Bass%20Boat%20(5%20people)">
+    <a href="/?boat=Bass%20Boat%20(5%20people)#booking">
       <button style={{
         marginTop: "10px",
         padding: "12px 20px",
