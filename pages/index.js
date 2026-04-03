@@ -85,8 +85,9 @@ return (
     <div style={{ display: "flex", gap: "20px", fontSize: "0.95rem" }}>
       <a href="/" style={{ textDecoration: "none", color: "#333" }}>Home</a>
       <a href="/motor-boat-hire-helford" style={{ textDecoration: "none", color: "#333" }}>Motor Boats</a>
-      <a href="/sailing-boat-hire-helford" style={{ textDecoration: "none", color: "#333" }}>Sailing</a>
-      <a href="/kayak-hire-helford" style={{ textDecoration: "none", color: "#333" }}>Kayaks</a>
+      <a href="/sailing-boat-hire-helford">Sailing</a>
+      <a href="/kayak-hire-helford">Kayaks</a>
+      <a href="/st-anthony-helford-river">Location</a>
       <a href="/boatyard-services" style={{ textDecoration: "none", color: "#333" }}>Boatyard</a>
       <a href="/#booking" style={{ textDecoration: "none", color: "#1e3a5f", fontWeight: "bold" }}>Book</a>
     </div>
