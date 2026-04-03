@@ -7,7 +7,7 @@ export default function MotorBoatHire() {
         <title>Motor Boat Hire Helford River | Self Drive Boats Cornwall</title>
         <meta
           name="description"
-          content="Hire a motor boat on the Helford River in Cornwall. Self-drive boats available with no experience needed. Family-friendly boating on The Lizard."
+          content="Hire a motor boat on the Helford River in Cornwall and explore at your own pace. Our self-drive boats are perfect for families and groups, with no experience needed."
         />
       </Head>
 
@@ -59,10 +59,56 @@ export default function MotorBoatHire() {
 
         <h2>Our Motor Boats</h2>
 
-        <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
-          <li><strong>Plymouth Pilot</strong> – spacious and stable (up to 8 people)</li>
-          <li><strong>Bass Boat</strong> – ideal for smaller groups (up to 5 people)</li>
-        </ul>
+<div style={{ position: "relative", marginBottom: "40px" }}>
+  <img
+    src="/pilot.jpg"
+    style={{ width: "100%", borderRadius: "10px" }}
+  />
+
+  <div style={{
+    position: "absolute",
+    top: "20%",
+    left: "40px",
+    color: "white",
+    textShadow: "0 2px 10px rgba(0,0,0,0.7)",
+    maxWidth: "400px"
+  }}>
+    <h2>Plymouth Pilot</h2>
+    <p>Spacious and stable motor boat for up to 8 people — perfect for families and groups.</p>
+
+    <a href="/#booking?boat=Plymouth%20Pilot%20(8%20people)">
+
+    <div style={{ position: "relative", marginBottom: "40px" }}>
+  <img
+    src="/bass.jpg"
+    style={{ width: "100%", borderRadius: "10px" }}
+  />
+
+  <div style={{
+    position: "absolute",
+    top: "20%",
+    left: "40px",
+    color: "white",
+    textShadow: "0 2px 10px rgba(0,0,0,0.7)",
+    maxWidth: "400px"
+  }}>
+    <h2>Bass Boat</h2>
+    <p>Ideal for smaller groups of up to 5 people. Easy to handle and great for exploring the river.</p>
+
+    <a href="/#booking?boat=Bass%20Boat%20(5%20people)">
+      <button style={{
+        marginTop: "10px",
+        padding: "12px 20px",
+        backgroundColor: "#1e3a5f",
+        color: "white",
+        border: "none",
+        borderRadius: "6px"
+      }}>
+        Check availability
+      </button>
+    </a>
+  </div>
+</div>
 
         <h2>What to Expect</h2>
 
