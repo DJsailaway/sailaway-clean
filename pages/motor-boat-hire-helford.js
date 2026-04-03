@@ -62,7 +62,7 @@ export default function MotorBoatHire() {
 {/* PILOT BOAT */}
 <div style={{ position: "relative", marginBottom: "40px" }}>
   <img
-    src="/pilot.jpg"
+    src="/Pilot.jpg"
     style={{ width: "100%", borderRadius: "10px" }}
   />
 
@@ -96,7 +96,7 @@ export default function MotorBoatHire() {
 {/* BASS BOAT */}
 <div style={{ position: "relative", marginBottom: "40px" }}>
   <img
-    src="/bass.jpg"
+    src="/Bass.jpg"
     style={{ width: "100%", borderRadius: "10px" }}
   />
 
