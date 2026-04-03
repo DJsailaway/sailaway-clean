@@ -11,29 +11,36 @@ export default function KayakHire() {
         />
       </Head>
 
-     {/* NAVBAR */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px",
-        borderBottom: "1px solid #eee",
-        backgroundColor: "white",
-        position: "sticky",
-        top: 0,
-        zIndex: 1000
-      }}>
-        <div style={{ fontWeight: "bold" }}>Sailaway</div>
+  {/* NAVBAR */}
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "20px",
+    borderBottom: "1px solid #eee",
+    backgroundColor: "white",
+    position: "sticky",
+    top: 0,
+    zIndex: 1000
+  }}>
+    
+    {/* Logo / Brand */}
+    <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+      Sailaway
+    </div>
 
-        <div style={{ display: "flex", gap: "20px" }}>
-          <a href="/">Home</a>
-          <a href="/motor-boat-hire-helford">Motor Boats</a>
-          <a href="/sailing-boat-hire-helford">Sailing</a>
-          <a href="/kayak-hire-helford">Kayaks</a>
-          <a href="/st-anthony-helford-river">Location</a>
-          <a href="/#booking" style={{ fontWeight: "bold" }}>Book</a>
-        </div>
-      </div>
+    {/* Links */}
+    <div style={{ display: "flex", gap: "20px", fontSize: "0.95rem" }}>
+      <a href="/" style={{ textDecoration: "none", color: "#333" }}>Home</a>
+      <a href="/motor-boat-hire-helford" style={{ textDecoration: "none", color: "#333" }}>Motor Boats</a>
+      <a href="/sailing-boat-hire-helford">Sailing</a>
+      <a href="/kayak-hire-helford">Kayaks</a>
+      <a href="/st-anthony-helford-river">Location</a>
+      <a href="/boatyard-services" style={{ textDecoration: "none", color: "#333" }}>Boatyard</a>
+      <a href="/#booking" style={{ textDecoration: "none", color: "#1e3a5f", fontWeight: "bold" }}>Book</a>
+    </div>
+
+  </div>
   
       <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
 
