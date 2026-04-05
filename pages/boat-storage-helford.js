@@ -1,13 +1,13 @@
 import Head from "next/head";
 
-export default function BoatyardServices() {
+export default function BoatStorage() {
   return (
     <>
       <Head>
         <title>Boat Storage St Anthony | Helford River Boat Storage Cornwall</title>
         <meta
           name="description"
-          content="Boat storage at St Anthony on the Helford River, Cornwall. सुरक्षित and convenient seasonal boat storage for local Helford boat owners."
+          content="Boat storage at St Anthony on the Helford River, Cornwall. Secure and convenient seasonal boat storage for local Helford boat owners."
         />
       </Head>
 
