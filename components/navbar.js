@@ -1,62 +1,140 @@
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const pages = [
-  { name: "Home", url: "/" },
-  { name: "Motor Boats", url: "/motor-boat-hire-helford" },
-  { name: "Sailing", url: "/sailing-boat-hire-helford" },
-  { name: "Kayaks & SUPs", url: "/kayak-hire-helford" },
-  { name: "Moorings", url: "/gillan-creek-moorings" },
-  { name: "Boat Launching & Dinghy Park", url: "/boat-launching-helford" },
-  { name: "Boat Storage", url: "/boat-storage-helford" },
-  { name: "Boatyard Services", url: "/boatyard-services" },
-  { name: "FAQs", url: "/boat-hire-faq" },
-  { name: "Location", url: "/st-anthony-helford-river" },
-  { name: "Book", url: "/#booking", highlight: true }
-];
-
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
+  // Helper for active link styling
+  const linkStyle = (path) => ({
+    textDecoration: "none",
+    color: router.pathname === path ? "#1e3a5f" : "#333",
+    fontWeight: router.pathname === path ? "600" : "400"
+  });
+
   return (
-    <nav style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      padding: "20px",
+    <div style={{
       borderBottom: "1px solid #eee",
       backgroundColor: "white",
       position: "sticky",
       top: 0,
-      zIndex: 1000,
-      flexWrap: "wrap"
+      zIndex: 1000
     }}>
-      {/* Logo */}
-      <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>Sailaway</div>
+      
+      {/* Top Bar */}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "15px 20px",
+        maxWidth: "1100px",
+        margin: "0 auto",
+        fontFamily: "sans-serif"
+      }}>
+        
+        {/* Logo */}
+        <Link href="/" style={{ textDecoration: "none", color: "#000" }}>
+          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+            Sailaway
+          </div>
+        </Link>
 
-      {/* Links */}
-      <div style={{ display: "flex", gap: "20px", fontSize: "0.95rem", flexWrap: "wrap" }}>
-        {pages.map((page) => (
-          <Link key={page.url} href={page.url} passHref legacyBehavior>
-            <a style={{
-              textDecoration: "none",
-              color: page.highlight ? "#1e3a5f" : "#333",
-              fontWeight: page.highlight ? "bold" : "normal",
-              padding: "6px 8px",
-              borderRadius: "4px",
-              backgroundColor: router.pathname === page.url ? "#f0f0f0" : "transparent",
-              transition: "background-color 0.2s"
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f0f0f0"; }}
-            onMouseLeave={(e) => { 
-              if (router.pathname !== page.url) e.currentTarget.style.backgroundColor = "transparent"; 
-            }}
-            >
-              {page.name}
-            </a>
+        {/* Desktop Menu */}
+        <div className="desktop-menu" style={{
+          display: "none",
+          gap: "20px",
+          fontSize: "0.95rem",
+          alignItems: "center"
+        }}>
+          <Link href="/" style={linkStyle("/")}>Home</Link>
+          <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
+          <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
+          <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs </Link>
+          <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>      
+          <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching & Dinghy Park</Link>
+          <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>                 
+          <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
+
+
+
+
+          {/* Book Button */}
+          <Link href="/#booking" style={{
+            padding: "8px 14px",
+            backgroundColor: "#1e3a5f",
+            color: "white",
+            borderRadius: "5px",
+            textDecoration: "none",
+            fontWeight: "600"
+          }}>
+            Book
           </Link>
-        ))}
+        </div>
+
+        {/* Hamburger */}
+        <div
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            fontSize: "1.6rem",
+            cursor: "pointer"
+          }}
+        >
+          ☰
+        </div>
       </div>
-    </nav>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+          padding: "20px",
+          fontFamily: "sans-serif",
+          borderTop: "1px solid #eee"
+        }}>
+          <Link href="/" style={linkStyle("/")}>Home</Link>
+          <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
+          <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
+          <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs </Link>
+          <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>      
+          <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching & Dinghy Park</Link>
+          <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>                 
+          <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
+
+          <Link href="/#booking" style={{
+            padding: "10px",
+            backgroundColor: "#1e3a5f",
+            color: "white",
+            borderRadius: "5px",
+            textAlign: "center",
+            textDecoration: "none",
+            fontWeight: "600"
+          }}>
+            Book
+          </Link>
+        </div>
+      )}
+
+      {/* Styles */}
+      <style jsx>{`
+        a:hover {
+          color: #1e3a5f;
+        }
+
+        @media (min-width: 768px) {
+          .desktop-menu {
+            display: flex;
+          }
+          .hamburger {
+            display: none;
+          }
+        }
+      `}</style>
+    </div>
   );
 }
