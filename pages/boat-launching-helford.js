@@ -13,7 +13,7 @@ export default function BoatyardServices() {
       </Head>
 
       {/* Navbar */}
-      <navbar />
+      <Navbar />
 
       <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
 
