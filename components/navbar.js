@@ -10,12 +10,11 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? "600" : "400",
-    padding: "0 6px",
+    padding: "0 4px", // Reduced horizontal padding
     whiteSpace: "nowrap",
     fontSize: "0.92rem"
   });
 
-  // Shortened menu items
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Motor Boats", path: "/motor-boat-hire-helford" },
@@ -51,28 +50,27 @@ export default function Navbar() {
         <div className="desktop-menu" style={{
           display: "flex",
           justifyContent: "flex-start",
-          gap: "10px",
+          gap: "6px", // Narrower gap between items
           fontSize: "0.92rem",
           alignItems: "center",
-          flexWrap: "wrap",
+          flexWrap: "nowrap",
           flex: 1,
-          marginLeft: "30px"
+          marginLeft: "20px"
         }}>
           {menuItems.map((item, index) => (
             <span key={item.path} style={{ display: "flex", alignItems: "center" }}>
               <Link href={item.path} style={linkStyle(item.path)}>{item.name}</Link>
-              {index < menuItems.length - 1 && <span style={{ color: "#ccc", margin: "0 6px" }}>|</span>}
+              {index < menuItems.length - 1 && <span style={{ color: "#ccc", margin: "0 4px" }}>|</span>} {/* Narrow divider */}
             </span>
           ))}
-          {/* Book Button */}
           <Link href="/#booking" style={{
-            padding: "6px 14px",
+            padding: "4px 12px", // Slightly smaller button padding
             backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "5px",
             textDecoration: "none",
             fontWeight: "600",
-            marginLeft: "12px",
+            marginLeft: "8px",
             whiteSpace: "nowrap"
           }}>Book</Link>
         </div>
