@@ -54,6 +54,7 @@ export default function Navbar() {
           <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>      
           <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching & Dinghy Park</Link>
           <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>                 
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
 
@@ -103,6 +104,7 @@ export default function Navbar() {
           <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>      
           <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching & Dinghy Park</Link>
           <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>        
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>                 
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
 
