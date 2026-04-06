@@ -6,14 +6,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  // Helper for active link styling
-  const linkStyle = (path) => ({
-    textDecoration: "none",
-    color: router.pathname === path ? "#1e3a5f" : "#333",
-    fontWeight: router.pathname === path ? "600" : "400",
-    padding: "0 8px"
-  });
-
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Motor Boats", path: "/motor-boat-hire-helford" },
@@ -27,65 +19,66 @@ export default function Navbar() {
     { name: "Location", path: "/st-anthony-helford-river" }
   ];
 
+  const isActive = (path) => router.pathname === path;
+
   return (
-    <div style={{
+    <nav style={{
       borderBottom: "1px solid #eee",
       backgroundColor: "white",
       position: "sticky",
       top: 0,
-      zIndex: 1000
+      zIndex: 1000,
+      fontFamily: "sans-serif"
     }}>
-      
-      {/* Top Bar */}
       <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
         maxWidth: "1200px",
         margin: "0 auto",
-        fontFamily: "sans-serif"
+        padding: "10px 20px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
       }}>
-        
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
-          display: "none",
+          display: "flex",
+          alignItems: "center",
           gap: "10px",
-          fontSize: "0.95rem",
-          alignItems: "center"
+          flexWrap: "wrap"
         }}>
           {menuItems.map((item, index) => (
             <div key={item.name} style={{ display: "flex", alignItems: "center" }}>
-              <Link href={item.path} style={linkStyle(item.path)}>
+              <Link href={item.path} style={{
+                textDecoration: "none",
+                color: isActive(item.path) ? "#1e3a5f" : "#333",
+                fontWeight: isActive(item.path) ? "600" : "400",
+                padding: "0 4px"
+              }}>
                 {item.name}
               </Link>
               {index < menuItems.length - 1 && (
-                <span style={{ margin: "0 6px", color: "#ccc" }}>|</span>
+                <span style={{ margin: "0 4px", color: "#ccc" }}>|</span>
               )}
             </div>
           ))}
-          {/* Book Button */}
           <Link href="/#booking" style={{
             padding: "8px 14px",
             backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "5px",
             textDecoration: "none",
-            fontWeight: "600"
+            fontWeight: "600",
+            marginLeft: "8px"
           }}>
             Book
           </Link>
         </div>
 
-        {/* Hamburger */}
-        <div
-          className="hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            fontSize: "1.6rem",
-            cursor: "pointer"
-          }}
-        >
+        {/* Hamburger for mobile */}
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{
+          fontSize: "1.6rem",
+          cursor: "pointer",
+          display: "none"
+        }}>
           ☰
         </div>
       </div>
@@ -97,11 +90,14 @@ export default function Navbar() {
           flexDirection: "column",
           gap: "15px",
           padding: "20px",
-          fontFamily: "sans-serif",
           borderTop: "1px solid #eee"
         }}>
           {menuItems.map((item) => (
-            <Link key={item.name} href={item.path} style={linkStyle(item.path)}>
+            <Link key={item.name} href={item.path} style={{
+              textDecoration: "none",
+              color: isActive(item.path) ? "#1e3a5f" : "#333",
+              fontWeight: isActive(item.path) ? "600" : "400"
+            }}>
               {item.name}
             </Link>
           ))}
@@ -119,21 +115,26 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Styles */}
       <style jsx>{`
         a:hover {
           color: #1e3a5f;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 767px) {
           .desktop-menu {
-            display: flex;
+            display: none !important;
           }
           .hamburger {
-            display: none;
+            display: block !important;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .desktop-menu {
+            display: flex !important;
           }
         }
       `}</style>
-    </div>
+    </nav>
   );
 }
