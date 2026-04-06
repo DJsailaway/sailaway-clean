@@ -6,25 +6,26 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
+  // Helper for active link styling
   const linkStyle = (path) => ({
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? "600" : "400",
-    padding: "8px 12px",
-    textAlign: "center"
+    padding: "0 8px"
   });
 
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/motor-boat-hire-helford", label: "Motor Boats" },
-    { href: "/sailing-boat-hire-helford", label: "Sailing" },
-    { href: "/kayak-hire-helford", label: "Kayaks & SUPs" },
-    { href: "/gillan-creek-moorings", label: "Moorings" },
-    { href: "/boat-launching-helford", label: "Launching & Dinghy Park" },
-    { href: "/boat-storage-helford", label: "Storage" },
-    { href: "/boatyard-services", label: "Boatyard Services" },
-    { href: "/boat-hire-faq", label: "FAQs" },
-    { href: "/st-anthony-helford-river", label: "Location" },
+  // Menu items
+  const menuItems = [
+    { name: "Home", href: "/" },
+    { name: "Motor Boats", href: "/motor-boat-hire-helford" },
+    { name: "Sailing", href: "/sailing-boat-hire-helford" },
+    { name: "Kayaks & SUPs", href: "/kayak-hire-helford" },
+    { name: "Moorings", href: "/gillan-creek-moorings" },
+    { name: "Launching & Dinghy Park", href: "/boat-launching-helford" },
+    { name: "Storage", href: "/boat-storage-helford" },
+    { name: "Boatyard Services", href: "/boatyard-services" },
+    { name: "FAQs", href: "/boat-hire-faq" },
+    { name: "Location", href: "/st-anthony-helford-river" }
   ];
 
   return (
@@ -35,34 +36,40 @@ export default function Navbar() {
       top: 0,
       zIndex: 1000
     }}>
+
+      {/* Top Bar */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         padding: "15px 20px",
-        maxWidth: "1100px",
+        maxWidth: "1200px",
         margin: "0 auto",
         fontFamily: "sans-serif"
       }}>
+
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: "none", color: "#000" }}>
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>Sailaway</div>
+        <Link href="/">
+          <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+            {/* Replace placeholder with your logo path */}
+            <img src="/logo-placeholder.png" alt="Sailaway Logo" style={{ height: "40px", marginRight: "10px" }} />
+            {/* Optional text fallback */}
+            <span style={{ fontWeight: "bold", fontSize: "1.2rem" }}>Sailaway</span>
+          </div>
         </Link>
 
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
           display: "none",
-          gap: "0",
-          alignItems: "center",
+          gap: "12px",
+          fontSize: "0.95rem",
+          alignItems: "center"
         }}>
-          {links.map((link, idx) => (
-            <div key={link.href} style={{
-              display: "flex",
-              alignItems: "center"
-            }}>
-              <Link href={link.href} style={linkStyle(link.href)}>{link.label}</Link>
-              {idx < links.length - 1 && (
-                <span style={{ margin: "0 8px", color: "#ccc" }}>|</span>
+          {menuItems.map((item, index) => (
+            <div key={item.href} style={{ display: "flex", alignItems: "center" }}>
+              <Link href={item.href} style={linkStyle(item.href)}>{item.name}</Link>
+              {index < menuItems.length - 1 && (
+                <span style={{ margin: "0 6px", color: "#ccc" }}>|</span>
               )}
             </div>
           ))}
@@ -101,11 +108,12 @@ export default function Navbar() {
           fontFamily: "sans-serif",
           borderTop: "1px solid #eee"
         }}>
-          {links.map(link => (
-            <Link key={link.href} href={link.href} style={linkStyle(link.href)}>
-              {link.label}
+          {menuItems.map((item) => (
+            <Link key={item.href} href={item.href} style={linkStyle(item.href)}>
+              {item.name}
             </Link>
           ))}
+
           <Link href="/#booking" style={{
             padding: "10px",
             backgroundColor: "#1e3a5f",
