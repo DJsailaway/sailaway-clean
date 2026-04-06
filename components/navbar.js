@@ -10,7 +10,7 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? "600" : "400",
-    padding: "0 8px",
+    padding: "0 10px",
     whiteSpace: "nowrap"
   });
 
@@ -34,21 +34,30 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
-          display: "none",
-          gap: "20px",
+          display: "flex",
+          gap: "15px",
           fontSize: "0.95rem",
           alignItems: "center",
           flexWrap: "wrap"
         }}>
           <Link href="/" style={linkStyle("/")}>Home</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching & Dinghy Park</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
           <Link href="/#booking" style={{
             padding: "8px 14px",
@@ -56,7 +65,8 @@ export default function Navbar() {
             color: "white",
             borderRadius: "5px",
             textDecoration: "none",
-            fontWeight: "600"
+            fontWeight: "600",
+            marginLeft: "10px"
           }}>Book</Link>
         </div>
 
@@ -85,8 +95,10 @@ export default function Navbar() {
 
       <style jsx>{`
         a:hover { color: #1e3a5f; }
+        @media (max-width: 767px) {
+          .desktop-menu { display: none !important; }
+        }
         @media (min-width: 768px) {
-          .desktop-menu { display: flex; }
           .hamburger { display: none; }
         }
       `}</style>
