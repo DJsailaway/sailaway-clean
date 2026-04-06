@@ -69,9 +69,10 @@ return (
 
 {/* HERO SECTION */}
 <div style={{ position: "relative" }}>
-
+  {/* Hero Image */}
   <img 
     src="/hero.jpg"
+    alt="Boat Hire on Helford River"
     style={{
       width: "100%",
       height: "auto",
@@ -79,52 +80,60 @@ return (
     }}
   />
 
-  {/* Overlay */}
+  {/* Semi-transparent overlay */}
   <div style={{
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0,0,0,0.1)"
+    backgroundColor: "rgba(0,0,0,0.1)",
+    zIndex: 1 // stays below text but above image
   }} />
 
-  {/* Text */}
-<div style={{
-  position: "absolute",
-  top: "120px",
-  left: "80px",
-  color: "white",
-  textShadow: "0 2px 12px rgba(0,0,0,0.8)",
-  maxWidth: "500px"
-}}>
-  <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
-    Boat Hire on the Helford River, Cornwall
-  </h1>
-  <p style={{ fontSize: "1.2rem" }}>
-    Relaxed, family-friendly experiences from St Anthony
-  </p>
-      
-<button
-  style={{
-    marginTop: "24px",
-    padding: "14px 28px",
-    fontSize: "1.1rem",
-    backgroundColor: "#1e3a5f",
+  {/* Hero Text & Button */}
+  <div style={{
+    position: "absolute",
+    top: "120px",
+    left: "80px",
     color: "white",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    transition: "all 0.2s ease",
-    width: "100%",
-    maxWidth: "280px"
-  }}
->
-  Check availability
-</button>
-</div>
+    textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+    maxWidth: "500px",
+    zIndex: 2 // above overlay but below navbar
+  }}>
+    <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
+      Boat Hire on the Helford River, Cornwall
+    </h1>
+    <p style={{ fontSize: "1.2rem", marginBottom: "24px" }}>
+      Relaxed, family-friendly experiences from St Anthony
+    </p>
 
+    {/* Hero Button */}
+    <button
+      style={{
+        padding: "14px 28px",
+        fontSize: "1.1rem",
+        backgroundColor: "#1e3a5f",
+        color: "white",
+        border: "none",
+        borderRadius: "6px",
+        cursor: "pointer",
+        fontWeight: "bold",
+        transition: "all 0.2s ease",
+        width: "100%",
+        maxWidth: "280px"
+      }}
+      onClick={() => {
+        // Smooth scroll to booking section
+        const bookingSection = document.getElementById("booking");
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }}
+    >
+      Check availability
+    </button>
+  </div>
 </div>
 
 {/* BOOKING SECTION */}
