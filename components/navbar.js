@@ -10,17 +10,19 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? "600" : "400",
-    padding: "0 8px",
-    whiteSpace: "nowrap"
+    padding: "0 6px",
+    whiteSpace: "nowrap",
+    fontSize: "0.92rem"
   });
 
+  // Shortened menu items
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Motor Boats", path: "/motor-boat-hire-helford" },
     { name: "Sailing", path: "/sailing-boat-hire-helford" },
     { name: "Kayaks & SUPs", path: "/kayak-hire-helford" },
     { name: "Moorings", path: "/gillan-creek-moorings" },
-    { name: "Launching & Dinghy Park", path: "/boat-launching-helford" },
+    { name: "Launching", path: "/boat-launching-helford" },
     { name: "Storage", path: "/boat-storage-helford" },
     { name: "Boatyard Services", path: "/boatyard-services" },
     { name: "FAQs", path: "/boat-hire-faq" },
@@ -33,7 +35,7 @@ export default function Navbar() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "15px 20px",
+        padding: "12px 20px",
         maxWidth: "1100px",
         margin: "0 auto",
         fontFamily: "sans-serif"
@@ -41,20 +43,20 @@ export default function Navbar() {
         {/* Logo */}
         <div style={{ flexShrink: 0 }}>
           <Link href="/">
-            <img src="/logo-placeholder.png" alt="Sailaway Logo" style={{ height: "40px", display: "block" }} />
+            <img src="/logo-placeholder.png" alt="Sailaway Logo" style={{ height: "38px", display: "block" }} />
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
           display: "flex",
-          justifyContent: "space-between",
-          gap: "12px",
-          fontSize: "0.95rem",
+          justifyContent: "flex-start",
+          gap: "10px",
+          fontSize: "0.92rem",
           alignItems: "center",
           flexWrap: "wrap",
           flex: 1,
-          marginLeft: "40px"
+          marginLeft: "30px"
         }}>
           {menuItems.map((item, index) => (
             <span key={item.path} style={{ display: "flex", alignItems: "center" }}>
@@ -64,13 +66,14 @@ export default function Navbar() {
           ))}
           {/* Book Button */}
           <Link href="/#booking" style={{
-            padding: "6px 12px",
+            padding: "6px 14px",
             backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "5px",
             textDecoration: "none",
             fontWeight: "600",
-            marginLeft: "10px"
+            marginLeft: "12px",
+            whiteSpace: "nowrap"
           }}>Book</Link>
         </div>
 
@@ -82,11 +85,26 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "15px", padding: "20px", fontFamily: "sans-serif", borderTop: "1px solid #eee" }}>
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+          padding: "20px",
+          fontFamily: "sans-serif",
+          borderTop: "1px solid #eee"
+        }}>
           {menuItems.map(item => (
             <Link key={item.path} href={item.path} style={linkStyle(item.path)}>{item.name}</Link>
           ))}
-          <Link href="/#booking" style={{ padding: "10px", backgroundColor: "#1e3a5f", color: "white", borderRadius: "5px", textAlign: "center", textDecoration: "none", fontWeight: "600" }}>Book</Link>
+          <Link href="/#booking" style={{
+            padding: "10px",
+            backgroundColor: "#1e3a5f",
+            color: "white",
+            borderRadius: "5px",
+            textAlign: "center",
+            textDecoration: "none",
+            fontWeight: "600"
+          }}>Book</Link>
         </div>
       )}
 
