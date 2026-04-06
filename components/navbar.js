@@ -10,7 +10,8 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? "600" : "400",
-    padding: "0 8px"
+    padding: "0 8px",
+    whiteSpace: "nowrap"
   });
 
   return (
@@ -25,12 +26,20 @@ export default function Navbar() {
         fontFamily: "sans-serif"
       }}>
         {/* Logo */}
-        <Link href="/">
-          <img src="/logo-placeholder.png" alt="Sailaway Logo" style={{ height: "40px", display: "block" }} />
-        </Link>
+        <div style={{ flexShrink: 0 }}>
+          <Link href="/">
+            <img src="/logo-placeholder.png" alt="Sailaway Logo" style={{ height: "40px", display: "block" }} />
+          </Link>
+        </div>
 
         {/* Desktop Menu */}
-        <div className="desktop-menu" style={{ display: "none", gap: "20px", fontSize: "0.95rem", alignItems: "center" }}>
+        <div className="desktop-menu" style={{
+          display: "none",
+          gap: "20px",
+          fontSize: "0.95rem",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }}>
           <Link href="/" style={linkStyle("/")}>Home</Link>
           <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
           <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
@@ -41,8 +50,6 @@ export default function Navbar() {
           <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-
-          {/* Book Button */}
           <Link href="/#booking" style={{
             padding: "8px 14px",
             backgroundColor: "#1e3a5f",
@@ -50,9 +57,7 @@ export default function Navbar() {
             borderRadius: "5px",
             textDecoration: "none",
             fontWeight: "600"
-          }}>
-            Book
-          </Link>
+          }}>Book</Link>
         </div>
 
         {/* Hamburger */}
