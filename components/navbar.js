@@ -38,36 +38,35 @@ export default function Navbar() {
         justifyContent: "space-between",
         alignItems: "center"
       }}>
+
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
           display: "flex",
           alignItems: "center",
-          gap: "10px",
-          flexWrap: "wrap"
+          flex: 1,
+          justifyContent: "space-between"
         }}>
-          {menuItems.map((item, index) => (
-            <div key={item.name} style={{ display: "flex", alignItems: "center" }}>
-              <Link href={item.path} style={{
-                textDecoration: "none",
-                color: isActive(item.path) ? "#1e3a5f" : "#333",
-                fontWeight: isActive(item.path) ? "600" : "400",
-                padding: "0 4px"
-              }}>
-                {item.name}
-              </Link>
-              {index < menuItems.length - 1 && (
-                <span style={{ margin: "0 4px", color: "#ccc" }}>|</span>
-              )}
-            </div>
+          {menuItems.map((item) => (
+            <Link key={item.name} href={item.path} style={{
+              textDecoration: "none",
+              color: isActive(item.path) ? "#1e3a5f" : "#333",
+              fontWeight: isActive(item.path) ? "600" : "400",
+              padding: "0 6px"
+            }}>
+              {item.name}
+            </Link>
           ))}
+
+          {/* Book button */}
           <Link href="/#booking" style={{
-            padding: "8px 14px",
+            padding: "8px 16px",
             backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "5px",
             textDecoration: "none",
             fontWeight: "600",
-            marginLeft: "8px"
+            marginLeft: "10px",
+            whiteSpace: "nowrap"
           }}>
             Book
           </Link>
