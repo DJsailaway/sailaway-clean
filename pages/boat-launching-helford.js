@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 
 export default function BoatyardServices() {
   return (
@@ -13,7 +13,7 @@ export default function BoatyardServices() {
       </Head>
 
       {/* Navbar */}
-      <Navbar />
+      <navbar />
 
       <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
 
