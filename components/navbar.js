@@ -11,6 +11,7 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? "600" : "400",
+    whiteSpace: "nowrap"
   });
 
   return (
@@ -31,21 +32,15 @@ export default function Navbar() {
         maxWidth: "1200px",
         margin: "0 auto",
         fontFamily: "sans-serif",
-        flexWrap: "wrap"
       }}>
         
-        {/* Logo placeholder (remove if not needed) */}
-        <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-          {/* Logo or text could go here */}
-        </div>
-
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
           display: "none",
-          gap: "12px",
-          alignItems: "center",
           flex: 1,
           justifyContent: "space-between",
+          alignItems: "center",
+          gap: "12px",
         }}>
           <Link href="/" style={linkStyle("/")}>Home</Link>
           <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
@@ -133,7 +128,6 @@ export default function Navbar() {
           }
         }
 
-        /* Responsive font & spacing */
         .desktop-menu a {
           font-size: 0.85rem;
           white-space: nowrap;
