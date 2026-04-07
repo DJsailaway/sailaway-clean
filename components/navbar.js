@@ -6,7 +6,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  // Helper for active link styling
   const linkStyle = (path) => ({
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
@@ -22,8 +21,6 @@ export default function Navbar() {
       top: 0,
       zIndex: 1000,
     }}>
-      
-      {/* Top Bar */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
@@ -33,37 +30,36 @@ export default function Navbar() {
         margin: "0 auto",
         fontFamily: "sans-serif",
       }}>
-        
-        {/* Desktop Menu */}
-        <div className="desktop-menu" style={{
-          display: "none",
-          flex: 1,
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "12px",
-        }}>
-          <Link href="/" style={linkStyle("/")}>Home</Link>
-          <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
-          <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
-          <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
-          <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
-          <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
-          <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
-          <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
-          <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
-          <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-          {/* Book Button */}
-          <Link href="/#booking" style={{
-            padding: "8px 14px",
-            backgroundColor: "#1e3a5f",
-            color: "white",
-            borderRadius: "5px",
-            textDecoration: "none",
-            fontWeight: "600",
-            whiteSpace: "nowrap"
+
+        {/* Desktop Menu Container */}
+        <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          <div className="desktop-menu" style={{
+            display: "none",
+            gap: "15px",
+            flexWrap: "nowrap",
+            justifyContent: "center",
+            alignItems: "center",
           }}>
-            Book
-          </Link>
+            <Link href="/" style={linkStyle("/")}>Home</Link>
+            <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
+            <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
+            <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
+            <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
+            <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
+            <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+            <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
+            <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
+            <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
+            <Link href="/#booking" style={{
+              padding: "8px 14px",
+              backgroundColor: "#1e3a5f",
+              color: "white",
+              borderRadius: "5px",
+              textDecoration: "none",
+              fontWeight: "600",
+              whiteSpace: "nowrap"
+            }}>Book</Link>
+          </div>
         </div>
 
         {/* Hamburger */}
@@ -107,40 +103,15 @@ export default function Navbar() {
             textAlign: "center",
             textDecoration: "none",
             fontWeight: "600"
-          }}>
-            Book
-          </Link>
+          }}>Book</Link>
         </div>
       )}
 
-      {/* Styles */}
       <style jsx>{`
-        a:hover {
-          color: #1e3a5f;
-        }
-
+        a:hover { color: #1e3a5f; }
         @media (min-width: 768px) {
-          .desktop-menu {
-            display: flex;
-          }
-          .hamburger {
-            display: none;
-          }
-        }
-
-        .desktop-menu a {
-          font-size: 0.85rem;
-          white-space: nowrap;
-        }
-        @media (min-width: 768px) {
-          .desktop-menu a {
-            font-size: 0.95rem;
-          }
-        }
-        @media (min-width: 1200px) {
-          .desktop-menu a {
-            font-size: 1rem;
-          }
+          .desktop-menu { display: flex; }
+          .hamburger { display: none; }
         }
       `}</style>
     </div>
