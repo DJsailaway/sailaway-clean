@@ -10,83 +10,80 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? 600 : 400,
-    fontSize: "0.95rem",
-    whiteSpace: "nowrap"
+    padding: "0 6px"
   });
 
   return (
-    <div style={{
+    <nav style={{
       borderBottom: "1px solid #eee",
       backgroundColor: "white",
       position: "sticky",
       top: 0,
-      zIndex: 1000
+      zIndex: 1000,
+      fontFamily: "sans-serif"
     }}>
-      {/* Top Bar */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "10px 15px",
+        padding: "12px 20px",
         maxWidth: "1200px",
         margin: "0 auto",
-        fontFamily: "sans-serif"
+        flexWrap: "nowrap"
       }}>
-
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
-          display: "none",
-          flex: 1,
-          justifyContent: "space-between",
-          alignItems: "center",
+          display: "flex",
           gap: "12px",
+          alignItems: "center",
           flexWrap: "nowrap",
+          overflowX: "auto"
         }}>
           <Link href="/" style={linkStyle("/")}>Home</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
+          <span style={{ color: "#ccc" }}>|</span>
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-
-          {/* Buttons */}
-          <div style={{ display: "flex", gap: "10px" }}>
-            <Link href="/#booking" style={{
-              padding: "8px 14px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              borderRadius: "5px",
-              textDecoration: "none",
-              fontWeight: 600,
-            }}>Book</Link>
-
-            <a href="tel:+441234567890" style={{
-              padding: "8px 14px",
-              backgroundColor: "#4a4a4a",
-              color: "white",
-              borderRadius: "5px",
-              textDecoration: "none",
-              fontWeight: 600,
-            }}>Call</a>
-          </div>
+          <span style={{ color: "#ccc" }}>|</span>
+          <Link href="/#booking" style={{
+            padding: "6px 12px",
+            backgroundColor: "#1e3a5f",
+            color: "white",
+            borderRadius: "4px",
+            fontWeight: 600,
+            textDecoration: "none"
+          }}>Book</Link>
+          <span style={{ color: "#ccc" }}>|</span>
+          <Link href="tel:+441234567890" style={{
+            padding: "6px 12px",
+            backgroundColor: "#1e3a5f",
+            color: "white",
+            borderRadius: "4px",
+            fontWeight: 600,
+            textDecoration: "none"
+          }}>Call</Link>
         </div>
 
         {/* Hamburger */}
-        <div
-          className="hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            fontSize: "1.6rem",
-            cursor: "pointer",
-            display: "block"
-          }}
-        >
-          ☰
-        </div>
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{
+          fontSize: "1.6rem",
+          cursor: "pointer",
+          display: "none"
+        }}>☰</div>
       </div>
 
       {/* Mobile Menu */}
@@ -95,7 +92,7 @@ export default function Navbar() {
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          padding: "20px",
+          padding: "16px 20px",
           fontFamily: "sans-serif",
           borderTop: "1px solid #eee"
         }}>
@@ -109,7 +106,6 @@ export default function Navbar() {
           <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-
           <Link href="/#booking" style={{
             padding: "10px",
             backgroundColor: "#1e3a5f",
@@ -119,34 +115,31 @@ export default function Navbar() {
             textDecoration: "none",
             fontWeight: 600
           }}>Book</Link>
-
-          <a href="tel:+441326231357" style={{
+          <Link href="tel:+441326231357" style={{
             padding: "10px",
-            backgroundColor: "#4a4a4a",
+            backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "5px",
             textAlign: "center",
             textDecoration: "none",
             fontWeight: 600
-          }}>Call</a>
+          }}>Call</Link>
         </div>
       )}
 
-      {/* Styles */}
       <style jsx>{`
-        a:hover {
-          color: #1e3a5f;
-        }
+        a:hover { color: #1e3a5f; }
 
         @media (min-width: 768px) {
-          .desktop-menu {
-            display: flex;
-          }
-          .hamburger {
-            display: none;
-          }
+          .desktop-menu { display: flex !important; }
+          .hamburger { display: none !important; }
+        }
+
+        @media (max-width: 767px) {
+          .desktop-menu { display: none !important; }
+          .hamburger { display: block !important; }
         }
       `}</style>
-    </div>
+    </nav>
   );
 }
