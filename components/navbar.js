@@ -11,7 +11,8 @@ export default function Navbar() {
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? 600 : 400,
     textAlign: "center",
-    padding: "0 6px"
+    padding: "0 6px",
+    display: "block"
   });
 
   const menuItems = [
@@ -52,8 +53,8 @@ export default function Navbar() {
           justifyContent: "space-between",
           gap: "0"
         }}>
-          {menuItems.map((item, index) => (
-            <div key={item.name} style={{ flex: 1 }}>
+          {menuItems.map((item) => (
+            <div key={item.name} style={{ flex: 1, display: "flex", justifyContent: "center" }}>
               <Link href={item.href} style={linkStyle(item.href)}>
                 {item.name}
               </Link>
