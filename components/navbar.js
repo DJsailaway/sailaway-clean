@@ -9,7 +9,8 @@ export default function Navbar() {
   const linkStyle = (path) => ({
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
-    fontWeight: router.pathname === path ? "600" : "400",
+    fontWeight: router.pathname === path ? 600 : 400,
+    fontSize: "0.95rem",
     whiteSpace: "nowrap"
   });
 
@@ -21,22 +22,25 @@ export default function Navbar() {
       top: 0,
       zIndex: 1000
     }}>
+      {/* Top Bar */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "10px 20px",
+        padding: "10px 15px",
         maxWidth: "1200px",
         margin: "0 auto",
         fontFamily: "sans-serif"
       }}>
+
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
-          display: "flex",
+          display: "none",
+          flex: 1,
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "12px",
           flexWrap: "nowrap",
-          gap: "15px",
-          justifyContent: "center",
-          flex: 1
         }}>
           <Link href="/" style={linkStyle("/")}>Home</Link>
           <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
@@ -48,22 +52,38 @@ export default function Navbar() {
           <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-          <Link href="/#booking" style={{
-            padding: "8px 14px",
-            backgroundColor: "#1e3a5f",
-            color: "white",
-            borderRadius: "5px",
-            textDecoration: "none",
-            fontWeight: "600",
-            whiteSpace: "nowrap"
-          }}>Book</Link>
+
+          {/* Buttons */}
+          <div style={{ display: "flex", gap: "10px" }}>
+            <Link href="/#booking" style={{
+              padding: "8px 14px",
+              backgroundColor: "#1e3a5f",
+              color: "white",
+              borderRadius: "5px",
+              textDecoration: "none",
+              fontWeight: 600,
+            }}>Book</Link>
+
+            <a href="tel:+441234567890" style={{
+              padding: "8px 14px",
+              backgroundColor: "#4a4a4a",
+              color: "white",
+              borderRadius: "5px",
+              textDecoration: "none",
+              fontWeight: 600,
+            }}>Call</a>
+          </div>
         </div>
 
         {/* Hamburger */}
         <div
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{ fontSize: "1.6rem", cursor: "pointer" }}
+          style={{
+            fontSize: "1.6rem",
+            cursor: "pointer",
+            display: "block"
+          }}
         >
           ☰
         </div>
@@ -74,7 +94,7 @@ export default function Navbar() {
         <div style={{
           display: "flex",
           flexDirection: "column",
-          gap: "15px",
+          gap: "12px",
           padding: "20px",
           fontFamily: "sans-serif",
           borderTop: "1px solid #eee"
@@ -89,6 +109,7 @@ export default function Navbar() {
           <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
           <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
           <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
+
           <Link href="/#booking" style={{
             padding: "10px",
             backgroundColor: "#1e3a5f",
@@ -96,18 +117,34 @@ export default function Navbar() {
             borderRadius: "5px",
             textAlign: "center",
             textDecoration: "none",
-            fontWeight: "600"
+            fontWeight: 600
           }}>Book</Link>
+
+          <a href="tel:+441326231357" style={{
+            padding: "10px",
+            backgroundColor: "#4a4a4a",
+            color: "white",
+            borderRadius: "5px",
+            textAlign: "center",
+            textDecoration: "none",
+            fontWeight: 600
+          }}>Call</a>
         </div>
       )}
 
+      {/* Styles */}
       <style jsx>{`
-        a:hover { color: #1e3a5f; }
-        @media (max-width: 767px) {
-          .desktop-menu { display: none !important; }
+        a:hover {
+          color: #1e3a5f;
         }
+
         @media (min-width: 768px) {
-          .hamburger { display: none; }
+          .desktop-menu {
+            display: flex;
+          }
+          .hamburger {
+            display: none;
+          }
         }
       `}</style>
     </div>
