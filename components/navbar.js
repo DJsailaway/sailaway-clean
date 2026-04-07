@@ -19,7 +19,7 @@ export default function Navbar() {
       backgroundColor: "white",
       position: "sticky",
       top: 0,
-      zIndex: 1000,
+      zIndex: 1000
     }}>
       <div style={{
         display: "flex",
@@ -28,48 +28,42 @@ export default function Navbar() {
         padding: "10px 20px",
         maxWidth: "1200px",
         margin: "0 auto",
-        fontFamily: "sans-serif",
+        fontFamily: "sans-serif"
       }}>
-
-        {/* Desktop Menu Container */}
-        <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-          <div className="desktop-menu" style={{
-            display: "none",
-            gap: "15px",
-            flexWrap: "nowrap",
-            justifyContent: "center",
-            alignItems: "center",
-          }}>
-            <Link href="/" style={linkStyle("/")}>Home</Link>
-            <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
-            <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
-            <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
-            <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
-            <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
-            <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
-            <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
-            <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
-            <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-            <Link href="/#booking" style={{
-              padding: "8px 14px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              borderRadius: "5px",
-              textDecoration: "none",
-              fontWeight: "600",
-              whiteSpace: "nowrap"
-            }}>Book</Link>
-          </div>
+        {/* Desktop Menu */}
+        <div className="desktop-menu" style={{
+          display: "flex",
+          flexWrap: "nowrap",
+          gap: "15px",
+          justifyContent: "center",
+          flex: 1
+        }}>
+          <Link href="/" style={linkStyle("/")}>Home</Link>
+          <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
+          <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
+          <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
+          <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
+          <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
+          <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
+          <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
+          <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
+          <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
+          <Link href="/#booking" style={{
+            padding: "8px 14px",
+            backgroundColor: "#1e3a5f",
+            color: "white",
+            borderRadius: "5px",
+            textDecoration: "none",
+            fontWeight: "600",
+            whiteSpace: "nowrap"
+          }}>Book</Link>
         </div>
 
         {/* Hamburger */}
         <div
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            fontSize: "1.6rem",
-            cursor: "pointer"
-          }}
+          style={{ fontSize: "1.6rem", cursor: "pointer" }}
         >
           ☰
         </div>
@@ -109,8 +103,10 @@ export default function Navbar() {
 
       <style jsx>{`
         a:hover { color: #1e3a5f; }
+        @media (max-width: 767px) {
+          .desktop-menu { display: none !important; }
+        }
         @media (min-width: 768px) {
-          .desktop-menu { display: flex; }
           .hamburger { display: none; }
         }
       `}</style>
