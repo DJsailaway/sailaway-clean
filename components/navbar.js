@@ -10,8 +10,22 @@ export default function Navbar() {
     textDecoration: "none",
     color: router.pathname === path ? "#1e3a5f" : "#333",
     fontWeight: router.pathname === path ? 600 : 400,
+    textAlign: "center",
     padding: "0 6px"
   });
+
+  const menuItems = [
+    { name: "Home", href: "/" },
+    { name: "Motor Boats", href: "/motor-boat-hire-helford" },
+    { name: "Sailing", href: "/sailing-boat-hire-helford" },
+    { name: "Kayaks & SUPs", href: "/kayak-hire-helford" },
+    { name: "Moorings", href: "/gillan-creek-moorings" },
+    { name: "Launching", href: "/boat-launching-helford" },
+    { name: "Storage", href: "/boat-storage-helford" },
+    { name: "Boatyard Services", href: "/boatyard-services" },
+    { name: "FAQs", href: "/boat-hire-faq" },
+    { name: "Location", href: "/st-anthony-helford-river" }
+  ];
 
   return (
     <nav style={{
@@ -28,53 +42,43 @@ export default function Navbar() {
         alignItems: "center",
         padding: "12px 20px",
         maxWidth: "1200px",
-        margin: "0 auto",
-        flexWrap: "nowrap"
+        margin: "0 auto"
       }}>
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{
           display: "flex",
-          gap: "12px",
           alignItems: "center",
-          flexWrap: "nowrap",
-          overflowX: "auto"
+          flexGrow: 1,
+          justifyContent: "space-between",
+          gap: "0"
         }}>
-          <Link href="/" style={linkStyle("/")}>Home</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
-          <span style={{ color: "#ccc" }}>|</span>
-          <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
-          <span style={{ color: "#ccc" }}>|</span>
+          {menuItems.map((item, index) => (
+            <div key={item.name} style={{ flex: 1 }}>
+              <Link href={item.href} style={linkStyle(item.href)}>
+                {item.name}
+              </Link>
+            </div>
+          ))}
+
+          {/* Book & Call buttons */}
           <Link href="/#booking" style={{
             padding: "6px 12px",
             backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "4px",
             fontWeight: 600,
-            textDecoration: "none"
+            textDecoration: "none",
+            marginLeft: "10px"
           }}>Book</Link>
-          <span style={{ color: "#ccc" }}>|</span>
+
           <Link href="tel:+441234567890" style={{
             padding: "6px 12px",
             backgroundColor: "#1e3a5f",
             color: "white",
             borderRadius: "4px",
             fontWeight: 600,
-            textDecoration: "none"
+            textDecoration: "none",
+            marginLeft: "8px"
           }}>Call</Link>
         </div>
 
@@ -96,16 +100,11 @@ export default function Navbar() {
           fontFamily: "sans-serif",
           borderTop: "1px solid #eee"
         }}>
-          <Link href="/" style={linkStyle("/")}>Home</Link>
-          <Link href="/motor-boat-hire-helford" style={linkStyle("/motor-boat-hire-helford")}>Motor Boats</Link>
-          <Link href="/sailing-boat-hire-helford" style={linkStyle("/sailing-boat-hire-helford")}>Sailing</Link>
-          <Link href="/kayak-hire-helford" style={linkStyle("/kayak-hire-helford")}>Kayaks & SUPs</Link>
-          <Link href="/gillan-creek-moorings" style={linkStyle("/gillan-creek-moorings")}>Moorings</Link>
-          <Link href="/boat-launching-helford" style={linkStyle("/boat-launching-helford")}>Launching</Link>
-          <Link href="/boat-storage-helford" style={linkStyle("/boat-storage-helford")}>Storage</Link>
-          <Link href="/boatyard-services" style={linkStyle("/boatyard-services")}>Boatyard Services</Link>
-          <Link href="/boat-hire-faq" style={linkStyle("/boat-hire-faq")}>FAQs</Link>
-          <Link href="/st-anthony-helford-river" style={linkStyle("/st-anthony-helford-river")}>Location</Link>
+          {menuItems.map(item => (
+            <Link key={item.name} href={item.href} style={linkStyle(item.href)}>
+              {item.name}
+            </Link>
+          ))}
           <Link href="/#booking" style={{
             padding: "10px",
             backgroundColor: "#1e3a5f",
@@ -115,7 +114,7 @@ export default function Navbar() {
             textDecoration: "none",
             fontWeight: 600
           }}>Book</Link>
-          <Link href="tel:+441326231357" style={{
+          <Link href="tel:+441234567890" style={{
             padding: "10px",
             backgroundColor: "#1e3a5f",
             color: "white",
