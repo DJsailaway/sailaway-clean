@@ -230,13 +230,13 @@ export default function Home() {
         </div>
 
         {/* SECONDARY IMAGE */}
-        <div style={{ position: "relative", width: "100%", height: "auto", marginTop: "60px" }}>
-          <Image
-            src="/secondary.jpg"
-            alt="Helford River scenery"
-            fill
-            style={{ objectFit: "cover" }}
-          />
+<Image
+  src="/secondary.jpg"
+  alt="Helford River scenery"
+  width={1200}
+  height={800}
+  style={{ width: "100%", height: "auto" }}
+/>
         </div>
 
       </div>
