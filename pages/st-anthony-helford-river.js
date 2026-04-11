@@ -16,8 +16,10 @@ export default function Location() {
       <div style={{ fontFamily: "sans-serif" }}>
         <Navbar />
 
-        {/* IMAGE WITH OVERLAY TEXT */}
+        {/* TEXT OVERLAY AREA (ABOVE IMAGE, BUT POSITIONED OVER IT) */}
         <div style={{ position: "relative", width: "100%" }}>
+          
+          {/* IMAGE */}
           <Image
             src="/st-anthony.jpg"
             alt="St Anthony on the Helford River"
@@ -31,17 +33,7 @@ export default function Location() {
             }}
           />
 
-          {/* DARK OVERLAY */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1))"
-            }}
-          />
-
-          {/* TEXT OVERLAY */}
+          {/* TEXT OVERLAY (NO DARK GRADIENT NEEDED) */}
           <div
             style={{
               position: "absolute",
@@ -63,7 +55,7 @@ export default function Location() {
           </div>
         </div>
 
-        {/* PAGE CONTENT */}
+        {/* CONTENT */}
         <div
           style={{
             padding: "40px 20px",
