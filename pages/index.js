@@ -45,9 +45,47 @@ export default function Home() {
   const [category, setCategory] = useState("Motor Boats");
   const [boat, setBoat] = useState("Plymouth Pilot (8 people)");
   const [duration, setDuration] = useState("2 hours");
+
   const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
 
   const price = PRICING[boat][duration];
+
+  // latest start times
+  const getMaxStartHour = (duration) => {
+    switch (duration) {
+      case "1 hour":
+        return 16;
+      case "2 hours":
+        return 15;
+      case "Half day (4 hours)":
+        return 13;
+      case "Full day":
+        return 9;
+      default:
+        return 16;
+    }
+  };
+
+  const isAllowedDate = (value) => {
+    if (!value) return true;
+    const d = new Date(value);
+    const year = d.getFullYear();
+
+    const start = new Date(year, 3, 1); // April 1
+    const end = new Date(year, 9, 31);  // Oct 31
+
+    return d >= start && d <= end;
+  };
+
+  const buildDateTime = () => {
+    if (!date || !time) return "";
+    return `${date}T${time}`;
+  };
 
   return (
     <>
@@ -72,52 +110,36 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
 
-          {/* overlay */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundColor: "rgba(0,0,0,0.25)"
-            }}
-          />
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.25)"
+          }} />
 
-          {/* text */}
-          <div
-            style={{
-              position: "absolute",
-              top: "120px",
-              left: "80px",
-              color: "white",
-              textShadow: "0 2px 12px rgba(0,0,0,0.8)",
-              maxWidth: "500px",
-              zIndex: 2
-            }}
-          >
-            <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
-              Boat Hire on the Helford River, Cornwall
+          <div style={{
+            position: "absolute",
+            top: "120px",
+            left: "80px",
+            color: "white",
+            maxWidth: "500px",
+            zIndex: 2
+          }}>
+            <h1 style={{ fontSize: "3.5rem" }}>
+              Boat Hire on the Helford River
             </h1>
-
-            <p style={{ fontSize: "1.2rem", marginBottom: "24px" }}>
-              Relaxed, family-friendly experiences from St Anthony
-            </p>
 
             <button
               style={{
+                marginTop: "20px",
                 padding: "14px 28px",
-                fontSize: "1.1rem",
                 backgroundColor: "#1e3a5f",
                 color: "white",
                 border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontWeight: "bold",
-                maxWidth: "280px"
+                borderRadius: "6px"
               }}
-              onClick={() => {
-                document.getElementById("booking")?.scrollIntoView({
-                  behavior: "smooth"
-                });
-              }}
+              onClick={() =>
+                document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Check availability
             </button>
@@ -125,101 +147,153 @@ export default function Home() {
         </div>
 
         {/* BOOKING */}
-        <div id="booking" style={{ borderTop: "1px solid #eee", paddingTop: "40px" }}>
-          <div style={{ padding: "40px 20px", maxWidth: "700px", margin: "0 auto" }}>
+        <div id="booking" style={{ padding: "40px 20px", maxWidth: "700px", margin: "0 auto" }}>
 
-            <div style={{
-              backgroundColor: "#f5f5f5",
-              padding: "30px",
-              borderRadius: "10px"
-            }}>
+          <div style={{
+            backgroundColor: "#f5f5f5",
+            padding: "30px",
+            borderRadius: "10px"
+          }}>
 
-              <h2>Plan your time on the water</h2>
+            <h2>Plan your time on the water</h2>
 
-              {/* form unchanged */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            {/* NAME / EMAIL / MOBILE */}
+            <input
+              placeholder="Full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            />
 
-                <label>
-                  Boat type
-                  <br /><br />
-                  <select
-                    value={category}
-                    onChange={(e) => {
-                      setCategory(e.target.value);
-                      setBoat(BOATS[e.target.value][0]);
-                    }}
-                    style={{ width: "100%", padding: "10px" }}
-                  >
-                    {Object.keys(BOATS).map((c) => (
-                      <option key={c}>{c}</option>
-                    ))}
-                  </select>
-                </label>
+            <input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            />
 
-                <label>
-                  Select boat
-                  <br /><br />
-                  <select
-                    value={boat}
-                    onChange={(e) => setBoat(e.target.value)}
-                    style={{ width: "100%", padding: "10px" }}
-                  >
-                    {(BOATS[category] || []).map((b) => (
-                      <option key={b}>{b}</option>
-                    ))}
-                  </select>
-                </label>
+            <input
+              placeholder="Mobile number"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            />
 
-                <label>
-                  Duration
-                  <br /><br />
-                  <select
-                    onChange={(e) => setDuration(e.target.value)}
-                    style={{ width: "100%", padding: "10px" }}
-                  >
-                    <option>1 hour</option>
-                    <option>2 hours</option>
-                    <option>Half day (4 hours)</option>
-                    <option>Full day</option>
-                  </select>
-                </label>
+            {/* CATEGORY */}
+            <select
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+                setBoat(BOATS[e.target.value][0]);
+              }}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            >
+              {Object.keys(BOATS).map((c) => (
+                <option key={c}>{c}</option>
+              ))}
+            </select>
 
-                <label>
-                  Start time
-                  <br /><br />
-                  <input
-                    type="datetime-local"
-                    onChange={(e) => setDate(e.target.value)}
-                    style={{ width: "100%", padding: "10px" }}
-                  />
-                </label>
+            {/* BOAT */}
+            <select
+              value={boat}
+              onChange={(e) => setBoat(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            >
+              {(BOATS[category] || []).map((b) => (
+                <option key={b}>{b}</option>
+              ))}
+            </select>
 
-              </div>
+            {/* DURATION */}
+            <select
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            >
+              <option>1 hour</option>
+              <option>2 hours</option>
+              <option>Half day (4 hours)</option>
+              <option>Full day</option>
+            </select>
 
-              <h3 style={{ fontSize: "2rem", marginTop: "30px" }}>
-                £{price}
-              </h3>
+            {/* DATE */}
+            <input
+              type="date"
+              min="2026-04-01"
+              max="2026-10-31"
+              onChange={(e) => {
+                if (!isAllowedDate(e.target.value)) {
+                  alert("Bookings only available April–October");
+                  return;
+                }
+                setDate(e.target.value);
+              }}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            />
 
-              <button
-                style={{
-                  marginTop: "30px",
-                  padding: "14px",
-                  width: "100%",
-                  backgroundColor: "#1e3a5f",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "6px"
-                }}
-              >
-                Request booking
-              </button>
+            {/* TIME (30 min intervals + cutoffs) */}
+            <select
+              onChange={(e) => setTime(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            >
+              {Array.from({ length: 24 }).flatMap((_, h) => {
+                if (h > getMaxStartHour(duration)) return [];
+                return (
+                  <>
+                    <option key={`${h}:00`} value={`${String(h).padStart(2, "0")}:00`}>
+                      {String(h).padStart(2, "0")}:00
+                    </option>
+                    <option key={`${h}:30`} value={`${String(h).padStart(2, "0")}:30`}>
+                      {String(h).padStart(2, "0")}:30
+                    </option>
+                  </>
+                );
+              })}
+            </select>
 
-            </div>
+            <h3>£{price}</h3>
+
+            <button
+              onClick={async () => {
+                if (!name || !email || !mobile || !date || !time) {
+                  alert("Please complete all fields");
+                  return;
+                }
+
+                const res = await fetch("/api/send-booking", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    name,
+                    email,
+                    mobile,
+                    boat,
+                    duration,
+                    dateTime: buildDateTime()
+                  })
+                });
+
+                if (res.ok) alert("Booking sent!");
+                else alert("Error sending booking");
+              }}
+              style={{
+                width: "100%",
+                padding: "14px",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                border: "none",
+                borderRadius: "6px"
+              }}
+            >
+              Request booking
+            </button>
+
           </div>
         </div>
 
-        {/* SECONDARY IMAGE (FIXED) */}
-        <div style={{ position: "relative", width: "100%", height: "500px", marginTop: "60px" }}>
+        {/* SECONDARY IMAGE */}
+        <div style={{ position: "relative", width: "100%", height: "500px" }}>
           <Image
             src="/secondary.jpg"
             alt="Helford River scenery"
