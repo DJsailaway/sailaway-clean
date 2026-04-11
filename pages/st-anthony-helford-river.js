@@ -17,14 +17,20 @@ export default function Location() {
         <Navbar />
 
         {/* HERO IMAGE */}
-        <div style={{ position: "relative", width: "100%", height: "60vh" }}>
-          <Image
-            src="/st-anthony.jpg"
-            alt="St Anthony on the Helford River"
-            fill
-            priority
-            style={{ objectFit: "cover" }}
-          />
+        <div style={{ width: "100%" }}>
+  <Image
+    src="/st-anthony.jpg"
+    alt="St Anthony on the Helford River"
+    width={2000}
+    height={1200}
+    priority
+    style={{
+      width: "100%",
+      height: "auto",
+      display: "block"
+    }}
+  />
+</div>
 
           {/* Overlay */}
           <div
