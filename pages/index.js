@@ -233,23 +233,21 @@ export default function Home() {
             />
 
             {/* TIME (30 min intervals + cutoffs) */}
-            <select
-              onChange={(e) => setTime(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            >
-              {Array.from({ length: 24 }).flatMap((_, h) => {
-                if (h > getMaxStartHour(duration)) return [];
-                return (
-                  <>
-                    <option key={`${h}:00`} value={`${String(h).padStart(2, "0")}:00`}>
-                      {String(h).padStart(2, "0")}:00
-                    </option>
-                    <option key={`${h}:30`} value={`${String(h).padStart(2, "0")}:30`}>
-                      {String(h).padStart(2, "0")}:30
-                    </option>
-                  </>
-                );
-              })}
+{Array.from({ length: 24 }).flatMap((_, h) => {
+  const max = getMaxStartHour(duration);
+
+  // enforce earliest start = 09:00 and latest based on duration
+  if (h < 9 || h > max) return [];
+
+  return [
+    <option key={`${h}:00`} value={`${String(h).padStart(2, "0")}:00`}>
+      {String(h).padStart(2, "0")}:00
+    </option>,
+    <option key={`${h}:30`} value={`${String(h).padStart(2, "0")}:30`}>
+      {String(h).padStart(2, "0")}:30
+    </option>
+  ];
+})}
             </select>
 
             <h3>£{price}</h3>
