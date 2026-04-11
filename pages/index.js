@@ -62,37 +62,37 @@ export default function Home() {
       <div style={{ fontFamily: "sans-serif" }}>
         <Navbar />
 
-        {/* HERO SECTION */}
+        {/* HERO */}
         <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-          
           <Image
             src="/hero.jpg"
             alt="Boat Hire on Helford River"
             fill
             priority
+            style={{ objectFit: "cover" }}
+          />
+
+          {/* overlay */}
+          <div
             style={{
-              objectFit: "cover"
+              position: "absolute",
+              inset: 0,
+              backgroundColor: "rgba(0,0,0,0.25)"
             }}
           />
 
-          {/* Overlay */}
-          <div style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(0,0,0,0.0)",
-            zIndex: 1
-          }} />
-
-          {/* Text */}
-          <div style={{
-            position: "absolute",
-            top: "120px",
-            left: "80px",
-            color: "white",
-            textShadow: "0 2px 12px rgba(0,0,0,0.8)",
-            maxWidth: "500px",
-            zIndex: 2
-          }}>
+          {/* text */}
+          <div
+            style={{
+              position: "absolute",
+              top: "120px",
+              left: "80px",
+              color: "white",
+              textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+              maxWidth: "500px",
+              zIndex: 2
+            }}
+          >
             <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
               Boat Hire on the Helford River, Cornwall
             </h1>
@@ -111,14 +111,12 @@ export default function Home() {
                 borderRadius: "6px",
                 cursor: "pointer",
                 fontWeight: "bold",
-                width: "100%",
                 maxWidth: "280px"
               }}
               onClick={() => {
-                const bookingSection = document.getElementById("booking");
-                if (bookingSection) {
-                  bookingSection.scrollIntoView({ behavior: "smooth" });
-                }
+                document.getElementById("booking")?.scrollIntoView({
+                  behavior: "smooth"
+                });
               }}
             >
               Check availability
@@ -126,24 +124,21 @@ export default function Home() {
           </div>
         </div>
 
-        {/* BOOKING SECTION */}
+        {/* BOOKING */}
         <div id="booking" style={{ borderTop: "1px solid #eee", paddingTop: "40px" }}>
           <div style={{ padding: "40px 20px", maxWidth: "700px", margin: "0 auto" }}>
 
             <div style={{
               backgroundColor: "#f5f5f5",
               padding: "30px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.05)"
+              borderRadius: "10px"
             }}>
 
-              <h2 style={{ marginBottom: "20px" }}>
-                Plan your time on the water
-              </h2>
+              <h2>Plan your time on the water</h2>
 
+              {/* form unchanged */}
               <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
 
-                {/* CATEGORY */}
                 <label>
                   Boat type
                   <br /><br />
@@ -153,24 +148,21 @@ export default function Home() {
                       setCategory(e.target.value);
                       setBoat(BOATS[e.target.value][0]);
                     }}
-                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                    style={{ width: "100%", padding: "10px" }}
                   >
-                    <option>Motor Boats</option>
-                    <option>Sailing Boats</option>
-                    <option>Kayaks</option>
-                    <option>Paddleboards</option>
-                    <option>Rowing Boats</option>
+                    {Object.keys(BOATS).map((c) => (
+                      <option key={c}>{c}</option>
+                    ))}
                   </select>
                 </label>
 
-                {/* BOAT */}
                 <label>
                   Select boat
                   <br /><br />
                   <select
                     value={boat}
                     onChange={(e) => setBoat(e.target.value)}
-                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                    style={{ width: "100%", padding: "10px" }}
                   >
                     {(BOATS[category] || []).map((b) => (
                       <option key={b}>{b}</option>
@@ -178,13 +170,12 @@ export default function Home() {
                   </select>
                 </label>
 
-                {/* DURATION */}
                 <label>
                   Duration
                   <br /><br />
                   <select
                     onChange={(e) => setDuration(e.target.value)}
-                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                    style={{ width: "100%", padding: "10px" }}
                   >
                     <option>1 hour</option>
                     <option>2 hours</option>
@@ -193,20 +184,19 @@ export default function Home() {
                   </select>
                 </label>
 
-                {/* DATE */}
                 <label>
                   Start time
                   <br /><br />
                   <input
                     type="datetime-local"
                     onChange={(e) => setDate(e.target.value)}
-                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                    style={{ width: "100%", padding: "10px" }}
                   />
                 </label>
 
               </div>
 
-              <h3 style={{ fontSize: "2rem", marginTop: "30px", color: "#1e3a5f" }}>
+              <h3 style={{ fontSize: "2rem", marginTop: "30px" }}>
                 £{price}
               </h3>
 
@@ -215,7 +205,6 @@ export default function Home() {
                   marginTop: "30px",
                   padding: "14px",
                   width: "100%",
-                  fontSize: "1.1rem",
                   backgroundColor: "#1e3a5f",
                   color: "white",
                   border: "none",
@@ -229,14 +218,16 @@ export default function Home() {
           </div>
         </div>
 
-{/* SECONDARY IMAGE */}
-<Image
-  src="/secondary.jpg"
-  alt="Helford River scenery"
-  width={1200}
-  height={800}
-  style={{ width: "100%", height: "auto" }}
-/>
+        {/* SECONDARY IMAGE (FIXED) */}
+        <div style={{ position: "relative", width: "100%", height: "500px", marginTop: "60px" }}>
+          <Image
+            src="/secondary.jpg"
+            alt="Helford River scenery"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+
       </div>
     </>
   );
