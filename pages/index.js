@@ -65,7 +65,7 @@ export default function Home() {
       case "Half day (4 hours)":
         return 13;
       case "Full day":
-        return 9;
+        return 9; // IMPORTANT: full day ONLY 09:00 start
       default:
         return 16;
     }
@@ -85,6 +85,39 @@ export default function Home() {
   const buildDateTime = () => {
     if (!date || !time) return "";
     return `${date}T${time}`;
+  };
+
+  // SAFE TIME GENERATOR (FIXED)
+  const generateTimeOptions = () => {
+    const max = getMaxStartHour(duration);
+
+    const options = [];
+
+    // FULL DAY SPECIAL RULE: ONLY 09:00 ALLOWED
+    if (duration === "Full day") {
+      return [
+        <option key="09:00" value="09:00">09:00</option>
+      ];
+    }
+
+    // other durations
+    for (let h = 9; h <= max; h++) {
+      const hour = String(h).padStart(2, "0");
+
+      options.push(
+        <option key={`${hour}:00`} value={`${hour}:00`}>
+          {hour}:00
+        </option>
+      );
+
+      options.push(
+        <option key={`${hour}:30`} value={`${hour}:30`}>
+          {hour}:30
+        </option>
+      );
+    }
+
+    return options;
   };
 
   return (
@@ -157,67 +190,35 @@ export default function Home() {
 
             <h2>Plan your time on the water</h2>
 
-            {/* NAME / EMAIL / MOBILE */}
-            <input
-              placeholder="Full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            />
+            <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} />
+            <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input placeholder="Mobile number" value={mobile} onChange={(e) => setMobile(e.target.value)} />
 
-            <input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            />
-
-            <input
-              placeholder="Mobile number"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            />
-
-            {/* CATEGORY */}
             <select
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
                 setBoat(BOATS[e.target.value][0]);
               }}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
             >
               {Object.keys(BOATS).map((c) => (
                 <option key={c}>{c}</option>
               ))}
             </select>
 
-            {/* BOAT */}
-            <select
-              value={boat}
-              onChange={(e) => setBoat(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            >
+            <select value={boat} onChange={(e) => setBoat(e.target.value)}>
               {(BOATS[category] || []).map((b) => (
                 <option key={b}>{b}</option>
               ))}
             </select>
 
-            {/* DURATION */}
-            <select
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            >
+            <select value={duration} onChange={(e) => setDuration(e.target.value)}>
               <option>1 hour</option>
               <option>2 hours</option>
               <option>Half day (4 hours)</option>
               <option>Full day</option>
             </select>
 
-            {/* DATE */}
             <input
               type="date"
               min="2026-04-01"
@@ -229,25 +230,15 @@ export default function Home() {
                 }
                 setDate(e.target.value);
               }}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
             />
 
-            {/* TIME (30 min intervals + cutoffs) */}
-{Array.from({ length: 24 }).flatMap((_, h) => {
-  const max = getMaxStartHour(duration);
-
-  // enforce earliest start = 09:00 and latest based on duration
-  if (h < 9 || h > max) return [];
-
-  return [
-    <option key={`${h}:00`} value={`${String(h).padStart(2, "0")}:00`}>
-      {String(h).padStart(2, "0")}:00
-    </option>,
-    <option key={`${h}:30`} value={`${String(h).padStart(2, "0")}:30`}>
-      {String(h).padStart(2, "0")}:30
-    </option>
-  ];
-})}
+            {/* TIME */}
+            <select
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            >
+              <option value="">Select time</option>
+              {generateTimeOptions()}
             </select>
 
             <h3>£{price}</h3>
