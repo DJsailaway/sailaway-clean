@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import Navbar from "../components/navbar";
 
-
-// 👇 PUT BOATS HERE
 const BOATS = {
   "Motor Boats": [
     "Plymouth Pilot (8 people)",
@@ -28,8 +27,6 @@ const BOATS = {
   ]
 };
 
-
-// 👇 THEN PRICING DIRECTLY BELOW
 const PRICING = {
   "Plymouth Pilot (8 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
   "Bass Boat (5 people)": { "1 hour": 120, "2 hours": 200, "Half day (4 hours)": 350, "Full day": 600 },
@@ -52,277 +49,197 @@ export default function Home() {
 
   const price = PRICING[boat][duration];
 
-return (
-  <>
-    <Head>
-      <title>Boat Hire Helford River | Self Drive Boats Cornwall</title>
-      <meta
-        name="description"
-        content="Boat hire on the Helford River in Cornwall. Self-drive boats available — no experience needed. Established since 1936."
-      />
-    </Head>
-  
-  <div style={{ fontFamily: "sans-serif" }}>
+  return (
+    <>
+      <Head>
+        <title>Boat Hire Helford River | Self Drive Boats Cornwall</title>
+        <meta
+          name="description"
+          content="Boat hire on the Helford River in Cornwall. Self-drive boats available — no experience needed. Established since 1936."
+        />
+      </Head>
 
-  {/* NAVBAR */}
-      <Navbar />
+      <div style={{ fontFamily: "sans-serif" }}>
+        <Navbar />
 
-{/* HERO SECTION */}
-<div style={{ position: "relative" }}>
-  {/* Hero Image */}
-  <img 
-    src="/hero.jpg"
-    alt="Boat Hire on Helford River"
-    style={{
-      width: "100%",
-      height: "auto",
-      display: "block"
-    }}
-  />
-
-  {/* Semi-transparent overlay */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0,0,0,0.1)",
-    zIndex: 1 // stays below text but above image
-  }} />
-
-  {/* Hero Text & Button */}
-  <div style={{
-    position: "absolute",
-    top: "120px",
-    left: "80px",
-    color: "white",
-    textShadow: "0 2px 12px rgba(0,0,0,0.8)",
-    maxWidth: "500px",
-    zIndex: 2 // above overlay but below navbar
-  }}>
-    <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
-      Boat Hire on the Helford River, Cornwall
-    </h1>
-    <p style={{ fontSize: "1.2rem", marginBottom: "24px" }}>
-      Relaxed, family-friendly experiences from St Anthony
-    </p>
-
-    {/* Hero Button */}
-    <button
-      style={{
-        padding: "14px 28px",
-        fontSize: "1.1rem",
-        backgroundColor: "#1e3a5f",
-        color: "white",
-        border: "none",
-        borderRadius: "6px",
-        cursor: "pointer",
-        fontWeight: "bold",
-        transition: "all 0.2s ease",
-        width: "100%",
-        maxWidth: "280px"
-      }}
-      onClick={() => {
-        // Smooth scroll to booking section
-        const bookingSection = document.getElementById("booking");
-        if (bookingSection) {
-          bookingSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }}
-    >
-      Check availability
-    </button>
-  </div>
-</div>
-
-{/* BOOKING SECTION */}
-<div
-  id="booking"
-  style={{
-    borderTop: "1px solid #eee",
-    paddingTop: "40px"
-  }}
->
-  <div style={{
-    padding: "40px 20px",
-    maxWidth: "700px",
-    margin: "0 auto"
-  }}>
-
-<div style={{
-  backgroundColor: "#f5f5f5",
-  padding: "30px",
-  borderRadius: "10px",
-  boxShadow: "0 4px 20px rgba(0,0,0,0.05)"
-}}>
-
-      <h2 style={{ marginBottom: "20px" }}>
-        Plan your time on the water
-      </h2>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-
-{/* BOAT CATEGORY */}
-<label style={{ fontWeight: "500" }}>
-  Boat type
-  <br /><br />
-  <select
-    name="category"
-    value={category}
-    onChange={(e) => {
-      setCategory(e.target.value);
-      setBoat(BOATS[e.target.value][0]);
-    }}
-    style={{
-      width: "100%",
-      padding: "10px",
-      borderRadius: "6px",
-      border: "1px solid #ccc",
-      fontSize: "1rem"
-    }}
-  >
-    <option>Motor Boats</option>
-    <option>Sailing Boats</option>
-    <option>Kayaks</option>
-    <option>Paddleboards</option>
-    <option>Rowing Boats</option>
-  </select>
-</label>
-
-{/* SPECIFIC BOAT */}
-<label style={{ fontWeight: "500" }}>
-  Select boat
-  <br /><br />
-  <select
-    name="boat"
-    value={boat}
-    onChange={(e) => setBoat(e.target.value)}
-    style={{
-      width: "100%",
-      padding: "10px",
-      borderRadius: "6px",
-      border: "1px solid #ccc",
-      fontSize: "1rem"
-    }}
-  >
-  {(BOATS[category] || []).map((b) => (
-  <option key={b}>{b}</option>
-))}
-  </select>
-</label>
-
-<label style={{ fontWeight: "500" }}>
-  Duration
-  <br /><br />
-  <select
+        {/* HERO SECTION */}
+        <div style={{ position: "relative", width: "100%", height: "70vh" }}>
+          
+          <Image
+            src="/hero.jpg"
+            alt="Boat Hire on Helford River"
+            fill
+            priority
             style={{
-              width: "100%",
-              padding: "10px",
-              borderRadius: "6px",
-              border: "1px solid #ccc",
-              fontSize: "1rem"
+              objectFit: "cover"
             }}
-            onChange={(e) => setDuration(e.target.value)}
-          >
-            <option>1 hour</option>
-            <option>2 hours</option>
-            <option>Half day (4 hours)</option>
-            <option>Full day</option>
-          </select>
-        </label>
-
-<label style={{ fontWeight: "500" }}>
-          Start time
-          <br /><br />
-          <input
-            type="datetime-local"
-            style={{
-              width: "100%",
-              padding: "10px",
-              borderRadius: "6px",
-              border: "1px solid #ccc",
-              fontSize: "1rem"
-            }}
-            onChange={(e) => setDate(e.target.value)}
           />
-        </label>
+
+          {/* Overlay */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.2)",
+            zIndex: 1
+          }} />
+
+          {/* Text */}
+          <div style={{
+            position: "absolute",
+            top: "120px",
+            left: "80px",
+            color: "white",
+            textShadow: "0 2px 12px rgba(0,0,0,0.8)",
+            maxWidth: "500px",
+            zIndex: 2
+          }}>
+            <h1 style={{ fontSize: "3.5rem", marginBottom: "10px" }}>
+              Boat Hire on the Helford River, Cornwall
+            </h1>
+
+            <p style={{ fontSize: "1.2rem", marginBottom: "24px" }}>
+              Relaxed, family-friendly experiences from St Anthony
+            </p>
+
+            <button
+              style={{
+                padding: "14px 28px",
+                fontSize: "1.1rem",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                width: "100%",
+                maxWidth: "280px"
+              }}
+              onClick={() => {
+                const bookingSection = document.getElementById("booking");
+                if (bookingSection) {
+                  bookingSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
+              Check availability
+            </button>
+          </div>
+        </div>
+
+        {/* BOOKING SECTION */}
+        <div id="booking" style={{ borderTop: "1px solid #eee", paddingTop: "40px" }}>
+          <div style={{ padding: "40px 20px", maxWidth: "700px", margin: "0 auto" }}>
+
+            <div style={{
+              backgroundColor: "#f5f5f5",
+              padding: "30px",
+              borderRadius: "10px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.05)"
+            }}>
+
+              <h2 style={{ marginBottom: "20px" }}>
+                Plan your time on the water
+              </h2>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+
+                {/* CATEGORY */}
+                <label>
+                  Boat type
+                  <br /><br />
+                  <select
+                    value={category}
+                    onChange={(e) => {
+                      setCategory(e.target.value);
+                      setBoat(BOATS[e.target.value][0]);
+                    }}
+                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                  >
+                    <option>Motor Boats</option>
+                    <option>Sailing Boats</option>
+                    <option>Kayaks</option>
+                    <option>Paddleboards</option>
+                    <option>Rowing Boats</option>
+                  </select>
+                </label>
+
+                {/* BOAT */}
+                <label>
+                  Select boat
+                  <br /><br />
+                  <select
+                    value={boat}
+                    onChange={(e) => setBoat(e.target.value)}
+                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                  >
+                    {(BOATS[category] || []).map((b) => (
+                      <option key={b}>{b}</option>
+                    ))}
+                  </select>
+                </label>
+
+                {/* DURATION */}
+                <label>
+                  Duration
+                  <br /><br />
+                  <select
+                    onChange={(e) => setDuration(e.target.value)}
+                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                  >
+                    <option>1 hour</option>
+                    <option>2 hours</option>
+                    <option>Half day (4 hours)</option>
+                    <option>Full day</option>
+                  </select>
+                </label>
+
+                {/* DATE */}
+                <label>
+                  Start time
+                  <br /><br />
+                  <input
+                    type="datetime-local"
+                    onChange={(e) => setDate(e.target.value)}
+                    style={{ width: "100%", padding: "10px", borderRadius: "6px" }}
+                  />
+                </label>
+
+              </div>
+
+              <h3 style={{ fontSize: "2rem", marginTop: "30px", color: "#1e3a5f" }}>
+                £{price}
+              </h3>
+
+              <button
+                style={{
+                  marginTop: "30px",
+                  padding: "14px",
+                  width: "100%",
+                  fontSize: "1.1rem",
+                  backgroundColor: "#1e3a5f",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "6px"
+                }}
+              >
+                Request booking
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+        {/* SECONDARY IMAGE */}
+        <div style={{ position: "relative", width: "100%", height: "400px", marginTop: "60px" }}>
+          <Image
+            src="/secondary.jpg"
+            alt="Helford River scenery"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
 
       </div>
-
-<h3 style={{
-  fontSize: "2rem",
-  marginTop: "30px",
-  color: "#1e3a5f"
-}}>
-  £{price}
-</h3>
-
-<button
-  onClick={async () => {
-    try {
-      const res = await fetch('/api/send-booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ boat, duration, date })
-      });
-
-      if (res.ok) {
-        alert("Booking request sent!");
-      } else {
-        alert("Something went wrong.");
-      }
-    } catch (err) {
-      alert("Error sending request");
-      console.error(err);
-    }
-  }}
-  style={{
-    marginTop: "30px",
-    padding: "14px",
-    width: "100%",
-    fontSize: "1.1rem",
-    backgroundColor: "#1e3a5f",
-    color: "white",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold"
-  }}
->
-  Request booking
-</button>
-<div style={{
-  marginTop: "20px",
-  color: "#333",
-  fontSize: "0.95rem",
-  opacity: 0.95,
-  display: "flex",
-  flexDirection: "column",
-  gap: "8px"
-}}>
-  <div>✓ Motor boats — no experience needed</div>
-  <div>✓ Sailing boats for experienced sailors</div>
-  <div>✓ Life jackets & full briefing included</div>
-  <div>✓ Hiring boats since 1936</div>
-</div>
-          
-    </div>
-  </div>
-</div>
-
-  {/* SECONDARY IMAGE */}
-  <img 
-    src="/secondary.jpg"
-    style={{
-      width: "100%",
-      height: "auto",
-      display: "block",
-      marginTop: "60px"
-    }}
-  />
-
-</div>
-</>
-);
+    </>
+  );
 }
