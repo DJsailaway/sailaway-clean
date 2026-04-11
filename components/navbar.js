@@ -24,6 +24,7 @@ export default function Navbar() {
     { name: "Launching", href: "/boat-launching-helford" },
     { name: "Storage", href: "/boat-storage-helford" },
     { name: "Boatyard Services", href: "/boatyard-services" },
+    { name: "Gillan Creek Ferry", href: "/gillan-creek-ferry" },
     { name: "FAQs", href: "/boat-hire-faq" },
     { name: "Location", href: "/st-anthony-helford-river" }
   ];
