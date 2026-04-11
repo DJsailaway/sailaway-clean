@@ -230,7 +230,7 @@ export default function Home() {
         </div>
 
         {/* SECONDARY IMAGE */}
-        <div style={{ position: "relative", width: "100%", height: "400px", marginTop: "60px" }}>
+        <div style={{ position: "relative", width: "100%", height: "auto", marginTop: "60px" }}>
           <Image
             src="/secondary.jpg"
             alt="Helford River scenery"
