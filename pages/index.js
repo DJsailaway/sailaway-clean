@@ -63,7 +63,7 @@ export default function Home() {
         <Navbar />
 
         {/* HERO SECTION */}
-        <div style={{ position: "relative", width: "100%", height: "90vh" }}>
+        <div style={{ position: "relative", width: "100%", height: "100vh" }}>
           
           <Image
             src="/hero.jpg"
@@ -79,7 +79,7 @@ export default function Home() {
           <div style={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "rgba(0,0,0,0.2)",
+            backgroundColor: "rgba(0,0,0,0.0)",
             zIndex: 1
           }} />
 
