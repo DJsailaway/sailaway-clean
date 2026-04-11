@@ -38,7 +38,7 @@ export default function KayakHire() {
           <div style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7))"
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.2))"
           }} />
 
           {/* Text */}
