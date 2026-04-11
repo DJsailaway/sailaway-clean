@@ -55,15 +55,22 @@ export default function GillanCreekFerry() {
             </h1>
 
             <p>
-              A simple and scenic crossing between Helford and Gillan Creek — avoiding the long drive around.
+              A simple and scenic ferry across Gillan Creek — avoiding the walk around.
             </p>
           </div>
         </div>
 
         {/* CONTENT */}
         <p style={{ marginBottom: "30px" }}>
-          The Gillan Creek Ferry provides a convenient and enjoyable way to cross between Helford and Gillan Creek. Whether you're walking the South West Coast Path or exploring the area, it's a relaxing alternative to a long journey by road.
+          The Gillan Creek Ferry provides a convenient and enjoyable way to cross Gillan Creek. Whether you're walking the South West Coast Path or exploring the area, it's a relaxing way to shave a few miles off your route.
         </p>
+
+        <h2>Crossing Information</h2>
+        <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
+          <li>✔ Short crossing time - around 5 minutes</li>
+          <li>✔ The ferry runs from 1st April to 31st October, for around 3 hours either side of high tide.</li>
+          <li>✔ From the north side of the creek, visit the boathouse to request a crossing. From the south, flip the sign at the crossing steps down to summon the ferryman - or call us on 01326231357</li>
+        </ul>
 
         <h2>Why Take the Ferry?</h2>
         <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
@@ -76,13 +83,6 @@ export default function GillanCreekFerry() {
         <p style={{ marginBottom: "30px" }}>
           Perfect for walkers, families, and anyone exploring the Helford River area who wants a simple and enjoyable way to cross the creek.
         </p>
-
-        <h2>Crossing Information</h2>
-        <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
-          <li>✔ Short crossing time</li>
-          <li>✔ Runs regularly (check locally for times)</li>
-          <li>✔ Weather dependent</li>
-        </ul>
 
         {/* CTA */}
         <div style={{
