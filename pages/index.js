@@ -136,7 +136,7 @@ export default function Home() {
           <div style={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "rgba(0,0,0,0.25)"
+            backgroundColor: "rgba(0,0,0,0.0)"
           }} />
 
           <div style={{
