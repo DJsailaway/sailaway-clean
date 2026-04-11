@@ -16,8 +16,8 @@ export default function Location() {
       <div style={{ fontFamily: "sans-serif" }}>
         <Navbar />
 
-        {/* FULL WIDTH IMAGE (NO CROPPING) */}
-        <div style={{ width: "100%" }}>
+        {/* IMAGE WITH OVERLAY TEXT */}
+        <div style={{ position: "relative", width: "100%" }}>
           <Image
             src="/st-anthony.jpg"
             alt="St Anthony on the Helford River"
@@ -30,9 +30,40 @@ export default function Location() {
               display: "block"
             }}
           />
+
+          {/* DARK OVERLAY */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1))"
+            }}
+          />
+
+          {/* TEXT OVERLAY */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "40px",
+              left: "40px",
+              right: "40px",
+              color: "white",
+              maxWidth: "700px",
+              textShadow: "0 2px 12px rgba(0,0,0,0.8)"
+            }}
+          >
+            <h1 style={{ fontSize: "3rem", marginBottom: "10px" }}>
+              St Anthony on the Helford River
+            </h1>
+
+            <p style={{ fontSize: "1.2rem", margin: 0 }}>
+              One of Cornwall’s most peaceful and unspoilt boating locations
+            </p>
+          </div>
         </div>
 
-        {/* CONTENT */}
+        {/* PAGE CONTENT */}
         <div
           style={{
             padding: "40px 20px",
@@ -40,8 +71,6 @@ export default function Location() {
             margin: "0 auto"
           }}
         >
-          <h1>St Anthony on the Helford River</h1>
-
           <p>
             Located on the Helford River, St Anthony is one of Cornwall’s most scenic and unspoilt destinations.
             With calm waters, wooded creeks, and abundant wildlife, it’s the perfect place to explore by boat.
