@@ -229,7 +229,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* SECONDARY IMAGE */}
+{/* SECONDARY IMAGE */}
 <Image
   src="/secondary.jpg"
   alt="Helford River scenery"
@@ -237,8 +237,6 @@ export default function Home() {
   height={800}
   style={{ width: "100%", height: "auto" }}
 />
-        </div>
-
       </div>
     </>
   );
