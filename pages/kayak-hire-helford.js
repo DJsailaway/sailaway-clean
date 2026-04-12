@@ -16,20 +16,20 @@ export default function KayakHire() {
       <Navbar />
 
       {/* HERO */}
-      <SplitOverlayHero
-        imageSrc="/kayak-hire-helford.jpg"
-        alt="Kayak hire on the Helford River"
-        title="Kayak & Paddleboard Hire on the Helford River"
-        overlayStrength="light"
-        topContent={
-          <>
-            <p>
-              Explore at your own pace with our easy-to-use kayaks and paddleboards — perfect for a relaxed day on the water.
-            </p>
-          </>
-        }
-        bottomContent={null}
-      />
+<SplitOverlayHero
+  imageSrc="/kayak-hire-helford.jpg"
+  alt="Kayak hire on the Helford River"
+  title="Kayak & Paddleboard Hire on the Helford River"
+  overlayStrength="light"
+  topContent={
+    <>
+      <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>
+        Explore at your own pace with our easy-to-use kayaks and paddleboards — perfect for families, beginners, and those looking for a peaceful way to enjoy the water.
+      </p>
+    </>
+  }
+  bottomContent={null}
+/>
 
       {/* CONTENT */}
       <div
@@ -40,10 +40,6 @@ export default function KayakHire() {
           margin: "0 auto"
         }}
       >
-        <p style={{ marginBottom: "30px" }}>
-          Explore the Helford River at a slower pace with our kayaks and paddleboards.
-          Perfect for families, beginners, and those looking for a peaceful way to enjoy the water.
-        </p>
 
         <h2>Available Options</h2>
         <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
