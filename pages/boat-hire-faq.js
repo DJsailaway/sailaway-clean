@@ -8,50 +8,36 @@ export default function FAQPage() {
       question: "Do I need a licence to hire a boat on the Helford River?",
       answer:
         "No licence is required. Our boats are designed for beginners and first-time boaters. We provide a full safety briefing before you set off, so you can enjoy a stress-free day on the water.",
-      image: "/images/boat-hire-helford-river-beginners.jpg",
-      alt: "Beginners enjoying self-drive boat hire on the Helford River"
     },
     {
       question: "Where can I go by boat on the Helford River?",
       answer:
         "You can explore scenic creeks, hidden anchorages, and quiet beaches along the Helford River. Popular spots include the tranquil waters near St Anthony and secluded bays accessible only by boat.",
-      image: "/images/boat-hire-helford-river-creeks.jpg",
-      alt: "Exploring secluded creeks and anchorages on the Helford River by boat"
     },
     {
       question: "Is boat hire suitable for beginners?",
       answer:
         "Absolutely! Our boats are easy to handle, and we provide guidance so even first-time boaters feel confident. Many families and couples hire boats with no previous experience.",
-      image: "/images/boat-hire-helford-river-family.jpg",
-      alt: "Family enjoying a beginner-friendly boat on the Helford River"
     },
     {
       question: "How long can I hire a boat for?",
       answer:
         "We offer flexible hire options, including half-day and full-day rentals. You can explore the Helford River at your own pace, whether it’s a short trip or a full day adventure.",
-      image: "/images/boat-hire-helford-river-full-day.jpg",
-      alt: "Self-drive boat cruising on the Helford River for a full-day hire"
     },
     {
       question: "What should I bring with me?",
       answer:
         "We recommend bringing food and drinks, sun protection, warm layers, and a phone or camera for photos. Comfortable clothing and footwear suitable for a boat are ideal.",
-      image: "/images/boat-hire-helford-river-gear.jpg",
-      alt: "Boat hire essentials for a day on the Helford River"
     },
     {
       question: "Is the Helford River safe for families and children?",
       answer:
         "Yes — the Helford River is calm and sheltered, making it perfect for a family day out. Our boats are stable, and we provide all necessary safety equipment.",
-      image: "/images/boat-hire-helford-river-safety.jpg",
-      alt: "Safe and calm waters for families on the Helford River"
     },
     {
       question: "What happens if the weather is bad?",
       answer:
         "If conditions are unsafe, we will offer to reschedule your booking or provide alternative options. Safety is our top priority.",
-      image: "/images/boat-hire-helford-river-weather.jpg",
-      alt: "Checking weather conditions before boating on the Helford River"
     }
   ];
 
