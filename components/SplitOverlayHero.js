@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function SplitOverlayHero({
   imageSrc,
@@ -6,14 +7,22 @@ export default function SplitOverlayHero({
   title,
   topContent,
   bottomContent,
-  overlayStrength = "auto"
+  overlayStrength = "auto",
+  objectFit = "cover",
+  objectPosition = "center"
 }) {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   const overlayMap = {
     none: "rgba(0,0,0,0)",
     light: "rgba(0,0,0,0.10)",
     medium: "rgba(0,0,0,0.25)",
     dark: "rgba(0,0,0,0.40)",
-    auto: "rgba(0,0,0,0.18)" // balanced default
+    auto: "rgba(0,0,0,0.18)"
   };
 
   const overlay = overlayMap[overlayStrength] || overlayMap.auto;
@@ -21,21 +30,26 @@ export default function SplitOverlayHero({
   return (
     <div style={{ position: "relative", width: "100%" }}>
 
-      {/* HERO IMAGE */}
+      {/* HERO CONTAINER */}
       <div
         style={{
           position: "relative",
           width: "100%",
           height: "72vh",
-          minHeight: "480px"
+          minHeight: "480px",
+          overflow: "hidden"
         }}
       >
+        {/* IMAGE */}
         <Image
           src={imageSrc}
           alt={alt}
           fill
           priority
-          style={{ objectFit: "cover" }}
+          style={{
+            objectFit: objectFit,
+            objectPosition: objectPosition
+          }}
         />
 
         {/* OVERLAY */}
@@ -62,18 +76,29 @@ export default function SplitOverlayHero({
             justifyContent: "space-between",
             padding: "clamp(20px, 4vw, 60px)",
             color: "white",
-            textShadow: "0 2px 12px rgba(0,0,0,0.6)"
+            textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+
+            opacity: loaded ? 1 : 0,
+            transform: loaded ? "translateY(0px)" : "translateY(18px)",
+            transition: "all 900ms ease"
           }}
         >
-          {/* TOP */}
+          {/* TOP SECTION */}
           <div style={{ maxWidth: "650px" }}>
-            <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", marginBottom: "16px" }}>
+            <h1
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                marginBottom: "16px",
+                lineHeight: 1.1
+              }}
+            >
               {title}
             </h1>
+
             {topContent}
           </div>
 
-          {/* BOTTOM */}
+          {/* BOTTOM SECTION */}
           <div style={{ maxWidth: "750px", fontSize: "1.1rem" }}>
             {bottomContent}
           </div>
