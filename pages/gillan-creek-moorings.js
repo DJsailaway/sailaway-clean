@@ -21,7 +21,7 @@ export default function Moorings() {
         <div style={{ position: "relative", width: "100%" }}>
 
           <Image
-            src="/moorings.jpg"
+            src="/moorings-gillan-creek.jpg"
             alt="Boat moorings at Gillan Creek on the Helford River"
             width={2000}
             height={1200}
