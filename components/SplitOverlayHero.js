@@ -6,22 +6,30 @@ export default function SplitOverlayHero({
   title,
   topContent,
   bottomContent,
-  overlayStrength = "light"
+  overlayStrength = "auto"
 }) {
   const overlayMap = {
     none: "rgba(0,0,0,0)",
     light: "rgba(0,0,0,0.10)",
     medium: "rgba(0,0,0,0.25)",
-    dark: "rgba(0,0,0,0.40)"
+    dark: "rgba(0,0,0,0.40)",
+    auto: "rgba(0,0,0,0.18)" // balanced default
   };
 
-  const overlay = overlayMap[overlayStrength] || overlayMap.light;
+  const overlay = overlayMap[overlayStrength] || overlayMap.auto;
 
   return (
     <div style={{ position: "relative", width: "100%" }}>
-      
+
       {/* HERO IMAGE */}
-      <div style={{ position: "relative", width: "100%", height: "70vh", minHeight: "450px" }}>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "72vh",
+          minHeight: "480px"
+        }}
+      >
         <Image
           src={imageSrc}
           alt={alt}
@@ -30,7 +38,7 @@ export default function SplitOverlayHero({
           style={{ objectFit: "cover" }}
         />
 
-        {/* GRADIENT OVERLAY */}
+        {/* OVERLAY */}
         <div
           style={{
             position: "absolute",
@@ -52,21 +60,21 @@ export default function SplitOverlayHero({
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            padding: "60px 40px",
+            padding: "clamp(20px, 4vw, 60px)",
             color: "white",
             textShadow: "0 2px 12px rgba(0,0,0,0.6)"
           }}
         >
-          {/* TOP LEFT CONTENT */}
-          <div style={{ maxWidth: "600px" }}>
-            <h1 style={{ fontSize: "2.8rem", marginBottom: "20px" }}>
+          {/* TOP */}
+          <div style={{ maxWidth: "650px" }}>
+            <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", marginBottom: "16px" }}>
               {title}
             </h1>
             {topContent}
           </div>
 
-          {/* BOTTOM CONTENT */}
-          <div style={{ maxWidth: "700px", fontSize: "1.1rem" }}>
+          {/* BOTTOM */}
+          <div style={{ maxWidth: "750px", fontSize: "1.1rem" }}>
             {bottomContent}
           </div>
         </div>
