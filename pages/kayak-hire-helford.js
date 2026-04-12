@@ -21,6 +21,7 @@ export default function KayakHire() {
   alt="Kayak hire on the Helford River"
   title="Kayak & Paddleboard Hire on the Helford River"
   overlayStrength="light"
+  objectPosition="center 75%"
   topContent={
     <>
       <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>
@@ -28,7 +29,6 @@ export default function KayakHire() {
       </p>
     </>
   }
-  bottomContent={null}
 />
 
       {/* CONTENT */}
