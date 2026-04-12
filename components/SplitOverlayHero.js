@@ -5,76 +5,71 @@ export default function SplitOverlayHero({
   alt,
   title,
   topContent,
-  bottomContent
+  bottomContent,
+  overlayStrength = "light"
 }) {
+  const overlayMap = {
+    none: "rgba(0,0,0,0)",
+    light: "rgba(0,0,0,0.10)",
+    medium: "rgba(0,0,0,0.25)",
+    dark: "rgba(0,0,0,0.40)"
+  };
+
+  const overlay = overlayMap[overlayStrength] || overlayMap.light;
+
   return (
     <div style={{ position: "relative", width: "100%" }}>
+      
+      {/* HERO IMAGE */}
+      <div style={{ position: "relative", width: "100%", height: "70vh", minHeight: "450px" }}>
+        <Image
+          src={imageSrc}
+          alt={alt}
+          fill
+          priority
+          style={{ objectFit: "cover" }}
+        />
 
-      {/* IMAGE */}
-      <Image
-        src={imageSrc}
-        alt={alt}
-        width={2000}
-        height={1200}
-        priority
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "block"
-        }}
-      />
-
-      {/* GRADIENT OVERLAY */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.4))"
-        }}
-      />
-
-      {/* TOP CONTENT */}
-      <div
-        style={{
-          position: "absolute",
-          top: "5%",
-          left: "5%",
-          right: "5%",
-          maxWidth: "600px",
-          color: "white",
-          textShadow: "0 2px 10px rgba(0,0,0,0.8)"
-        }}
-      >
-        <h1
+        {/* GRADIENT OVERLAY */}
+        <div
           style={{
-            fontSize: "clamp(1.8rem, 4vw, 3rem)",
-            marginBottom: "16px",
-            lineHeight: "1.2"
+            position: "absolute",
+            inset: 0,
+            background: `linear-gradient(
+              to bottom,
+              ${overlay},
+              rgba(0,0,0,0.05) 50%,
+              ${overlay}
+            )`
+          }}
+        />
+
+        {/* CONTENT */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: "60px 40px",
+            color: "white",
+            textShadow: "0 2px 12px rgba(0,0,0,0.6)"
           }}
         >
-          {title}
-        </h1>
+          {/* TOP LEFT CONTENT */}
+          <div style={{ maxWidth: "600px" }}>
+            <h1 style={{ fontSize: "2.8rem", marginBottom: "20px" }}>
+              {title}
+            </h1>
+            {topContent}
+          </div>
 
-        <div style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)" }}>
-          {topContent}
+          {/* BOTTOM CONTENT */}
+          <div style={{ maxWidth: "700px", fontSize: "1.1rem" }}>
+            {bottomContent}
+          </div>
         </div>
-      </div>
-
-      {/* BOTTOM CONTENT */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "5%",
-          left: "5%",
-          right: "5%",
-          maxWidth: "700px",
-          color: "white",
-          textShadow: "0 2px 10px rgba(0,0,0,0.8)",
-          fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)"
-        }}
-      >
-        {bottomContent}
       </div>
     </div>
   );
