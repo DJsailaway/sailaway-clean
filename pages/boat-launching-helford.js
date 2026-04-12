@@ -21,7 +21,7 @@ export default function BoatyardServices() {
         <div style={{ position: "relative", width: "100%" }}>
           
           <Image
-            src="/boat-launching.jpg"
+            src="/boat-launching-helford.jpg"
             alt="Boat launching at St Anthony on the Helford River"
             width={2000}
             height={1200}
