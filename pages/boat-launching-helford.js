@@ -15,30 +15,13 @@ export default function BoatyardServices() {
 
       <Navbar />
 
-      {/* PAGE CONTAINER */}
       <div style={{ fontFamily: "sans-serif" }}>
 
-        {/* TITLE SECTION (ABOVE IMAGE) */}
-        <div
-          style={{
-            padding: "40px 20px 20px",
-            maxWidth: "900px",
-            margin: "0 auto"
-          }}
-        >
-          <h1>Boat Launching on the Helford River</h1>
-
-          <p>
-            We provide reliable and convenient boat launching on the Helford River from our base at St Anthony, Cornwall.
-            Whether you're launching a small motorboat, sailing dinghy, or day boat, our slipway offers easy access to one of
-            Cornwall’s most sheltered and scenic waterways.
-          </p>
-        </div>
-
-        {/* HERO IMAGE (FULL WIDTH, NO CROPPING) */}
-        <div style={{ width: "100%" }}>
+        {/* HERO IMAGE */}
+        <div style={{ position: "relative", width: "100%" }}>
+          
           <Image
-            src="/boat-launching-helford.jpg"
+            src="/boat-launching.jpg"
             alt="Boat launching at St Anthony on the Helford River"
             width={2000}
             height={1200}
@@ -49,9 +32,64 @@ export default function BoatyardServices() {
               display: "block"
             }}
           />
+
+          {/* SUBTLE GRADIENT */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.05) 60%, rgba(0,0,0,0))"
+            }}
+          />
+
+          {/* TOP LEFT CONTENT */}
+          <div
+            style={{
+              position: "absolute",
+              top: "40px",
+              left: "40px",
+              maxWidth: "500px",
+              color: "white",
+              textShadow: "0 2px 10px rgba(0,0,0,0.7)"
+            }}
+          >
+            <h1 style={{ fontSize: "3rem", marginBottom: "20px" }}>
+              Boat Launching on the Helford River
+            </h1>
+
+            <h3 style={{ marginBottom: "10px" }}>
+              Boat Launching Services
+            </h3>
+
+            <ul style={{ lineHeight: "1.8", paddingLeft: "20px" }}>
+              <li>Slipway launching on the Helford River</li>
+              <li>Suitable for small boats, dinghies, and tenders</li>
+              <li>Easy access at St Anthony</li>
+              <li>Friendly local advice and assistance</li>
+            </ul>
+          </div>
+
+          {/* LOWER TEXT BLOCK (INTRO PARAGRAPH) */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "40px",
+              left: "40px",
+              right: "40px",
+              maxWidth: "700px",
+              color: "white",
+              textShadow: "0 2px 10px rgba(0,0,0,0.7)"
+            }}
+          >
+            <p style={{ fontSize: "1.1rem" }}>
+              We provide reliable and convenient boat launching on the Helford River from our base at St Anthony, Cornwall.
+              Whether you're launching a small motorboat, sailing dinghy, or day boat, our slipway offers easy access to one of Cornwall’s most sheltered and scenic waterways.
+            </p>
+          </div>
         </div>
 
-        {/* CONTENT SECTION */}
+        {/* REST OF PAGE */}
         <div
           style={{
             padding: "40px 20px",
@@ -59,15 +97,6 @@ export default function BoatyardServices() {
             margin: "0 auto"
           }}
         >
-          <h2>Boat Launching Services</h2>
-
-          <ul>
-            <li>Slipway launching on the Helford River</li>
-            <li>Suitable for small boats, dinghies, and tenders</li>
-            <li>Easy access at St Anthony</li>
-            <li>Friendly local advice and assistance</li>
-          </ul>
-
           <h2>Launching on the Helford River</h2>
 
           <p>
@@ -109,6 +138,7 @@ export default function BoatyardServices() {
             </a>
           </div>
         </div>
+
       </div>
     </>
   );
