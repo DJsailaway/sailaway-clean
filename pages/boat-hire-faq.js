@@ -67,23 +67,80 @@ export default function FAQPage() {
         <title>Boat Hire FAQs Helford River | SailAway Cornwall</title>
         <meta
           name="description"
-          content="Frequently asked questions about boat hire on the Helford River, Cornwall. Safety, booking, locations, and everything you need to know before your day on the water."
+          content="Frequently asked questions about boat hire on the Helford River, Cornwall."
         />
       </Head>
 
       <Navbar />
 
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
-        <h1>Frequently Asked Questions – Boat Hire Helford River</h1>
+      {/* BANNER */}
+      <div style={{ position: "relative", width: "100%", height: "260px" }}>
+        <img
+          src="/faq-banner.jpg"
+          alt="Helford River boat hire FAQs"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block"
+          }}
+        />
+
+        {/* Heading over image */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "0 20px",
+            color: "white",
+            textShadow: "0 2px 10px rgba(0,0,0,0.7)"
+          }}
+        >
+          <div>
+            <h1 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
+              Frequently Asked Questions
+            </h1>
+            <p style={{ fontSize: "1.1rem" }}>
+              Everything you need to know before your day on the Helford River
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* CONTENT */}
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          padding: "40px 20px",
+          maxWidth: "900px",
+          margin: "0 auto"
+        }}
+      >
         <p>
           Below are some common questions about hiring a boat on the Helford River. If you can't find the answer, feel free to{" "}
-          <a href="/contact" style={{ color: "#1e3a5f", textDecoration: "underline" }}>get in touch with us</a>.
+          <a
+            href="/contact"
+            style={{ color: "#1e3a5f", textDecoration: "underline" }}
+          >
+            get in touch with us
+          </a>.
         </p>
 
         {/* FAQ Accordion */}
         <div style={{ marginTop: "30px" }}>
           {faqs.map((faq, index) => (
-            <div key={index} style={{ marginBottom: "25px", borderBottom: "1px solid #ddd", paddingBottom: "15px" }}>
+            <div
+              key={index}
+              style={{
+                marginBottom: "25px",
+                borderBottom: "1px solid #ddd",
+                paddingBottom: "15px"
+              }}
+            >
               <h2
                 onClick={() => toggleFAQ(index)}
                 style={{
@@ -91,20 +148,27 @@ export default function FAQPage() {
                   color: "#1e3a5f",
                   fontSize: "1.2em",
                   display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center"
+                  justifyContent: "space-between"
                 }}
               >
                 {faq.question}
                 <span>{openIndex === index ? "−" : "+"}</span>
               </h2>
+
               {openIndex === index && (
                 <>
-                  <p style={{ marginTop: "8px", lineHeight: "1.6" }}>{faq.answer}</p>
+                  <p style={{ marginTop: "8px", lineHeight: "1.6" }}>
+                    {faq.answer}
+                  </p>
+
                   <img
                     src={faq.image}
                     alt={faq.alt}
-                    style={{ maxWidth: "100%", borderRadius: "8px", marginTop: "12px" }}
+                    style={{
+                      maxWidth: "100%",
+                      borderRadius: "8px",
+                      marginTop: "12px"
+                    }}
                   />
                 </>
               )}
@@ -112,34 +176,23 @@ export default function FAQPage() {
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <div style={{ marginTop: "40px", textAlign: "center" }}>
-          <a href="/index">
-            <button style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer"
-            }}>
+          <a href="/">
+            <button
+              style={{
+                padding: "14px 28px",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer"
+              }}
+            >
               Book Your Boat Hire
             </button>
           </a>
         </div>
-
-        {/* Hero Aerial Image */}
-        <div style={{ marginTop: "60px", textAlign: "center" }}>
-          <img
-            src="/images/boat-hire-helford-river-aerial.jpg"
-            alt="Aerial view of the Helford River in Cornwall with boats"
-            style={{ maxWidth: "100%", borderRadius: "8px", marginBottom: "20px" }}
-          />
-          <p style={{ fontSize: "0.9em", color: "#555" }}>
-            Aerial view of the Helford River – ideal for self-drive boat hire.
-          </p>
-        </div>
-
       </div>
     </>
   );
