@@ -91,7 +91,7 @@ export default function Home() {
         <a href="/sailing-boat-hire-helford"><button style={buttonStyle}>Our Sailing Boats</button></a>
         <a href="/kayak-hire-helford"><button style={buttonStyle}>Our Kayaks & SUPs</button></a>
         <a href="/st-anthony-helford-river"><button style={buttonStyle}>Location</button></a>
-        <a href="/boat-hire-faqs"><button style={buttonStyle}>FAQs</button></a>
+        <a href="/boat-hire-faq"><button style={buttonStyle}>FAQs</button></a>
       </div>
 
       {/* BOOKING */}
