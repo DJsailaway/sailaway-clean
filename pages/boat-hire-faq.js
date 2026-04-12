@@ -5,39 +5,54 @@ import Navbar from "../components/navbar";
 export default function FAQPage() {
   const faqs = [
     {
-      question: "Do I need a licence to hire a boat on the Helford River?",
+      question: "Do I need a licence or experience to hire a boat on the Helford River?",
       answer:
-        "No licence is required. Our boats are designed for beginners and first-time boaters. We provide a full safety briefing before you set off, so you can enjoy a stress-free day on the water.",
+        "No licence or previous experience is required. Our self-drive boats are designed for beginners, and we provide a full safety briefing before you set off so you feel confident on the water."
     },
     {
-      question: "Where can I go by boat on the Helford River?",
+      question: "Is boat hire on the Helford River suitable for beginners?",
       answer:
-        "You can explore scenic creeks, hidden anchorages, and quiet beaches along the Helford River. Popular spots include the tranquil waters near St Anthony and secluded bays accessible only by boat.",
+        "Yes — the Helford River is one of the best places in Cornwall for beginners. The waters are sheltered and calm, and our boats are easy to operate with full instructions provided."
     },
     {
-      question: "Is boat hire suitable for beginners?",
+      question: "Where can I go when I hire a boat on the Helford River?",
       answer:
-        "Absolutely! Our boats are easy to handle, and we provide guidance so even first-time boaters feel confident. Many families and couples hire boats with no previous experience.",
+        "You can explore peaceful creeks, quiet anchorages, and hidden beaches along the Helford River. Popular areas include St Anthony, Frenchman’s Creek, and surrounding woodland inlets."
+    },
+    {
+      question: "Is the Helford River safe for boating and families?",
+      answer:
+        "Yes, the Helford River is one of Cornwall’s safest and most sheltered boating areas. It is ideal for families, beginners, and relaxed cruising."
+    },
+    {
+      question: "Are life jackets provided with boat hire?",
+      answer:
+        "Yes, all safety equipment including life jackets is provided for every passenger as part of your boat hire."
+    },
+    {
+      question: "What happens if the weather is bad on the day of my booking?",
+      answer:
+        "If conditions are unsafe due to wind or weather, we will help you reschedule your booking or advise on alternative options. Safety always comes first."
+    },
+    {
+      question: "Do tides affect boat hire on the Helford River?",
+      answer:
+        "Yes, tides can influence where you can explore, but we will guide you on the best times to go out so you get the most from your trip."
+    },
+    {
+      question: "What should I bring for a day of boat hire?",
+      answer:
+        "We recommend bringing sun protection, warm layers, food and drinks, and a phone or camera. Comfortable clothing and non-slip footwear are best."
+    },
+    {
+      question: "How do I book a boat on the Helford River?",
+      answer:
+        "You can request a booking through our online form. We will then confirm availability and help you choose the best boat and time for your trip."
     },
     {
       question: "How long can I hire a boat for?",
       answer:
-        "We offer flexible hire options, including half-day and full-day rentals. You can explore the Helford River at your own pace, whether it’s a short trip or a full day adventure.",
-    },
-    {
-      question: "What should I bring with me?",
-      answer:
-        "We recommend bringing food and drinks, sun protection, warm layers, and a phone or camera for photos. Comfortable clothing and footwear suitable for a boat are ideal.",
-    },
-    {
-      question: "Is the Helford River safe for families and children?",
-      answer:
-        "Yes — the Helford River is calm and sheltered, making it perfect for a family day out. Our boats are stable, and we provide all necessary safety equipment.",
-    },
-    {
-      question: "What happens if the weather is bad?",
-      answer:
-        "If conditions are unsafe, we will offer to reschedule your booking or provide alternative options. Safety is our top priority.",
+        "We offer flexible hire durations including hourly, half-day, full-day, and multi-day hire options depending on your plans."
     }
   ];
 
@@ -47,92 +62,86 @@ export default function FAQPage() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // JSON-LD structured data for Google (IMPORTANT FOR SEO)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <>
       <Head>
-        <title>Boat Hire FAQs Helford River | SailAway Cornwall</title>
+        <title>Boat Hire FAQs Helford River | Self Drive Boats Cornwall</title>
         <meta
           name="description"
-          content="Frequently asked questions about boat hire on the Helford River, Cornwall."
+          content="Frequently asked questions about boat hire on the Helford River, Cornwall. No licence needed, beginner friendly, safe family boating."
+        />
+
+        {/* SEO SCHEMA */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </Head>
 
       <Navbar />
 
-      {/* BANNER */}
-      <div style={{ position: "relative", width: "100%", height: "260px" }}>
+      {/* HERO BANNER */}
+      <div style={{ position: "relative", width: "100%" }}>
         <img
           src="/faq-banner.jpg"
-          alt="Helford River boat hire FAQs"
+          alt="Helford River boat hire FAQ banner"
           style={{
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
+            height: "auto",
             display: "block"
           }}
         />
 
-        {/* Heading over image */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            padding: "0 20px",
-            color: "white",
-            textShadow: "0 2px 10px rgba(0,0,0,0.7)"
-          }}
-        >
-          <div>
-            <h1 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
-              Frequently Asked Questions
-            </h1>
-            <p style={{ fontSize: "1.1rem" }}>
-              Everything you need to know before your day on the Helford River
-            </p>
-          </div>
+        {/* Heading over image (NO dark overlay as requested) */}
+        <div style={{
+          position: "absolute",
+          top: "50%",
+          left: "50px",
+          transform: "translateY(-50%)",
+          color: "white",
+          textShadow: "0 2px 10px rgba(0,0,0,0.6)",
+          maxWidth: "600px"
+        }}>
+          <h1 style={{ fontSize: "3rem", marginBottom: "10px" }}>
+            Boat Hire FAQs – Helford River
+          </h1>
+          <p style={{ fontSize: "1.2rem" }}>
+            Everything you need to know before your day on the water
+          </p>
         </div>
       </div>
 
-      {/* CONTENT */}
-      <div
-        style={{
-          fontFamily: "sans-serif",
-          padding: "40px 20px",
-          maxWidth: "900px",
-          margin: "0 auto"
-        }}
-      >
-        <p>
-          Below are some common questions about hiring a boat on the Helford River. If you can't find the answer, feel free to{" "}
-          <a
-            href="/contact"
-            style={{ color: "#1e3a5f", textDecoration: "underline" }}
-          >
-            get in touch with us
-          </a>.
+      {/* FAQ CONTENT */}
+      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+
+        <p style={{ marginBottom: "30px" }}>
+          Below are answers to common questions about boat hire on the Helford River.
+          If you need more help, we’re always happy to chat before your booking.
         </p>
 
-        {/* FAQ Accordion */}
-        <div style={{ marginTop: "30px" }}>
+        <div>
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              style={{
-                marginBottom: "25px",
-                borderBottom: "1px solid #ddd",
-                paddingBottom: "15px"
-              }}
-            >
+            <div key={index} style={{ marginBottom: "20px", borderBottom: "1px solid #ddd", paddingBottom: "15px" }}>
               <h2
                 onClick={() => toggleFAQ(index)}
                 style={{
                   cursor: "pointer",
                   color: "#1e3a5f",
-                  fontSize: "1.2em",
+                  fontSize: "1.1rem",
                   display: "flex",
                   justifyContent: "space-between"
                 }}
@@ -142,42 +151,12 @@ export default function FAQPage() {
               </h2>
 
               {openIndex === index && (
-                <>
-                  <p style={{ marginTop: "8px", lineHeight: "1.6" }}>
-                    {faq.answer}
-                  </p>
-
-                  <img
-                    src={faq.image}
-                    alt={faq.alt}
-                    style={{
-                      maxWidth: "100%",
-                      borderRadius: "8px",
-                      marginTop: "12px"
-                    }}
-                  />
-                </>
+                <p style={{ marginTop: "10px", lineHeight: "1.6" }}>
+                  {faq.answer}
+                </p>
               )}
             </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div style={{ marginTop: "40px", textAlign: "center" }}>
-          <a href="/">
-            <button
-              style={{
-                padding: "14px 28px",
-                backgroundColor: "#1e3a5f",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer"
-              }}
-            >
-              Book Your Boat Hire
-            </button>
-          </a>
         </div>
       </div>
     </>
