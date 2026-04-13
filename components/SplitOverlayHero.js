@@ -28,7 +28,12 @@ export default function SplitOverlayHero({
   const overlay = overlayMap[overlayStrength] || overlayMap.auto;
 
   return (
-    <div style={{ position: "relative", width: "100%" }}>
+    <div style={{
+  position: "relative",
+  width: "100%",
+  height: "500px",   // 👈 THIS FIXES YOUR ISSUE
+  overflow: "hidden"
+}}>
 
       {/* HERO CONTAINER */}
       <div
