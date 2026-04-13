@@ -12,7 +12,7 @@ export default function Moorings() {
       <Navbar />
 
       <SplitOverlayHero
-        imageSrc="/hero.jpg"
+        imageSrc="/moorings-gillan-creek.jpg"
         imageAlt="Boat moorings at Gillan Creek"
         title="Moorings at Gillan Creek on the Helford River"
         topContent={
