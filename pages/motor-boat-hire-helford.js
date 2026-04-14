@@ -1,103 +1,14 @@
 import Head from "next/head";
-import Navbar from "../components/navbar";
+          />
 
-export default function MotorBoatHire() {
-  return (
-    <>
-      <Head>
-        <title>Motor Boat Hire Helford River | Self Drive Boats Cornwall</title>
-        <meta
-          name="description"
-          content="Hire a motor boat on the Helford River in Cornwall and explore at your own pace. Our self-drive boats are perfect for families and groups, with no experience needed."
-        />
-      </Head>
+          <BoatCard
+            title="Bass Boat"
+            description="Ideal for smaller groups of up to 5 people. Easy to handle and great for exploring the river."
+            imageSrc="/Bass.jpg"
+            href="/?boat=Bass%20Boat%20(5%20people)#booking"
+          />
 
-  {/* NAVBAR */}
-      <Navbar />
-
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
-
-        <h1 style={{ fontSize: "2.5rem", marginBottom: "20px" }}>
-          Motor Boat Hire on the Helford River
-        </h1>
-
-        <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
-          Explore the beautiful Helford River at your own pace with our self-drive motor boat hire.
-          No previous boating experience is required — full instructions and safety briefing are provided before you set off.
-        </p>
-
-        <p style={{ marginBottom: "30px" }}>
-          Based in St Anthony, our boats are perfect for families, couples, and anyone looking to enjoy a relaxed day on the water in one of Cornwall’s most scenic locations.
-        </p>
-
-        <h2>Our Motor Boats</h2>
-
-{/* PILOT BOAT */}
-<div style={{ position: "relative", marginBottom: "40px" }}>
-  <img
-    src="/Pilot.jpg"
-    style={{ width: "100%", borderRadius: "10px" }}
-  />
-
-  <div style={{
-    position: "absolute",
-    top: "20%",
-    left: "40px",
-    color: "white",
-    textShadow: "0 2px 10px rgba(0,0,0,0.7)",
-    maxWidth: "400px"
-  }}>
-    <h2>Plymouth Pilot</h2>
-    <p>Spacious and stable motor boat for up to 8 people — perfect for families and groups.</p>
-
-    <a href="/?boat=Plymouth%20Pilot%20(8%20people)#booking">
-      <button style={{
-        marginTop: "10px",
-        padding: "12px 20px",
-        backgroundColor: "#1e3a5f",
-        color: "white",
-        border: "none",
-        borderRadius: "6px"
-      }}>
-        Check availability
-      </button>
-    </a>
-  </div>
-</div>
-
-
-{/* BASS BOAT */}
-<div style={{ position: "relative", marginBottom: "40px" }}>
-  <img
-    src="/Bass.jpg"
-    style={{ width: "100%", borderRadius: "10px" }}
-  />
-
-  <div style={{
-    position: "absolute",
-    top: "20%",
-    left: "40px",
-    color: "white",
-    textShadow: "0 2px 10px rgba(0,0,0,0.7)",
-    maxWidth: "400px"
-  }}>
-    <h2>Bass Boat</h2>
-    <p>Ideal for smaller groups of up to 5 people. Easy to handle and great for exploring the river.</p>
-
-    <a href="/?boat=Bass%20Boat%20(5%20people)#booking">
-      <button style={{
-        marginTop: "10px",
-        padding: "12px 20px",
-        backgroundColor: "#1e3a5f",
-        color: "white",
-        border: "none",
-        borderRadius: "6px"
-      }}>
-        Check availability
-      </button>
-    </a>
-  </div>
-</div>
+        </div>
 
         <h2>What to Expect</h2>
 
