@@ -1,4 +1,92 @@
 import Head from "next/head";
+import Navbar from "../components/navbar";
+import Image from "next/image";
+
+// Boat Card component
+function BoatCard({ title, description, imageSrc, href }) {
+  return (
+    <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)", background: "#fff" }}>
+      
+      <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+
+      <div style={{ padding: "16px" }}>
+        <h3 style={{ fontSize: "1.4rem", marginBottom: "8px" }}>{title}</h3>
+
+        <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "12px" }}>
+          {description}
+        </p>
+
+        {href && (
+          <a href={href}>
+            <button
+              style={{
+                padding: "10px 16px",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Check availability
+            </button>
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function MotorBoatHire() {
+  return (
+    <>
+      <Head>
+        <title>Motor Boat Hire Helford River | Self Drive Boats Cornwall</title>
+        <meta
+          name="description"
+          content="Hire a motor boat on the Helford River in Cornwall and explore at your own pace. Our self-drive boats are perfect for families and groups, with no experience needed."
+        />
+      </Head>
+
+      <Navbar />
+
+      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+
+        <h1 style={{ fontSize: "2.5rem", marginBottom: "20px" }}>
+          Motor Boat Hire on the Helford River
+        </h1>
+
+        <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
+          Explore the beautiful Helford River at your own pace with our self-drive motor boat hire.
+          No previous boating experience is required — full instructions and safety briefing are provided before you set off.
+        </p>
+
+        <p style={{ marginBottom: "30px" }}>
+          Based in St Anthony, our boats are perfect for families, couples, and anyone looking to enjoy a relaxed day on the water in one of Cornwall’s most scenic locations.
+        </p>
+
+        <h2>Our Motor Boats</h2>
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "20px",
+          marginTop: "20px",
+          marginBottom: "40px"
+        }}>
+
+          <BoatCard
+            title="Plymouth Pilot"
+            description="Spacious and stable motor boat for up to 8 people — perfect for families and groups."
+            imageSrc="/Pilot.jpg"
+            href="/?boat=Plymouth%20Pilot%20(8%20people)#booking"
           />
 
           <BoatCard
@@ -8,55 +96,6 @@ import Head from "next/head";
             href="/?boat=Bass%20Boat%20(5%20people)#booking"
           />
 
-        </div>
-
-        <h2>What to Expect</h2>
-
-        <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
-          <li>✔ No experience needed</li>
-          <li>✔ Full safety briefing before departure</li>
-          <li>✔ Life jackets included</li>
-          <li>✔ Flexible hire durations (1 hour to full day)</li>
-          <li>✔ Easy access from St Anthony</li>
-        </ul>
-
-        <h2>Explore the Helford River</h2>
-
-        <p style={{ marginBottom: "30px" }}>
-          Cruise past peaceful creeks, hidden beaches, and wooded riverbanks. Stop for a picnic, swim in sheltered waters, or simply enjoy the scenery at your own pace.
-        </p>
-
-        <h2>Prices</h2>
-
-        <p style={{ marginBottom: "30px" }}>
-          Motor boat hire starts from £120. Half day and full day options available.
-        </p>
-
-        <div style={{
-          backgroundColor: "#f5f5f5",
-          padding: "30px",
-          borderRadius: "10px",
-          textAlign: "center"
-        }}>
-          <h2>Check Availability</h2>
-          <p style={{ marginBottom: "20px" }}>
-            Use our booking form to check availability and request your preferred date and time.
-          </p>
-
-          <a href="/#booking">
-            <button style={{
-              padding: "14px 28px",
-              fontSize: "1.1rem",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontWeight: "bold"
-            }}>
-              Check availability
-            </button>
-          </a>
         </div>
 
       </div>
