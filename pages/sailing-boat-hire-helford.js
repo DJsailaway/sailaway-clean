@@ -1,4 +1,72 @@
 import Head from "next/head";
+import Navbar from "../components/navbar";
+import Image from "next/image";
+
+// Reusable Boat Card component
+function BoatCard({ title, description, imageSrc, href }) {
+  return (
+    <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)", background: "#fff" }}>
+
+      <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+
+      <div style={{ padding: "16px" }}>
+        <h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>{title}</h3>
+
+        <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "12px" }}>
+          {description}
+        </p>
+
+        {href && (
+          <a href={href}>
+            <button
+              style={{
+                padding: "10px 16px",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Check availability
+            </button>
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function SailingBoatHire() {
+  return (
+    <>
+      <Head>
+        <title>Sailing Boat Hire Helford River | Dinghy Hire Cornwall</title>
+        <meta
+          name="description"
+          content="Hire sailing boats on the Helford River in Cornwall. Dinghies and traditional boats available for experienced sailors."
+        />
+      </Head>
+
+      <Navbar />
+
+      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+
+        <h1>Sailing Boat Hire on the Helford River</h1>
+
+        <p style={{ marginBottom: "30px" }}>
+          Enjoy traditional sailing on the beautiful Helford River. Our fleet of sailing boats is available for experienced sailors looking to explore Cornwall’s stunning coastline.
+        </p>
+
+        <h2>Our Sailing Boats</h2>
+
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
