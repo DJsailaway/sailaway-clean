@@ -1,8 +1,4 @@
 import Head from "next/head";
-import Navbar from "../components/navbar";
-
-export default function BoatyardServices() {
-  return (
     <>
       <Head>
         <title>Boatyard Services Helford River | Moorings & Launching Cornwall</title>
@@ -12,12 +8,24 @@ export default function BoatyardServices() {
         />
       </Head>
 
-  {/* NAVBAR */}
+      {/* NAVBAR */}
       <Navbar />
-        
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
 
-        <h1>Boatyard Services on the Helford River</h1>
+      {/* HERO IMAGE */}
+      <SplitOverlayHero
+        imageSrc="/boat-launching-helford.jpg"
+        imageAlt="Boat launching on the Helford River"
+        title="Boatyard Services on the Helford River"
+        topContent={
+          <>
+            <p>
+              Reliable boatyard services including launching, moorings and storage from our base at St Anthony.
+            </p>
+          </>
+        }
+      />
+
+      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
 
         <p>
           We offer a range of boatyard services from our base at St Anthony on the Helford River, Cornwall. Whether you need launching, moorings, or general support, we provide a reliable and friendly service.
@@ -64,3 +72,4 @@ export default function BoatyardServices() {
     </>
   );
 }
+
