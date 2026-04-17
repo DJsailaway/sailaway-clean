@@ -12,7 +12,7 @@ export default function BoatyardServices() {
       <Navbar />
 
       <SplitOverlayHero
-        imageSrc="/boat-launching-helford.jpg"
+        imageSrc="/helford-boatyard.jpg"
         alt="Boat launching at St Anthony on the Helford River"
         title="Boat Launching on the Helford River"
         topContent={
