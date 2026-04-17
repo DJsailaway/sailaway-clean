@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
+import SplitOverlayHero from "../components/SplitOverlayHero";
 
-export default function BoatStorage() {  // ✅ renamed function
+export default function BoatStorage() {
   return (
     <>
       <Head>
@@ -12,17 +13,33 @@ export default function BoatStorage() {  // ✅ renamed function
         />
       </Head>
 
-  {/* NAVBAR */}
       <Navbar />
 
+      {/* HERO */}
+      <SplitOverlayHero
+        imageSrc="/boat-storage-helford.jpg" // 👈 make sure this file exists in /public
+        imageAlt="Boat storage at St Anthony on the Helford River"
+        title="Boat Storage at St Anthony on the Helford River"
+        objectPosition="center bottom" // 👈 shows more ground/boats, less sky
+        overlayOpacity={0.05} // 👈 keeps image nice and bright
+        topContent={
+          <>
+            <p>
+              Secure and convenient boat storage at St Anthony, perfectly positioned for easy access to the Helford River.
+            </p>
+          </>
+        }
+        bottomContent={
+          <>
+            <p>
+              Ideal for local boat owners, our storage offers a practical and accessible way to keep your boat close to the water throughout the season.
+            </p>
+          </>
+        }
+      />
 
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
-
-        <h1>Boat Storage at St Anthony on the Helford River</h1>
-
-        <p>
-          We provide secure and convenient boat storage at St Anthony on the Helford River, Cornwall. Our storage is ideal for local boat owners looking for a practical and accessible place to keep their boats close to the water.
-        </p>
+      {/* MAIN CONTENT */}
+      <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
 
         <h2>Boat Storage Services</h2>
 
