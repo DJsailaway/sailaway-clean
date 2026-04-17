@@ -1,4 +1,9 @@
 import Head from "next/head";
+import Navbar from "../components/navbar";
+import SplitOverlayHero from "../components/SplitOverlayHero";
+
+export default function BoatyardServices() {
+  return (
     <>
       <Head>
         <title>Boatyard Services Helford River | Moorings & Launching Cornwall</title>
@@ -13,7 +18,7 @@ import Head from "next/head";
 
       {/* HERO IMAGE */}
       <SplitOverlayHero
-        imageSrc="/helford-boatyard.jpg"
+        imageSrc="/boat-launching-helford.jpg"
         imageAlt="Boat launching on the Helford River"
         title="Boatyard Services on the Helford River"
         topContent={
@@ -72,4 +77,3 @@ import Head from "next/head";
     </>
   );
 }
-
