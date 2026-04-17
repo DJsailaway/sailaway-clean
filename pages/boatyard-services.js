@@ -13,7 +13,7 @@ import Head from "next/head";
 
       {/* HERO IMAGE */}
       <SplitOverlayHero
-        imageSrc="/boat-launching-helford.jpg"
+        imageSrc="/helford-boatyard.jpg"
         imageAlt="Boat launching on the Helford River"
         title="Boatyard Services on the Helford River"
         topContent={
