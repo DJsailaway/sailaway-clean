@@ -58,7 +58,7 @@ export default function BoatyardServices() {
           buttons={[
             {
               text: "Moorings",
-              link: "/moorings-helford-river",
+              link: "/gillan-creek-moorings",
               variant: "secondary",
             },
             {
