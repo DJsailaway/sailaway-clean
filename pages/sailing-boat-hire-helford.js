@@ -4,7 +4,7 @@ import Image from "next/image";
 import CTASection from "../components/CTASection";
 import Button from "../components/Button";
 
-// Reusable Boat Card component (now using shared Button)
+// Boat Card component
 function BoatCard({ title, description, imageSrc, href }) {
   return (
     <div
@@ -16,16 +16,11 @@ function BoatCard({ title, description, imageSrc, href }) {
       }}
     >
       <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          style={{ objectFit: "cover" }}
-        />
+        <Image src={imageSrc} alt={title} fill style={{ objectFit: "cover" }} />
       </div>
 
       <div style={{ padding: "16px" }}>
-        <h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>{title}</h3>
+        <h3 style={{ fontSize: "1.4rem", marginBottom: "8px" }}>{title}</h3>
 
         <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "12px" }}>
           {description}
@@ -42,10 +37,6 @@ export default function SailingBoatHire() {
     <>
       <Head>
         <title>Sailing Boat Hire Helford River | Dinghy Hire Cornwall</title>
-        <meta
-          name="description"
-          content="Hire sailing boats on the Helford River in Cornwall. Dinghies and traditional boats available for experienced sailors."
-        />
       </Head>
 
       <Navbar />
@@ -63,19 +54,10 @@ export default function SailingBoatHire() {
         </h1>
 
         <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
-          Enjoy traditional sailing on the beautiful Helford River. Our fleet of sailing
-          boats is available for experienced sailors looking to explore Cornwall’s stunning coastline.
+          Enjoy traditional sailing on the Helford River with our dinghy fleet.
         </p>
 
-        {/* 🔁 MIRRORED CTA (Motor Boats) */}
-        <CTASection
-          title="Prefer something easier to handle?"
-          subtitle="Our motor boats are perfect for relaxed exploring — no sailing experience needed."
-          buttonText="See our Motor Boats"
-          buttonLink="/motor-boat-hire-helford"
-        />
-
-        <h2 style={{ marginTop: "30px" }}>Our Sailing Boats</h2>
+        <h2>Our Sailing Boats</h2>
 
         <div
           style={{
@@ -88,37 +70,40 @@ export default function SailingBoatHire() {
         >
           <BoatCard
             title="Drascombe Longboat"
-            description="Traditional sailing boat for up to 6 people — perfect for relaxed cruising on the river."
+            description="Traditional sailing boat for up to 6 people."
             imageSrc="/sailing-boats-helford-river.jpg"
             href="/?boat=Drascombe%20Longboat%20(6%20people)#booking"
           />
 
           <BoatCard
             title="Wayfarer Dinghy"
-            description="Versatile dinghy for up to 4 people — great for confident sailors exploring further afield."
+            description="Great for confident sailors."
             imageSrc="/sailing-hire-cornwall.jpg"
             href="/?boat=Wayfarer%20Dinghy%20(4%20people)#booking"
           />
 
           <BoatCard
             title="Topaz, Pico & Topper"
-            description="Single or double-handed dinghies — ideal for more active sailing and experienced users."
+            description="Single and double-handed dinghies."
             imageSrc="/sailing-hire-helford-river.jpg"
             href="/?boat=Topaz%20Pico%20Topper#booking"
           />
         </div>
 
         <h2>Important Information</h2>
-        <ul style={{ marginBottom: "30px", lineHeight: "1.8" }}>
+        <ul style={{ marginBottom: "40px", lineHeight: "1.8" }}>
           <li>✔ Suitable for experienced sailors</li>
           <li>✔ Safety briefing provided</li>
           <li>✔ Life jackets included</li>
         </ul>
 
-        {/* OPTIONAL CTA (book) */}
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <Button href="/#booking">Check availability</Button>
-        </div>
+        {/* 🔻 CTA MOVED TO BOTTOM */}
+        <CTASection
+          title="Prefer something easier to handle?"
+          subtitle="Our motor boats are perfect for relaxed exploring — no sailing experience needed."
+          buttonText="See our Motor Boats"
+          buttonLink="/motor-boat-hire-helford"
+        />
       </div>
     </>
   );
