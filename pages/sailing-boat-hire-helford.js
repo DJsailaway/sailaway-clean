@@ -1,12 +1,20 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import Image from "next/image";
+import CTASection from "../components/CTASection";
+import Button from "../components/Button";
 
-// Reusable Boat Card component
+// Reusable Boat Card component (now using shared Button)
 function BoatCard({ title, description, imageSrc, href }) {
   return (
-    <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)", background: "#fff" }}>
-
+    <div
+      style={{
+        borderRadius: "12px",
+        overflow: "hidden",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+        background: "#fff",
+      }}
+    >
       <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
         <Image
           src={imageSrc}
@@ -23,22 +31,7 @@ function BoatCard({ title, description, imageSrc, href }) {
           {description}
         </p>
 
-        {href && (
-          <a href={href}>
-            <button
-              style={{
-                padding: "10px 16px",
-                backgroundColor: "#1e3a5f",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
-            >
-              Check availability
-            </button>
-          </a>
-        )}
+        {href && <Button href={href}>Check availability</Button>}
       </div>
     </div>
   );
@@ -57,24 +50,42 @@ export default function SailingBoatHire() {
 
       <Navbar />
 
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          padding: "40px 20px",
+          maxWidth: "900px",
+          margin: "0 auto",
+        }}
+      >
+        <h1 style={{ fontSize: "2.5rem", marginBottom: "20px" }}>
+          Sailing Boat Hire on the Helford River
+        </h1>
 
-        <h1>Sailing Boat Hire on the Helford River</h1>
-
-        <p style={{ marginBottom: "30px" }}>
-          Enjoy traditional sailing on the beautiful Helford River. Our fleet of sailing boats is available for experienced sailors looking to explore Cornwall’s stunning coastline.
+        <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
+          Enjoy traditional sailing on the beautiful Helford River. Our fleet of sailing
+          boats is available for experienced sailors looking to explore Cornwall’s stunning coastline.
         </p>
 
-        <h2>Our Sailing Boats</h2>
+        {/* 🔁 MIRRORED CTA (Motor Boats) */}
+        <CTASection
+          title="Prefer something easier to handle?"
+          subtitle="Our motor boats are perfect for relaxed exploring — no sailing experience needed."
+          buttonText="See our Motor Boats"
+          buttonLink="/motor-boat-hire-helford"
+        />
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "20px",
-          marginTop: "20px",
-          marginBottom: "40px"
-        }}>
+        <h2 style={{ marginTop: "30px" }}>Our Sailing Boats</h2>
 
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "20px",
+            marginTop: "20px",
+            marginBottom: "40px",
+          }}
+        >
           <BoatCard
             title="Drascombe Longboat"
             description="Traditional sailing boat for up to 6 people — perfect for relaxed cruising on the river."
@@ -95,7 +106,6 @@ export default function SailingBoatHire() {
             imageSrc="/sailing-hire-helford-river.jpg"
             href="/?boat=Topaz%20Pico%20Topper#booking"
           />
-
         </div>
 
         <h2>Important Information</h2>
@@ -105,21 +115,10 @@ export default function SailingBoatHire() {
           <li>✔ Life jackets included</li>
         </ul>
 
-        <div style={{ marginTop: "40px", textAlign: "center" }}>
-          <a href="/#booking">
-            <button style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              fontWeight: "bold"
-            }}>
-              Check availability
-            </button>
-          </a>
+        {/* OPTIONAL CTA (book) */}
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <Button href="/#booking">Check availability</Button>
         </div>
-
       </div>
     </>
   );
