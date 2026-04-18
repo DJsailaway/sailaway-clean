@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
+import CTASection from "../components/CTASection";
 
 export default function BoatyardServices() {
   return (
@@ -49,6 +50,28 @@ export default function BoatyardServices() {
 
         <h2>Location</h2>
         <p>St Anthony, Helford River, Cornwall.</p>
+
+        {/* 🔻 CTA SECTION (UPDATED NAVIGATION HUB) */}
+        <CTASection
+          title="Explore our full boatyard services"
+          subtitle="Everything you need to manage, maintain and store your boat on the Helford River:"
+          buttons={[
+            {
+              text: "Moorings",
+              link: "/moorings-helford-river",
+              variant: "secondary",
+            },
+            {
+              text: "Boatyard Services",
+              link: "/boatyard-services",
+              variant: "secondary",
+            },
+            {
+              text: "Boat Storage",
+              link: "/boat-storage-helford",
+            },
+          ]}
+        />
       </div>
     </>
   );
