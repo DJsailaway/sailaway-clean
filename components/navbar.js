@@ -24,16 +24,17 @@ export default function Navbar() {
   const baseLink = {
     textDecoration: "none",
     color: "#222",
-    fontWeight: 500,
+    fontWeight: 600,
     fontFamily: "inherit",
     padding: "10px 12px",
     borderRadius: "6px",
+    display: "block",
   };
 
   const activeLink = {
     ...baseLink,
     color: "#1e3a5f",
-    fontWeight: 700,
+    fontWeight: 800,
   };
 
   const dropdownStyle = {
@@ -41,11 +42,21 @@ export default function Navbar() {
     top: "100%",
     left: 0,
     background: "white",
-    boxShadow: "0 6px 16px rgba(0,0,0,0.12)",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
     borderRadius: "10px",
-    padding: "8px 0",
+    padding: "10px 0",
     zIndex: 1000,
     minWidth: "220px",
+    display: "flex",
+    flexDirection: "column", // 🔥 ensures vertical layout
+  };
+
+  const dropdownItem = {
+    padding: "10px 16px",
+    textDecoration: "none",
+    color: "#222",
+    fontWeight: 500,
+    whiteSpace: "nowrap",
   };
 
   return (
@@ -65,18 +76,18 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "12px 20px",
+          padding: "14px 20px",
           maxWidth: "1200px",
           margin: "0 auto",
         }}
       >
-        {/* LOGO */}
+        {/* LOGO (bigger now) */}
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
           <Image
             src="/logo-sailaway.jpg"
             alt="Sailaway St Anthony"
-            width={140}
-            height={50}
+            width={180}   // 🔥 increased
+            height={65}   // 🔥 increased
             style={{ objectFit: "contain" }}
             priority
           />
@@ -109,7 +120,7 @@ export default function Navbar() {
                 padding: "10px 12px",
                 fontSize: "inherit",
                 fontFamily: "inherit",
-                fontWeight: 500,
+                fontWeight: 700, // 🔥 bold top nav
                 color: "#222",
               }}
             >
@@ -118,13 +129,13 @@ export default function Navbar() {
 
             {openDropdown === "hire" && (
               <div style={dropdownStyle}>
-                <Link href="/motor-boat-hire-helford" style={baseLink}>
+                <Link href="/motor-boat-hire-helford" style={dropdownItem}>
                   Motor Boats
                 </Link>
-                <Link href="/sailing-boat-hire-helford" style={baseLink}>
+                <Link href="/sailing-boat-hire-helford" style={dropdownItem}>
                   Sailing
                 </Link>
-                <Link href="/kayak-hire-helford" style={baseLink}>
+                <Link href="/kayak-hire-helford" style={dropdownItem}>
                   Kayaks & SUPs
                 </Link>
               </div>
@@ -145,7 +156,7 @@ export default function Navbar() {
                 padding: "10px 12px",
                 fontSize: "inherit",
                 fontFamily: "inherit",
-                fontWeight: 500,
+                fontWeight: 700, // 🔥 bold
                 color: "#222",
               }}
             >
@@ -154,16 +165,16 @@ export default function Navbar() {
 
             {openDropdown === "yard" && (
               <div style={dropdownStyle}>
-                <Link href="/gillan-creek-moorings" style={baseLink}>
+                <Link href="/gillan-creek-moorings" style={dropdownItem}>
                   Moorings
                 </Link>
-                <Link href="/boat-launching-helford" style={baseLink}>
+                <Link href="/boat-launching-helford" style={dropdownItem}>
                   Launching
                 </Link>
-                <Link href="/boat-storage-helford" style={baseLink}>
+                <Link href="/boat-storage-helford" style={dropdownItem}>
                   Storage
                 </Link>
-                <Link href="/boatyard-services" style={baseLink}>
+                <Link href="/boatyard-services" style={dropdownItem}>
                   Services
                 </Link>
               </div>
@@ -180,14 +191,14 @@ export default function Navbar() {
             Location
           </Link>
 
-          {/* CTA */}
+          {/* CTAs */}
           <Link
             href="/#booking"
             style={{
               ...baseLink,
               backgroundColor: "#1e3a5f",
               color: "white",
-              fontWeight: 700,
+              fontWeight: 800,
             }}
           >
             Book
@@ -199,14 +210,14 @@ export default function Navbar() {
               ...baseLink,
               backgroundColor: "#1e3a5f",
               color: "white",
-              fontWeight: 700,
+              fontWeight: 800,
             }}
           >
             Call
           </Link>
         </div>
 
-        {/* BURGER (FIXED RESPONSIVE VISIBILITY) */}
+        {/* BURGER */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="hamburger"
@@ -240,7 +251,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* RESPONSIVE FIX */}
+      {/* RESPONSIVE */}
       <style jsx>{`
         @media (max-width: 768px) {
           .desktop-menu {
