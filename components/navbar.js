@@ -9,7 +9,6 @@ export default function Navbar() {
   const router = useRouter();
   const navRef = useRef();
 
-  // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(e) {
       if (navRef.current && !navRef.current.contains(e.target)) {
@@ -44,25 +43,28 @@ export default function Navbar() {
 
   return (
     <>
-      <nav ref={navRef} style={{
-        borderBottom: "1px solid #eee",
-        backgroundColor: "white",
-        position: "sticky",
-        top: 0,
-        zIndex: 1000
-      }}>
-
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "12px 20px",
-          maxWidth: "1200px",
-          margin: "0 auto"
-        }}>
-
-          {/* 🔻 LOGO */}
-          <Link href="/" aria-label="Home">
+      <nav
+        ref={navRef}
+        style={{
+          borderBottom: "1px solid #eee",
+          backgroundColor: "white",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "12px 20px",
+            maxWidth: "1200px",
+            margin: "0 auto"
+          }}
+        >
+          {/* LOGO */}
+          <Link href="/">
             <Image
               src="/logo-sailaway.jpg"
               alt="Sailaway St Anthony"
@@ -72,13 +74,15 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* 🔻 DESKTOP MENU */}
-          <div className="desktop-menu" style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px"
-          }}>
-
+          {/* DESKTOP MENU */}
+          <div
+            className="desktop-menu"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px"
+            }}
+          >
             <Link href="/" style={linkStyle("/")}>Home</Link>
 
             {/* Boat Hire */}
@@ -88,12 +92,15 @@ export default function Navbar() {
               onMouseLeave={() => setOpenDropdown(null)}
             >
               <button
-                aria-haspopup="true"
-                aria-expanded={openDropdown === "hire"}
                 onClick={() =>
                   setOpenDropdown(openDropdown === "hire" ? null : "hire")
                 }
-                style={{ background: "none", border: "none", cursor: "pointer" }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "8px 10px"
+                }}
               >
                 Boat Hire ▾
               </button>
@@ -114,12 +121,15 @@ export default function Navbar() {
               onMouseLeave={() => setOpenDropdown(null)}
             >
               <button
-                aria-haspopup="true"
-                aria-expanded={openDropdown === "yard"}
                 onClick={() =>
                   setOpenDropdown(openDropdown === "yard" ? null : "yard")
                 }
-                style={{ background: "none", border: "none", cursor: "pointer" }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "8px 10px"
+                }}
               >
                 Boatyard ▾
               </button>
@@ -139,58 +149,63 @@ export default function Navbar() {
             <Link href="/st-anthony-helford-river">Location</Link>
 
             {/* CTAs */}
-            <Link href="/#booking" style={{
-              padding: "6px 14px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              borderRadius: "6px",
-              fontWeight: 600,
-              textDecoration: "none"
-            }}>
+            <Link
+              href="/#booking"
+              style={{
+                padding: "6px 14px",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                borderRadius: "6px",
+                fontWeight: 600,
+                textDecoration: "none"
+              }}
+            >
               Book
             </Link>
 
-            <Link href="tel:+441234567890" style={{
-              padding: "6px 14px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              borderRadius: "6px",
-              fontWeight: 600,
-              textDecoration: "none"
-            }}>
+            <Link
+              href="tel:+441234567890"
+              style={{
+                padding: "6px 14px",
+                backgroundColor: "#1e3a5f",
+                color: "white",
+                borderRadius: "6px",
+                fontWeight: 600,
+                textDecoration: "none"
+              }}
+            >
               Call
             </Link>
           </div>
 
-          {/* 🔻 BURGER */}
+          {/* BURGER */}
           <button
-            aria-label="Toggle menu"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="hamburger"
             style={{
               fontSize: "1.6rem",
               background: "none",
               border: "none",
               cursor: "pointer"
             }}
+            className="hamburger"
           >
             ☰
           </button>
         </div>
 
-        {/* 🔻 MOBILE MENU */}
+        {/* MOBILE MENU */}
         {menuOpen && (
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            padding: "16px 20px",
-            borderTop: "1px solid #eee"
-          }}>
-
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              padding: "16px 20px",
+              borderTop: "1px solid #eee"
+            }}
+          >
             <Link href="/">Home</Link>
 
-            {/* Mobile dropdowns */}
             <button onClick={() =>
               setOpenDropdown(openDropdown === "hire" ? null : "hire")
             }>
@@ -225,48 +240,34 @@ export default function Navbar() {
             <Link href="/st-anthony-helford-river">Location</Link>
           </div>
         )}
-
-        <style jsx>{`
-          @media (min-width: 768px) {
-            .desktop-menu { display: flex !important; }
-            .hamburger { display: none !important; }
-          }
-
-          @media (max-width: 767px) {
-            .desktop-menu { display: none !important; }
-            .hamburger { display: block !important; }
-          }
-        `}</style>
       </nav>
 
-      {/* 🔻 STICKY MOBILE BOOK BUTTON */}
-      <div className="mobile-book">
-        <Link href="/#booking">Book Now</Link>
+      {/* STICKY MOBILE BOOK BUTTON */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          background: "#1e3a5f",
+          textAlign: "center",
+          padding: "14px",
+          zIndex: 999,
+          display: typeof window !== "undefined" && window.innerWidth < 768 ? "block" : "none"
+        }}
+      >
+        <Link
+          href="/#booking"
+          style={{
+            color: "white",
+            fontWeight: "700",
+            textDecoration: "none",
+            fontSize: "1.1rem"
+          }}
+        >
+          Book Now
+        </Link>
       </div>
-
-      <style jsx>{`
-        .mobile-book {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          background: #1e3a5f;
-          text-align: center;
-          padding: 14px;
-          z-index: 999;
-        }
-
-        .mobile-book a {
-          color: white;
-          font-weight: 700;
-          text-decoration: none;
-          font-size: 1.1rem;
-        }
-
-        @media (min-width: 768px) {
-          .mobile-book { display: none; }
-        }
-      `}</style>
     </>
   );
 }
