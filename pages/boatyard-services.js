@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
+import CTASection from "../components/CTASection";
 
 export default function BoatyardServices() {
   return (
@@ -16,24 +17,29 @@ export default function BoatyardServices() {
       {/* NAVBAR */}
       <Navbar />
 
-      {/* HERO IMAGE */}
+      {/* HERO */}
       <SplitOverlayHero
         imageSrc="/boat-launching-helford.jpg"
         imageAlt="Boat launching on the Helford River"
         title="Boatyard Services on the Helford River"
         topContent={
-          <>
-            <p>
-              Reliable boatyard services including launching, moorings and storage from our base at St Anthony.
-            </p>
-          </>
+          <p>
+            Reliable boatyard services including launching, moorings and storage from our base at St Anthony.
+          </p>
         }
       />
 
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
-
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          padding: "40px 20px",
+          maxWidth: "900px",
+          margin: "0 auto",
+        }}
+      >
         <p>
-          We offer a range of boatyard services from our base at St Anthony on the Helford River, Cornwall. Whether you need launching, moorings, or general support, we provide a reliable and friendly service.
+          We offer a range of boatyard services from our base at St Anthony on the Helford River, Cornwall.
+          Whether you need launching, moorings, or general support, we provide a reliable and friendly service.
         </p>
 
         <h2>Our Services</h2>
@@ -46,33 +52,45 @@ export default function BoatyardServices() {
 
         <h2>Boat Launching</h2>
         <p>
-          Convenient and straightforward launching facilities for a range of boats, with easy access to the Helford River.
+          Convenient and straightforward launching facilities with easy access to the Helford River.
         </p>
 
         <h2>Moorings</h2>
         <p>
-          Secure moorings in one of Cornwall’s most beautiful and sheltered rivers.
+          Secure moorings in one of Cornwall’s most sheltered and beautiful rivers.
+        </p>
+
+        <h2>Storage</h2>
+        <p>
+          Seasonal boat storage available at St Anthony for local boat owners.
         </p>
 
         <h2>Location</h2>
         <p>
-          Based in St Anthony on the Helford River, we are ideally located for access to the water and surrounding coastline.
+          Based in St Anthony on the Helford River, ideally located for easy water access.
         </p>
 
-        <div style={{ marginTop: "40px" }}>
-          <a href="/contact">
-            <button style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "6px"
-            }}>
-              Contact us
-            </button>
-          </a>
-        </div>
-
+        {/* 🔻 CTA HUB (NOW PART OF SYSTEM) */}
+        <CTASection
+          title="Explore our full range of boatyard services"
+          subtitle="Everything you need for launching, moorings, and storage on the Helford River:"
+          buttons={[
+            {
+              text: "Boat Launching",
+              link: "/boat-launching-helford",
+              variant: "secondary",
+            },
+            {
+              text: "Moorings",
+              link: "/moorings-helford-river",
+              variant: "secondary",
+            },
+            {
+              text: "Boat Storage",
+              link: "/boat-storage-helford",
+            },
+          ]}
+        />
       </div>
     </>
   );
