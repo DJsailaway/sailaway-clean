@@ -91,12 +91,16 @@ export default function MotorBoatHire() {
           />
         </div>
 
-        {/* 🔻 CTA MOVED TO BOTTOM */}
+        {/* 🔻 UPDATED CTA SECTION (NOW CONSISTENT WITH REST OF SITE) */}
         <CTASection
           title="Prefer something more adventurous?"
-          subtitle="Our sailing boats offer a more hands-on way to explore the Helford."
-          buttonText="See our Sailing Boats"
-          buttonLink="/sailing-boat-hire-helford"
+          subtitle="If you'd like to try sailing instead, explore our sailing boat hire options."
+          buttons={[
+            {
+              text: "See our Sailing Boats",
+              link: "/sailing-boat-hire-helford",
+            },
+          ]}
         />
       </div>
     </>
