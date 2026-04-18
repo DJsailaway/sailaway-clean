@@ -17,19 +17,15 @@ export default function Moorings() {
         imageAlt="Boat moorings at Gillan Creek"
         title="Moorings at Gillan Creek on the Helford River"
         topContent={
-          <>
-            <p>
-              Secure and convenient boat moorings in one of Cornwall’s most sheltered and scenic river locations.
-            </p>
-          </>
+          <p>
+            Secure and convenient boat moorings in one of Cornwall’s most sheltered and scenic river locations.
+          </p>
         }
         bottomContent={
-          <>
-            <p>
-              We offer secure and convenient boat moorings at Gillan Creek, part of the Helford River in Cornwall.
-              Ideal for local and visiting boat owners.
-            </p>
-          </>
+          <p>
+            We offer secure and convenient boat moorings at Gillan Creek, part of the Helford River in Cornwall.
+            Ideal for local and visiting boat owners.
+          </p>
         }
       />
 
@@ -46,39 +42,23 @@ export default function Moorings() {
           A quiet, sheltered location with easy access to the Helford River.
         </p>
 
-        {/* 🔻 CTA SECTION (using your reusable component) */}
+        {/* 🔻 SINGLE CLEAN CTA WITH HORIZONTAL BUTTONS */}
         <CTASection
           title="We offer comprehensive boat yard services"
           subtitle="including launch and retrieval, metal-, fibreglass and wood-work, and storage:"
-          buttonText="Boat Launching"
-          buttonLink="/boat-launching-helford"
+          buttons={[
+            { text: "Boat Launching", link: "/boat-launching-helford" },
+            { text: "Boatyard Services", link: "/boatyard-services", variant: "secondary" },
+            { text: "Boat Storage", link: "/boat-storage-helford", variant: "secondary" },
+          ]}
         />
-
-        {/* SECOND ROW OF OPTIONS (keeps CTASection simple but expandable) */}
-        <div style={{ textAlign: "center", marginTop: "-20px" }}>
-          <CTASection
-            buttonText="Boatyard Services"
-            buttonLink="/boatyard-services"
-            background="#ffffff"
-            align="center"
-          />
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: "-30px" }}>
-          <CTASection
-            buttonText="Boat Storage"
-            buttonLink="/boat-storage-helford"
-            background="#ffffff"
-            align="center"
-          />
-        </div>
 
         {/* Optional contact CTA */}
         <CTASection
           title="Need help choosing the right service?"
-          buttonText="Contact us"
-          buttonLink="/contact"
-          background="#f5f5f5"
+          buttons={[
+            { text: "Contact us", link: "/contact" },
+          ]}
         />
       </div>
     </>
