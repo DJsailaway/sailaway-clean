@@ -25,7 +25,7 @@ export default function Navbar() {
     textDecoration: "none",
     color: "#222",
     fontWeight: 600,
-    fontFamily: "inherit",
+    fontSize: "16px",
     padding: "10px 12px",
     borderRadius: "6px",
     display: "block",
@@ -45,10 +45,10 @@ export default function Navbar() {
     boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
     borderRadius: "10px",
     padding: "10px 0",
-    zIndex: 1000,
     minWidth: "220px",
     display: "flex",
-    flexDirection: "column", // 🔥 ensures vertical layout
+    flexDirection: "column",
+    zIndex: 1000,
   };
 
   const dropdownItem = {
@@ -56,7 +56,6 @@ export default function Navbar() {
     textDecoration: "none",
     color: "#222",
     fontWeight: 500,
-    whiteSpace: "nowrap",
   };
 
   return (
@@ -76,18 +75,18 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "14px 20px",
+          padding: "16px 20px", // slightly more spacious
           maxWidth: "1200px",
           margin: "0 auto",
         }}
       >
-        {/* LOGO (bigger now) */}
+        {/* LOGO (larger like your Location page feel) */}
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
           <Image
             src="/logo-sailaway.jpg"
             alt="Sailaway St Anthony"
-            width={180}   // 🔥 increased
-            height={65}   // 🔥 increased
+            width={190}
+            height={70}
             style={{ objectFit: "contain" }}
             priority
           />
@@ -99,7 +98,7 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "18px",
+            gap: "20px",
           }}
         >
           <Link href="/" style={isActive("/") ? activeLink : baseLink}>
@@ -117,11 +116,9 @@ export default function Navbar() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
+                fontWeight: 700,
+                fontSize: "16px",
                 padding: "10px 12px",
-                fontSize: "inherit",
-                fontFamily: "inherit",
-                fontWeight: 700, // 🔥 bold top nav
-                color: "#222",
               }}
             >
               Boat Hire ▾
@@ -153,11 +150,9 @@ export default function Navbar() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
+                fontWeight: 700,
+                fontSize: "16px",
                 padding: "10px 12px",
-                fontSize: "inherit",
-                fontFamily: "inherit",
-                fontWeight: 700, // 🔥 bold
-                color: "#222",
               }}
             >
               Boatyard ▾
@@ -191,7 +186,7 @@ export default function Navbar() {
             Location
           </Link>
 
-          {/* CTAs */}
+          {/* CTA */}
           <Link
             href="/#booking"
             style={{
@@ -203,24 +198,11 @@ export default function Navbar() {
           >
             Book
           </Link>
-
-          <Link
-            href="tel:+441234567890"
-            style={{
-              ...baseLink,
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              fontWeight: 800,
-            }}
-          >
-            Call
-          </Link>
         </div>
 
         {/* BURGER */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="hamburger"
           style={{
             fontSize: "1.8rem",
             background: "none",
@@ -228,12 +210,13 @@ export default function Navbar() {
             cursor: "pointer",
             display: "none",
           }}
+          className="hamburger"
         >
           ☰
         </button>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE */}
       {menuOpen && (
         <div
           style={{
@@ -251,7 +234,6 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* RESPONSIVE */}
       <style jsx>{`
         @media (max-width: 768px) {
           .desktop-menu {
