@@ -97,12 +97,16 @@ export default function SailingBoatHire() {
           <li>✔ Life jackets included</li>
         </ul>
 
-        {/* 🔻 CTA MOVED TO BOTTOM */}
+        {/* 🔻 CTA (FIXED LINK + CONSISTENT WITH SITE STRUCTURE) */}
         <CTASection
           title="Prefer something easier to handle?"
           subtitle="Our motor boats are perfect for relaxed exploring — no sailing experience needed."
-          buttonText="See our Motor Boats"
-          buttonLink="/motor-boat-hire-helford"
+          buttons={[
+            {
+              text: "See our Motor Boats",
+              link: "/motor-boat-hire-helford",
+            },
+          ]}
         />
       </div>
     </>
