@@ -27,8 +27,9 @@ export default function Navbar() {
     fontWeight: 600,
     fontSize: "16px",
     padding: "10px 12px",
-    borderRadius: "6px",
+    borderRadius: "8px",
     display: "block",
+    transition: "all 0.2s ease",
   };
 
   const activeLink = {
@@ -39,16 +40,19 @@ export default function Navbar() {
 
   const dropdownStyle = {
     position: "absolute",
-    top: "100%",
+    top: "110%",
     left: 0,
-    background: "white",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
-    borderRadius: "10px",
-    padding: "10px 0",
-    minWidth: "220px",
+    background: "rgba(255,255,255,0.92)",
+    backdropFilter: "blur(12px)", // ✨ glass effect
+    WebkitBackdropFilter: "blur(12px)",
+    boxShadow: "0 15px 35px rgba(0,0,0,0.12)",
+    borderRadius: "12px",
+    padding: "8px 0",
+    minWidth: "240px",
     display: "flex",
     flexDirection: "column",
     zIndex: 1000,
+    animation: "fadeIn 0.15s ease-out",
   };
 
   const dropdownItem = {
@@ -56,18 +60,22 @@ export default function Navbar() {
     textDecoration: "none",
     color: "#222",
     fontWeight: 500,
+    transition: "background 0.2s ease",
   };
 
   return (
     <nav
       ref={navRef}
       style={{
-        borderBottom: "1px solid #eee",
-        backgroundColor: "white",
         position: "sticky",
         top: 0,
         zIndex: 1000,
-        fontFamily: "inherit",
+
+        // ✨ GLASS NAVBAR
+        background: "rgba(255,255,255,0.75)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
       }}
     >
       <div
@@ -75,18 +83,18 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "16px 20px", // slightly more spacious
+          padding: "18px 22px",
           maxWidth: "1200px",
           margin: "0 auto",
         }}
       >
-        {/* LOGO (larger like your Location page feel) */}
+        {/* LOGO (bigger again 🔥) */}
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
           <Image
             src="/logo-sailaway.jpg"
             alt="Sailaway St Anthony"
-            width={190}
-            height={70}
+            width={230}   // 🔥 increased again
+            height={85}   // 🔥 increased again
             style={{ objectFit: "contain" }}
             priority
           />
@@ -98,7 +106,7 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "20px",
+            gap: "22px",
           }}
         >
           <Link href="/" style={isActive("/") ? activeLink : baseLink}>
@@ -119,6 +127,7 @@ export default function Navbar() {
                 fontWeight: 700,
                 fontSize: "16px",
                 padding: "10px 12px",
+                color: "#222",
               }}
             >
               Boat Hire ▾
@@ -153,6 +162,7 @@ export default function Navbar() {
                 fontWeight: 700,
                 fontSize: "16px",
                 padding: "10px 12px",
+                color: "#222",
               }}
             >
               Boatyard ▾
@@ -203,20 +213,20 @@ export default function Navbar() {
         {/* BURGER */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
+          className="hamburger"
           style={{
-            fontSize: "1.8rem",
+            fontSize: "1.9rem",
             background: "none",
             border: "none",
             cursor: "pointer",
             display: "none",
           }}
-          className="hamburger"
         >
           ☰
         </button>
       </div>
 
-      {/* MOBILE */}
+      {/* MOBILE MENU */}
       {menuOpen && (
         <div
           style={{
@@ -224,7 +234,9 @@ export default function Navbar() {
             flexDirection: "column",
             gap: "12px",
             padding: "16px 20px",
-            borderTop: "1px solid #eee",
+            borderTop: "1px solid rgba(0,0,0,0.06)",
+            background: "rgba(255,255,255,0.9)",
+            backdropFilter: "blur(10px)",
           }}
         >
           <Link href="/" style={baseLink}>Home</Link>
@@ -234,6 +246,7 @@ export default function Navbar() {
         </div>
       )}
 
+      {/* ANIMATIONS */}
       <style jsx>{`
         @media (max-width: 768px) {
           .desktop-menu {
@@ -241,6 +254,17 @@ export default function Navbar() {
           }
           .hamburger {
             display: block !important;
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       `}</style>
