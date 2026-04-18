@@ -13,12 +13,11 @@ export default function Location() {
         />
       </Head>
 
-      <div style={{ fontFamily: "sans-serif" }}>
+      <div>
         <Navbar />
 
         {/* IMAGE + FULL TEXT OVERLAY */}
         <div style={{ position: "relative", width: "100%" }}>
-          
           <Image
             src="/st-anthony.jpg"
             alt="St Anthony on the Helford River"
@@ -28,21 +27,21 @@ export default function Location() {
             style={{
               width: "100%",
               height: "auto",
-              display: "block"
+              display: "block",
             }}
           />
 
-          {/* VERY SUBTLE GRADIENT (ONLY BOTTOM FOR READABILITY) */}
+          {/* GRADIENT OVERLAY */}
           <div
             style={{
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.05) 60%, rgba(0,0,0,0))"
+                "linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.05) 60%, rgba(0,0,0,0))",
             }}
           />
 
-          {/* FULL TEXT OVERLAY */}
+          {/* TEXT */}
           <div
             style={{
               position: "absolute",
@@ -51,7 +50,7 @@ export default function Location() {
               right: "40px",
               color: "white",
               maxWidth: "800px",
-              textShadow: "0 2px 10px rgba(0,0,0,0.7)"
+              textShadow: "0 2px 10px rgba(0,0,0,0.7)",
             }}
           >
             <h1 style={{ fontSize: "3rem", marginBottom: "20px" }}>
@@ -85,7 +84,8 @@ export default function Location() {
                     backgroundColor: "#1e3a5f",
                     color: "white",
                     border: "none",
-                    borderRadius: "6px"
+                    borderRadius: "6px",
+                    fontWeight: 600,
                   }}
                 >
                   Check availability
@@ -95,16 +95,7 @@ export default function Location() {
           </div>
         </div>
 
-        {/* OPTIONAL SPACER / FUTURE CONTENT AREA */}
-        <div
-          style={{
-            padding: "40px 20px",
-            maxWidth: "900px",
-            margin: "0 auto"
-          }}
-        >
-          {/* You can add extra sections here later if needed */}
-        </div>
+        <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }} />
       </div>
     </>
   );
