@@ -3,10 +3,9 @@ import Link from "next/link";
 export default function CTASection({
   title,
   subtitle,
-  buttonText,
-  buttonLink,
+  buttons = [],
   background = "#f5f5f5",
-  align = "center"
+  align = "center",
 }) {
   return (
     <div
@@ -15,14 +14,10 @@ export default function CTASection({
         padding: "35px 25px",
         backgroundColor: background,
         borderRadius: "12px",
-        textAlign: align
+        textAlign: align,
       }}
     >
-      {title && (
-        <h2 style={{ marginBottom: "10px" }}>
-          {title}
-        </h2>
-      )}
+      {title && <h2 style={{ marginBottom: "10px" }}>{title}</h2>}
 
       {subtitle && (
         <p style={{ marginBottom: "20px", opacity: 0.85 }}>
@@ -30,22 +25,33 @@ export default function CTASection({
         </p>
       )}
 
-      {buttonText && buttonLink && (
-        <Link href={buttonLink}>
-          <button
-            style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontWeight: "600"
-            }}
-          >
-            {buttonText}
-          </button>
-        </Link>
+      {buttons.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "12px",
+            justifyContent: "center",
+          }}
+        >
+          {buttons.map((btn, index) => (
+            <Link key={index} href={btn.link} style={{ textDecoration: "none" }}>
+              <button
+                style={{
+                  padding: "14px 28px",
+                  backgroundColor: btn.variant === "secondary" ? "white" : "#1e3a5f",
+                  color: btn.variant === "secondary" ? "#1e3a5f" : "white",
+                  border: btn.variant === "secondary" ? "2px solid #1e3a5f" : "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                }}
+              >
+                {btn.text}
+              </button>
+            </Link>
+          ))}
+        </div>
       )}
     </div>
   );
