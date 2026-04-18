@@ -82,7 +82,7 @@ export default function BoatyardServices() {
             },
             {
               text: "Moorings",
-              link: "/moorings-helford-river",
+              link: "/gillan-creek-moorings",
               variant: "secondary",
             },
             {
