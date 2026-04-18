@@ -36,14 +36,12 @@ export default function Navbar() {
     color: "#1e3a5f",
   };
 
-  const dropdownBase = {
+  const dropdownStyle = {
     position: "absolute",
     top: "100%",
     left: 0,
-    background: "rgba(255,255,255,0.95)",
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
-    boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
+    background: "white",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
     borderRadius: "10px",
     padding: "8px 0",
     minWidth: "220px",
@@ -61,16 +59,15 @@ export default function Navbar() {
 
   return (
     <>
+      {/* NAVBAR */}
       <nav
         ref={navRef}
         style={{
           position: "sticky",
           top: 0,
           zIndex: 1000,
-          background: "rgba(255,255,255,0.78)",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-          borderBottom: "1px solid rgba(0,0,0,0.06)",
+          background: "white",
+          borderBottom: "1px solid #eee",
         }}
       >
         <div
@@ -79,7 +76,7 @@ export default function Navbar() {
             margin: "0 auto",
             padding: "18px 22px",
             display: "flex",
-            alignItems: "center", // FIXES ALIGNMENT ISSUE
+            alignItems: "center",
             justifyContent: "space-between",
           }}
         >
@@ -88,14 +85,14 @@ export default function Navbar() {
             <Image
               src="/logo-sailaway.jpg"
               alt="Sailaway St Anthony"
-              width={240}
-              height={90}
+              width={230}
+              height={85}
               style={{ objectFit: "contain" }}
               priority
             />
           </Link>
 
-          {/* DESKTOP NAV */}
+          {/* DESKTOP MENU */}
           <div
             className="desktop-menu"
             style={{
@@ -110,14 +107,14 @@ export default function Navbar() {
 
             {/* Boat Hire */}
             <div
-              style={{ position: "relative", display: "flex", alignItems: "center" }}
+              style={{ position: "relative" }}
               onMouseEnter={() => setOpenDropdown("hire")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
               <div style={linkStyle}>Boat Hire ▾</div>
 
               {openDropdown === "hire" && (
-                <div style={dropdownBase}>
+                <div style={dropdownStyle}>
                   <Link href="/motor-boat-hire-helford" style={dropdownItem}>
                     Motor Boats
                   </Link>
@@ -133,14 +130,14 @@ export default function Navbar() {
 
             {/* Boatyard */}
             <div
-              style={{ position: "relative", display: "flex", alignItems: "center" }}
+              style={{ position: "relative" }}
               onMouseEnter={() => setOpenDropdown("yard")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
               <div style={linkStyle}>Boatyard ▾</div>
 
               {openDropdown === "yard" && (
-                <div style={dropdownBase}>
+                <div style={dropdownStyle}>
                   <Link href="/gillan-creek-moorings" style={dropdownItem}>
                     Moorings
                   </Link>
@@ -192,10 +189,9 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* MOBILE HAMBURGER */}
+          {/* HAMBURGER */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="hamburger"
             style={{
               fontSize: "1.9rem",
               background: "none",
@@ -216,8 +212,7 @@ export default function Navbar() {
               flexDirection: "column",
               gap: "10px",
               padding: "16px 20px",
-              background: "rgba(255,255,255,0.95)",
-              backdropFilter: "blur(10px)",
+              background: "white",
             }}
           >
             <Link href="/" style={linkStyle}>Home</Link>
@@ -232,57 +227,55 @@ export default function Navbar() {
             .desktop-menu {
               display: none !important;
             }
-            .hamburger {
+            button {
               display: block !important;
             }
           }
         `}</style>
       </nav>
 
-      {/* MOBILE CTA BAR (SAFE VERSION) */}
-      <div className="mobile-cta-bar">
-        <a href="tel:+441234567890" className="call">
+      {/* MOBILE CTA BAR */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          display: "flex",
+          zIndex: 9999,
+          boxShadow: "0 -8px 25px rgba(0,0,0,0.15)",
+        }}
+      >
+        <a
+          href="tel:+441234567890"
+          style={{
+            flex: 1,
+            background: "#0f2f4f",
+            color: "white",
+            textAlign: "center",
+            padding: "16px",
+            fontWeight: 800,
+            textDecoration: "none",
+          }}
+        >
           📞 Call
         </a>
-        <a href="/#booking" className="book">
+
+        <a
+          href="/#booking"
+          style={{
+            flex: 1,
+            background: "#1e3a5f",
+            color: "white",
+            textAlign: "center",
+            padding: "16px",
+            fontWeight: 800,
+            textDecoration: "none",
+          }}
+        >
           🛶 Book
         </a>
       </div>
-
-      <style jsx>{`
-        .mobile-cta-bar {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          display: flex;
-          z-index: 9999;
-          box-shadow: 0 -8px 25px rgba(0,0,0,0.15);
-        }
-
-        .mobile-cta-bar a {
-          flex: 1;
-          text-align: center;
-          padding: 16px;
-          font-weight: 800;
-          text-decoration: none;
-          color: white;
-        }
-
-        .call {
-          background: #0f2f4f;
-        }
-
-        .book {
-          background: #1e3a5f;
-        }
-
-        @media (min-width: 769px) {
-          .mobile-cta-bar {
-            display: none;
-          }
-        }
-      `}</style>
     </>
   );
 }
