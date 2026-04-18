@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import Image from "next/image";
+import Link from "next/link";
 
 // Boat Card component
 function BoatCard({ title, description, imageSrc, href }) {
@@ -71,6 +72,37 @@ export default function MotorBoatHire() {
         <p style={{ marginBottom: "30px" }}>
           Based in St Anthony, our boats are perfect for families, couples, and anyone looking to enjoy a relaxed day on the water in one of Cornwall’s most scenic locations.
         </p>
+
+        {/* 👇 NEW SAILING CTA */}
+        <div style={{
+          marginBottom: "40px",
+          padding: "30px",
+          backgroundColor: "#f5f5f5",
+          borderRadius: "10px",
+          textAlign: "center"
+        }}>
+          <p style={{ marginBottom: "10px", fontWeight: "500" }}>
+            Prefer something a little more hands-on?
+          </p>
+
+          <p style={{ marginBottom: "20px", fontSize: "0.95rem", opacity: 0.8 }}>
+            Our sailing boats are perfect for experienced sailors looking to explore the Helford.
+          </p>
+
+          <Link href="/sailing-boat-hire-helford">
+            <button style={{
+              padding: "14px 28px",
+              backgroundColor: "#1e3a5f",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: "600"
+            }}>
+              See our Sailing Boats
+            </button>
+          </Link>
+        </div>
 
         <h2>Our Motor Boats</h2>
 
