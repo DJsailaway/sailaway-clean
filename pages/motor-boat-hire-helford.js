@@ -102,8 +102,3 @@ export default function MotorBoatHire() {
     </>
   );
 }
-
-      </div>
-    </>
-  );
-}
