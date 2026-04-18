@@ -21,13 +21,20 @@ export default function Navbar() {
 
   const isActive = (path) => router.pathname === path;
 
-  const linkStyle = (path) => ({
+  const baseLink = {
     textDecoration: "none",
-    color: isActive(path) ? "#1e3a5f" : "#333",
-    fontWeight: isActive(path) ? 600 : 400,
-    padding: "8px 10px",
-    display: "block"
-  });
+    color: "#222",
+    fontWeight: 500,
+    fontFamily: "inherit",
+    padding: "10px 12px",
+    borderRadius: "6px",
+  };
+
+  const activeLink = {
+    ...baseLink,
+    color: "#1e3a5f",
+    fontWeight: 700,
+  };
 
   const dropdownStyle = {
     position: "absolute",
@@ -35,239 +42,215 @@ export default function Navbar() {
     left: 0,
     background: "white",
     boxShadow: "0 6px 16px rgba(0,0,0,0.12)",
-    borderRadius: "8px",
+    borderRadius: "10px",
     padding: "8px 0",
     zIndex: 1000,
-    minWidth: "200px"
+    minWidth: "220px",
   };
 
   return (
-    <>
-      <nav
-        ref={navRef}
+    <nav
+      ref={navRef}
+      style={{
+        borderBottom: "1px solid #eee",
+        backgroundColor: "white",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+        fontFamily: "inherit",
+      }}
+    >
+      <div
         style={{
-          borderBottom: "1px solid #eee",
-          backgroundColor: "white",
-          position: "sticky",
-          top: 0,
-          zIndex: 1000
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "12px 20px",
+          maxWidth: "1200px",
+          margin: "0 auto",
         }}
       >
+        {/* LOGO */}
+        <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src="/logo-sailaway.jpg"
+            alt="Sailaway St Anthony"
+            width={140}
+            height={50}
+            style={{ objectFit: "contain" }}
+            priority
+          />
+        </Link>
+
+        {/* DESKTOP MENU */}
         <div
+          className="desktop-menu"
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            padding: "12px 20px",
-            maxWidth: "1200px",
-            margin: "0 auto"
+            gap: "18px",
           }}
         >
-          {/* LOGO */}
-          <Link href="/">
-            <Image
-              src="/logo-sailaway.jpg"
-              alt="Sailaway St Anthony"
-              width={140}
-              height={50}
-              priority
-            />
+          <Link href="/" style={isActive("/") ? activeLink : baseLink}>
+            Home
           </Link>
 
-          {/* DESKTOP MENU */}
+          {/* Boat Hire */}
           <div
-            className="desktop-menu"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px"
-            }}
+            style={{ position: "relative" }}
+            onMouseEnter={() => setOpenDropdown("hire")}
+            onMouseLeave={() => setOpenDropdown(null)}
           >
-            <Link href="/" style={linkStyle("/")}>Home</Link>
-
-            {/* Boat Hire */}
-            <div
-              style={{ position: "relative" }}
-              onMouseEnter={() => setOpenDropdown("hire")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <button
-                onClick={() =>
-                  setOpenDropdown(openDropdown === "hire" ? null : "hire")
-                }
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "8px 10px"
-                }}
-              >
-                Boat Hire ▾
-              </button>
-
-              {openDropdown === "hire" && (
-                <div style={dropdownStyle}>
-                  <Link href="/motor-boat-hire-helford" style={linkStyle("")}>Motor Boats</Link>
-                  <Link href="/sailing-boat-hire-helford" style={linkStyle("")}>Sailing</Link>
-                  <Link href="/kayak-hire-helford" style={linkStyle("")}>Kayaks & SUPs</Link>
-                </div>
-              )}
-            </div>
-
-            {/* Boatyard */}
-            <div
-              style={{ position: "relative" }}
-              onMouseEnter={() => setOpenDropdown("yard")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <button
-                onClick={() =>
-                  setOpenDropdown(openDropdown === "yard" ? null : "yard")
-                }
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "8px 10px"
-                }}
-              >
-                Boatyard ▾
-              </button>
-
-              {openDropdown === "yard" && (
-                <div style={dropdownStyle}>
-                  <Link href="/gillan-creek-moorings" style={linkStyle("")}>Moorings</Link>
-                  <Link href="/boat-launching-helford" style={linkStyle("")}>Launching</Link>
-                  <Link href="/boat-storage-helford" style={linkStyle("")}>Storage</Link>
-                  <Link href="/boatyard-services" style={linkStyle("")}>Boatyard Services</Link>
-                </div>
-              )}
-            </div>
-
-            <Link href="/gillan-creek-ferry">Ferry</Link>
-            <Link href="/boat-hire-faq">FAQs</Link>
-            <Link href="/st-anthony-helford-river">Location</Link>
-
-            {/* CTAs */}
-            <Link
-              href="/#booking"
+            <button
               style={{
-                padding: "6px 14px",
-                backgroundColor: "#1e3a5f",
-                color: "white",
-                borderRadius: "6px",
-                fontWeight: 600,
-                textDecoration: "none"
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "10px 12px",
+                fontSize: "inherit",
+                fontFamily: "inherit",
+                fontWeight: 500,
+                color: "#222",
               }}
             >
-              Book
-            </Link>
-
-            <Link
-              href="tel:+441234567890"
-              style={{
-                padding: "6px 14px",
-                backgroundColor: "#1e3a5f",
-                color: "white",
-                borderRadius: "6px",
-                fontWeight: 600,
-                textDecoration: "none"
-              }}
-            >
-              Call
-            </Link>
-          </div>
-
-          {/* BURGER */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-              fontSize: "1.6rem",
-              background: "none",
-              border: "none",
-              cursor: "pointer"
-            }}
-            className="hamburger"
-          >
-            ☰
-          </button>
-        </div>
-
-        {/* MOBILE MENU */}
-        {menuOpen && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              padding: "16px 20px",
-              borderTop: "1px solid #eee"
-            }}
-          >
-            <Link href="/">Home</Link>
-
-            <button onClick={() =>
-              setOpenDropdown(openDropdown === "hire" ? null : "hire")
-            }>
-              Boat Hire
+              Boat Hire ▾
             </button>
 
             {openDropdown === "hire" && (
-              <>
-                <Link href="/motor-boat-hire-helford">Motor Boats</Link>
-                <Link href="/sailing-boat-hire-helford">Sailing</Link>
-                <Link href="/kayak-hire-helford">Kayaks & SUPs</Link>
-              </>
+              <div style={dropdownStyle}>
+                <Link href="/motor-boat-hire-helford" style={baseLink}>
+                  Motor Boats
+                </Link>
+                <Link href="/sailing-boat-hire-helford" style={baseLink}>
+                  Sailing
+                </Link>
+                <Link href="/kayak-hire-helford" style={baseLink}>
+                  Kayaks & SUPs
+                </Link>
+              </div>
             )}
+          </div>
 
-            <button onClick={() =>
-              setOpenDropdown(openDropdown === "yard" ? null : "yard")
-            }>
-              Boatyard
+          {/* Boatyard */}
+          <div
+            style={{ position: "relative" }}
+            onMouseEnter={() => setOpenDropdown("yard")}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
+            <button
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "10px 12px",
+                fontSize: "inherit",
+                fontFamily: "inherit",
+                fontWeight: 500,
+                color: "#222",
+              }}
+            >
+              Boatyard ▾
             </button>
 
             {openDropdown === "yard" && (
-              <>
-                <Link href="/gillan-creek-moorings">Moorings</Link>
-                <Link href="/boat-launching-helford">Launching</Link>
-                <Link href="/boat-storage-helford">Storage</Link>
-                <Link href="/boatyard-services">Boatyard Services</Link>
-              </>
+              <div style={dropdownStyle}>
+                <Link href="/gillan-creek-moorings" style={baseLink}>
+                  Moorings
+                </Link>
+                <Link href="/boat-launching-helford" style={baseLink}>
+                  Launching
+                </Link>
+                <Link href="/boat-storage-helford" style={baseLink}>
+                  Storage
+                </Link>
+                <Link href="/boatyard-services" style={baseLink}>
+                  Services
+                </Link>
+              </div>
             )}
-
-            <Link href="/gillan-creek-ferry">Ferry</Link>
-            <Link href="/boat-hire-faq">FAQs</Link>
-            <Link href="/st-anthony-helford-river">Location</Link>
           </div>
-        )}
-      </nav>
 
-      {/* STICKY MOBILE BOOK BUTTON */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          background: "#1e3a5f",
-          textAlign: "center",
-          padding: "14px",
-          zIndex: 999,
-          display: typeof window !== "undefined" && window.innerWidth < 768 ? "block" : "none"
-        }}
-      >
-        <Link
-          href="/#booking"
+          <Link href="/gillan-creek-ferry" style={baseLink}>
+            Ferry
+          </Link>
+          <Link href="/boat-hire-faq" style={baseLink}>
+            FAQs
+          </Link>
+          <Link href="/st-anthony-helford-river" style={baseLink}>
+            Location
+          </Link>
+
+          {/* CTA */}
+          <Link
+            href="/#booking"
+            style={{
+              ...baseLink,
+              backgroundColor: "#1e3a5f",
+              color: "white",
+              fontWeight: 700,
+            }}
+          >
+            Book
+          </Link>
+
+          <Link
+            href="tel:+441234567890"
+            style={{
+              ...baseLink,
+              backgroundColor: "#1e3a5f",
+              color: "white",
+              fontWeight: 700,
+            }}
+          >
+            Call
+          </Link>
+        </div>
+
+        {/* BURGER (FIXED RESPONSIVE VISIBILITY) */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="hamburger"
           style={{
-            color: "white",
-            fontWeight: "700",
-            textDecoration: "none",
-            fontSize: "1.1rem"
+            fontSize: "1.8rem",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            display: "none",
           }}
         >
-          Book Now
-        </Link>
+          ☰
+        </button>
       </div>
-    </>
+
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            padding: "16px 20px",
+            borderTop: "1px solid #eee",
+          }}
+        >
+          <Link href="/" style={baseLink}>Home</Link>
+          <Link href="/gillan-creek-ferry" style={baseLink}>Ferry</Link>
+          <Link href="/boat-hire-faq" style={baseLink}>FAQs</Link>
+          <Link href="/st-anthony-helford-river" style={baseLink}>Location</Link>
+        </div>
+      )}
+
+      {/* RESPONSIVE FIX */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .desktop-menu {
+            display: none !important;
+          }
+          .hamburger {
+            display: block !important;
+          }
+        }
+      `}</style>
+    </nav>
   );
 }
