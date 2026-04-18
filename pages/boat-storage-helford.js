@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
+import CTASection from "../components/CTASection";
 
 export default function BoatStorage() {
   return (
@@ -17,30 +18,25 @@ export default function BoatStorage() {
 
       {/* HERO */}
       <SplitOverlayHero
-        imageSrc="/boat-storage-helford.jpg" // 👈 make sure this file exists in /public
+        imageSrc="/boat-storage-helford.jpg"
         imageAlt="Boat storage at St Anthony on the Helford River"
         title="Boat Storage at St Anthony on the Helford River"
-        objectPosition="center bottom" // 👈 shows more ground/boats, less sky
-        overlayOpacity={0.05} // 👈 keeps image nice and bright
+        objectPosition="center bottom"
+        overlayOpacity={0.05}
         topContent={
-          <>
-            <p>
-              Secure and convenient boat storage at St Anthony, perfectly positioned for easy access to the Helford River.
-            </p>
-          </>
+          <p>
+            Secure and convenient boat storage at St Anthony, perfectly positioned for easy access to the Helford River.
+          </p>
         }
         bottomContent={
-          <>
-            <p>
-              Ideal for local boat owners, our storage offers a practical and accessible way to keep your boat close to the water throughout the season.
-            </p>
-          </>
+          <p>
+            Ideal for local boat owners, our storage offers a practical and accessible way to keep your boat close to the water throughout the season.
+          </p>
         }
       />
 
       {/* MAIN CONTENT */}
       <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
-
         <h2>Boat Storage Services</h2>
 
         <ul>
@@ -52,37 +48,42 @@ export default function BoatStorage() {
 
         <h2>Boat Storage on the Helford River</h2>
         <p>
-          Our boat storage at St Anthony is perfectly located for those using the Helford River. Many of the boats we store are regularly used on the river, making it easy to launch and recover when needed.
+          Our boat storage at St Anthony is perfectly located for those using the Helford River.
         </p>
 
         <p>
-          Keeping your boat stored locally on the Helford means less hassle, quicker access to the water, and more time enjoying one of Cornwall’s most beautiful boating areas.
+          Keeping your boat stored locally means less hassle, quicker access to the water, and more time boating.
         </p>
 
         <h2>Why Store Your Boat at St Anthony?</h2>
         <p>
-          St Anthony offers a quiet and accessible location for boat storage on the Helford River. It’s an ideal choice for boat owners who want a simple, secure, and local storage solution without the need to travel far.
+          St Anthony offers a quiet and accessible location for boat storage on the Helford River.
         </p>
 
         <h2>Location</h2>
-        <p>
-          Our boat storage facilities are based in St Anthony on the Helford River, Cornwall. This well-positioned location makes it easy for Helford boat owners to store and access their boats throughout the season.
-        </p>
+        <p>St Anthony, Helford River, Cornwall.</p>
 
-        <div style={{ marginTop: "40px" }}>
-          <a href="/contact">
-            <button style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "6px"
-            }}>
-              Contact us about boat storage
-            </button>
-          </a>
-        </div>
-
+        {/* 🔻 CTA HUB (FULL BOATYARD SYSTEM) */}
+        <CTASection
+          title="Explore our full boatyard services"
+          subtitle="Everything you need for launching, maintaining, and storing your boat on the Helford River:"
+          buttons={[
+            {
+              text: "Boat Launching",
+              link: "/boat-launching-helford",
+              variant: "secondary",
+            },
+            {
+              text: "Moorings",
+              link: "/moorings-helford-river",
+              variant: "secondary",
+            },
+            {
+              text: "Boatyard Services",
+              link: "/boatyard-services",
+            },
+          ]}
+        />
       </div>
     </>
   );
