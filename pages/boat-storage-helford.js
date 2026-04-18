@@ -75,7 +75,7 @@ export default function BoatStorage() {
             },
             {
               text: "Moorings",
-              link: "/moorings-helford-river",
+              link: "/gillan-creek-moorings",
               variant: "secondary",
             },
             {
