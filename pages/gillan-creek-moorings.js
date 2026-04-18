@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
+import CTASection from "../components/CTASection";
 
 export default function Moorings() {
   return (
@@ -45,19 +46,40 @@ export default function Moorings() {
           A quiet, sheltered location with easy access to the Helford River.
         </p>
 
-        <div style={{ marginTop: "40px" }}>
-          <a href="/contact">
-            <button style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "6px"
-            }}>
-              Contact us about moorings
-            </button>
-          </a>
+        {/* 🔻 CTA SECTION (using your reusable component) */}
+        <CTASection
+          title="We offer comprehensive boat yard services"
+          subtitle="including launch and retrieval, metal-, fibreglass and wood-work, and storage:"
+          buttonText="Boat Launching"
+          buttonLink="/boat-launching-helford"
+        />
+
+        {/* SECOND ROW OF OPTIONS (keeps CTASection simple but expandable) */}
+        <div style={{ textAlign: "center", marginTop: "-20px" }}>
+          <CTASection
+            buttonText="Boatyard Services"
+            buttonLink="/boatyard-services"
+            background="#ffffff"
+            align="center"
+          />
         </div>
+
+        <div style={{ textAlign: "center", marginTop: "-30px" }}>
+          <CTASection
+            buttonText="Boat Storage"
+            buttonLink="/boat-storage-helford"
+            background="#ffffff"
+            align="center"
+          />
+        </div>
+
+        {/* Optional contact CTA */}
+        <CTASection
+          title="Need help choosing the right service?"
+          buttonText="Contact us"
+          buttonLink="/contact"
+          background="#f5f5f5"
+        />
       </div>
     </>
   );
