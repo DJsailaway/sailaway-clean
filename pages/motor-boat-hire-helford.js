@@ -1,12 +1,18 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import Image from "next/image";
-import Link from "next/link";
+import CTASection from "../components/CTASection";
+import Button from "../components/Button";
 
 // Boat Card component
 function BoatCard({ title, description, imageSrc, href }) {
   return (
-    <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.1)", background: "#fff" }}>
+    <div style={{
+      borderRadius: "12px",
+      overflow: "hidden",
+      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+      background: "#fff"
+    }}>
       
       <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
         <Image
@@ -18,27 +24,18 @@ function BoatCard({ title, description, imageSrc, href }) {
       </div>
 
       <div style={{ padding: "16px" }}>
-        <h3 style={{ fontSize: "1.4rem", marginBottom: "8px" }}>{title}</h3>
+        <h3 style={{ fontSize: "1.4rem", marginBottom: "8px" }}>
+          {title}
+        </h3>
 
         <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "12px" }}>
           {description}
         </p>
 
         {href && (
-          <a href={href}>
-            <button
-              style={{
-                padding: "10px 16px",
-                backgroundColor: "#1e3a5f",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
-            >
-              Check availability
-            </button>
-          </a>
+          <Button href={href}>
+            Check availability
+          </Button>
         )}
       </div>
     </div>
@@ -58,7 +55,12 @@ export default function MotorBoatHire() {
 
       <Navbar />
 
-      <div style={{ fontFamily: "sans-serif", padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+      <div style={{
+        fontFamily: "sans-serif",
+        padding: "40px 20px",
+        maxWidth: "900px",
+        margin: "0 auto"
+      }}>
 
         <h1 style={{ fontSize: "2.5rem", marginBottom: "20px" }}>
           Motor Boat Hire on the Helford River
@@ -73,36 +75,13 @@ export default function MotorBoatHire() {
           Based in St Anthony, our boats are perfect for families, couples, and anyone looking to enjoy a relaxed day on the water in one of Cornwall’s most scenic locations.
         </p>
 
-        {/* 👇 NEW SAILING CTA */}
-        <div style={{
-          marginBottom: "40px",
-          padding: "30px",
-          backgroundColor: "#f5f5f5",
-          borderRadius: "10px",
-          textAlign: "center"
-        }}>
-          <p style={{ marginBottom: "10px", fontWeight: "500" }}>
-            Prefer something a little more hands-on?
-          </p>
-
-          <p style={{ marginBottom: "20px", fontSize: "0.95rem", opacity: 0.8 }}>
-            Our sailing boats are perfect for experienced sailors looking to explore the Helford.
-          </p>
-
-          <Link href="/sailing-boat-hire-helford">
-            <button style={{
-              padding: "14px 28px",
-              backgroundColor: "#1e3a5f",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontWeight: "600"
-            }}>
-              See our Sailing Boats
-            </button>
-          </Link>
-        </div>
+        {/* ✅ CTA SECTION */}
+        <CTASection
+          title="Prefer something a little more hands-on?"
+          subtitle="Our sailing boats are perfect for experienced sailors looking to explore the Helford."
+          buttonText="See our Sailing Boats"
+          buttonLink="/sailing-boat-hire-helford"
+        />
 
         <h2>Our Motor Boats</h2>
 
