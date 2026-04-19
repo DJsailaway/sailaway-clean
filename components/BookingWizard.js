@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Head from "next/head";
-import Navbar from "../components/navbar";
 
 // -------------------- DATA --------------------
 
@@ -112,8 +111,6 @@ export default function BookingWizard() {
       <Head>
         <title>Luxury Boat Booking | Helford River</title>
       </Head>
-
-      <Navbar />
 
       {/* HERO */}
       <div
