@@ -6,9 +6,23 @@ import Image from "next/image";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
   const router = useRouter();
   const navRef = useRef();
 
+  // Detect mobile safely
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(e) {
       if (navRef.current && !navRef.current.contains(e.target)) {
@@ -94,9 +108,8 @@ export default function Navbar() {
 
           {/* DESKTOP MENU */}
           <div
-            className="desktop-menu"
             style={{
-              display: "flex",
+              display: isMobile ? "none" : "flex",
               alignItems: "center",
               gap: "18px",
             }}
@@ -154,24 +167,15 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link
-              href="/gillan-creek-ferry"
-              style={isActive("/gillan-creek-ferry") ? activeStyle : linkStyle}
-            >
+            <Link href="/gillan-creek-ferry" style={isActive("/gillan-creek-ferry") ? activeStyle : linkStyle}>
               Ferry
             </Link>
 
-            <Link
-              href="/boat-hire-faq"
-              style={isActive("/boat-hire-faq") ? activeStyle : linkStyle}
-            >
+            <Link href="/boat-hire-faq" style={isActive("/boat-hire-faq") ? activeStyle : linkStyle}>
               FAQs
             </Link>
 
-            <Link
-              href="/st-anthony-helford-river"
-              style={isActive("/st-anthony-helford-river") ? activeStyle : linkStyle}
-            >
+            <Link href="/st-anthony-helford-river" style={isActive("/st-anthony-helford-river") ? activeStyle : linkStyle}>
               Location
             </Link>
 
@@ -189,23 +193,24 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* HAMBURGER */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-              fontSize: "1.9rem",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              display: "none",
-            }}
-          >
-            ☰
-          </button>
+          {/* MOBILE HAMBURGER */}
+          {isMobile && (
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              style={{
+                fontSize: "1.9rem",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              ☰
+            </button>
+          )}
         </div>
 
         {/* MOBILE MENU */}
-        {menuOpen && (
+        {menuOpen && isMobile && (
           <div
             style={{
               display: "flex",
@@ -221,71 +226,52 @@ export default function Navbar() {
             <Link href="/st-anthony-helford-river" style={linkStyle}>Location</Link>
           </div>
         )}
-
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .desktop-menu {
-              display: none !important;
-            }
-            button {
-              display: block !important;
-            }
-          }
-        `}</style>
       </nav>
 
-      {/* MOBILE CTA BAR (FIXED - MOBILE ONLY) */}
-      <div
-        className="mobile-cta-bar"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          display: "flex",
-          zIndex: 9999,
-          boxShadow: "0 -8px 25px rgba(0,0,0,0.15)",
-        }}
-      >
-        <a
-          href="tel:+441234567890"
+      {/* MOBILE CTA BAR */}
+      {isMobile && (
+        <div
           style={{
-            flex: 1,
-            background: "#0f2f4f",
-            color: "white",
-            textAlign: "center",
-            padding: "16px",
-            fontWeight: 800,
-            textDecoration: "none",
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            display: "flex",
+            zIndex: 9999,
+            boxShadow: "0 -8px 25px rgba(0,0,0,0.15)",
           }}
         >
-          📞 Call
-        </a>
+          <a
+            href="tel:+441234567890"
+            style={{
+              flex: 1,
+              background: "#0f2f4f",
+              color: "white",
+              textAlign: "center",
+              padding: "16px",
+              fontWeight: 800,
+              textDecoration: "none",
+            }}
+          >
+            📞 Call
+          </a>
 
-        <a
-          href="/#booking"
-          style={{
-            flex: 1,
-            background: "#1e3a5f",
-            color: "white",
-            textAlign: "center",
-            padding: "16px",
-            fontWeight: 800,
-            textDecoration: "none",
-          }}
-        >
-          🛶 Book
-        </a>
-      </div>
-
-      {/* MOBILE ONLY VISIBILITY FIX */}
-      <style jsx>{`
-        @media (min-width: 769px) {
-          .mobile-cta-bar {
-            display: none !important;
-          }
-        }
-      `}</style>
+          <a
+            href="/#booking"
+            style={{
+              flex: 1,
+              background: "#1e3a5f",
+              color: "white",
+              textAlign: "center",
+              padding: "16px",
+              fontWeight: 800,
+              textDecoration: "none",
+            }}
+          >
+            🛶 Book
+          </a>
+        </div>
+      )}
     </>
   );
 }
