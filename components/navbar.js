@@ -11,7 +11,7 @@ export default function Navbar() {
   const router = useRouter();
   const navRef = useRef();
 
-  // Detect mobile safely
+  // Mobile detection
   useEffect(() => {
     function handleResize() {
       setIsMobile(window.innerWidth < 768);
@@ -35,18 +35,21 @@ export default function Navbar() {
 
   const isActive = (path) => router.pathname === path;
 
-  const linkStyle = {
-    textDecoration: "none",
-    color: "#222",
-    fontWeight: 700,
-    fontSize: "16px",
-    padding: "12px",
+  // 🔑 UNIFIED NAV ITEM STYLE (FIXES ALIGNMENT)
+  const navItemStyle = {
     display: "flex",
     alignItems: "center",
+    height: "44px",
+    padding: "0 12px",
+    fontWeight: 700,
+    fontSize: "16px",
+    color: "#222",
+    textDecoration: "none",
+    cursor: "pointer",
   };
 
   const activeStyle = {
-    ...linkStyle,
+    ...navItemStyle,
     color: "#1e3a5f",
   };
 
@@ -114,7 +117,7 @@ export default function Navbar() {
               gap: "18px",
             }}
           >
-            <Link href="/" style={isActive("/") ? activeStyle : linkStyle}>
+            <Link href="/" style={isActive("/") ? activeStyle : navItemStyle}>
               Home
             </Link>
 
@@ -124,7 +127,7 @@ export default function Navbar() {
               onMouseEnter={() => setOpenDropdown("hire")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <div style={linkStyle}>Boat Hire ▾</div>
+              <div style={navItemStyle}>Boat Hire ▾</div>
 
               {openDropdown === "hire" && (
                 <div style={dropdownStyle}>
@@ -147,7 +150,7 @@ export default function Navbar() {
               onMouseEnter={() => setOpenDropdown("yard")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <div style={linkStyle}>Boatyard ▾</div>
+              <div style={navItemStyle}>Boatyard ▾</div>
 
               {openDropdown === "yard" && (
                 <div style={dropdownStyle}>
@@ -167,15 +170,32 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/gillan-creek-ferry" style={isActive("/gillan-creek-ferry") ? activeStyle : linkStyle}>
+            <Link
+              href="/gillan-creek-ferry"
+              style={
+                isActive("/gillan-creek-ferry") ? activeStyle : navItemStyle
+              }
+            >
               Ferry
             </Link>
 
-            <Link href="/boat-hire-faq" style={isActive("/boat-hire-faq") ? activeStyle : linkStyle}>
+            <Link
+              href="/boat-hire-faq"
+              style={
+                isActive("/boat-hire-faq") ? activeStyle : navItemStyle
+              }
+            >
               FAQs
             </Link>
 
-            <Link href="/st-anthony-helford-river" style={isActive("/st-anthony-helford-river") ? activeStyle : linkStyle}>
+            <Link
+              href="/st-anthony-helford-river"
+              style={
+                isActive("/st-anthony-helford-river")
+                  ? activeStyle
+                  : navItemStyle
+              }
+            >
               Location
             </Link>
 
@@ -183,7 +203,7 @@ export default function Navbar() {
             <Link
               href="/#booking"
               style={{
-                ...linkStyle,
+                ...navItemStyle,
                 backgroundColor: "#1e3a5f",
                 color: "white",
                 borderRadius: "8px",
@@ -193,7 +213,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* MOBILE HAMBURGER */}
+          {/* HAMBURGER */}
           {isMobile && (
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -220,10 +240,10 @@ export default function Navbar() {
               background: "white",
             }}
           >
-            <Link href="/" style={linkStyle}>Home</Link>
-            <Link href="/gillan-creek-ferry" style={linkStyle}>Ferry</Link>
-            <Link href="/boat-hire-faq" style={linkStyle}>FAQs</Link>
-            <Link href="/st-anthony-helford-river" style={linkStyle}>Location</Link>
+            <Link href="/" style={navItemStyle}>Home</Link>
+            <Link href="/gillan-creek-ferry" style={navItemStyle}>Ferry</Link>
+            <Link href="/boat-hire-faq" style={navItemStyle}>FAQs</Link>
+            <Link href="/st-anthony-helford-river" style={navItemStyle}>Location</Link>
           </div>
         )}
       </nav>
