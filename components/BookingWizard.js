@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// ---------------- DATA ----------------
+// ---------------- BOATS ----------------
 
 const BOATS = {
   Motor: ["Plymouth Pilot (8 people)", "Bass Boat (5 people)"],
@@ -8,49 +8,98 @@ const BOATS = {
     "Drascombe Longboat (6 people)",
     "Wayfarer Dinghy (4 people)",
     "Topaz Dinghy (2 people)",
-    "Pico Dinghy (2 people)",
-    "Topper Dinghy (2 people)",
   ],
-  "Rowing, Kayaks & SUP": [
-    "Anarth Rowing Dinghy (4 people)",
+  "Kayak & SUP": [
     "Double Kayak (2 people)",
     "Single Kayak (1 person)",
     "Stand-Up Paddleboard (1 person)",
   ],
 };
 
-const DURATIONS = ["1 hour", "2 hours", "Half day (4 hours)", "Full day"];
+// ---------------- PRICING MATRIX (EDIT HERE ONCE PER YEAR) ----------------
+// Structure: boat → duration → price
+
+const PRICING = {
+  "Plymouth Pilot (8 people)": {
+    "1 hour": 120,
+    "2 hours": 200,
+    "Half day (4 hours)": 350,
+    "Full day": 600,
+    "Week": 2500,
+  },
+
+  "Bass Boat (5 people)": {
+    "1 hour": 120,
+    "2 hours": 200,
+    "Half day (4 hours)": 350,
+    "Full day": 600,
+    "Week": 2500,
+  },
+
+  "Drascombe Longboat (6 people)": {
+    "1 hour": 110,
+    "2 hours": 180,
+    "Half day (4 hours)": 320,
+    "Full day": 550,
+    "Week": 2300,
+  },
+
+  "Wayfarer Dinghy (4 people)": {
+    "1 hour": 100,
+    "2 hours": 160,
+    "Half day (4 hours)": 280,
+    "Full day": 500,
+    "Week": 2000,
+  },
+
+  "Topaz Dinghy (2 people)": {
+    "1 hour": 90,
+    "2 hours": 140,
+    "Half day (4 hours)": 240,
+    "Full day": 420,
+    "Week": 1800,
+  },
+
+  "Double Kayak (2 people)": {
+    "1 hour": 20,
+    "2 hours": 35,
+    "Half day (4 hours)": 60,
+    "Full day": 90,
+    "Week": 400,
+  },
+
+  "Single Kayak (1 person)": {
+    "1 hour": 15,
+    "2 hours": 25,
+    "Half day (4 hours)": 45,
+    "Full day": 70,
+    "Week": 300,
+  },
+
+  "Stand-Up Paddleboard (1 person)": {
+    "1 hour": 15,
+    "2 hours": 25,
+    "Half day (4 hours)": 45,
+    "Full day": 70,
+    "Week": 300,
+  },
+};
+
+// ---------------- OPTIONS ----------------
+
+const DURATIONS = ["1 hour", "2 hours", "Half day (4 hours)", "Full day", "Week"];
 
 const LOCATIONS = ["St Anthony", "Helford Village", "Gillan", "Flushing", "Other"];
-
-// ---------------- HELPERS ----------------
-
-function getMaxHour(duration) {
-  if (duration === "1 hour") return 16;
-  if (duration === "2 hours") return 15;
-  if (duration === "Half day (4 hours)") return 13;
-  if (duration === "Full day") return 9;
-  return 16;
-}
-
-function generateTimes(duration) {
-  const times = [];
-  const max = getMaxHour(duration);
-
-  for (let h = 9; h <= max; h++) {
-    times.push(`${String(h).padStart(2, "0")}:00`);
-    if (h !== max) times.push(`${String(h).padStart(2, "0")}:30`);
-  }
-
-  return times;
-}
 
 // ---------------- COMPONENT ----------------
 
 export default function BookingWizard() {
+  const [step, setStep] = useState(1);
+
   const [type, setType] = useState("Motor");
   const [boat, setBoat] = useState(BOATS["Motor"][0]);
   const [duration, setDuration] = useState("1 hour");
+
   const [date, setDate] = useState("");
   const [time, setTime] = useState("09:00");
   const [from, setFrom] = useState("St Anthony");
@@ -59,119 +108,168 @@ export default function BookingWizard() {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
 
+  const price = PRICING?.[boat]?.[duration];
+
   const card = {
     background: "#f7f7f7",
-    padding: "26px",
+    padding: "28px",
     borderRadius: "14px",
+  };
+
+  const option = {
+    padding: "14px",
+    background: "white",
+    borderRadius: "10px",
+    marginBottom: "10px",
+    cursor: "pointer",
+    border: "1px solid #ddd",
+  };
+
+  const selected = {
+    ...option,
+    border: "2px solid #0f2f4f",
+  };
+
+  const button = {
+    marginTop: "20px",
+    width: "100%",
+    padding: "14px",
+    background: "#0f2f4f",
+    color: "white",
+    border: "none",
+    borderRadius: "10px",
+    fontWeight: 700,
+    cursor: "pointer",
   };
 
   return (
     <div style={{ maxWidth: "720px", margin: "0 auto", padding: "20px" }}>
       <div style={card}>
 
-        {/* TYPE */}
-        <select
-          value={type}
-          onChange={(e) => {
-            setType(e.target.value);
-            setBoat(BOATS[e.target.value][0]);
-          }}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        >
-          {Object.keys(BOATS).map((t) => (
-            <option key={t}>{t}</option>
-          ))}
-        </select>
+        {/* STEP */}
+        <div style={{ marginBottom: "10px", opacity: 0.6 }}>
+          Step {step} of 5
+        </div>
 
-        {/* BOAT */}
-        <select
-          value={boat}
-          onChange={(e) => setBoat(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        >
-          {BOATS[type].map((b) => (
-            <option key={b}>{b}</option>
-          ))}
-        </select>
+        {/* STEP 1 */}
+        {step === 1 && (
+          <>
+            <h2>Choose experience</h2>
 
-        {/* DURATION */}
-        <select
-          value={duration}
-          onChange={(e) => setDuration(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        >
-          {DURATIONS.map((d) => (
-            <option key={d}>{d}</option>
-          ))}
-        </select>
+            {Object.keys(BOATS).map((t) => (
+              <div
+                key={t}
+                style={type === t ? selected : option}
+                onClick={() => {
+                  setType(t);
+                  setBoat(BOATS[t][0]);
+                }}
+              >
+                {t}
+              </div>
+            ))}
 
-        {/* DATE */}
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        />
+            <button style={button} onClick={() => setStep(2)}>
+              Continue
+            </button>
+          </>
+        )}
 
-        {/* TIME */}
-        <select
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        >
-          {generateTimes(duration).map((t) => (
-            <option key={t}>{t}</option>
-          ))}
-        </select>
+        {/* STEP 2 */}
+        {step === 2 && (
+          <>
+            <h2>Select boat</h2>
 
-        {/* FROM */}
-        <select
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        >
-          {LOCATIONS.map((l) => (
-            <option key={l}>{l}</option>
-          ))}
-        </select>
+            {BOATS[type].map((b) => (
+              <div
+                key={b}
+                style={boat === b ? selected : option}
+                onClick={() => setBoat(b)}
+              >
+                {b}
+              </div>
+            ))}
 
-        {/* DETAILS */}
-        <input
-          placeholder="Full name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        />
+            <button style={button} onClick={() => setStep(3)}>
+              Continue
+            </button>
+          </>
+        )}
 
-        <input
-          placeholder="Mobile number"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        />
+        {/* STEP 3 */}
+        {step === 3 && (
+          <>
+            <h2>Duration</h2>
 
-        <input
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ width: "100%", padding: "10px", marginBottom: "14px" }}
-        />
+            {DURATIONS.map((d) => (
+              <div
+                key={d}
+                style={duration === d ? selected : option}
+                onClick={() => setDuration(d)}
+              >
+                {d}
+              </div>
+            ))}
 
-        <button
-          style={{
-            width: "100%",
-            padding: "14px",
-            background: "#0f2f4f",
-            color: "white",
-            border: "none",
-            borderRadius: "10px",
-            fontWeight: 700,
-            fontSize: "16px",
-            cursor: "pointer",
-          }}
-        >
-          Request Booking
-        </button>
+            {/* 💰 LIVE PRICE */}
+            {price && (
+              <div style={{ marginTop: 12, fontWeight: 700 }}>
+                Estimated price: £{price}
+              </div>
+            )}
+
+            <button style={button} onClick={() => setStep(4)}>
+              Continue
+            </button>
+          </>
+        )}
+
+        {/* STEP 4 */}
+        {step === 4 && (
+          <>
+            <h2>Date & time</h2>
+
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            />
+
+            <input
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+            />
+
+            <button style={button} onClick={() => setStep(5)}>
+              Continue
+            </button>
+          </>
+        )}
+
+        {/* STEP 5 */}
+        {step === 5 && (
+          <>
+            <h2>Pickup location</h2>
+
+            {LOCATIONS.map((l) => (
+              <div
+                key={l}
+                style={from === l ? selected : option}
+                onClick={() => setFrom(l)}
+              >
+                {l}
+              </div>
+            ))}
+
+            <button style={button}>
+              Request booking
+            </button>
+          </>
+        )}
+
       </div>
     </div>
   );
