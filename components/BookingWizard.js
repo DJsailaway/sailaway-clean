@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
+import { PRICING } from "../data/pricing";
 
 // ---------------- BOATS ----------------
 
@@ -19,29 +20,27 @@ const BOATS = {
   ],
 };
 
-// ---------------- PRICING ----------------
+// ---------------- PRICE ENGINE ----------------
 
-const PRICING = {
-  "Plymouth Pilot (8 people)": {
-    hour: 120,
-    day: 600,
-  },
-  "Bass Boat (5 people)": {
-    hour: 120,
-    day: 600,
-  },
-};
+function getPrice(boat, hireType, hours, days) {
+  const config = PRICING?.[boat];
 
-// ---------------- HELPERS ----------------
+  if (!config) return null;
 
-function getPrice(boat, type, hours, days) {
-  const base = PRICING?.[boat];
+  // HOURLY (tiered)
+  if (hireType === "hourly") {
+    return config.hourly?.[hours] || config.hourly?.[1];
+  }
 
-  if (!base) return null;
+  // DAILY
+  if (hireType === "daily") {
+    return config.daily;
+  }
 
-  if (type === "hourly") return base.hour * (hours || 1);
-  if (type === "daily") return base.day;
-  if (type === "multi") return base.day * days;
+  // MULTI-DAY
+  if (hireType === "multi") {
+    return config.daily * days;
+  }
 
   return null;
 }
@@ -69,6 +68,8 @@ export default function BookingWizard() {
 
   const isValid = name && email && mobile;
 
+  // ---------------- STYLES ----------------
+
   const card = {
     background: "#f7f7f7",
     padding: "28px",
@@ -82,6 +83,7 @@ export default function BookingWizard() {
     marginBottom: "10px",
     cursor: "pointer",
     border: "1px solid #ddd",
+    fontWeight: 600,
   };
 
   const selected = {
@@ -166,7 +168,7 @@ export default function BookingWizard() {
           </>
         )}
 
-        {/* STEP 3 — HIRE TYPE */}
+        {/* STEP 3 */}
         {step === 3 && (
           <>
             <h2>Hire type</h2>
@@ -200,7 +202,6 @@ export default function BookingWizard() {
                 value={hours}
                 onChange={(e) => setHours(Number(e.target.value))}
                 style={{ width: "100%", padding: "10px", marginTop: 10 }}
-                placeholder="Number of hours"
               />
             )}
 
@@ -212,7 +213,6 @@ export default function BookingWizard() {
                 value={days}
                 onChange={(e) => setDays(Number(e.target.value))}
                 style={{ width: "100%", padding: "10px", marginTop: 10 }}
-                placeholder="Number of days (2–21)"
               />
             )}
 
