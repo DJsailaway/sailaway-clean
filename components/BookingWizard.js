@@ -4,20 +4,25 @@ import { useState } from "react";
 
 const BOATS = {
   Motor: ["Plymouth Pilot (8 people)", "Bass Boat (5 people)"],
+
   Sail: [
     "Drascombe Longboat (6 people)",
     "Wayfarer Dinghy (4 people)",
     "Topaz Dinghy (2 people)",
+    "Pico Dinghy (2 people)",
+    "Topper Dinghy (1 person)",
   ],
-  "Kayak & SUP": [
-    "Double Kayak (2 people)",
-    "Single Kayak (1 person)",
-    "Stand-Up Paddleboard (1 person)",
+
+  "Kayak / SUP / Rowing": [
+    "Rowing Dinghy (4 people)",
+    "Kayak (2 people)",
+    "SUP (1 person)",
+    "Anarth Dinghy (4 people)",
   ],
 };
 
-// ---------------- PRICING MATRIX (EDIT HERE ONCE PER YEAR) ----------------
-// Structure: boat → duration → price
+// ---------------- PRICING ----------------
+// (unchanged structure — you can expand later with multi-day rates)
 
 const PRICING = {
   "Plymouth Pilot (8 people)": {
@@ -25,71 +30,31 @@ const PRICING = {
     "2 hours": 200,
     "Half day (4 hours)": 350,
     "Full day": 600,
-    "Week": 2500,
-  },
-
-  "Bass Boat (5 people)": {
-    "1 hour": 120,
-    "2 hours": 200,
-    "Half day (4 hours)": 350,
-    "Full day": 600,
-    "Week": 2500,
-  },
-
-  "Drascombe Longboat (6 people)": {
-    "1 hour": 110,
-    "2 hours": 180,
-    "Half day (4 hours)": 320,
-    "Full day": 550,
-    "Week": 2300,
-  },
-
-  "Wayfarer Dinghy (4 people)": {
-    "1 hour": 100,
-    "2 hours": 160,
-    "Half day (4 hours)": 280,
-    "Full day": 500,
-    "Week": 2000,
-  },
-
-  "Topaz Dinghy (2 people)": {
-    "1 hour": 90,
-    "2 hours": 140,
-    "Half day (4 hours)": 240,
-    "Full day": 420,
-    "Week": 1800,
-  },
-
-  "Double Kayak (2 people)": {
-    "1 hour": 20,
-    "2 hours": 35,
-    "Half day (4 hours)": 60,
-    "Full day": 90,
-    "Week": 400,
-  },
-
-  "Single Kayak (1 person)": {
-    "1 hour": 15,
-    "2 hours": 25,
-    "Half day (4 hours)": 45,
-    "Full day": 70,
-    "Week": 300,
-  },
-
-  "Stand-Up Paddleboard (1 person)": {
-    "1 hour": 15,
-    "2 hours": 25,
-    "Half day (4 hours)": 45,
-    "Full day": 70,
-    "Week": 300,
   },
 };
 
-// ---------------- OPTIONS ----------------
+// ---------------- DURATION OPTIONS ----------------
 
-const DURATIONS = ["1 hour", "2 hours", "Half day (4 hours)", "Full day", "Week"];
+const DURATIONS = [
+  "1 hour",
+  "2 hours",
+  "Half day (4 hours)",
+  "Full day",
+  "Multi-day (1–21 days)",
+];
 
 const LOCATIONS = ["St Anthony", "Helford Village", "Gillan", "Flushing", "Other"];
+
+// ---------------- HELPERS ----------------
+
+function getPrice(boat, duration) {
+  if (!boat || !duration) return null;
+
+  const base = PRICING?.[boat]?.[duration];
+
+  // fallback (so system never breaks)
+  return base || null;
+}
 
 // ---------------- COMPONENT ----------------
 
@@ -101,6 +66,7 @@ export default function BookingWizard() {
   const [duration, setDuration] = useState("1 hour");
 
   const [date, setDate] = useState("");
+  const [days, setDays] = useState(1); // NEW for multi-day
   const [time, setTime] = useState("09:00");
   const [from, setFrom] = useState("St Anthony");
 
@@ -108,7 +74,7 @@ export default function BookingWizard() {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
 
-  const price = PRICING?.[boat]?.[duration];
+  const price = getPrice(boat, duration);
 
   const card = {
     background: "#f7f7f7",
@@ -131,7 +97,7 @@ export default function BookingWizard() {
   };
 
   const button = {
-    marginTop: "20px",
+    marginTop: "15px",
     width: "100%",
     padding: "14px",
     background: "#0f2f4f",
@@ -142,12 +108,23 @@ export default function BookingWizard() {
     cursor: "pointer",
   };
 
+  const backButton = {
+    marginTop: "10px",
+    width: "100%",
+    padding: "12px",
+    background: "white",
+    color: "#0f2f4f",
+    border: "2px solid #0f2f4f",
+    borderRadius: "10px",
+    fontWeight: 700,
+    cursor: "pointer",
+  };
+
   return (
     <div style={{ maxWidth: "720px", margin: "0 auto", padding: "20px" }}>
       <div style={card}>
 
-        {/* STEP */}
-        <div style={{ marginBottom: "10px", opacity: 0.6 }}>
+        <div style={{ marginBottom: 10, opacity: 0.6 }}>
           Step {step} of 5
         </div>
 
@@ -193,6 +170,10 @@ export default function BookingWizard() {
             <button style={button} onClick={() => setStep(3)}>
               Continue
             </button>
+
+            <button style={backButton} onClick={() => setStep(1)}>
+              Back
+            </button>
           </>
         )}
 
@@ -211,15 +192,12 @@ export default function BookingWizard() {
               </div>
             ))}
 
-            {/* 💰 LIVE PRICE */}
-            {price && (
-              <div style={{ marginTop: 12, fontWeight: 700 }}>
-                Estimated price: £{price}
-              </div>
-            )}
-
             <button style={button} onClick={() => setStep(4)}>
               Continue
+            </button>
+
+            <button style={backButton} onClick={() => setStep(2)}>
+              Back
             </button>
           </>
         )}
@@ -236,6 +214,18 @@ export default function BookingWizard() {
               style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
             />
 
+            {duration === "Multi-day (1–21 days)" && (
+              <input
+                type="number"
+                min="1"
+                max="21"
+                value={days}
+                onChange={(e) => setDays(e.target.value)}
+                placeholder="Number of days (1–21)"
+                style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+              />
+            )}
+
             <input
               type="time"
               value={time}
@@ -245,6 +235,10 @@ export default function BookingWizard() {
 
             <button style={button} onClick={() => setStep(5)}>
               Continue
+            </button>
+
+            <button style={backButton} onClick={() => setStep(3)}>
+              Back
             </button>
           </>
         )}
@@ -266,6 +260,10 @@ export default function BookingWizard() {
 
             <button style={button}>
               Request booking
+            </button>
+
+            <button style={backButton} onClick={() => setStep(4)}>
+              Back
             </button>
           </>
         )}
