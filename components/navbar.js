@@ -15,7 +15,6 @@ export default function Navbar() {
     function handleResize() {
       setIsMobile(window.innerWidth < 768);
     }
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -33,52 +32,88 @@ export default function Navbar() {
 
   const isActive = (path) => router.pathname === path;
 
-  // 🔥 UNIFIED NAV STYLE (FIXES VERTICAL ALIGNMENT COMPLETELY)
+  // 🌊 LUXURY NAV STYLE (minimal, airy, refined)
   const navItemStyle = {
     display: "flex",
     alignItems: "center",
-    height: "52px",
-    lineHeight: "52px",
-    padding: "0 14px",
-    fontWeight: 700,
-    fontSize: "16px",
-    color: "#1b1b1b",
+    height: "56px",
+    padding: "0 16px",
+    fontSize: "15.5px",
+    fontWeight: 500,
+    letterSpacing: "0.2px",
+    color: "#1c1c1c",
     textDecoration: "none",
-    cursor: "pointer",
     position: "relative",
-    boxSizing: "border-box",
+    cursor: "pointer",
   };
 
   const activeStyle = {
     ...navItemStyle,
-    color: "#1e3a5f",
+    fontWeight: 600,
+    color: "#0f2f4f",
   };
 
-  // 🔥 Dropdown container (animated)
+  // 🌫️ Luxury dropdown (glass effect feel)
   const dropdownStyle = {
     position: "absolute",
     top: "100%",
     left: 0,
-    background: "rgba(255,255,255,0.98)",
-    backdropFilter: "blur(10px)",
-    boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
-    borderRadius: "12px",
-    padding: "8px 0",
-    minWidth: "230px",
+    marginTop: "10px",
+    minWidth: "240px",
+    background: "rgba(255,255,255,0.92)",
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
+    borderRadius: "14px",
+    boxShadow: "0 20px 50px rgba(0,0,0,0.12)",
+    padding: "10px 0",
     display: "flex",
     flexDirection: "column",
     zIndex: 1000,
-
-    // animation
-    animation: "dropdownFade 180ms ease-out",
+    animation: "fadeSlide 180ms ease-out",
   };
 
   const dropdownItem = {
-    padding: "12px 16px",
+    padding: "12px 18px",
+    fontSize: "15px",
+    fontWeight: 500,
+    color: "#1c1c1c",
     textDecoration: "none",
-    color: "#222",
-    fontWeight: 600,
   };
+
+  const underlineHover = `
+    .navLink {
+      position: relative;
+    }
+
+    .navLink:after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      height: 1px;
+      background: #0f2f4f;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 220ms ease;
+      opacity: 0.7;
+    }
+
+    .navLink:hover:after {
+      transform: scaleX(1);
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `;
 
   return (
     <>
@@ -94,9 +129,9 @@ export default function Navbar() {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1240px",
             margin: "0 auto",
-            padding: "16px 22px",
+            padding: "18px 26px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -107,25 +142,27 @@ export default function Navbar() {
             <Image
               src="/logo-sailaway.jpg"
               alt="Sailaway St Anthony"
-              width={260}
-              height={95}
+              width={280}
+              height={100}
               style={{ objectFit: "contain" }}
               priority
             />
           </Link>
 
-          {/* DESKTOP MENU */}
+          {/* DESKTOP NAV */}
           <div
             style={{
               display: isMobile ? "none" : "flex",
-              alignItems: "stretch", // 🔥 FIXES VERTICAL ALIGNMENT ISSUE
-              gap: "10px",
+              alignItems: "center",
+              gap: "6px",
             }}
           >
-            {/* Home */}
-            <Link href="/" style={isActive("/") ? activeStyle : navItemStyle}>
+            <Link
+              href="/"
+              className="navLink"
+              style={isActive("/") ? activeStyle : navItemStyle}
+            >
               Home
-              {isActive("/") && <div className="activeBar" />}
             </Link>
 
             {/* Boat Hire */}
@@ -134,7 +171,9 @@ export default function Navbar() {
               onMouseEnter={() => setOpenDropdown("hire")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <div style={navItemStyle}>Boat Hire ▾</div>
+              <div style={navItemStyle} className="navLink">
+                Boat Hire ▾
+              </div>
 
               {openDropdown === "hire" && (
                 <div style={dropdownStyle}>
@@ -157,7 +196,9 @@ export default function Navbar() {
               onMouseEnter={() => setOpenDropdown("yard")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <div style={navItemStyle}>Boatyard ▾</div>
+              <div style={navItemStyle} className="navLink">
+                Boatyard ▾
+              </div>
 
               {openDropdown === "yard" && (
                 <div style={dropdownStyle}>
@@ -179,6 +220,7 @@ export default function Navbar() {
 
             <Link
               href="/gillan-creek-ferry"
+              className="navLink"
               style={isActive("/gillan-creek-ferry") ? activeStyle : navItemStyle}
             >
               Ferry
@@ -186,6 +228,7 @@ export default function Navbar() {
 
             <Link
               href="/boat-hire-faq"
+              className="navLink"
               style={isActive("/boat-hire-faq") ? activeStyle : navItemStyle}
             >
               FAQs
@@ -193,6 +236,7 @@ export default function Navbar() {
 
             <Link
               href="/st-anthony-helford-river"
+              className="navLink"
               style={
                 isActive("/st-anthony-helford-river")
                   ? activeStyle
@@ -202,21 +246,26 @@ export default function Navbar() {
               Location
             </Link>
 
-            {/* CTA */}
+            {/* PRIMARY CTA */}
             <Link
               href="/#booking"
               style={{
-                ...navItemStyle,
-                background: "#1e3a5f",
+                marginLeft: "6px",
+                padding: "10px 18px",
+                background: "#0f2f4f",
                 color: "white",
-                borderRadius: "10px",
+                borderRadius: "999px",
+                fontSize: "14px",
+                fontWeight: 500,
+                textDecoration: "none",
+                letterSpacing: "0.3px",
               }}
             >
               Book
             </Link>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE */}
           {isMobile && (
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -234,14 +283,7 @@ export default function Navbar() {
 
         {/* MOBILE MENU */}
         {menuOpen && isMobile && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              padding: "16px 20px",
-              gap: "10px",
-            }}
-          >
+          <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: "10px" }}>
             <Link href="/" style={navItemStyle}>Home</Link>
             <Link href="/gillan-creek-ferry" style={navItemStyle}>Ferry</Link>
             <Link href="/boat-hire-faq" style={navItemStyle}>FAQs</Link>
@@ -250,74 +292,8 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* MOBILE CTA BAR */}
-      {isMobile && (
-        <div
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            width: "100%",
-            display: "flex",
-            zIndex: 9999,
-            boxShadow: "0 -8px 25px rgba(0,0,0,0.15)",
-          }}
-        >
-          <a
-            href="tel:+441234567890"
-            style={{
-              flex: 1,
-              background: "#0f2f4f",
-              color: "white",
-              textAlign: "center",
-              padding: "16px",
-              fontWeight: 800,
-              textDecoration: "none",
-            }}
-          >
-            📞 Call
-          </a>
-
-          <a
-            href="/#booking"
-            style={{
-              flex: 1,
-              background: "#1e3a5f",
-              color: "white",
-              textAlign: "center",
-              padding: "16px",
-              fontWeight: 800,
-              textDecoration: "none",
-            }}
-          >
-            🛶 Book
-          </a>
-        </div>
-      )}
-
-      {/* 🔥 ANIMATIONS + ACTIVE BAR */}
-      <style jsx>{`
-        .activeBar {
-          position: absolute;
-          bottom: 6px;
-          left: 14px;
-          right: 14px;
-          height: 2px;
-          background: #1e3a5f;
-          border-radius: 2px;
-        }
-
-        @keyframes dropdownFade {
-          from {
-            opacity: 0;
-            transform: translateY(-6px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+      {/* STYLES */}
+      <style jsx>{underlineHover}</style>
     </>
   );
 }
