@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
-import BookingWizard from "../components/BookingWizard"; // ✅ RESTORED PROPERLY
+import BookingWizard from "../components/BookingWizard";
 
 export default function BookingPage() {
   return (
@@ -10,21 +10,17 @@ export default function BookingPage() {
         <title>Boat Hire Helford River | Booking</title>
       </Head>
 
-      {/* NAVBAR (single instance only) */}
+      {/* NAVBAR (ONLY ONE INSTANCE) */}
       <Navbar />
 
-      {/* 🌊 HERO (RESTORED + SHADOW FIX) */}
+      {/* 🌊 HERO (RESTORED) */}
       <SplitOverlayHero
         imageSrc="/hero.jpg"
         alt="Boat Hire on Helford River"
         title="Boat Hire on the Helford River, Cornwall"
         overlayStrength="light"
         topContent={
-          <div
-            style={{
-              textShadow: "0 2px 20px rgba(0,0,0,0.65)",
-            }}
-          >
+          <div style={{ textShadow: "0 2px 20px rgba(0,0,0,0.65)" }}>
             <p>
               Self-drive boats, kayaks, sailing boats and more — explore Cornwall’s Helford River at your own pace.
             </p>
@@ -32,7 +28,7 @@ export default function BookingPage() {
         }
       />
 
-      {/* 🌊 NAV BUTTONS (RESTORED + PROPER SIZE) */}
+      {/* 🌊 CTA NAV BUTTONS */}
       <div
         style={{
           display: "flex",
@@ -45,27 +41,27 @@ export default function BookingPage() {
         }}
       >
         <a href="/motor-boat-hire-helford">
-          <button style={navButtonStyle}>Our Motor Boats</button>
+          <button style={buttonStyle}>Our Motor Boats</button>
         </a>
 
         <a href="/sailing-boat-hire-helford">
-          <button style={navButtonStyle}>Our Sailing Boats</button>
+          <button style={buttonStyle}>Our Sailing Boats</button>
         </a>
 
         <a href="/kayak-hire-helford">
-          <button style={navButtonStyle}>Our Kayaks & SUPs</button>
+          <button style={buttonStyle}>Our Kayaks & SUPs</button>
         </a>
 
         <a href="/st-anthony-helford-river">
-          <button style={navButtonStyle}>Location</button>
+          <button style={buttonStyle}>Location</button>
         </a>
 
         <a href="/boat-hire-faq">
-          <button style={navButtonStyle}>FAQs</button>
+          <button style={buttonStyle}>FAQs</button>
         </a>
       </div>
 
-      {/* 🌊 INTRO TEXT */}
+      {/* 🌊 SECTION TITLE */}
       <div
         style={{
           textAlign: "center",
@@ -81,7 +77,7 @@ export default function BookingPage() {
         </p>
       </div>
 
-      {/* 🚢 BOOKING WIZARD (NOW RESTORED PROPERLY) */}
+      {/* 🚢 BOOKING WIZARD (NOW RESTORED) */}
       <div style={{ paddingBottom: "80px" }}>
         <BookingWizard />
       </div>
@@ -89,9 +85,9 @@ export default function BookingPage() {
   );
 }
 
-// ---------------- BUTTON STYLE (RESTORED LUXURY STYLE) ----------------
+// ---------------- BUTTON STYLE (RESTORED LUXURY SIZE) ----------------
 
-const navButtonStyle = {
+const buttonStyle = {
   padding: "12px 18px",
   backgroundColor: "#1e3a5f",
   color: "white",
