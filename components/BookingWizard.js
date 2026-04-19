@@ -8,8 +8,11 @@ const BOATS = {
     "Drascombe Longboat (6 people)",
     "Wayfarer Dinghy (4 people)",
     "Topaz Dinghy (2 people)",
+    "Pico Dinghy (2 people)",
+    "Topper Dinghy (2 people)",
   ],
-  "Kayak & SUP": [
+  "Rowing, Kayaks & SUP": [
+    "Anarth Rowing Dinghy (4 people)",
     "Double Kayak (2 people)",
     "Single Kayak (1 person)",
     "Stand-Up Paddleboard (1 person)",
