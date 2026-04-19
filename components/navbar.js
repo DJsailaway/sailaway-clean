@@ -26,7 +26,7 @@ export default function Navbar() {
     color: "#222",
     fontWeight: 700,
     fontSize: "16px",
-    padding: "12px 12px",
+    padding: "12px",
     display: "flex",
     alignItems: "center",
   };
@@ -85,8 +85,8 @@ export default function Navbar() {
             <Image
               src="/logo-sailaway.jpg"
               alt="Sailaway St Anthony"
-              width={230}
-              height={85}
+              width={240}
+              height={90}
               style={{ objectFit: "contain" }}
               priority
             />
@@ -234,8 +234,9 @@ export default function Navbar() {
         `}</style>
       </nav>
 
-      {/* MOBILE CTA BAR */}
+      {/* MOBILE CTA BAR (FIXED - MOBILE ONLY) */}
       <div
+        className="mobile-cta-bar"
         style={{
           position: "fixed",
           bottom: 0,
@@ -276,6 +277,15 @@ export default function Navbar() {
           🛶 Book
         </a>
       </div>
+
+      {/* MOBILE ONLY VISIBILITY FIX */}
+      <style jsx>{`
+        @media (min-width: 769px) {
+          .mobile-cta-bar {
+            display: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
