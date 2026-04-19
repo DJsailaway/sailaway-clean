@@ -19,35 +19,31 @@ const BOATS = {
   ],
 };
 
-const DURATIONS = [
-  "1 hour",
-  "2 hours",
-  "Half day (4 hours)",
-  "Full day",
-  "Multi-day (1–21 days)",
-];
-
-const LOCATIONS = ["St Anthony", "Helford Village", "Gillan", "Flushing", "Other"];
-
 // ---------------- PRICING ----------------
 
 const PRICING = {
   "Plymouth Pilot (8 people)": {
-    "1 hour": 120,
-    "2 hours": 200,
-    "Half day (4 hours)": 350,
-    "Full day": 600,
+    hour: 120,
+    day: 600,
+  },
+  "Bass Boat (5 people)": {
+    hour: 120,
+    day: 600,
   },
 };
 
 // ---------------- HELPERS ----------------
 
-function getPrice(boat, duration) {
-  return PRICING?.[boat]?.[duration] || null;
-}
+function getPrice(boat, type, hours, days) {
+  const base = PRICING?.[boat];
 
-function formatDate(date) {
-  return new Date(date).toDateString();
+  if (!base) return null;
+
+  if (type === "hourly") return base.hour * (hours || 1);
+  if (type === "daily") return base.day;
+  if (type === "multi") return base.day * days;
+
+  return null;
 }
 
 // ---------------- COMPONENT ----------------
@@ -55,38 +51,23 @@ function formatDate(date) {
 export default function BookingWizard() {
   const [step, setStep] = useState(1);
 
-  const [type, setType] = useState("Motor");
+  const [category, setCategory] = useState("Motor");
   const [boat, setBoat] = useState(BOATS["Motor"][0]);
-  const [duration, setDuration] = useState("1 hour");
+
+  const [hireType, setHireType] = useState("hourly");
+
+  const [hours, setHours] = useState(1);
+  const [days, setDays] = useState(2);
 
   const [date, setDate] = useState("");
-  const [days, setDays] = useState(1);
-  const [time, setTime] = useState("09:00");
-  const [from, setFrom] = useState("St Anthony");
 
   const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
 
-  const price = getPrice(boat, duration);
+  const price = getPrice(boat, hireType, hours, days);
 
-  // ---------------- DATE RULES ----------------
-
-  const today = useMemo(() => {
-    const d = new Date();
-    d.setHours(0, 0, 0, 0);
-    return d;
-  }, []);
-
-  const minDate = useMemo(() => {
-    const d = new Date();
-    d.setDate(d.getDate() + 1); // tomorrow only
-    return d.toISOString().split("T")[0];
-  }, []);
-
-  const isFormValid = name && email && mobile;
-
-  // ---------------- STYLES ----------------
+  const isValid = name && email && mobile;
 
   const card = {
     background: "#f7f7f7",
@@ -118,7 +99,6 @@ export default function BookingWizard() {
     borderRadius: "10px",
     fontWeight: 700,
     cursor: "pointer",
-    opacity: isFormValid || step < 5 ? 1 : 0.4,
   };
 
   const backButton = {
@@ -133,19 +113,9 @@ export default function BookingWizard() {
     cursor: "pointer",
   };
 
-  const disabledButton = {
-    ...button,
-    opacity: 0.4,
-    cursor: "not-allowed",
-  };
-
   return (
     <div style={{ maxWidth: "720px", margin: "0 auto", padding: "20px" }}>
       <div style={card}>
-
-        <div style={{ marginBottom: 10, opacity: 0.6 }}>
-          Step {step} of 5
-        </div>
 
         {/* STEP 1 */}
         {step === 1 && (
@@ -155,9 +125,9 @@ export default function BookingWizard() {
             {Object.keys(BOATS).map((t) => (
               <div
                 key={t}
-                style={type === t ? selected : option}
+                style={category === t ? selected : option}
                 onClick={() => {
-                  setType(t);
+                  setCategory(t);
                   setBoat(BOATS[t][0]);
                 }}
               >
@@ -176,7 +146,7 @@ export default function BookingWizard() {
           <>
             <h2>Select boat</h2>
 
-            {BOATS[type].map((b) => (
+            {BOATS[category].map((b) => (
               <div
                 key={b}
                 style={boat === b ? selected : option}
@@ -196,20 +166,55 @@ export default function BookingWizard() {
           </>
         )}
 
-        {/* STEP 3 */}
+        {/* STEP 3 — HIRE TYPE */}
         {step === 3 && (
           <>
-            <h2>Duration</h2>
+            <h2>Hire type</h2>
 
-            {DURATIONS.map((d) => (
-              <div
-                key={d}
-                style={duration === d ? selected : option}
-                onClick={() => setDuration(d)}
-              >
-                {d}
-              </div>
-            ))}
+            <div
+              style={hireType === "hourly" ? selected : option}
+              onClick={() => setHireType("hourly")}
+            >
+              Hourly hire
+            </div>
+
+            <div
+              style={hireType === "daily" ? selected : option}
+              onClick={() => setHireType("daily")}
+            >
+              Day hire
+            </div>
+
+            <div
+              style={hireType === "multi" ? selected : option}
+              onClick={() => setHireType("multi")}
+            >
+              Multi-day hire (2–21 days)
+            </div>
+
+            {hireType === "hourly" && (
+              <input
+                type="number"
+                min="1"
+                max="8"
+                value={hours}
+                onChange={(e) => setHours(Number(e.target.value))}
+                style={{ width: "100%", padding: "10px", marginTop: 10 }}
+                placeholder="Number of hours"
+              />
+            )}
+
+            {hireType === "multi" && (
+              <input
+                type="number"
+                min="2"
+                max="21"
+                value={days}
+                onChange={(e) => setDays(Number(e.target.value))}
+                style={{ width: "100%", padding: "10px", marginTop: 10 }}
+                placeholder="Number of days (2–21)"
+              />
+            )}
 
             {price && (
               <div style={{ marginTop: 10, fontWeight: 700 }}>
@@ -230,38 +235,13 @@ export default function BookingWizard() {
         {/* STEP 4 */}
         {step === 4 && (
           <>
-            <h2>Date & time</h2>
+            <h2>Date</h2>
 
             <input
               type="date"
               value={date}
-              min={minDate}
               onChange={(e) => setDate(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            />
-
-            {date && new Date(date).toDateString() === today.toDateString() && (
-              <div style={{ color: "red", marginBottom: 10 }}>
-                Today is unavailable — please select tomorrow or later.
-              </div>
-            )}
-
-            {duration === "Multi-day (1–21 days)" && (
-              <input
-                type="number"
-                min="1"
-                max="21"
-                value={days}
-                onChange={(e) => setDays(e.target.value)}
-                style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-              />
-            )}
-
-            <input
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
+              style={{ width: "100%", padding: "10px" }}
             />
 
             <button style={button} onClick={() => setStep(5)}>
@@ -300,15 +280,15 @@ export default function BookingWizard() {
               style={option}
             />
 
-            {!isFormValid && (
+            {!isValid && (
               <div style={{ color: "red", marginBottom: 10 }}>
-                Please complete all required fields to continue.
+                Please complete all required fields
               </div>
             )}
 
             <button
-              style={isFormValid ? button : disabledButton}
-              disabled={!isFormValid}
+              style={isValid ? button : { ...button, opacity: 0.4 }}
+              disabled={!isValid}
             >
               Request booking
             </button>
