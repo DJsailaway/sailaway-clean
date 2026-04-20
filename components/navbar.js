@@ -18,9 +18,7 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const isActive = (path) => router.pathname === path;
-
-  const linkStyle = (path) => ({
+  const linkStyle = () => ({
     textDecoration: "none",
     color: "#222",
     fontWeight: 700,
@@ -31,7 +29,6 @@ export default function Navbar() {
 
   const dropdownStyle = {
     position: "absolute",
-    top: "100%",
     left: 0,
     background: "white",
     boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
@@ -89,21 +86,34 @@ export default function Navbar() {
             gap: "18px",
           }}
         >
-          <Link href="/" style={linkStyle("/")}>Home</Link>
+          <Link href="/" style={linkStyle()}>Home</Link>
 
           {/* BOAT HIRE */}
           <div
-            style={{
-              position: "relative",
-              paddingBottom: "12px", // 👈 invisible hover buffer
-            }}
+            style={{ position: "relative" }}
             onMouseEnter={() => setOpenDropdown("hire")}
             onMouseLeave={() => setOpenDropdown(null)}
           >
             <div style={linkStyle()}>Boat Hire ▾</div>
 
+            {/* Hover bridge */}
+            <div
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: 0,
+                width: "100%",
+                height: "12px",
+              }}
+            />
+
             {openDropdown === "hire" && (
-              <div style={dropdownStyle}>
+              <div
+                style={{
+                  ...dropdownStyle,
+                  top: "calc(100% + 12px)",
+                }}
+              >
                 <Link href="/motor-boat-hire-helford" style={dropdownItem}>Motor Boats</Link>
                 <Link href="/sailing-boat-hire-helford" style={dropdownItem}>Sailing</Link>
                 <Link href="/kayak-hire-helford" style={dropdownItem}>Kayaks & SUPs</Link>
@@ -113,17 +123,30 @@ export default function Navbar() {
 
           {/* BOATYARD */}
           <div
-            style={{
-              position: "relative",
-              paddingBottom: "12px", // 👈 hover buffer
-            }}
+            style={{ position: "relative" }}
             onMouseEnter={() => setOpenDropdown("yard")}
             onMouseLeave={() => setOpenDropdown(null)}
           >
             <div style={linkStyle()}>Boatyard ▾</div>
 
+            {/* Hover bridge */}
+            <div
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: 0,
+                width: "100%",
+                height: "12px",
+              }}
+            />
+
             {openDropdown === "yard" && (
-              <div style={dropdownStyle}>
+              <div
+                style={{
+                  ...dropdownStyle,
+                  top: "calc(100% + 12px)",
+                }}
+              >
                 <Link href="/gillan-creek-moorings" style={dropdownItem}>Moorings</Link>
                 <Link href="/boat-launching-helford" style={dropdownItem}>Launching</Link>
                 <Link href="/boat-storage-helford" style={dropdownItem}>Storage</Link>
