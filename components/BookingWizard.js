@@ -1,305 +1,248 @@
 import { useState } from "react";
-import { PRICING } from "../data/pricing";
 
-// ---------------- BOATS ----------------
-
+// --- BOATS ---
 const BOATS = {
-  Motor: ["Plymouth Pilot (8 people)", "Bass Boat (5 people)"],
-  Sail: [
+  "Motor Boats": ["Plymouth Pilot (8 people)", "Bass Boat (5 people)"],
+  "Sailing Boats": [
     "Drascombe Longboat (6 people)",
     "Wayfarer Dinghy (4 people)",
-    "Topaz Dinghy (2 people)",
     "Pico Dinghy (2 people)",
-    "Topper Dinghy (1 person)",
+    "Topper Dinghy (1 person)"
   ],
-  "Kayak / SUP / Rowing": [
-    "Rowing Dinghy (4 people)",
-    "Kayak (2 people)",
-    "SUP (1 person)",
-    "Anarth Dinghy (4 people)",
-  ],
+  "Rowing, Kayak & SUP": [
+    "Double Kayak (2 people)",
+    "Single Kayak (1 person)",
+    "Stand-Up Paddleboard (1 person)",
+    "Anarth Rowing Dinghy (4 people)"
+  ]
 };
 
-// ---------------- PRICE ENGINE ----------------
-
-function getPrice(boat, hireType, hours, days) {
-  const config = PRICING?.[boat];
-
-  if (!config) return null;
-
-  // HOURLY (tiered)
-  if (hireType === "hourly") {
-    return config.hourly?.[hours] || config.hourly?.[1];
+// --- PRICING (EDIT HERE) ---
+const PRICING = {
+  "Plymouth Pilot (8 people)": {
+    "1 hour": 120,
+    "2 hours": 200,
+    "Half day (4 hours)": 350,
+    "Full day (8 hours)": 600,
+    perDay: 600
+  },
+  "Bass Boat (5 people)": {
+    "1 hour": 120,
+    "2 hours": 200,
+    "Half day (4 hours)": 350,
+    "Full day (8 hours)": 600,
+    perDay: 600
+  },
+  "Drascombe Longboat (6 people)": {
+    "1 hour": 120,
+    "2 hours": 200,
+    "Half day (4 hours)": 350,
+    "Full day (8 hours)": 600,
+    perDay: 600
+  },
+  "Wayfarer Dinghy (4 people)": {
+    "1 hour": 120,
+    "2 hours": 200,
+    "Half day (4 hours)": 350,
+    "Full day (8 hours)": 600,
+    perDay: 600
+  },
+  "Pico Dinghy (2 people)": {
+    "1 hour": 80,
+    "2 hours": 140,
+    "Half day (4 hours)": 260,
+    "Full day (8 hours)": 420,
+    perDay: 420
+  },
+  "Topper Dinghy (1 person)": {
+    "1 hour": 80,
+    "2 hours": 140,
+    "Half day (4 hours)": 260,
+    "Full day (8 hours)": 420,
+    perDay: 420
+  },
+  "Double Kayak (2 people)": {
+    "1 hour": 20,
+    "2 hours": 35,
+    "Half day (4 hours)": 60,
+    "Full day (8 hours)": 90,
+    perDay: 90
+  },
+  "Single Kayak (1 person)": {
+    "1 hour": 20,
+    "2 hours": 35,
+    "Half day (4 hours)": 60,
+    "Full day (8 hours)": 90,
+    perDay: 90
+  },
+  "Stand-Up Paddleboard (1 person)": {
+    "1 hour": 20,
+    "2 hours": 35,
+    "Half day (4 hours)": 60,
+    "Full day (8 hours)": 90,
+    perDay: 90
+  },
+  "Anarth Rowing Dinghy (4 people)": {
+    "1 hour": 25,
+    "2 hours": 45,
+    "Half day (4 hours)": 70,
+    "Full day (8 hours)": 110,
+    perDay: 110
   }
-
-  // DAILY
-  if (hireType === "daily") {
-    return config.daily;
-  }
-
-  // MULTI-DAY
-  if (hireType === "multi") {
-    return config.daily * days;
-  }
-
-  return null;
-}
-
-// ---------------- COMPONENT ----------------
+};
 
 export default function BookingWizard() {
-  const [step, setStep] = useState(1);
+  const [category, setCategory] = useState("Motor Boats");
+  const [boat, setBoat] = useState(BOATS["Motor Boats"][0]);
 
-  const [category, setCategory] = useState("Motor");
-  const [boat, setBoat] = useState(BOATS["Motor"][0]);
+  const [duration, setDuration] = useState("2 hours");
+  const [isMultiDay, setIsMultiDay] = useState(false);
+  const [days, setDays] = useState(7);
 
-  const [hireType, setHireType] = useState("hourly");
-
-  const [hours, setHours] = useState(1);
-  const [days, setDays] = useState(2);
-
-  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("St Anthony");
 
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
 
-  const price = getPrice(boat, hireType, hours, days);
+  const price = isMultiDay
+    ? (PRICING[boat]?.perDay || 0) * days
+    : PRICING[boat]?.[duration] || 0;
 
-  const isValid = name && email && mobile;
-
-  // ---------------- STYLES ----------------
-
-  const card = {
-    background: "#f7f7f7",
-    padding: "28px",
-    borderRadius: "14px",
-  };
-
-  const option = {
-    padding: "14px",
-    background: "white",
-    borderRadius: "10px",
-    marginBottom: "10px",
-    cursor: "pointer",
-    border: "1px solid #ddd",
-    fontWeight: 600,
-  };
-
-  const selected = {
-    ...option,
-    border: "2px solid #0f2f4f",
-  };
-
-  const button = {
-    marginTop: "15px",
-    width: "100%",
-    padding: "14px",
-    background: "#0f2f4f",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    fontWeight: 700,
-    cursor: "pointer",
-  };
-
-  const backButton = {
-    marginTop: "10px",
-    width: "100%",
-    padding: "12px",
-    background: "white",
-    color: "#0f2f4f",
-    border: "2px solid #0f2f4f",
-    borderRadius: "10px",
-    fontWeight: 700,
-    cursor: "pointer",
-  };
+  const canSubmit = name && phone && email;
 
   return (
-    <div style={{ maxWidth: "720px", margin: "0 auto", padding: "20px" }}>
-      <div style={card}>
+    <div
+      style={{
+        maxWidth: "700px",
+        margin: "40px auto",
+        padding: "30px",
+        background: "#fff",
+        borderRadius: "12px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+      }}
+    >
+      <h2 style={{ marginBottom: "20px" }}>Book your boat</h2>
 
-        {/* STEP 1 */}
-        {step === 1 && (
-          <>
-            <h2>Choose experience</h2>
+      {/* CATEGORY */}
+      <select
+        value={category}
+        onChange={(e) => {
+          setCategory(e.target.value);
+          setBoat(BOATS[e.target.value][0]);
+        }}
+        style={{ width: "100%", padding: "12px", marginBottom: "12px" }}
+      >
+        {Object.keys(BOATS).map((c) => (
+          <option key={c}>{c}</option>
+        ))}
+      </select>
 
-            {Object.keys(BOATS).map((t) => (
-              <div
-                key={t}
-                style={category === t ? selected : option}
-                onClick={() => {
-                  setCategory(t);
-                  setBoat(BOATS[t][0]);
-                }}
-              >
-                {t}
-              </div>
-            ))}
+      {/* BOAT */}
+      <select
+        value={boat}
+        onChange={(e) => setBoat(e.target.value)}
+        style={{ width: "100%", padding: "12px", marginBottom: "20px" }}
+      >
+        {BOATS[category].map((b) => (
+          <option key={b}>{b}</option>
+        ))}
+      </select>
 
-            <button style={button} onClick={() => setStep(2)}>
-              Continue
-            </button>
-          </>
-        )}
+      {/* DURATION */}
+      <div style={{ marginBottom: "20px" }}>
+        <strong>Duration</strong>
 
-        {/* STEP 2 */}
-        {step === 2 && (
-          <>
-            <h2>Select boat</h2>
-
-            {BOATS[category].map((b) => (
-              <div
-                key={b}
-                style={boat === b ? selected : option}
-                onClick={() => setBoat(b)}
-              >
-                {b}
-              </div>
-            ))}
-
-            <button style={button} onClick={() => setStep(3)}>
-              Continue
-            </button>
-
-            <button style={backButton} onClick={() => setStep(1)}>
-              Back
-            </button>
-          </>
-        )}
-
-        {/* STEP 3 */}
-        {step === 3 && (
-          <>
-            <h2>Hire type</h2>
-
-            <div
-              style={hireType === "hourly" ? selected : option}
-              onClick={() => setHireType("hourly")}
-            >
-              Hourly hire
-            </div>
-
-            <div
-              style={hireType === "daily" ? selected : option}
-              onClick={() => setHireType("daily")}
-            >
-              Day hire
-            </div>
-
-            <div
-              style={hireType === "multi" ? selected : option}
-              onClick={() => setHireType("multi")}
-            >
-              Multi-day hire (2–21 days)
-            </div>
-
-            {hireType === "hourly" && (
-              <input
-                type="number"
-                min="1"
-                max="8"
-                value={hours}
-                onChange={(e) => setHours(Number(e.target.value))}
-                style={{ width: "100%", padding: "10px", marginTop: 10 }}
-              />
-            )}
-
-            {hireType === "multi" && (
-              <input
-                type="number"
-                min="2"
-                max="21"
-                value={days}
-                onChange={(e) => setDays(Number(e.target.value))}
-                style={{ width: "100%", padding: "10px", marginTop: 10 }}
-              />
-            )}
-
-            {price && (
-              <div style={{ marginTop: 10, fontWeight: 700 }}>
-                Estimated price: £{price}
-              </div>
-            )}
-
-            <button style={button} onClick={() => setStep(4)}>
-              Continue
-            </button>
-
-            <button style={backButton} onClick={() => setStep(2)}>
-              Back
-            </button>
-          </>
-        )}
-
-        {/* STEP 4 */}
-        {step === 4 && (
-          <>
-            <h2>Date</h2>
-
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              style={{ width: "100%", padding: "10px" }}
-            />
-
-            <button style={button} onClick={() => setStep(5)}>
-              Continue
-            </button>
-
-            <button style={backButton} onClick={() => setStep(3)}>
-              Back
-            </button>
-          </>
-        )}
-
-        {/* STEP 5 */}
-        {step === 5 && (
-          <>
-            <h2>Contact details</h2>
-
-            <input
-              placeholder="Name (required)"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={option}
-            />
-
-            <input
-              placeholder="Mobile (required)"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              style={option}
-            />
-
-            <input
-              placeholder="Email (required)"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={option}
-            />
-
-            {!isValid && (
-              <div style={{ color: "red", marginBottom: 10 }}>
-                Please complete all required fields
-              </div>
-            )}
-
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "10px" }}>
+          {["1 hour", "2 hours", "Half day (4 hours)", "Full day (8 hours)"].map((opt) => (
             <button
-              style={isValid ? button : { ...button, opacity: 0.4 }}
-              disabled={!isValid}
+              key={opt}
+              onClick={() => {
+                setDuration(opt);
+                setIsMultiDay(false);
+              }}
+              style={{
+                padding: "10px 14px",
+                borderRadius: "8px",
+                border: duration === opt && !isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
+                background: duration === opt && !isMultiDay ? "#eef3f8" : "#fff",
+                fontWeight: 600
+              }}
             >
-              Request booking
+              {opt}
             </button>
+          ))}
 
-            <button style={backButton} onClick={() => setStep(4)}>
-              Back
-            </button>
-          </>
-        )}
-
+          <button
+            onClick={() => setIsMultiDay(true)}
+            style={{
+              padding: "10px 14px",
+              borderRadius: "8px",
+              border: isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
+              background: isMultiDay ? "#eef3f8" : "#fff",
+              fontWeight: 600
+            }}
+          >
+            Multi-day
+          </button>
+        </div>
       </div>
+
+      {/* MULTI DAY */}
+      {isMultiDay && (
+        <div style={{ marginBottom: "20px" }}>
+          <strong>Number of days</strong>
+
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "10px"
+          }}>
+            <button onClick={() => setDays(Math.max(2, days - 1))} style={{ fontSize: 24 }}>−</button>
+            <div style={{ fontSize: "20px", fontWeight: 700 }}>{days}</div>
+            <button onClick={() => setDays(Math.min(31, days + 1))} style={{ fontSize: 24 }}>+</button>
+          </div>
+        </div>
+      )}
+
+      {/* LOCATION */}
+      <select
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        style={{ width: "100%", padding: "12px", marginBottom: "20px" }}
+      >
+        <option>St Anthony</option>
+        <option>Helford Village</option>
+        <option>Durgan</option>
+        <option>Port Navas</option>
+        <option>Gillan</option>
+        <option>Flushing</option>
+        <option>Helford Passage</option>
+      </select>
+
+      {/* CONTACT */}
+      <input placeholder="Name (required)" value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "10px" }} />
+      <input placeholder="Mobile number (required)" value={phone} onChange={(e) => setPhone(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "10px" }} />
+      <input placeholder="Email (required)" value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "20px" }} />
+
+      {/* PRICE */}
+      <h3 style={{ marginBottom: "20px" }}>£{price}</h3>
+
+      <button
+        disabled={!canSubmit}
+        style={{
+          width: "100%",
+          padding: "14px",
+          background: canSubmit ? "#0f2f4f" : "#ccc",
+          color: "#fff",
+          border: "none",
+          borderRadius: "8px",
+          fontWeight: 700
+        }}
+      >
+        Request booking
+      </button>
     </div>
   );
 }
