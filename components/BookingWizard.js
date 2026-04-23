@@ -1,11 +1,27 @@
 import { useState } from "react";
 import { PRICING } from "../lib/pricing";
 
-// derive boats dynamically
-const BOATS = Object.keys(PRICING.boats);
+// ---------------- CATEGORIES ----------------
+const CATEGORIES = {
+  "Motor Boats": ["Plymouth Pilot (8 people)", "Bass Boat (5 people)"],
+  "Sailing Boats": [
+    "Drascombe Longboat (6 people)",
+    "Wayfarer Dinghy (4 people)",
+    "Pico Dinghy (2 people)",
+    "Topper Dinghy (1 person)"
+  ],
+  "Rowing, Kayak & SUP": [
+    "Anarth Rowing Dinghy (4 people)",
+    "Double Kayak (2 people)",
+    "Single Kayak (1 person)",
+    "Stand-Up Paddleboard (1 person)"
+  ]
+};
 
+// ---------------- INITIAL STATE ----------------
 const createBoat = () => ({
-  boat: BOATS[0],
+  category: "Motor Boats",
+  boat: CATEGORIES["Motor Boats"][0],
   duration: "2 hours",
   isMultiDay: false,
   days: 7
@@ -24,7 +40,7 @@ export default function BookingWizard() {
 
   // ---------------- PRICE LOGIC ----------------
   const calcBoatPrice = (b) => {
-    const p = PRICING.boats[b.boat];
+    const p = PRICING.boats?.[b.boat];
     if (!p) return 0;
 
     if (b.isMultiDay) {
@@ -35,12 +51,13 @@ export default function BookingWizard() {
     return p.hourly?.[b.duration] || p.day?.[b.duration] || 0;
   };
 
-  const deliveryFee = PRICING.locations[location] || 0;
+  const deliveryFee = PRICING.locations?.[location] || 0;
 
   const total =
     bookings.reduce((sum, b) => sum + calcBoatPrice(b), 0) +
     deliveryFee;
 
+  // ---------------- UPDATE HELPERS ----------------
   const updateBoat = (i, key, value) => {
     const copy = [...bookings];
     copy[i][key] = value;
@@ -61,41 +78,80 @@ export default function BookingWizard() {
     marginBottom: "12px"
   };
 
+  const buttonStyle = {
+    padding: "10px 14px",
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    background: "#fff",
+    cursor: "pointer",
+    fontSize: "16px"
+  };
+
+  // ---------------- RENDER ----------------
   return (
-    <div style={{ maxWidth: "1000px", margin: "40px auto", display: "flex", gap: "20px" }}>
+    <div style={{ display: "flex", gap: "20px", maxWidth: "1100px", margin: "40px auto" }}>
 
       {/* MAIN */}
-      <div style={{ flex: 1, background: "#fff", padding: "30px", borderRadius: "16px" }}>
+      <div style={{
+        flex: 1,
+        background: "#fff",
+        padding: "30px",
+        borderRadius: "16px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+      }}>
 
-        <h2>Step {step} / 5</h2>
+        {/* STEP INDICATOR */}
+        <h2 style={{ fontSize: "26px" }}>Step {step} / 5</h2>
 
-        {/* STEP 1 */}
+        {/* ---------------- STEP 1: CATEGORY + BOAT ---------------- */}
         {step === 1 && (
           <>
-            <h3>Select Boats</h3>
+            <h3 style={{ fontSize: "22px" }}>Select your vessel</h3>
 
             {bookings.map((b, i) => (
-              <div key={i}>
+              <div key={i} style={{ marginBottom: "20px" }}>
+
+                {/* CATEGORY */}
+                <select
+                  value={b.category}
+                  onChange={(e) => {
+                    const cat = e.target.value;
+                    const copy = [...bookings];
+                    copy[i].category = cat;
+                    copy[i].boat = CATEGORIES[cat][0];
+                    setBookings(copy);
+                  }}
+                  style={inputStyle}
+                >
+                  {Object.keys(CATEGORIES).map((c) => (
+                    <option key={c}>{c}</option>
+                  ))}
+                </select>
+
+                {/* BOAT */}
                 <select
                   value={b.boat}
                   onChange={(e) => updateBoat(i, "boat", e.target.value)}
                   style={inputStyle}
                 >
-                  {BOATS.map((boat) => (
+                  {CATEGORIES[b.category].map((boat) => (
                     <option key={boat}>{boat}</option>
                   ))}
                 </select>
+
               </div>
             ))}
 
-            <button onClick={addBoat}>+ Add boat</button>
+            <button onClick={addBoat} style={buttonStyle}>
+              + Add another boat
+            </button>
           </>
         )}
 
-        {/* STEP 2 */}
+        {/* ---------------- STEP 2: DURATION ---------------- */}
         {step === 2 && (
           <>
-            <h3>Duration</h3>
+            <h3 style={{ fontSize: "22px" }}>Duration</h3>
 
             {bookings.map((b, i) => (
               <select
@@ -113,17 +169,17 @@ export default function BookingWizard() {
           </>
         )}
 
-        {/* STEP 3 */}
+        {/* ---------------- STEP 3: LOCATION ---------------- */}
         {step === 3 && (
           <>
-            <h3>Location</h3>
+            <h3 style={{ fontSize: "22px" }}>Starting location</h3>
 
             {Object.keys(PRICING.locations).map((loc) => (
               <button
                 key={loc}
                 onClick={() => setLocation(loc)}
                 style={{
-                  padding: "10px",
+                  ...buttonStyle,
                   margin: "5px",
                   border: location === loc ? "2px solid #0f2f4f" : "1px solid #ccc"
                 }}
@@ -135,7 +191,7 @@ export default function BookingWizard() {
             {location === "Other" && (
               <input
                 style={inputStyle}
-                placeholder="Enter location"
+                placeholder="Enter custom location"
                 value={customLocation}
                 onChange={(e) => setCustomLocation(e.target.value)}
               />
@@ -143,29 +199,42 @@ export default function BookingWizard() {
           </>
         )}
 
-        {/* STEP 4 */}
+        {/* ---------------- STEP 4: SUMMARY ---------------- */}
         {step === 4 && (
           <>
-            <h3>Summary</h3>
+            <h3 style={{ fontSize: "22px" }}>Summary</h3>
 
             {bookings.map((b, i) => (
               <div key={i}>
                 {b.boat} — £{calcBoatPrice(b)}
               </div>
             ))}
+
+            <div style={{ marginTop: "15px" }}>
+              Delivery fee: £{deliveryFee}
+            </div>
           </>
         )}
 
-        {/* STEP 5 */}
+        {/* ---------------- STEP 5: DETAILS ---------------- */}
         {step === 5 && (
           <>
-            <h3>Your Details</h3>
+            <h3 style={{ fontSize: "22px" }}>Your details</h3>
 
-            <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-            <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-            <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input style={inputStyle} placeholder="Full name *" onChange={(e) => setName(e.target.value)} />
+            <input style={inputStyle} placeholder="Mobile number *" onChange={(e) => setPhone(e.target.value)} />
+            <input style={inputStyle} placeholder="Email address *" onChange={(e) => setEmail(e.target.value)} />
 
-            <button disabled={!name || !phone || !email}>
+            <button
+              disabled={!name || !phone || !email}
+              style={{
+                ...buttonStyle,
+                width: "100%",
+                background: name && phone && email ? "#0f2f4f" : "#ccc",
+                color: "#fff",
+                border: "none"
+              }}
+            >
               Request booking
             </button>
           </>
@@ -173,27 +242,29 @@ export default function BookingWizard() {
 
         {/* NAV */}
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
-          {step > 1 && <button onClick={back}>Back</button>}
-          {step < 5 && <button onClick={next}>Next</button>}
+          {step > 1 && <button onClick={back} style={buttonStyle}>Back</button>}
+          {step < 5 && <button onClick={next} style={buttonStyle}>Next</button>}
         </div>
+
       </div>
 
       {/* SIDEBAR */}
       <div style={{
-        width: "300px",
+        width: "320px",
         position: "sticky",
         top: "20px",
         background: "#0f2f4f",
         color: "#fff",
-        padding: "20px",
+        padding: "25px",
         borderRadius: "16px"
       }}>
         <h3>Total</h3>
-        <div style={{ fontSize: "28px" }}>£{total}</div>
-        <div style={{ fontSize: "14px", marginTop: "10px" }}>
-          Includes location fee if applicable
+        <div style={{ fontSize: "32px", fontWeight: "bold" }}>£{total}</div>
+        <div style={{ marginTop: "10px", fontSize: "14px", opacity: 0.8 }}>
+          Includes all selected boats + delivery
         </div>
       </div>
+
     </div>
   );
 }
