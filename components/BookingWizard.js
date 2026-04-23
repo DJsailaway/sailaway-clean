@@ -17,7 +17,7 @@ const BOATS = {
   ]
 };
 
-// --- PRICING (EDIT HERE) ---
+// --- PRICING ---
 const PRICING = {
   "Plymouth Pilot (8 people)": {
     "1 hour": 120,
@@ -35,210 +35,174 @@ const PRICING = {
     multiDay: { 2: 1100, 3: 1500, 4: 1900, 5: 2200, 6: 2500, 7: 2800 },
     extraDay: 350
   }
-  // Add other boats the same way
 };
 
+// --- SINGLE BOOKING BLOCK ---
+function createEmptyBooking() {
+  return {
+    category: "Motor Boats",
+    boat: BOATS["Motor Boats"][0],
+    duration: "2 hours",
+    isMultiDay: false,
+    days: 7,
+    location: "St Anthony"
+  };
+}
+
 export default function BookingWizard() {
-  const [category, setCategory] = useState("Motor Boats");
-  const [boat, setBoat] = useState(BOATS["Motor Boats"][0]);
-
-  const [duration, setDuration] = useState("2 hours");
-  const [isMultiDay, setIsMultiDay] = useState(false);
-  const [days, setDays] = useState(7);
-
-  const [location, setLocation] = useState("St Anthony");
-  const [customLocation, setCustomLocation] = useState("");
+  const [bookings, setBookings] = useState([createEmptyBooking()]);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  // --- PRICE CALCULATION ---
-  let price = 0;
+  // --- PRICE CALC ---
+  const calculatePrice = (b) => {
+    const p = PRICING[b.boat];
 
-  if (isMultiDay) {
-    const boatPricing = PRICING[boat];
+    if (!p) return 0;
 
-    if (days <= 7) {
-      price = boatPricing?.multiDay?.[days] || 0;
-    } else {
-      const weekPrice = boatPricing?.multiDay?.[7] || 0;
-      const extraDays = days - 7;
-      price = weekPrice + extraDays * (boatPricing?.extraDay || 0);
+    if (b.isMultiDay) {
+      if (b.days <= 7) return p.multiDay?.[b.days] || 0;
+      return (p.multiDay?.[7] || 0) + (b.days - 7) * (p.extraDay || 0);
     }
-  } else {
-    price = PRICING[boat]?.[duration] || 0;
-  }
+
+    return p[b.duration] || 0;
+  };
+
+  const totalPrice = bookings.reduce((sum, b) => sum + calculatePrice(b), 0);
+
+  const updateBooking = (index, field, value) => {
+    const updated = [...bookings];
+    updated[index][field] = value;
+    setBookings(updated);
+  };
+
+  const addBoat = () => {
+    setBookings([...bookings, createEmptyBooking()]);
+  };
+
+  const removeBoat = (index) => {
+    setBookings(bookings.filter((_, i) => i !== index));
+  };
 
   const canSubmit = name && phone && email;
 
   return (
     <div style={{
-      maxWidth: "700px",
+      maxWidth: "800px",
       margin: "40px auto",
       padding: "30px",
       background: "#fff",
       borderRadius: "12px",
       boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
     }}>
-      <h2 style={{ marginBottom: "20px" }}>Book your boat</h2>
+      <h2>Book your boats</h2>
 
-      {/* CATEGORY */}
-      <select
-        value={category}
-        onChange={(e) => {
-          setCategory(e.target.value);
-          setBoat(BOATS[e.target.value][0]);
-        }}
-        style={{ width: "100%", padding: "12px", marginBottom: "12px" }}
-      >
-        {Object.keys(BOATS).map((c) => (
-          <option key={c}>{c}</option>
-        ))}
-      </select>
+      {/* BOOKINGS */}
+      {bookings.map((b, i) => (
+        <div key={i} style={{
+          border: "1px solid #ddd",
+          borderRadius: "12px",
+          padding: "15px",
+          marginBottom: "15px"
+        }}>
+          <strong>Boat {i + 1}</strong>
 
-      {/* BOAT */}
-      <select
-        value={boat}
-        onChange={(e) => setBoat(e.target.value)}
-        style={{ width: "100%", padding: "12px", marginBottom: "20px" }}
-      >
-        {BOATS[category].map((b) => (
-          <option key={b}>{b}</option>
-        ))}
-      </select>
+          {/* CATEGORY */}
+          <select
+            value={b.category}
+            onChange={(e) => {
+              const cat = e.target.value;
+              updateBooking(i, "category", cat);
+              updateBooking(i, "boat", BOATS[cat][0]);
+            }}
+            style={{ width: "100%", marginTop: "10px", padding: "10px" }}
+          >
+            {Object.keys(BOATS).map((c) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
 
-      {/* DURATION */}
-      <div style={{ marginBottom: "20px" }}>
-        <strong>Duration</strong>
+          {/* BOAT */}
+          <select
+            value={b.boat}
+            onChange={(e) => updateBooking(i, "boat", e.target.value)}
+            style={{ width: "100%", marginTop: "10px", padding: "10px" }}
+          >
+            {BOATS[b.category].map((boat) => (
+              <option key={boat}>{boat}</option>
+            ))}
+          </select>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "10px" }}>
-          {["1 hour", "2 hours", "Half day (4 hours)", "Full day (8 hours)"].map((opt) => (
+          {/* DURATION */}
+          <select
+            value={b.duration}
+            onChange={(e) => {
+              updateBooking(i, "duration", e.target.value);
+              updateBooking(i, "isMultiDay", false);
+            }}
+            style={{ width: "100%", marginTop: "10px", padding: "10px" }}
+          >
+            <option>1 hour</option>
+            <option>2 hours</option>
+            <option>Half day (4 hours)</option>
+            <option>Full day (8 hours)</option>
+          </select>
+
+          {/* MULTI DAY */}
+          <div style={{ marginTop: "10px" }}>
             <button
-              key={opt}
-              onClick={() => {
-                setDuration(opt);
-                setIsMultiDay(false);
-              }}
-              style={{
-                padding: "10px 14px",
-                borderRadius: "8px",
-                border: duration === opt && !isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
-                background: duration === opt && !isMultiDay ? "#eef3f8" : "#fff",
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
+              onClick={() => updateBooking(i, "isMultiDay", true)}
+              style={{ padding: "8px", marginRight: "10px" }}
             >
-              {opt}
+              Multi-day
             </button>
-          ))}
+
+            {b.isMultiDay && (
+              <div style={{ marginTop: "10px" }}>
+                <button onClick={() =>
+                  updateBooking(i, "days", Math.max(2, b.days - 1))
+                }>−</button>
+
+                <span style={{ margin: "0 10px" }}>{b.days}</span>
+
+                <button onClick={() =>
+                  updateBooking(i, "days", Math.min(31, b.days + 1))
+                }>+</button>
+              </div>
+            )}
+          </div>
 
           <button
-            onClick={() => setIsMultiDay(true)}
-            style={{
-              padding: "10px 14px",
-              borderRadius: "8px",
-              border: isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
-              background: isMultiDay ? "#eef3f8" : "#fff",
-              fontWeight: 600,
-              cursor: "pointer"
-            }}
+            onClick={() => removeBoat(i)}
+            style={{ marginTop: "10px", color: "red" }}
           >
-            Multi-day
+            Remove boat
           </button>
-        </div>
-      </div>
 
-      {/* MULTI DAY */}
-      {isMultiDay && (
-        <div style={{ marginBottom: "20px" }}>
-          <strong>Number of days</strong>
-
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            border: "1px solid #ddd",
-            borderRadius: "12px",
-            padding: "12px",
-            marginTop: "10px"
-          }}>
-            <button onClick={() => setDays(Math.max(2, days - 1))} style={{ fontSize: 22 }}>−</button>
-            <div style={{ fontSize: "20px", fontWeight: 700 }}>{days}</div>
-            <button onClick={() => setDays(Math.min(31, days + 1))} style={{ fontSize: 22 }}>+</button>
+          <div style={{ marginTop: "10px", fontWeight: 600 }}>
+            £{calculatePrice(b)}
           </div>
         </div>
-      )}
+      ))}
 
-      {/* LOCATION BUTTONS */}
-      <div style={{ marginBottom: "20px" }}>
-        <div style={{ fontWeight: 700, marginBottom: "10px" }}>
-          Starting location
-        </div>
+      {/* ADD BOAT */}
+      <button onClick={addBoat} style={{
+        padding: "12px",
+        width: "100%",
+        marginBottom: "20px"
+      }}>
+        + Add another boat
+      </button>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-          {[
-            "St Anthony",
-            "Helford Village",
-            "Durgan",
-            "Port Navas",
-            "Gillan",
-            "Flushing",
-            "Helford Passage",
-            "Calamansac",
-            "Other"
-          ].map((loc) => (
-            <button
-              key={loc}
-              onClick={() => setLocation(loc)}
-              style={{
-                padding: "10px 14px",
-                borderRadius: "8px",
-                border: location === loc ? "2px solid #0f2f4f" : "1px solid #ccc",
-                background: location === loc ? "#eef3f8" : "#fff",
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
-            >
-              {loc === "Other" ? "Other (please specify)" : loc}
-            </button>
-          ))}
-        </div>
-
-        {/* CONDITIONAL INPUT */}
-        {location === "Other" && (
-          <input
-            placeholder="Enter location"
-            value={customLocation}
-            onChange={(e) => setCustomLocation(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginTop: "10px",
-              borderRadius: "8px",
-              border: "1px solid #ccc"
-            }}
-          />
-        )}
-      </div>
-
-      {/* PRICE */}
-      <div style={{ marginBottom: "20px" }}>
-        <h3>£{price}</h3>
-
-        <div style={{ fontSize: "14px", color: "#555" }}>
-          {isMultiDay
-            ? days <= 7
-              ? `Total for ${days} day${days > 1 ? "s" : ""}`
-              : `Week rate + ${days - 7} extra day${days - 7 > 1 ? "s" : ""}`
-            : duration}
-        </div>
-      </div>
+      {/* TOTAL */}
+      <h3>Total: £{totalPrice}</h3>
 
       {/* CONTACT */}
-      <input placeholder="Name (required)" value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "10px" }} />
-      <input placeholder="Mobile number (required)" value={phone} onChange={(e) => setPhone(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "10px" }} />
-      <input placeholder="Email (required)" value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "20px" }} />
+      <input placeholder="Name" onChange={(e) => setName(e.target.value)} style={{ width: "100%", padding: "10px", marginBottom: "10px" }} />
+      <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} style={{ width: "100%", padding: "10px", marginBottom: "10px" }} />
+      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} style={{ width: "100%", padding: "10px", marginBottom: "20px" }} />
 
       <button
         disabled={!canSubmit}
@@ -248,8 +212,7 @@ export default function BookingWizard() {
           background: canSubmit ? "#0f2f4f" : "#ccc",
           color: "#fff",
           border: "none",
-          borderRadius: "8px",
-          fontWeight: 700
+          borderRadius: "8px"
         }}
       >
         Request booking
