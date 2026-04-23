@@ -69,7 +69,7 @@ export default function BookingWizard() {
     return p[b.duration] || 0;
   };
 
-  const total = bookings.reduce((s, b) => s + calcPrice(b), 0);
+  const total = bookings.reduce((sum, b) => sum + calcPrice(b), 0);
 
   const updateBoat = (i, key, value) => {
     const copy = [...bookings];
@@ -84,26 +84,62 @@ export default function BookingWizard() {
 
   const canSubmit = name && phone && email;
 
-  return (
-    <div style={{ display: "flex", gap: "20px", maxWidth: "1100px", margin: "40px auto" }}>
+  // ---------------- INPUT STYLE (GLOBAL UPGRADE) ----------------
+  const inputStyle = {
+    width: "100%",
+    padding: "16px",
+    fontSize: "18px",
+    marginBottom: "14px",
+    borderRadius: "10px",
+    border: "1px solid #ddd"
+  };
 
-      {/* ---------------- MAIN WIZARD ---------------- */}
+  const buttonStyle = {
+    padding: "12px 16px",
+    fontSize: "16px",
+    fontWeight: 600,
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    cursor: "pointer",
+    background: "#fff"
+  };
+
+  const selectedButton = {
+    ...buttonStyle,
+    background: "#eef3f8",
+    border: "2px solid #0f2f4f"
+  };
+
+  return (
+    <div style={{
+      display: "flex",
+      gap: "20px",
+      maxWidth: "1100px",
+      margin: "40px auto",
+      fontSize: "18px",
+      lineHeight: 1.6
+    }}>
+
+      {/* ---------------- MAIN ---------------- */}
       <div style={{
         flex: 1,
         background: "#fff",
         borderRadius: "16px",
-        padding: "30px",
+        padding: "35px",
         boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
       }}>
 
-        {/* PROGRESS BAR */}
+        {/* PROGRESS */}
         <div style={{ marginBottom: "25px" }}>
-          <div style={{ fontWeight: 700 }}>Step {step} / 5</div>
+          <div style={{ fontSize: "18px", fontWeight: 700 }}>
+            Step {step} / 5
+          </div>
+
           <div style={{
             height: "6px",
             background: "#eee",
             borderRadius: "10px",
-            marginTop: "8px",
+            marginTop: "10px",
             overflow: "hidden"
           }}>
             <div style={{
@@ -114,18 +150,17 @@ export default function BookingWizard() {
           </div>
         </div>
 
-        {/* ---------------- STEP CONTENT ---------------- */}
-
+        {/* ---------------- STEP 1 ---------------- */}
         {step === 1 && (
           <>
-            <h2>Select your boats</h2>
+            <h2 style={{ fontSize: "28px" }}>Select your boats</h2>
 
             {bookings.map((b, i) => (
               <div key={i} style={{
                 border: "1px solid #eee",
                 borderRadius: "12px",
                 padding: "15px",
-                marginBottom: "12px"
+                marginBottom: "15px"
               }}>
                 <select
                   value={b.category}
@@ -134,7 +169,7 @@ export default function BookingWizard() {
                     updateBoat(i, "category", cat);
                     updateBoat(i, "boat", BOATS[cat][0]);
                   }}
-                  style={{ width: "100%", padding: "10px", marginBottom: "8px" }}
+                  style={inputStyle}
                 >
                   {Object.keys(BOATS).map((c) => (
                     <option key={c}>{c}</option>
@@ -144,7 +179,7 @@ export default function BookingWizard() {
                 <select
                   value={b.boat}
                   onChange={(e) => updateBoat(i, "boat", e.target.value)}
-                  style={{ width: "100%", padding: "10px" }}
+                  style={inputStyle}
                 >
                   {BOATS[b.category].map((x) => (
                     <option key={x}>{x}</option>
@@ -153,17 +188,20 @@ export default function BookingWizard() {
               </div>
             ))}
 
-            <button onClick={addBoat}>+ Add another boat</button>
+            <button style={buttonStyle} onClick={addBoat}>
+              + Add another boat
+            </button>
           </>
         )}
 
+        {/* ---------------- STEP 2 ---------------- */}
         {step === 2 && (
           <>
-            <h2>Duration</h2>
+            <h2 style={{ fontSize: "28px" }}>Duration</h2>
 
             {bookings.map((b, i) => (
-              <div key={i} style={{ marginBottom: "15px" }}>
-                <strong>{b.boat}</strong>
+              <div key={i} style={{ marginBottom: "18px" }}>
+                <strong style={{ fontSize: "18px" }}>{b.boat}</strong>
 
                 <select
                   value={b.duration}
@@ -171,7 +209,7 @@ export default function BookingWizard() {
                     updateBoat(i, "duration", e.target.value);
                     updateBoat(i, "isMultiDay", false);
                   }}
-                  style={{ width: "100%", padding: "10px", marginTop: "8px" }}
+                  style={inputStyle}
                 >
                   <option>1 hour</option>
                   <option>2 hours</option>
@@ -179,15 +217,25 @@ export default function BookingWizard() {
                   <option>Full day (8 hours)</option>
                 </select>
 
-                <button onClick={() => updateBoat(i, "isMultiDay", true)}>
+                <button style={buttonStyle}
+                  onClick={() => updateBoat(i, "isMultiDay", true)}
+                >
                   Multi-day
                 </button>
 
                 {b.isMultiDay && (
-                  <div>
-                    <button onClick={() => updateBoat(i, "days", Math.max(2, b.days - 1))}>−</button>
-                    <span style={{ margin: "0 10px" }}>{b.days}</span>
-                    <button onClick={() => updateBoat(i, "days", Math.min(31, b.days + 1))}>+</button>
+                  <div style={{ marginTop: "10px" }}>
+                    <button style={buttonStyle}
+                      onClick={() => updateBoat(i, "days", Math.max(2, b.days - 1))}
+                    >−</button>
+
+                    <span style={{ margin: "0 12px", fontSize: "18px" }}>
+                      {b.days} days
+                    </span>
+
+                    <button style={buttonStyle}
+                      onClick={() => updateBoat(i, "days", Math.min(31, b.days + 1))}
+                    >+</button>
                   </div>
                 )}
               </div>
@@ -195,9 +243,10 @@ export default function BookingWizard() {
           </>
         )}
 
+        {/* ---------------- STEP 3 ---------------- */}
         {step === 3 && (
           <>
-            <h2>Starting location</h2>
+            <h2 style={{ fontSize: "28px" }}>Starting location</h2>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
               {[
@@ -214,11 +263,7 @@ export default function BookingWizard() {
                 <button
                   key={loc}
                   onClick={() => setLocation(loc)}
-                  style={{
-                    padding: "10px",
-                    borderRadius: "8px",
-                    border: location === loc ? "2px solid #0f2f4f" : "1px solid #ddd"
-                  }}
+                  style={location === loc ? selectedButton : buttonStyle}
                 >
                   {loc === "Other" ? "Other (specify)" : loc}
                 </button>
@@ -227,61 +272,76 @@ export default function BookingWizard() {
 
             {location === "Other" && (
               <input
+                style={inputStyle}
                 placeholder="Enter location"
                 value={customLocation}
                 onChange={(e) => setCustomLocation(e.target.value)}
-                style={{ width: "100%", padding: "10px", marginTop: "10px" }}
               />
             )}
           </>
         )}
 
+        {/* ---------------- STEP 4 ---------------- */}
         {step === 4 && (
           <>
-            <h2>Summary</h2>
+            <h2 style={{ fontSize: "28px" }}>Summary</h2>
+
             {bookings.map((b, i) => (
-              <div key={i}>
+              <div key={i} style={{ marginBottom: "8px" }}>
                 {b.boat} — £{calcPrice(b)}
               </div>
             ))}
           </>
         )}
 
+        {/* ---------------- STEP 5 ---------------- */}
         {step === 5 && (
           <>
-            <h2>Your details</h2>
+            <h2 style={{ fontSize: "28px" }}>Your details</h2>
 
-            <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-            <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-            <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <input style={inputStyle} placeholder="Full name *" onChange={(e) => setName(e.target.value)} />
+              <input style={inputStyle} placeholder="Mobile number *" onChange={(e) => setPhone(e.target.value)} />
+              <input style={inputStyle} placeholder="Email address *" onChange={(e) => setEmail(e.target.value)} />
+            </div>
 
-            <button disabled={!canSubmit}>Request booking</button>
+            <button
+              style={{
+                ...buttonStyle,
+                width: "100%",
+                background: canSubmit ? "#0f2f4f" : "#ccc",
+                color: "#fff",
+                border: "none",
+                marginTop: "10px"
+              }}
+              disabled={!canSubmit}
+            >
+              Request booking
+            </button>
           </>
         )}
 
         {/* NAV */}
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
-          {step > 1 && <button onClick={back}>Back</button>}
-          {step < 5 && <button onClick={next}>Next</button>}
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "25px" }}>
+          {step > 1 && <button style={buttonStyle} onClick={back}>Back</button>}
+          {step < 5 && <button style={buttonStyle} onClick={next}>Next</button>}
         </div>
       </div>
 
-      {/* ---------------- STICKY SUMMARY ---------------- */}
+      {/* ---------------- SIDEBAR ---------------- */}
       <div style={{
-        width: "300px",
+        width: "320px",
         position: "sticky",
         top: "20px",
-        height: "fit-content",
         background: "#0f2f4f",
         color: "#fff",
-        padding: "20px",
+        padding: "25px",
         borderRadius: "16px"
       }}>
-        <h3>Total</h3>
-        <div style={{ fontSize: "28px", fontWeight: 700 }}>£{total}</div>
-
-        <div style={{ marginTop: "10px", fontSize: "14px", opacity: 0.9 }}>
-          {bookings.length} boat(s)
+        <h3 style={{ fontSize: "20px" }}>Total</h3>
+        <div style={{ fontSize: "32px", fontWeight: 700 }}>£{total}</div>
+        <div style={{ marginTop: "10px", fontSize: "14px", opacity: 0.85 }}>
+          {bookings.length} boat(s) selected
         </div>
       </div>
     </div>
