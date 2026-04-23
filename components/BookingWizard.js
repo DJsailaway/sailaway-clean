@@ -166,7 +166,8 @@ export default function BookingWizard() {
                 borderRadius: "8px",
                 border: duration === opt && !isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
                 background: duration === opt && !isMultiDay ? "#eef3f8" : "#fff",
-                fontWeight: 600
+                fontWeight: 600,
+                cursor: "pointer"
               }}
             >
               {opt}
@@ -180,7 +181,8 @@ export default function BookingWizard() {
               borderRadius: "8px",
               border: isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
               background: isMultiDay ? "#eef3f8" : "#fff",
-              fontWeight: 600
+              fontWeight: 600,
+              cursor: "pointer"
             }}
           >
             Multi-day
@@ -193,38 +195,106 @@ export default function BookingWizard() {
         <div style={{ marginBottom: "20px" }}>
           <strong>Number of days</strong>
 
-          <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: "10px"
-          }}>
-            <button onClick={() => setDays(Math.max(2, days - 1))} style={{ fontSize: 24 }}>−</button>
-            <div style={{ fontSize: "20px", fontWeight: 700 }}>{days}</div>
-            <button onClick={() => setDays(Math.min(31, days + 1))} style={{ fontSize: 24 }}>+</button>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              background: "#fff",
+              border: "1px solid #ddd",
+              borderRadius: "12px",
+              padding: "12px",
+              marginTop: "10px"
+            }}
+          >
+            <button
+              onClick={() => setDays(Math.max(2, days - 1))}
+              style={{
+                width: "48px",
+                height: "48px",
+                fontSize: "22px",
+                fontWeight: "700",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                background: "#fff",
+                cursor: "pointer"
+              }}
+            >
+              −
+            </button>
+
+            <div style={{ fontSize: "20px", fontWeight: 700 }}>
+              {days}
+            </div>
+
+            <button
+              onClick={() => setDays(Math.min(31, days + 1))}
+              style={{
+                width: "48px",
+                height: "48px",
+                fontSize: "22px",
+                fontWeight: "700",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                background: "#fff",
+                cursor: "pointer"
+              }}
+            >
+              +
+            </button>
           </div>
         </div>
       )}
 
-      {/* LOCATION */}
-      <select
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        style={{ width: "100%", padding: "12px", marginBottom: "20px" }}
-      >
-        <option>St Anthony</option>
-        <option>Helford Village</option>
-        <option>Durgan</option>
-        <option>Port Navas</option>
-        <option>Gillan</option>
-        <option>Flushing</option>
-        <option>Helford Passage</option>
-      </select>
+      {/* LOCATION (FIXED + IMPROVED) */}
+      <div style={{ marginBottom: "20px" }}>
+        <div style={{ fontWeight: 700, marginBottom: "8px" }}>
+          Starting location
+        </div>
+
+        <select
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "12px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            fontWeight: 600,
+            background: "#fff"
+          }}
+        >
+          <option>St Anthony</option>
+          <option>Helford Village</option>
+          <option>Durgan</option>
+          <option>Port Navas</option>
+          <option>Gillan</option>
+          <option>Flushing</option>
+          <option>Helford Passage</option>
+        </select>
+      </div>
 
       {/* CONTACT */}
-      <input placeholder="Name (required)" value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "10px" }} />
-      <input placeholder="Mobile number (required)" value={phone} onChange={(e) => setPhone(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "10px" }} />
-      <input placeholder="Email (required)" value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: "100%", padding: "12px", marginBottom: "20px" }} />
+      <input
+        placeholder="Name (required)"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ width: "100%", padding: "12px", marginBottom: "10px" }}
+      />
+
+      <input
+        placeholder="Mobile number (required)"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        style={{ width: "100%", padding: "12px", marginBottom: "10px" }}
+      />
+
+      <input
+        placeholder="Email (required)"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{ width: "100%", padding: "12px", marginBottom: "20px" }}
+      />
 
       {/* PRICE */}
       <h3 style={{ marginBottom: "20px" }}>£{price}</h3>
