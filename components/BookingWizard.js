@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { PRICING } from "../lib/pricing";
 
-// ---------------- INTENT → CATEGORY MAP ----------------
+// ---------------- INTENT → CATEGORY ----------------
 const INTENT_MAP = {
   Motor: "Motor Boats",
   Sail: "Sailing Boats",
   Paddle: "Rowing, Kayak & SUP"
 };
 
-// ---------------- CATEGORIES ----------------
+// ---------------- BOAT CATEGORIES ----------------
 const CATEGORIES = {
   "Motor Boats": [
     "Plymouth Pilot (8 people)",
@@ -18,7 +18,7 @@ const CATEGORIES = {
   "Sailing Boats": [
     "Drascombe Longboat (6 people)",
     "Wayfarer Dinghy (4 people)",
-    "Topaz Dinghy (2 people)",   // ✅ FIXED POSITION
+    "Topaz Dinghy (2 people)",
     "Pico Dinghy (2 people)",
     "Topper Dinghy (1 person)"
   ],
@@ -43,7 +43,6 @@ const createBoat = () => ({
 export default function BookingWizard() {
   const [step, setStep] = useState(1);
   const [intent, setIntent] = useState("Motor");
-
   const [bookings, setBookings] = useState([createBoat()]);
 
   const [location, setLocation] = useState("St Anthony");
@@ -53,7 +52,7 @@ export default function BookingWizard() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  // ---------------- PRICE ----------------
+  // ---------------- PRICING ----------------
   const calcBoatPrice = (b) => {
     const p = PRICING.boats?.[b.boat];
     if (!p) return 0;
@@ -122,7 +121,7 @@ export default function BookingWizard() {
           Step {step} / 5
         </h2>
 
-        {/* ---------------- STEP 1 ---------------- */}
+        {/* ---------------- STEP 1: INTENT ---------------- */}
         {step === 1 && (
           <>
             <h3>Choose experience</h3>
@@ -154,7 +153,7 @@ export default function BookingWizard() {
           </>
         )}
 
-        {/* ---------------- STEP 2 (FIXED) ---------------- */}
+        {/* ---------------- STEP 2: BOATS (BUTTON GRID FIXED) ---------------- */}
         {step === 2 && (() => {
           const category = INTENT_MAP[intent];
           const boats = CATEGORIES[category];
@@ -166,48 +165,122 @@ export default function BookingWizard() {
               <div style={{
                 fontSize: "13px",
                 opacity: 0.6,
-                marginBottom: "10px"
+                marginBottom: "15px"
               }}>
                 Category: {category}
               </div>
 
-              <select
-                value={bookings[0].boat}
-                onChange={(e) => {
-                  const copy = [...bookings];
-                  copy[0].boat = e.target.value;
-                  copy[0].category = category;
-                  setBookings(copy);
-                }}
-                style={inputStyle}
-              >
-                {boats.map((boat) => (
-                  <option key={boat}>{boat}</option>
-                ))}
-              </select>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: "12px"
+              }}>
+                {boats.map((boat) => {
+                  const selected = bookings[0].boat === boat;
+
+                  return (
+                    <div
+                      key={boat}
+                      onClick={() => {
+                        const copy = [...bookings];
+                        copy[0].boat = boat;
+                        copy[0].category = category;
+                        setBookings(copy);
+                      }}
+                      style={{
+                        padding: "18px",
+                        borderRadius: "14px",
+                        border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
+                        background: selected ? "#f8fafc" : "#fff",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease"
+                      }}
+                    >
+                      <div style={{ fontWeight: 600 }}>{boat}</div>
+                    </div>
+                  );
+                })}
+              </div>
             </>
           );
         })()}
 
-        {/* ---------------- STEP 3 ---------------- */}
+        {/* ---------------- STEP 3: MULTI-DAY RESTORED ---------------- */}
         {step === 3 && (
           <>
             <h3>Duration</h3>
 
-            <select
-              value={bookings[0].duration}
-              onChange={(e) => updateBoat(0, "duration", e.target.value)}
-              style={inputStyle}
-            >
-              <option>1 hour</option>
-              <option>2 hours</option>
-              <option>Half day (4 hours)</option>
-              <option>Full day (8 hours)</option>
-            </select>
+            {/* TOGGLE */}
+            <div style={{ marginBottom: "15px" }}>
+              <button
+                onClick={() => {
+                  const copy = [...bookings];
+                  copy[0].isMultiDay = false;
+                  setBookings(copy);
+                }}
+                style={{
+                  ...buttonStyle,
+                  marginRight: "10px",
+                  border: !bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc"
+                }}
+              >
+                Hourly / Day Hire
+              </button>
+
+              <button
+                onClick={() => {
+                  const copy = [...bookings];
+                  copy[0].isMultiDay = true;
+                  setBookings(copy);
+                }}
+                style={{
+                  ...buttonStyle,
+                  border: bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc"
+                }}
+              >
+                Multi-day Hire
+              </button>
+            </div>
+
+            {/* HOURLY */}
+            {!bookings[0].isMultiDay && (
+              <select
+                value={bookings[0].duration}
+                onChange={(e) => updateBoat(0, "duration", e.target.value)}
+                style={inputStyle}
+              >
+                <option>1 hour</option>
+                <option>2 hours</option>
+                <option>Half day (4 hours)</option>
+                <option>Full day (8 hours)</option>
+              </select>
+            )}
+
+            {/* MULTI-DAY */}
+            {bookings[0].isMultiDay && (
+              <>
+                <div style={{ marginBottom: "10px", opacity: 0.7 }}>
+                  Number of days (2–31)
+                </div>
+
+                <input
+                  type="number"
+                  min="2"
+                  max="31"
+                  value={bookings[0].days}
+                  onChange={(e) => {
+                    const copy = [...bookings];
+                    copy[0].days = Number(e.target.value);
+                    setBookings(copy);
+                  }}
+                  style={inputStyle}
+                />
+              </>
+            )}
           </>
         )}
 
-        {/* ---------------- STEP 4 ---------------- */}
+        {/* ---------------- STEP 4: LOCATION ---------------- */}
         {step === 4 && (
           <>
             <h3>Location</h3>
@@ -262,7 +335,11 @@ export default function BookingWizard() {
         )}
 
         {/* NAV */}
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "25px" }}>
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "25px"
+        }}>
           {step > 1 && <button onClick={back} style={buttonStyle}>Back</button>}
           {step < 5 && <button onClick={next} style={buttonStyle}>Next</button>}
         </div>
