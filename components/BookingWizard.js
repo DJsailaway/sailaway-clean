@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// --- BOATS ---
+// ---------------- BOATS ----------------
 const BOATS = {
   "Motor Boats": ["Plymouth Pilot (8 people)", "Bass Boat (5 people)"],
   "Sailing Boats": [
@@ -17,7 +17,7 @@ const BOATS = {
   ]
 };
 
-// --- PRICING ---
+// ---------------- PRICING ----------------
 const PRICING = {
   "Plymouth Pilot (8 people)": {
     "1 hour": 120,
@@ -37,29 +37,28 @@ const PRICING = {
   }
 };
 
-// --- SINGLE BOOKING BLOCK ---
-function createEmptyBooking() {
-  return {
-    category: "Motor Boats",
-    boat: BOATS["Motor Boats"][0],
-    duration: "2 hours",
-    isMultiDay: false,
-    days: 7,
-    location: "St Anthony"
-  };
-}
+const createBoat = () => ({
+  category: "Motor Boats",
+  boat: BOATS["Motor Boats"][0],
+  duration: "2 hours",
+  isMultiDay: false,
+  days: 7
+});
 
 export default function BookingWizard() {
-  const [bookings, setBookings] = useState([createEmptyBooking()]);
+  const [step, setStep] = useState(1);
+  const [bookings, setBookings] = useState([createBoat()]);
+
+  const [location, setLocation] = useState("St Anthony");
+  const [customLocation, setCustomLocation] = useState("");
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  // --- PRICE CALC ---
-  const calculatePrice = (b) => {
+  // ---------------- PRICE ----------------
+  const calcPrice = (b) => {
     const p = PRICING[b.boat];
-
     if (!p) return 0;
 
     if (b.isMultiDay) {
@@ -70,153 +69,221 @@ export default function BookingWizard() {
     return p[b.duration] || 0;
   };
 
-  const totalPrice = bookings.reduce((sum, b) => sum + calculatePrice(b), 0);
+  const total = bookings.reduce((s, b) => s + calcPrice(b), 0);
 
-  const updateBooking = (index, field, value) => {
-    const updated = [...bookings];
-    updated[index][field] = value;
-    setBookings(updated);
+  const updateBoat = (i, key, value) => {
+    const copy = [...bookings];
+    copy[i][key] = value;
+    setBookings(copy);
   };
 
-  const addBoat = () => {
-    setBookings([...bookings, createEmptyBooking()]);
-  };
+  const addBoat = () => setBookings([...bookings, createBoat()]);
 
-  const removeBoat = (index) => {
-    setBookings(bookings.filter((_, i) => i !== index));
-  };
+  const next = () => setStep((s) => Math.min(5, s + 1));
+  const back = () => setStep((s) => Math.max(1, s - 1));
 
   const canSubmit = name && phone && email;
 
   return (
-    <div style={{
-      maxWidth: "800px",
-      margin: "40px auto",
-      padding: "30px",
-      background: "#fff",
-      borderRadius: "12px",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
-    }}>
-      <h2>Book your boats</h2>
+    <div style={{ display: "flex", gap: "20px", maxWidth: "1100px", margin: "40px auto" }}>
 
-      {/* BOOKINGS */}
-      {bookings.map((b, i) => (
-        <div key={i} style={{
-          border: "1px solid #ddd",
-          borderRadius: "12px",
-          padding: "15px",
-          marginBottom: "15px"
-        }}>
-          <strong>Boat {i + 1}</strong>
+      {/* ---------------- MAIN WIZARD ---------------- */}
+      <div style={{
+        flex: 1,
+        background: "#fff",
+        borderRadius: "16px",
+        padding: "30px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+      }}>
 
-          {/* CATEGORY */}
-          <select
-            value={b.category}
-            onChange={(e) => {
-              const cat = e.target.value;
-              updateBooking(i, "category", cat);
-              updateBooking(i, "boat", BOATS[cat][0]);
-            }}
-            style={{ width: "100%", marginTop: "10px", padding: "10px" }}
-          >
-            {Object.keys(BOATS).map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
-
-          {/* BOAT */}
-          <select
-            value={b.boat}
-            onChange={(e) => updateBooking(i, "boat", e.target.value)}
-            style={{ width: "100%", marginTop: "10px", padding: "10px" }}
-          >
-            {BOATS[b.category].map((boat) => (
-              <option key={boat}>{boat}</option>
-            ))}
-          </select>
-
-          {/* DURATION */}
-          <select
-            value={b.duration}
-            onChange={(e) => {
-              updateBooking(i, "duration", e.target.value);
-              updateBooking(i, "isMultiDay", false);
-            }}
-            style={{ width: "100%", marginTop: "10px", padding: "10px" }}
-          >
-            <option>1 hour</option>
-            <option>2 hours</option>
-            <option>Half day (4 hours)</option>
-            <option>Full day (8 hours)</option>
-          </select>
-
-          {/* MULTI DAY */}
-          <div style={{ marginTop: "10px" }}>
-            <button
-              onClick={() => updateBooking(i, "isMultiDay", true)}
-              style={{ padding: "8px", marginRight: "10px" }}
-            >
-              Multi-day
-            </button>
-
-            {b.isMultiDay && (
-              <div style={{ marginTop: "10px" }}>
-                <button onClick={() =>
-                  updateBooking(i, "days", Math.max(2, b.days - 1))
-                }>−</button>
-
-                <span style={{ margin: "0 10px" }}>{b.days}</span>
-
-                <button onClick={() =>
-                  updateBooking(i, "days", Math.min(31, b.days + 1))
-                }>+</button>
-              </div>
-            )}
-          </div>
-
-          <button
-            onClick={() => removeBoat(i)}
-            style={{ marginTop: "10px", color: "red" }}
-          >
-            Remove boat
-          </button>
-
-          <div style={{ marginTop: "10px", fontWeight: 600 }}>
-            £{calculatePrice(b)}
+        {/* PROGRESS BAR */}
+        <div style={{ marginBottom: "25px" }}>
+          <div style={{ fontWeight: 700 }}>Step {step} / 5</div>
+          <div style={{
+            height: "6px",
+            background: "#eee",
+            borderRadius: "10px",
+            marginTop: "8px",
+            overflow: "hidden"
+          }}>
+            <div style={{
+              width: `${(step / 5) * 100}%`,
+              height: "100%",
+              background: "#0f2f4f"
+            }} />
           </div>
         </div>
-      ))}
 
-      {/* ADD BOAT */}
-      <button onClick={addBoat} style={{
-        padding: "12px",
-        width: "100%",
-        marginBottom: "20px"
+        {/* ---------------- STEP CONTENT ---------------- */}
+
+        {step === 1 && (
+          <>
+            <h2>Select your boats</h2>
+
+            {bookings.map((b, i) => (
+              <div key={i} style={{
+                border: "1px solid #eee",
+                borderRadius: "12px",
+                padding: "15px",
+                marginBottom: "12px"
+              }}>
+                <select
+                  value={b.category}
+                  onChange={(e) => {
+                    const cat = e.target.value;
+                    updateBoat(i, "category", cat);
+                    updateBoat(i, "boat", BOATS[cat][0]);
+                  }}
+                  style={{ width: "100%", padding: "10px", marginBottom: "8px" }}
+                >
+                  {Object.keys(BOATS).map((c) => (
+                    <option key={c}>{c}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={b.boat}
+                  onChange={(e) => updateBoat(i, "boat", e.target.value)}
+                  style={{ width: "100%", padding: "10px" }}
+                >
+                  {BOATS[b.category].map((x) => (
+                    <option key={x}>{x}</option>
+                  ))}
+                </select>
+              </div>
+            ))}
+
+            <button onClick={addBoat}>+ Add another boat</button>
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <h2>Duration</h2>
+
+            {bookings.map((b, i) => (
+              <div key={i} style={{ marginBottom: "15px" }}>
+                <strong>{b.boat}</strong>
+
+                <select
+                  value={b.duration}
+                  onChange={(e) => {
+                    updateBoat(i, "duration", e.target.value);
+                    updateBoat(i, "isMultiDay", false);
+                  }}
+                  style={{ width: "100%", padding: "10px", marginTop: "8px" }}
+                >
+                  <option>1 hour</option>
+                  <option>2 hours</option>
+                  <option>Half day (4 hours)</option>
+                  <option>Full day (8 hours)</option>
+                </select>
+
+                <button onClick={() => updateBoat(i, "isMultiDay", true)}>
+                  Multi-day
+                </button>
+
+                {b.isMultiDay && (
+                  <div>
+                    <button onClick={() => updateBoat(i, "days", Math.max(2, b.days - 1))}>−</button>
+                    <span style={{ margin: "0 10px" }}>{b.days}</span>
+                    <button onClick={() => updateBoat(i, "days", Math.min(31, b.days + 1))}>+</button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </>
+        )}
+
+        {step === 3 && (
+          <>
+            <h2>Starting location</h2>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+              {[
+                "St Anthony",
+                "Helford Village",
+                "Durgan",
+                "Port Navas",
+                "Gillan",
+                "Flushing",
+                "Helford Passage",
+                "Calamansac",
+                "Other"
+              ].map((loc) => (
+                <button
+                  key={loc}
+                  onClick={() => setLocation(loc)}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "8px",
+                    border: location === loc ? "2px solid #0f2f4f" : "1px solid #ddd"
+                  }}
+                >
+                  {loc === "Other" ? "Other (specify)" : loc}
+                </button>
+              ))}
+            </div>
+
+            {location === "Other" && (
+              <input
+                placeholder="Enter location"
+                value={customLocation}
+                onChange={(e) => setCustomLocation(e.target.value)}
+                style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+              />
+            )}
+          </>
+        )}
+
+        {step === 4 && (
+          <>
+            <h2>Summary</h2>
+            {bookings.map((b, i) => (
+              <div key={i}>
+                {b.boat} — £{calcPrice(b)}
+              </div>
+            ))}
+          </>
+        )}
+
+        {step === 5 && (
+          <>
+            <h2>Your details</h2>
+
+            <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
+            <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+            <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+
+            <button disabled={!canSubmit}>Request booking</button>
+          </>
+        )}
+
+        {/* NAV */}
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
+          {step > 1 && <button onClick={back}>Back</button>}
+          {step < 5 && <button onClick={next}>Next</button>}
+        </div>
+      </div>
+
+      {/* ---------------- STICKY SUMMARY ---------------- */}
+      <div style={{
+        width: "300px",
+        position: "sticky",
+        top: "20px",
+        height: "fit-content",
+        background: "#0f2f4f",
+        color: "#fff",
+        padding: "20px",
+        borderRadius: "16px"
       }}>
-        + Add another boat
-      </button>
+        <h3>Total</h3>
+        <div style={{ fontSize: "28px", fontWeight: 700 }}>£{total}</div>
 
-      {/* TOTAL */}
-      <h3>Total: £{totalPrice}</h3>
-
-      {/* CONTACT */}
-      <input placeholder="Name" onChange={(e) => setName(e.target.value)} style={{ width: "100%", padding: "10px", marginBottom: "10px" }} />
-      <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} style={{ width: "100%", padding: "10px", marginBottom: "10px" }} />
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} style={{ width: "100%", padding: "10px", marginBottom: "20px" }} />
-
-      <button
-        disabled={!canSubmit}
-        style={{
-          width: "100%",
-          padding: "14px",
-          background: canSubmit ? "#0f2f4f" : "#ccc",
-          color: "#fff",
-          border: "none",
-          borderRadius: "8px"
-        }}
-      >
-        Request booking
-      </button>
+        <div style={{ marginTop: "10px", fontSize: "14px", opacity: 0.9 }}>
+          {bookings.length} boat(s)
+        </div>
+      </div>
     </div>
   );
 }
