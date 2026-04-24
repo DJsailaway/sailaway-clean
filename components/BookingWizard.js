@@ -447,9 +447,48 @@ export default function BookingWizard() {
         padding: "16px"
       }}>
         <div>£{total}</div>
-        <button onClick={() => step < 5 && next()}>
-          {step === 5 ? "Request Booking" : "Continue →"}
-        </button>
+<button
+  onClick={async () => {
+    if (step < 3) return;
+
+    if (step < 5) {
+      next();
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          bookings,
+          total,
+          location: customLocation || location
+        })
+      });
+
+      if (res.ok) {
+        alert("Booking request sent successfully!");
+      } else {
+        alert("Failed to send booking.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong.");
+    }
+  }}
+>
+  {step < 3
+    ? "Select an option"
+    : step === 5
+    ? "Request Booking"
+    : "Continue →"}
+</button>
       </div>
     </>
   );
