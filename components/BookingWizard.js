@@ -8,13 +8,12 @@ const INTENT_MAP = {
   Paddle: "Rowing, Kayak & SUP"
 };
 
-// ---------------- BOAT CATEGORIES ----------------
+// ---------------- BOATS ----------------
 const CATEGORIES = {
   "Motor Boats": [
     "Plymouth Pilot (8 people)",
     "Bass Boat (5 people)"
   ],
-
   "Sailing Boats": [
     "Drascombe Longboat (6 people)",
     "Wayfarer Dinghy (4 people)",
@@ -22,7 +21,6 @@ const CATEGORIES = {
     "Pico Dinghy (2 people)",
     "Topper Dinghy (1 person)"
   ],
-
   "Rowing, Kayak & SUP": [
     "Anarth Rowing Dinghy (4 people)",
     "Double Kayak (2 people)",
@@ -31,7 +29,6 @@ const CATEGORIES = {
   ]
 };
 
-// ---------------- INITIAL STATE ----------------
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
@@ -91,290 +88,240 @@ export default function BookingWizard() {
     marginBottom: "12px"
   };
 
-const buttonStyle = {
-  padding: "14px 18px",
-  borderRadius: "14px",
-  border: "1px solid #d6dbe1",
-  background: "#f8fafc",
-  fontSize: "16px",
-  cursor: "pointer",
-  transition: "all 0.2s ease",
-  boxShadow: "0 2px 6px rgba(0,0,0,0.05)"
-};
-
-  return (
-    <div style={{
-      display: "flex",
-      gap: "20px",
-      maxWidth: "1200px",
-      margin: "40px auto"
-    }}>
-
-      {/* ---------------- MAIN ---------------- */}
-      <div style={{
-        flex: 1,
-        background: "#fff",
-        padding: "40px",
-        borderRadius: "18px",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.08)"
-      }}>
-
-        <h2 style={{ fontSize: "30px", marginBottom: "20px" }}>
-          Step {step} / 5
-        </h2>
-
-        {/* ---------------- STEP 1: INTENT ---------------- */}
-{step === 1 && (
-  <>
-    <h3 style={{ fontSize: "26px" }}>Choose your experience</h3>
-
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-      gap: "15px",
-      marginTop: "20px"
-    }}>
-      {Object.keys(INTENT_MAP).map((key) => {
-        const selected = intent === key;
-
-        return (
-          <div
-            key={key}
-            onClick={() => {
-              setIntent(key);
-
-              const category = INTENT_MAP[key];
-              const copy = [...bookings];
-              copy[0].category = category;
-              copy[0].boat = CATEGORIES[category][0];
-              setBookings(copy);
-
-              next(); // 🚀 AUTO ADVANCE
-            }}
-            style={{
-              padding: "22px",
-              borderRadius: "16px",
-              border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
-              background: selected ? "#eef4f8" : "#f8fafc",
-              cursor: "pointer",
-              transition: "all 0.25s ease",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
-            }}
-          >
-            <div style={{ fontSize: "20px", fontWeight: 600 }}>
-              {key}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  </>
-)}
-
-        {/* ---------------- STEP 2: BOATS (BUTTON GRID FIXED) ---------------- */}
-{step === 2 && (() => {
-  const category = INTENT_MAP[intent];
-  const boats = CATEGORIES[category];
+  const cardStyle = (selected) => ({
+    padding: "20px",
+    borderRadius: "16px",
+    border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
+    background: selected ? "#eef4f8" : "#f8fafc",
+    cursor: "pointer",
+    transition: "all 0.25s ease",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+  });
 
   return (
     <>
-      <h3 style={{ fontSize: "26px" }}>Select your vessel</h3>
-
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-        gap: "14px",
-        marginTop: "15px"
+        display: "flex",
+        gap: "20px",
+        maxWidth: "1200px",
+        margin: "40px auto",
+        paddingBottom: "100px"
       }}>
-        {boats.map((boat) => {
-          const selected = bookings[0].boat === boat;
 
-          return (
-            <div
-              key={boat}
-              onClick={() => {
-                const copy = [...bookings];
-                copy[0].boat = boat;
-                setBookings(copy);
+        {/* MAIN */}
+        <div style={{
+          flex: 1,
+          background: "#fff",
+          padding: "40px",
+          borderRadius: "18px",
+          boxShadow: "0 10px 40px rgba(0,0,0,0.08)"
+        }}>
 
-                next(); // 🚀 AUTO ADVANCE
-              }}
-              style={{
-                padding: "20px",
-                borderRadius: "16px",
-                border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
-                background: selected ? "#eef4f8" : "#f8fafc",
-                cursor: "pointer",
-                transition: "all 0.25s ease",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
-              }}
-            >
-              <div style={{ fontWeight: 600, fontSize: "17px" }}>
-                {boat}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-})()}
+          {/* PROGRESS BAR */}
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "30px"
+          }}>
+            {["Experience", "Boat", "Duration", "Location", "Details"].map((label, i) => {
+              const stepNum = i + 1;
+              const active = step === stepNum;
+              const complete = step > stepNum;
 
-        {/* ---------------- STEP 3: MULTI-DAY RESTORED ---------------- */}
-        {step === 3 && (
-          <>
-            <h3>Duration</h3>
+              return (
+                <div key={label} style={{ flex: 1, textAlign: "center", position: "relative" }}>
+                  {i !== 0 && (
+                    <div style={{
+                      position: "absolute",
+                      top: "18px",
+                      left: "-50%",
+                      width: "100%",
+                      height: "2px",
+                      background: complete ? "#0f2f4f" : "#ddd"
+                    }} />
+                  )}
 
-            {/* TOGGLE */}
-            <div style={{ marginBottom: "15px" }}>
-              <button
-                onClick={() => {
-                  const copy = [...bookings];
-                  copy[0].isMultiDay = false;
-                  setBookings(copy);
-                }}
-                style={{
-                  ...buttonStyle,
-                  marginRight: "10px",
-                  border: !bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc"
-                }}
-              >
-                Hourly / Day Hire
-              </button>
+                  <div style={{
+                    width: "36px",
+                    height: "36px",
+                    margin: "0 auto",
+                    borderRadius: "50%",
+                    background: active || complete ? "#0f2f4f" : "#fff",
+                    color: active || complete ? "#fff" : "#999",
+                    border: "2px solid #0f2f4f",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "600"
+                  }}>
+                    {stepNum}
+                  </div>
 
-              <button
-                onClick={() => {
-                  const copy = [...bookings];
-                  copy[0].isMultiDay = true;
-                  setBookings(copy);
-                }}
-                style={{
-                  ...buttonStyle,
-                  border: bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc"
-                }}
-              >
-                Multi-day Hire
-              </button>
-            </div>
-
-            {/* HOURLY */}
-            {!bookings[0].isMultiDay && (
-              <select
-                value={bookings[0].duration}
-                onChange={(e) => updateBoat(0, "duration", e.target.value)}
-                style={inputStyle}
-              >
-                <option>1 hour</option>
-                <option>2 hours</option>
-                <option>Half day (4 hours)</option>
-                <option>Full day (8 hours)</option>
-              </select>
-            )}
-
-            {/* MULTI-DAY */}
-            {bookings[0].isMultiDay && (
-              <>
-                <div style={{ marginBottom: "10px", opacity: 0.7 }}>
-                  Number of days (2–31)
+                  <div style={{
+                    fontSize: "13px",
+                    marginTop: "6px",
+                    color: active ? "#0f2f4f" : "#777"
+                  }}>
+                    {label}
+                  </div>
                 </div>
+              );
+            })}
+          </div>
 
+          <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>
+            Step {step} of 5
+          </h2>
+
+          {/* STEP 1 */}
+          {step === 1 && (
+            <div style={{ display: "grid", gap: "15px" }}>
+              {Object.keys(INTENT_MAP).map((key) => (
+                <div
+                  key={key}
+                  onClick={() => {
+                    setIntent(key);
+                    const category = INTENT_MAP[key];
+                    const copy = [...bookings];
+                    copy[0].category = category;
+                    copy[0].boat = CATEGORIES[category][0];
+                    setBookings(copy);
+                    next();
+                  }}
+                  style={cardStyle(intent === key)}
+                >
+                  <strong>{key}</strong>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* STEP 2 */}
+          {step === 2 && (() => {
+            const category = INTENT_MAP[intent];
+            const boats = CATEGORIES[category];
+
+            return (
+              <div style={{ display: "grid", gap: "15px" }}>
+                {boats.map((boat) => (
+                  <div
+                    key={boat}
+                    onClick={() => {
+                      updateBoat(0, "boat", boat);
+                      next();
+                    }}
+                    style={cardStyle(bookings[0].boat === boat)}
+                  >
+                    {boat}
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+
+          {/* STEP 3 */}
+          {step === 3 && (
+            <>
+              <h3>Duration</h3>
+
+              <button onClick={() => updateBoat(0, "isMultiDay", false)}>Hourly / Day</button>
+              <button onClick={() => updateBoat(0, "isMultiDay", true)}>Multi-day</button>
+
+              {!bookings[0].isMultiDay && (
+                <select
+                  value={bookings[0].duration}
+                  onChange={(e) => updateBoat(0, "duration", e.target.value)}
+                  style={inputStyle}
+                >
+                  <option>1 hour</option>
+                  <option>2 hours</option>
+                  <option>Half day (4 hours)</option>
+                  <option>Full day (8 hours)</option>
+                </select>
+              )}
+
+              {bookings[0].isMultiDay && (
                 <input
                   type="number"
                   min="2"
                   max="31"
                   value={bookings[0].days}
-                  onChange={(e) => {
-                    const copy = [...bookings];
-                    copy[0].days = Number(e.target.value);
-                    setBookings(copy);
-                  }}
+                  onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
                   style={inputStyle}
                 />
-              </>
-            )}
-          </>
-        )}
+              )}
+            </>
+          )}
 
-        {/* ---------------- STEP 4: LOCATION ---------------- */}
-        {step === 4 && (
-          <>
-            <h3>Location</h3>
+          {/* STEP 4 */}
+          {step === 4 && (
+            <>
+              <h3>Location</h3>
 
-            {Object.keys(PRICING.locations).map((loc) => (
-              <button
-                key={loc}
-                onClick={() => setLocation(loc)}
-                style={{
-                  ...buttonStyle,
-                  margin: "5px",
-                  border: location === loc ? "2px solid #0f2f4f" : "1px solid #ccc"
-                }}
-              >
-                {loc}
-              </button>
-            ))}
+              {Object.keys(PRICING.locations).map((loc) => (
+                <button key={loc} onClick={() => setLocation(loc)}>
+                  {loc}
+                </button>
+              ))}
 
-            {location === "Other" && (
-              <input
-                style={inputStyle}
-                placeholder="Enter location"
-                value={customLocation}
-                onChange={(e) => setCustomLocation(e.target.value)}
-              />
-            )}
-          </>
-        )}
+              {location === "Other" && (
+                <input
+                  value={customLocation}
+                  onChange={(e) => setCustomLocation(e.target.value)}
+                  style={inputStyle}
+                />
+              )}
+            </>
+          )}
 
-        {/* ---------------- STEP 5 ---------------- */}
-        {step === 5 && (
-          <>
-            <h3>Your details</h3>
+          {/* STEP 5 */}
+          {step === 5 && (
+            <>
+              <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
+              <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+              <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            </>
+          )}
 
-            <input style={inputStyle} placeholder="Name *" onChange={(e) => setName(e.target.value)} />
-            <input style={inputStyle} placeholder="Phone *" onChange={(e) => setPhone(e.target.value)} />
-            <input style={inputStyle} placeholder="Email *" onChange={(e) => setEmail(e.target.value)} />
-
-            <button
-              disabled={!name || !phone || !email}
-              style={{
-                ...buttonStyle,
-                width: "100%",
-                background: name && phone && email ? "#0f2f4f" : "#ccc",
-                color: "#fff",
-                border: "none"
-              }}
-            >
-              Request booking
+          {/* BACK BUTTON ONLY */}
+          {step > 1 && (
+            <button onClick={back} style={{ marginTop: "20px" }}>
+              Back
             </button>
-          </>
-        )}
+          )}
 
-        {/* NAV */}
+        </div>
+
+        {/* SIDE TOTAL */}
         <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "25px"
+          width: "300px",
+          background: "#0f2f4f",
+          color: "#fff",
+          padding: "20px",
+          borderRadius: "16px"
         }}>
-          {step > 1 && <button onClick={back} style={buttonStyle}>Back</button>}
-          {step < 5 && <button onClick={next} style={buttonStyle}>Next</button>}
+          <h3>Total</h3>
+          <div style={{ fontSize: "32px" }}>£{total}</div>
         </div>
 
       </div>
 
-      {/* ---------------- SUMMARY ---------------- */}
+      {/* STICKY BAR */}
       <div style={{
-        width: "320px",
-        position: "sticky",
-        top: "20px",
+        position: "fixed",
+        bottom: 0,
+        width: "100%",
         background: "#0f2f4f",
         color: "#fff",
-        padding: "25px",
-        borderRadius: "16px"
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "16px"
       }}>
-        <h3>Total</h3>
-        <div style={{ fontSize: "36px", fontWeight: 700 }}>£{total}</div>
+        <div>£{total}</div>
+        <button onClick={() => step < 5 && next()}>
+          {step === 5 ? "Request Booking" : "Continue →"}
+        </button>
       </div>
-
-    </div>
+    </>
   );
 }
