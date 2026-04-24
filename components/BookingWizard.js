@@ -91,14 +91,16 @@ export default function BookingWizard() {
     marginBottom: "12px"
   };
 
-  const buttonStyle = {
-    padding: "12px 16px",
-    borderRadius: "12px",
-    border: "1px solid #ddd",
-    background: "#fff",
-    fontSize: "16px",
-    cursor: "pointer"
-  };
+const buttonStyle = {
+  padding: "14px 18px",
+  borderRadius: "14px",
+  border: "1px solid #d6dbe1",
+  background: "#f8fafc",
+  fontSize: "16px",
+  cursor: "pointer",
+  transition: "all 0.2s ease",
+  boxShadow: "0 2px 6px rgba(0,0,0,0.05)"
+};
 
   return (
     <div style={{
@@ -122,88 +124,101 @@ export default function BookingWizard() {
         </h2>
 
         {/* ---------------- STEP 1: INTENT ---------------- */}
-        {step === 1 && (
-          <>
-            <h3>Choose experience</h3>
+{step === 1 && (
+  <>
+    <h3 style={{ fontSize: "26px" }}>Choose your experience</h3>
 
-            {Object.keys(INTENT_MAP).map((key) => (
-              <button
-                key={key}
-                onClick={() => {
-                  setIntent(key);
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+      gap: "15px",
+      marginTop: "20px"
+    }}>
+      {Object.keys(INTENT_MAP).map((key) => {
+        const selected = intent === key;
 
-                  const copy = [...bookings];
-                  const category = INTENT_MAP[key];
+        return (
+          <div
+            key={key}
+            onClick={() => {
+              setIntent(key);
 
-                  copy[0].category = category;
-                  copy[0].boat = CATEGORIES[category][0];
+              const category = INTENT_MAP[key];
+              const copy = [...bookings];
+              copy[0].category = category;
+              copy[0].boat = CATEGORIES[category][0];
+              setBookings(copy);
 
-                  setBookings(copy);
-                }}
-                style={{
-                  ...buttonStyle,
-                  marginRight: "10px",
-                  marginBottom: "10px",
-                  border: intent === key ? "2px solid #0f2f4f" : "1px solid #ccc"
-                }}
-              >
-                {key}
-              </button>
-            ))}
-          </>
-        )}
+              next(); // 🚀 AUTO ADVANCE
+            }}
+            style={{
+              padding: "22px",
+              borderRadius: "16px",
+              border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
+              background: selected ? "#eef4f8" : "#f8fafc",
+              cursor: "pointer",
+              transition: "all 0.25s ease",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+            }}
+          >
+            <div style={{ fontSize: "20px", fontWeight: 600 }}>
+              {key}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </>
+)}
 
         {/* ---------------- STEP 2: BOATS (BUTTON GRID FIXED) ---------------- */}
-        {step === 2 && (() => {
-          const category = INTENT_MAP[intent];
-          const boats = CATEGORIES[category];
+{step === 2 && (() => {
+  const category = INTENT_MAP[intent];
+  const boats = CATEGORIES[category];
+
+  return (
+    <>
+      <h3 style={{ fontSize: "26px" }}>Select your vessel</h3>
+
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: "14px",
+        marginTop: "15px"
+      }}>
+        {boats.map((boat) => {
+          const selected = bookings[0].boat === boat;
 
           return (
-            <>
-              <h3 style={{ fontSize: "26px" }}>Select your vessel</h3>
+            <div
+              key={boat}
+              onClick={() => {
+                const copy = [...bookings];
+                copy[0].boat = boat;
+                setBookings(copy);
 
-              <div style={{
-                fontSize: "13px",
-                opacity: 0.6,
-                marginBottom: "15px"
-              }}>
-                Category: {category}
+                next(); // 🚀 AUTO ADVANCE
+              }}
+              style={{
+                padding: "20px",
+                borderRadius: "16px",
+                border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
+                background: selected ? "#eef4f8" : "#f8fafc",
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+              }}
+            >
+              <div style={{ fontWeight: 600, fontSize: "17px" }}>
+                {boat}
               </div>
-
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-                gap: "12px"
-              }}>
-                {boats.map((boat) => {
-                  const selected = bookings[0].boat === boat;
-
-                  return (
-                    <div
-                      key={boat}
-                      onClick={() => {
-                        const copy = [...bookings];
-                        copy[0].boat = boat;
-                        copy[0].category = category;
-                        setBookings(copy);
-                      }}
-                      style={{
-                        padding: "18px",
-                        borderRadius: "14px",
-                        border: selected ? "2px solid #0f2f4f" : "1px solid #ddd",
-                        background: selected ? "#f8fafc" : "#fff",
-                        cursor: "pointer",
-                        transition: "all 0.2s ease"
-                      }}
-                    >
-                      <div style={{ fontWeight: 600 }}>{boat}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </>
+            </div>
           );
-        })()}
+        })}
+      </div>
+    </>
+  );
+})()}
 
         {/* ---------------- STEP 3: MULTI-DAY RESTORED ---------------- */}
         {step === 3 && (
