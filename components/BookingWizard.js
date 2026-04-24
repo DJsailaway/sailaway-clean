@@ -258,38 +258,66 @@ export default function BookingWizard() {
             })()}
 
             {/* STEP 3 */}
-            {step === 3 && (
-              <>
-                <h3>Duration</h3>
+{step === 3 && (
+  <>
+    <h3 style={{ fontSize: "26px" }}>Duration</h3>
 
-                <select
-                  value={bookings[0].duration}
-                  onChange={(e) => updateBoat(0, "duration", e.target.value)}
-                  style={inputStyle}
-                >
-                  <option>1 hour</option>
-                  <option>2 hours</option>
-                  <option>Half day (4 hours)</option>
-                  <option>Full day (8 hours)</option>
-                </select>
+    {/* SINGLE DAY OPTIONS */}
+    <select
+      value={bookings[0].duration}
+      onChange={(e) => updateBoat(0, "duration", e.target.value)}
+      style={{
+        width: "100%",
+        padding: "16px",
+        fontSize: "18px",
+        borderRadius: "12px",
+        border: "1px solid #ddd",
+        marginBottom: "15px"
+      }}
+    >
+      <option>1 Hour</option>
+      <option>2 Hours</option>
+      <option>Half Day (4 Hours)</option>
+      <option>Full Day (8 Hours)</option>
+    </select>
 
-                <div style={{ marginBottom: "12px" }}>
-                  <button onClick={() => updateBoat(0, "isMultiDay", false)}>Hourly / Day</button>
-                  <button onClick={() => updateBoat(0, "isMultiDay", true)}>Multi-day</button>
-                </div>
+    {/* MULTI DAY BUTTON */}
+    <div style={{ marginBottom: "12px" }}>
+      <button
+        onClick={() => updateBoat(0, "isMultiDay", true)}
+        style={{
+          padding: "12px 16px",
+          borderRadius: "12px",
+          border: bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
+          background: "#fff",
+          fontWeight: 600
+        }}
+      >
+        Multi Day
+      </button>
+    </div>
 
-                {bookings[0].isMultiDay && (
-                  <input
-                    type="number"
-                    min="2"
-                    max="31"
-                    value={bookings[0].days}
-                    onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
-                    style={inputStyle}
-                  />
-                )}
-              </>
-            )}
+    {/* MULTI DAY INPUT (DEFAULT 7) */}
+    {bookings[0].isMultiDay && (
+      <input
+        type="number"
+        min="2"
+        max="31"
+        value={bookings[0].days}
+        onChange={(e) =>
+          updateBoat(0, "days", Number(e.target.value))
+        }
+        style={{
+          width: "100%",
+          padding: "16px",
+          fontSize: "18px",
+          borderRadius: "12px",
+          border: "1px solid #ddd"
+        }}
+      />
+    )}
+  </>
+)}
 
             {/* STEP 4 */}
             {step === 4 && (
@@ -317,33 +345,33 @@ export default function BookingWizard() {
             )}
 
             {/* STEP 5 */}
-            {step === 5 && (
-              <>
-                <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-                <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-                <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-              </>
-            )}
+{step === 5 && (
+  <>
+    <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
+    <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+    <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
 
-          </div>
-
-          {/* ---------------- NAV BUTTONS (UPDATED) ---------------- */}
-          <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "30px"
-          }}>
-            {step > 1 && (
-              <button onClick={back} style={backButtonStyle}>
-                Back
-              </button>
-            )}
-
-            {step >= 3 && step < 5 && (
-              <button onClick={next} style={nextButtonStyle}>
-                Next →
-              </button>
-            )}
+    {/* REQUEST BOOKING BUTTON */}
+    <button
+      style={{
+        width: "100%",
+        marginTop: "20px",
+        padding: "16px",
+        fontSize: "18px",
+        borderRadius: "14px",
+        background: "#0f2f4f",
+        color: "#fff",
+        border: "none",
+        fontWeight: 600,
+        cursor: "pointer",
+        boxShadow: "0 6px 16px rgba(15,47,79,0.25)"
+      }}
+      onClick={() => alert("Booking request sent")}
+    >
+      Request Booking
+    </button>
+  </>
+)}
           </div>
 
         </div>
