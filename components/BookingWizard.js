@@ -80,7 +80,7 @@ export default function BookingWizard() {
   const next = () => setStep((s) => Math.min(5, s + 1));
   const back = () => setStep((s) => Math.max(1, s - 1));
 
-  // ---------------- SUBMIT BOOKING (EMAIL) ----------------
+  // ---------------- EMAIL SUBMIT (ONLY CHANGE) ----------------
   const handleSubmit = async () => {
     setLoading(true);
 
@@ -96,24 +96,24 @@ export default function BookingWizard() {
           phone,
           bookings,
           total,
-          location
+          location: customLocation || location
         })
       });
 
       if (res.ok) {
         alert("Booking sent successfully!");
       } else {
-        alert("Something went wrong. Please try again.");
+        alert("Failed to send booking. Please try again.");
       }
     } catch (err) {
       console.error(err);
-      alert("Error sending booking.");
+      alert("Something went wrong.");
     } finally {
       setLoading(false);
     }
   };
 
-  // ---------------- STYLES ----------------
+  // ---------------- YOUR ORIGINAL STYLES PRESERVED ----------------
   const inputStyle = {
     width: "100%",
     padding: "16px",
@@ -132,11 +132,65 @@ export default function BookingWizard() {
     boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
   });
 
+  // ---------------- RENDER ----------------
   return (
     <div style={{ maxWidth: "1100px", margin: "40px auto", padding: "20px" }}>
 
-      {/* ---------------- STEP HEADER ---------------- */}
-      <h2 style={{ fontSize: "28px" }}>Step {step} of 5</h2>
+      {/* ---------------- PROGRESS BAR (RESTORED) ---------------- */}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        marginBottom: "30px"
+      }}>
+        {["Experience", "Boat", "Duration", "Location", "Details"].map((label, i) => {
+          const stepNum = i + 1;
+          const active = step === stepNum;
+          const complete = step > stepNum;
+
+          return (
+            <div key={label} style={{ flex: 1, textAlign: "center", position: "relative" }}>
+              {i !== 0 && (
+                <div style={{
+                  position: "absolute",
+                  top: "18px",
+                  left: "-50%",
+                  width: "100%",
+                  height: "2px",
+                  background: complete ? "#0f2f4f" : "#ddd"
+                }} />
+              )}
+
+              <div style={{
+                width: "36px",
+                height: "36px",
+                margin: "0 auto",
+                borderRadius: "50%",
+                background: active || complete ? "#0f2f4f" : "#fff",
+                color: active || complete ? "#fff" : "#999",
+                border: "2px solid #0f2f4f",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: "600"
+              }}>
+                {stepNum}
+              </div>
+
+              <div style={{
+                fontSize: "13px",
+                marginTop: "6px",
+                color: active ? "#0f2f4f" : "#777"
+              }}>
+                {label}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>
+        Step {step} of 5
+      </h2>
 
       {/* ---------------- STEP 1 ---------------- */}
       {step === 1 && (
@@ -188,7 +242,7 @@ export default function BookingWizard() {
         );
       })()}
 
-      {/* ---------------- STEP 3 (UPDATED) ---------------- */}
+      {/* ---------------- STEP 3 ---------------- */}
       {step === 3 && (
         <>
           <h3>Duration</h3>
@@ -214,9 +268,7 @@ export default function BookingWizard() {
               min="2"
               max="31"
               value={bookings[0].days}
-              onChange={(e) =>
-                updateBoat(0, "days", Number(e.target.value))
-              }
+              onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
               style={inputStyle}
             />
           )}
@@ -240,7 +292,7 @@ export default function BookingWizard() {
         </>
       )}
 
-      {/* ---------------- STEP 5 (EMAIL + REQUEST BOOKING) ---------------- */}
+      {/* ---------------- STEP 5 ---------------- */}
       {step === 5 && (
         <>
           <h3>Details</h3>
@@ -249,7 +301,6 @@ export default function BookingWizard() {
           <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
           <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
 
-          {/* REQUEST BOOKING BUTTON (CONNECTED TO BACKEND) */}
           <button
             onClick={handleSubmit}
             disabled={loading}
@@ -270,7 +321,7 @@ export default function BookingWizard() {
         </>
       )}
 
-      {/* ---------------- NAVIGATION ---------------- */}
+      {/* ---------------- NAVIGATION (UNCHANGED) ---------------- */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
