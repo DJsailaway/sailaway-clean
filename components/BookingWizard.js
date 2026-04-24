@@ -347,11 +347,24 @@ export default function BookingWizard() {
             {/* STEP 5 */}
 {step === 5 && (
   <>
-    <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-    <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-    <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+    <input
+      style={inputStyle}
+      placeholder="Name"
+      onChange={(e) => setName(e.target.value)}
+    />
 
-    {/* REQUEST BOOKING BUTTON */}
+    <input
+      style={inputStyle}
+      placeholder="Phone"
+      onChange={(e) => setPhone(e.target.value)}
+    />
+
+    <input
+      style={inputStyle}
+      placeholder="Email"
+      onChange={(e) => setEmail(e.target.value)}
+    />
+
     <button
       style={{
         width: "100%",
@@ -366,7 +379,33 @@ export default function BookingWizard() {
         cursor: "pointer",
         boxShadow: "0 6px 16px rgba(15,47,79,0.25)"
       }}
-      onClick={() => alert("Booking request sent")}
+      onClick={async () => {
+        try {
+          const res = await fetch("/api/bookings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              phone,
+              bookings,
+              total,
+              location: customLocation || location
+            })
+          });
+
+          if (res.ok) {
+            alert("Booking request sent successfully!");
+          } else {
+            alert("Failed to send booking. Please try again.");
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Something went wrong sending the booking.");
+        }
+      }}
     >
       Request Booking
     </button>
