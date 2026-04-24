@@ -108,7 +108,7 @@ export default function BookingWizard() {
         paddingBottom: "100px"
       }}>
 
-        {/* MAIN */}
+        {/* ---------------- MAIN ---------------- */}
         <div style={{
           flex: 1,
           background: "#fff",
@@ -117,7 +117,7 @@ export default function BookingWizard() {
           boxShadow: "0 10px 40px rgba(0,0,0,0.08)"
         }}>
 
-          {/* PROGRESS BAR */}
+          {/* ---------------- PROGRESS BAR (UNCHANGED STYLE) ---------------- */}
           <div style={{
             display: "flex",
             justifyContent: "space-between",
@@ -173,7 +173,7 @@ export default function BookingWizard() {
             Step {step} of 5
           </h2>
 
-          {/* STEP 1 */}
+          {/* ---------------- STEP 1 (NO NEXT BUTTON) ---------------- */}
           {step === 1 && (
             <div style={{ display: "grid", gap: "15px" }}>
               {Object.keys(INTENT_MAP).map((key) => (
@@ -181,12 +181,16 @@ export default function BookingWizard() {
                   key={key}
                   onClick={() => {
                     setIntent(key);
+
                     const category = INTENT_MAP[key];
                     const copy = [...bookings];
+
                     copy[0].category = category;
                     copy[0].boat = CATEGORIES[category][0];
+
                     setBookings(copy);
-                    next();
+
+                    setStep(2); // auto advance
                   }}
                   style={cardStyle(intent === key)}
                 >
@@ -196,7 +200,7 @@ export default function BookingWizard() {
             </div>
           )}
 
-          {/* STEP 2 */}
+          {/* ---------------- STEP 2 (NO NEXT BUTTON) ---------------- */}
           {step === 2 && (() => {
             const category = INTENT_MAP[intent];
             const boats = CATEGORIES[category];
@@ -208,7 +212,7 @@ export default function BookingWizard() {
                     key={boat}
                     onClick={() => {
                       updateBoat(0, "boat", boat);
-                      next();
+                      setStep(3); // auto advance
                     }}
                     style={cardStyle(bookings[0].boat === boat)}
                   >
@@ -219,26 +223,48 @@ export default function BookingWizard() {
             );
           })()}
 
-          {/* STEP 3 */}
+          {/* ---------------- STEP 3 (RESTORED ORIGINAL + NEXT) ---------------- */}
           {step === 3 && (
             <>
               <h3>Duration</h3>
 
-              <button onClick={() => updateBoat(0, "isMultiDay", false)}>Hourly / Day</button>
-              <button onClick={() => updateBoat(0, "isMultiDay", true)}>Multi-day</button>
+              <select
+                value={bookings[0].duration}
+                onChange={(e) => updateBoat(0, "duration", e.target.value)}
+                style={inputStyle}
+              >
+                <option>1 hour</option>
+                <option>2 hours</option>
+                <option>Half day (4 hours)</option>
+                <option>Full day (8 hours)</option>
+              </select>
 
-              {!bookings[0].isMultiDay && (
-                <select
-                  value={bookings[0].duration}
-                  onChange={(e) => updateBoat(0, "duration", e.target.value)}
-                  style={inputStyle}
+              <div style={{ marginBottom: "12px" }}>
+                <button
+                  onClick={() => updateBoat(0, "isMultiDay", false)}
+                  style={{
+                    marginRight: "10px",
+                    padding: "10px 14px",
+                    borderRadius: "10px",
+                    border: !bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
+                    background: "#fff"
+                  }}
                 >
-                  <option>1 hour</option>
-                  <option>2 hours</option>
-                  <option>Half day (4 hours)</option>
-                  <option>Full day (8 hours)</option>
-                </select>
-              )}
+                  Hourly / Day
+                </button>
+
+                <button
+                  onClick={() => updateBoat(0, "isMultiDay", true)}
+                  style={{
+                    padding: "10px 14px",
+                    borderRadius: "10px",
+                    border: bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
+                    background: "#fff"
+                  }}
+                >
+                  Multi-day
+                </button>
+              </div>
 
               {bookings[0].isMultiDay && (
                 <input
@@ -246,53 +272,64 @@ export default function BookingWizard() {
                   min="2"
                   max="31"
                   value={bookings[0].days}
-                  onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
+                  onChange={(e) =>
+                    updateBoat(0, "days", Number(e.target.value))
+                  }
                   style={inputStyle}
                 />
               )}
             </>
           )}
 
-          {/* STEP 4 */}
+          {/* ---------------- STEP 4 (NEXT REQUIRED) ---------------- */}
           {step === 4 && (
             <>
               <h3>Location</h3>
 
               {Object.keys(PRICING.locations).map((loc) => (
-                <button key={loc} onClick={() => setLocation(loc)}>
+                <button
+                  key={loc}
+                  onClick={() => setLocation(loc)}
+                  style={cardStyle(location === loc)}
+                >
                   {loc}
                 </button>
               ))}
 
               {location === "Other" && (
                 <input
+                  style={inputStyle}
                   value={customLocation}
                   onChange={(e) => setCustomLocation(e.target.value)}
-                  style={inputStyle}
                 />
               )}
             </>
           )}
 
-          {/* STEP 5 */}
+          {/* ---------------- STEP 5 ---------------- */}
           {step === 5 && (
             <>
-              <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-              <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-              <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+              <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
+              <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+              <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
             </>
           )}
 
-          {/* BACK BUTTON ONLY */}
-          {step > 1 && (
-            <button onClick={back} style={{ marginTop: "20px" }}>
-              Back
-            </button>
+          {/* ---------------- NAVIGATION (ONLY STEP 3–4 USE IT) ---------------- */}
+          {(step === 3 || step === 4) && (
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "25px"
+            }}>
+              {step > 1 && <button onClick={back}>Back</button>}
+              <button onClick={next}>Next</button>
+            </div>
           )}
 
         </div>
 
-        {/* SIDE TOTAL */}
+        {/* ---------------- SUMMARY ---------------- */}
         <div style={{
           width: "300px",
           background: "#0f2f4f",
@@ -306,7 +343,7 @@ export default function BookingWizard() {
 
       </div>
 
-      {/* STICKY BAR */}
+      {/* ---------------- STICKY BAR ---------------- */}
       <div style={{
         position: "fixed",
         bottom: 0,
