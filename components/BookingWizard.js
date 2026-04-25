@@ -32,8 +32,8 @@ const CATEGORIES = {
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-  duration: "2 hours",
-  isMultiDay: false,
+  duration: "2 Hours",
+  durationType: "hourly", // ✅ NEW
   days: 7
 });
 
@@ -50,17 +50,17 @@ export default function BookingWizard() {
   const [email, setEmail] = useState("");
 
   // ---------------- PRICING ----------------
-  const calcBoatPrice = (b) => {
-    const p = PRICING.boats?.[b.boat];
-    if (!p) return 0;
+const calcBoatPrice = (b) => {
+  const p = PRICING.boats?.[b.boat];
+  if (!p) return 0;
 
-    if (b.isMultiDay) {
-      if (b.days <= 7) return p.multiDay?.[b.days] || 0;
-      return (p.multiDay?.[7] || 0) + (b.days - 7) * p.extraDay;
-    }
+  if (b.durationType === "multi") {
+    if (b.days <= 7) return p.multiDay?.[b.days] || 0;
+    return (p.multiDay?.[7] || 0) + (b.days - 7) * p.extraDay;
+  }
 
-    return p.hourly?.[b.duration] || p.day?.[b.duration] || 0;
-  };
+  return p.hourly?.[b.duration] || p.day?.[b.duration] || 0;
+};
 
   const deliveryFee = PRICING.locations?.[location] || 0;
 
