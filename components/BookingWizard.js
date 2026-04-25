@@ -29,11 +29,28 @@ const CATEGORIES = {
   ]
 };
 
+// ---------------- PRICE KEYS (NEW SAFE LAYER) ----------------
+const DURATION_OPTIONS = [
+  { label: "1 Hour", key: "1h" },
+  { label: "2 Hours", key: "2h" },
+  { label: "Half Day (4 Hours)", key: "half" },
+  { label: "Full Day (8 Hours)", key: "full" }
+];
+
+// ---------------- CREATE BOAT ----------------
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-  duration: "2 Hours",
-  durationType: "hourly", // ✅ NEW
+
+  // UI state
+  durationType: "hourly",
+
+  // UI label (safe default)
+  durationLabel: "2 Hours",
+
+  // INTERNAL pricing key (IMPORTANT FIX)
+  durationKey: "2h",
+
   days: 7
 });
 
@@ -49,18 +66,18 @@ export default function BookingWizard() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  // ---------------- PRICING ----------------
-const calcBoatPrice = (b) => {
-  const p = PRICING.boats?.[b.boat];
-  if (!p) return 0;
+  // ---------------- PRICING (ROBUST VERSION) ----------------
+  const calcBoatPrice = (b) => {
+    const p = PRICING.boats?.[b.boat];
+    if (!p) return 0;
 
-  if (b.durationType === "multi") {
-    if (b.days <= 7) return p.multiDay?.[b.days] || 0;
-    return (p.multiDay?.[7] || 0) + (b.days - 7) * p.extraDay;
-  }
+    if (b.durationType === "multi") {
+      if (b.days <= 7) return p.multiDay?.[b.days] || 0;
+      return (p.multiDay?.[7] || 0) + (b.days - 7) * p.extraDay;
+    }
 
-  return p.hourly?.[b.duration] || p.day?.[b.duration] || 0;
-};
+    return p.hourly?.[b.durationKey] || 0;
+  };
 
   const deliveryFee = PRICING.locations?.[location] || 0;
 
@@ -76,7 +93,6 @@ const calcBoatPrice = (b) => {
   };
 
   const next = () => setStep((s) => Math.min(5, s + 1));
-  const back = () => setStep((s) => Math.max(1, s - 1));
 
   // ---------------- STYLES ----------------
   const inputStyle = {
@@ -98,497 +114,159 @@ const calcBoatPrice = (b) => {
     boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
   });
 
-  // ---------------- ANIMATION WRAPPER ----------------
-  const stepWrapper = {
-    opacity: 1,
-    transform: "translateY(0px)",
-    transition: "all 0.25s ease"
-  };
-
-  const buttonBase = {
-    padding: "14px 22px",
-    borderRadius: "14px",
-    fontSize: "16px",
-    fontWeight: 600,
-    cursor: "pointer",
-    transition: "all 0.2s ease"
-  };
-
-  const backButtonStyle = {
-    ...buttonBase,
-    background: "#fff",
-    border: "1px solid #ccc",
-    color: "#333"
-  };
-
-  const nextButtonStyle = {
-    ...buttonBase,
-    background: "#0f2f4f",
-    border: "none",
-    color: "#fff",
-    boxShadow: "0 6px 16px rgba(15,47,79,0.25)"
-  };
-
   return (
     <>
-      <div style={{
-        display: "flex",
-        gap: "20px",
-        maxWidth: "1200px",
-        margin: "40px auto",
-        paddingBottom: "110px"
-      }}>
+      <div style={{ display: "flex", gap: "20px", maxWidth: "1200px", margin: "40px auto" }}>
 
-        {/* ---------------- MAIN ---------------- */}
-        <div style={{
-          flex: 1,
-          background: "#fff",
-          padding: "40px",
-          borderRadius: "18px",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.08)"
-        }}>
+        <div style={{ flex: 1, background: "#fff", padding: "40px", borderRadius: "18px" }}>
 
-          {/* PROGRESS BAR (UNCHANGED) */}
-          <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "30px"
-          }}>
-            {["Experience", "Boat", "Duration", "Location", "Details"].map((label, i) => {
-              const stepNum = i + 1;
-              const active = step === stepNum;
-              const complete = step > stepNum;
-
-              return (
-                <div key={label} style={{ flex: 1, textAlign: "center", position: "relative" }}>
-                  {i !== 0 && (
-                    <div style={{
-                      position: "absolute",
-                      top: "18px",
-                      left: "-50%",
-                      width: "100%",
-                      height: "2px",
-                      background: complete ? "#0f2f4f" : "#ddd"
-                    }} />
-                  )}
-
-                  <div style={{
-                    width: "36px",
-                    height: "36px",
-                    margin: "0 auto",
-                    borderRadius: "50%",
-                    background: active || complete ? "#0f2f4f" : "#fff",
-                    color: active || complete ? "#fff" : "#999",
-                    border: "2px solid #0f2f4f",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: "600"
-                  }}>
-                    {stepNum}
-                  </div>
-
-                  <div style={{
-                    fontSize: "13px",
-                    marginTop: "6px",
-                    color: active ? "#0f2f4f" : "#777"
-                  }}>
-                    {label}
-                  </div>
+          {/* STEP 1 */}
+          {step === 1 && (
+            <div style={{ display: "grid", gap: "15px" }}>
+              {Object.keys(INTENT_MAP).map((key) => (
+                <div
+                  key={key}
+                  onClick={() => {
+                    setIntent(key);
+                    const category = INTENT_MAP[key];
+                    const copy = [...bookings];
+                    copy[0].category = category;
+                    copy[0].boat = CATEGORIES[category][0];
+                    setBookings(copy);
+                    setStep(2);
+                  }}
+                  style={cardStyle(intent === key)}
+                >
+                  <strong>{key}</strong>
                 </div>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
 
-          <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>
-            Step {step} of 5
-          </h2>
+          {/* STEP 2 */}
+          {step === 2 && (() => {
+            const category = INTENT_MAP[intent];
+            const boats = CATEGORIES[category];
 
-          {/* ---------------- STEP CONTENT WITH FADE ---------------- */}
-          <div style={stepWrapper}>
-
-            {/* STEP 1 */}
-            {step === 1 && (
+            return (
               <div style={{ display: "grid", gap: "15px" }}>
-                {Object.keys(INTENT_MAP).map((key) => (
+                {boats.map((boat) => (
                   <div
-                    key={key}
+                    key={boat}
                     onClick={() => {
-                      setIntent(key);
-
-                      const category = INTENT_MAP[key];
-                      const copy = [...bookings];
-
-                      copy[0].category = category;
-                      copy[0].boat = CATEGORIES[category][0];
-
-                      setBookings(copy);
-
-                      setStep(2);
+                      updateBoat(0, "boat", boat);
+                      setStep(3);
                     }}
-                    style={cardStyle(intent === key)}
+                    style={cardStyle(bookings[0].boat === boat)}
                   >
-                    <strong>{key}</strong>
+                    {boat}
                   </div>
                 ))}
               </div>
-            )}
+            );
+          })()}
 
-            {/* STEP 2 */}
-            {step === 2 && (() => {
-              const category = INTENT_MAP[intent];
-              const boats = CATEGORIES[category];
+          {/* STEP 3 */}
+          {step === 3 && (
+            <>
+              <h3>Duration</h3>
 
-              return (
-                <div style={{ display: "grid", gap: "15px" }}>
-                  {boats.map((boat) => (
-                    <div
-                      key={boat}
+              {/* TYPE */}
+              <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                <button
+                  onClick={() =>
+                    updateBoat(0, "durationType", "hourly")
+                  }
+                >
+                  Hourly
+                </button>
+
+                <button
+                  onClick={() =>
+                    updateBoat(0, "durationType", "multi")
+                  }
+                >
+                  Multi-Day
+                </button>
+              </div>
+
+              {/* HOURLY */}
+              {bookings[0].durationType === "hourly" && (
+                <div style={{ display: "grid", gap: "10px" }}>
+                  {DURATION_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.key}
                       onClick={() => {
-                        updateBoat(0, "boat", boat);
-                        setStep(3);
+                        updateBoat(0, "durationLabel", opt.label);
+                        updateBoat(0, "durationKey", opt.key);
                       }}
-                      style={cardStyle(bookings[0].boat === boat)}
                     >
-                      {boat}
-                    </div>
+                      {opt.label}
+                    </button>
                   ))}
                 </div>
-              );
-            })()}
+              )}
 
-            {/* STEP 3 */}
-{step === 3 && (
-  <>
-    <h3 style={{ fontSize: "26px", marginBottom: "12px" }}>
-      Duration
-    </h3>
+              {/* MULTI */}
+              {bookings[0].durationType === "multi" && (
+                <input
+                  type="number"
+                  value={bookings[0].days}
+                  onChange={(e) =>
+                    updateBoat(0, "days", Number(e.target.value))
+                  }
+                />
+              )}
+            </>
+          )}
 
-    {/* TYPE SELECT */}
-    <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-      <button
-        onClick={() => {
-          updateBoat(0, "durationType", "hourly");
-          updateBoat(0, "days", 7);
-        }}
-        style={{
-          flex: 1,
-          padding: "14px",
-          borderRadius: "12px",
-          border:
-            bookings[0].durationType === "hourly"
-              ? "2px solid #0f2f4f"
-              : "1px solid #ccc",
-          background: "#fff",
-          fontWeight: 600
-        }}
-      >
-        Hourly / Single Day
-      </button>
+          {/* STEP 4 */}
+          {step === 4 && (
+            <>
+              {Object.keys(PRICING.locations).map((loc) => (
+                <button key={loc} onClick={() => setLocation(loc)}>
+                  {loc}
+                </button>
+              ))}
+            </>
+          )}
 
-      <button
-        onClick={() => {
-          updateBoat(0, "durationType", "multi");
-          updateBoat(0, "duration", "Full Day (8 Hours)");
-        }}
-        style={{
-          flex: 1,
-          padding: "14px",
-          borderRadius: "12px",
-          border:
-            bookings[0].durationType === "multi"
-              ? "2px solid #0f2f4f"
-              : "1px solid #ccc",
-          background: "#fff",
-          fontWeight: 600
-        }}
-      >
-        Multi-Day
-      </button>
-    </div>
+          {/* STEP 5 */}
+          {step === 5 && (
+            <>
+              <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
+              <input placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+              <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
 
-    {/* HOURLY OPTIONS */}
-    {bookings[0].durationType === "hourly" && (
-      <div style={{ display: "grid", gap: "10px" }}>
-        {[
-          "1 Hour",
-          "2 Hours",
-          "Half Day (4 Hours)",
-          "Full Day (8 Hours)"
-        ].map((opt) => (
-          <button
-            key={opt}
-            onClick={() => updateBoat(0, "duration", opt)}
-            style={{
-              padding: "16px",
-              borderRadius: "12px",
-              border:
-                bookings[0].duration === opt
-                  ? "2px solid #0f2f4f"
-                  : "1px solid #ddd",
-              background:
-                bookings[0].duration === opt
-                  ? "#eef4f8"
-                  : "#f8fafc",
-              fontSize: "16px",
-              fontWeight: 500,
-              cursor: "pointer"
-            }}
-          >
-            {opt}
-          </button>
-        ))}
-      </div>
-    )}
-
-    {/* MULTI-DAY SELECTOR */}
-    {bookings[0].durationType === "multi" && (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px"
-        }}
-      >
-        {/* MINUS */}
-        <button
-          onClick={() =>
-            updateBoat(
-              0,
-              "days",
-              Math.max(2, bookings[0].days - 1)
-            )
-          }
-          style={{
-            width: "60px",
-            height: "60px",
-            fontSize: "28px",
-            borderRadius: "12px",
-            border: "1px solid #ccc",
-            background: "#fff"
-          }}
-        >
-          −
-        </button>
-
-        {/* INPUT */}
-        <input
-          type="number"
-          min="2"
-          max="31"
-          value={bookings[0].days}
-          onChange={(e) =>
-            updateBoat(
-              0,
-              "days",
-              Math.min(31, Math.max(2, Number(e.target.value)))
-            )
-          }
-          style={{
-            flex: 1,
-            textAlign: "center",
-            padding: "16px",
-            fontSize: "20px",
-            borderRadius: "12px",
-            border: "1px solid #ddd"
-          }}
-        />
-
-        {/* PLUS */}
-        <button
-          onClick={() =>
-            updateBoat(
-              0,
-              "days",
-              Math.min(31, bookings[0].days + 1)
-            )
-          }
-          style={{
-            width: "60px",
-            height: "60px",
-            fontSize: "28px",
-            borderRadius: "12px",
-            border: "1px solid #ccc",
-            background: "#fff"
-          }}
-        >
-          +
-        </button>
-      </div>
-    )}
-  </>
-)}
-
-            {/* STEP 4 */}
-            {step === 4 && (
-              <>
-                <h3>Location</h3>
-
-                {Object.keys(PRICING.locations).map((loc) => (
-                  <button
-                    key={loc}
-                    onClick={() => setLocation(loc)}
-                    style={cardStyle(location === loc)}
-                  >
-                    {loc}
-                  </button>
-                ))}
-
-                {location === "Other" && (
-                  <input
-                    style={inputStyle}
-                    value={customLocation}
-                    onChange={(e) => setCustomLocation(e.target.value)}
-                  />
-                )}
-              </>
-            )}
-
-            {/* STEP 5 */}
-{step === 5 && (
-  <>
-    <input
-      style={inputStyle}
-      placeholder="Name"
-      onChange={(e) => setName(e.target.value)}
-    />
-
-    <input
-      style={inputStyle}
-      placeholder="Phone"
-      onChange={(e) => setPhone(e.target.value)}
-    />
-
-    <input
-      style={inputStyle}
-      placeholder="Email"
-      onChange={(e) => setEmail(e.target.value)}
-    />
-
-    <button
-      style={{
-        width: "100%",
-        marginTop: "20px",
-        padding: "16px",
-        fontSize: "18px",
-        borderRadius: "14px",
-        background: "#0f2f4f",
-        color: "#fff",
-        border: "none",
-        fontWeight: 600,
-        cursor: "pointer",
-        boxShadow: "0 6px 16px rgba(15,47,79,0.25)"
-      }}
-      onClick={async () => {
-        try {
-          const res = await fetch("/api/bookings", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              name,
-              email,
-              phone,
-              bookings,
-              total,
-              location: customLocation || location
-            })
-          });
-
-          if (res.ok) {
-            alert("Booking request sent successfully!");
-          } else {
-            alert("Failed to send booking. Please try again.");
-          }
-        } catch (err) {
-          console.error(err);
-          alert("Something went wrong sending the booking.");
-        }
-      }}
-    >
-      Request Booking
-    </button>
-  </>
-)}
-
-            {step >= 3 && step < 5 && (
-              <button onClick={next} style={nextButtonStyle}>
-                Next →
+              <button
+                onClick={async () => {
+                  await fetch("/api/bookings", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      name,
+                      email,
+                      phone,
+                      bookings,
+                      total,
+                      location: customLocation || location
+                    })
+                  });
+                }}
+              >
+                Request Booking
               </button>
-            )}
-          </div>
+            </>
+          )}
 
+          {step < 5 && (
+            <button onClick={next}>Next →</button>
+          )}
         </div>
 
-        {/* ---------------- TOTAL ---------------- */}
-        <div style={{
-          width: "300px",
-          background: "#0f2f4f",
-          color: "#fff",
-          padding: "20px",
-          borderRadius: "16px"
-        }}>
-          <h3>Total</h3>
-          <div style={{ fontSize: "32px" }}>£{total}</div>
+        <div style={{ width: "300px", background: "#0f2f4f", color: "#fff" }}>
+          £{total}
         </div>
-
-      </div>
-
-      {/* STICKY BAR */}
-      <div style={{
-        position: "fixed",
-        bottom: 0,
-        width: "100%",
-        background: "#0f2f4f",
-        color: "#fff",
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "16px"
-      }}>
-        <div>£{total}</div>
-<button
-  onClick={async () => {
-    if (step < 3) return;
-
-    if (step < 5) {
-      next();
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          bookings,
-          total,
-          location: customLocation || location
-        })
-      });
-
-      if (res.ok) {
-        alert("Booking request sent successfully!");
-      } else {
-        alert("Failed to send booking.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Something went wrong.");
-    }
-  }}
->
-  {step < 3
-    ? "Select an option"
-    : step === 5
-    ? "Request Booking"
-    : "Continue →"}
-</button>
       </div>
     </>
   );
