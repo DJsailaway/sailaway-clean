@@ -260,44 +260,69 @@ export default function BookingWizard() {
             {/* STEP 3 */}
 {step === 3 && (
   <>
-    <h3 style={{ fontSize: "26px" }}>Duration</h3>
+    <h3 style={{ fontSize: "26px", marginBottom: "10px" }}>
+      Duration
+    </h3>
 
-    {/* SINGLE DAY OPTIONS */}
-    <select
-      value={bookings[0].duration}
-      onChange={(e) => updateBoat(0, "duration", e.target.value)}
-      style={{
-        width: "100%",
-        padding: "16px",
-        fontSize: "18px",
-        borderRadius: "12px",
-        border: "1px solid #ddd",
-        marginBottom: "15px"
-      }}
-    >
-      <option>1 Hour</option>
-      <option>2 Hours</option>
-      <option>Half Day (4 Hours)</option>
-      <option>Full Day (8 Hours)</option>
-    </select>
+    {/* TYPE SELECT */}
+    <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
+      <button
+        onClick={() => updateBoat(0, "isMultiDay", false)}
+        style={{
+          flex: 1,
+          padding: "14px",
+          borderRadius: "12px",
+          border: !bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
+          background: "#fff",
+          fontWeight: 600
+        }}
+      >
+        Hourly / Single Day
+      </button>
 
-    {/* MULTI DAY BUTTON */}
-    <div style={{ marginBottom: "12px" }}>
       <button
         onClick={() => updateBoat(0, "isMultiDay", true)}
         style={{
-          padding: "12px 16px",
+          flex: 1,
+          padding: "14px",
           borderRadius: "12px",
           border: bookings[0].isMultiDay ? "2px solid #0f2f4f" : "1px solid #ccc",
           background: "#fff",
           fontWeight: 600
         }}
       >
-        Multi Day
+        Multi-Day
       </button>
     </div>
 
-    {/* MULTI DAY INPUT (DEFAULT 7) */}
+    {/* HOURLY OPTIONS */}
+    {!bookings[0].isMultiDay && (
+      <div style={{ display: "grid", gap: "10px" }}>
+        {["1 Hour", "2 Hours", "Half Day (4 Hours)", "Full Day (8 Hours)"].map((opt) => (
+          <button
+            key={opt}
+            onClick={() => updateBoat(0, "duration", opt)}
+            style={{
+              padding: "16px",
+              borderRadius: "12px",
+              border:
+                bookings[0].duration === opt
+                  ? "2px solid #0f2f4f"
+                  : "1px solid #ddd",
+              background:
+                bookings[0].duration === opt ? "#eef4f8" : "#f8fafc",
+              fontSize: "16px",
+              fontWeight: 500,
+              cursor: "pointer"
+            }}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {/* MULTI DAY INPUT */}
     {bookings[0].isMultiDay && (
       <input
         type="number"
