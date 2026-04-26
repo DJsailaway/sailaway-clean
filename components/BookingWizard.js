@@ -312,19 +312,43 @@ export default function BookingWizard() {
             )}
 
             {/* STEP 4 */}
-            {step === 4 && (
-              <>
-                {Object.keys(PRICING.locations).map((loc) => (
-                  <div
-                    key={loc}
-                    onClick={() => setLocation(loc)}
-                    style={cardStyle(location === loc)}
-                  >
-                    {loc}
-                  </div>
-                ))}
-              </>
-            )}
+{/* STEP 4 */}
+{step === 4 && (
+  <>
+    <h3 style={{ fontSize: "26px", marginBottom: "12px" }}>
+      Location
+    </h3>
+
+    {/* LOCATION BUTTONS */}
+    <div style={{ display: "grid", gap: "12px" }}>
+      {[
+        ...Object.keys(PRICING.locations),
+        "Other"
+      ].map((loc) => (
+        <div
+          key={loc}
+          onClick={() => setLocation(loc)}
+          style={cardStyle(location === loc)}
+        >
+          {loc}
+        </div>
+      ))}
+    </div>
+
+    {/* OTHER TEXT INPUT */}
+    {location === "Other" && (
+      <input
+        style={{
+          ...inputStyle,
+          marginTop: "15px"
+        }}
+        placeholder="Please enter your location"
+        value={customLocation}
+        onChange={(e) => setCustomLocation(e.target.value)}
+      />
+    )}
+  </>
+)}
 
             {/* STEP 5 */}
             {step === 5 && (
