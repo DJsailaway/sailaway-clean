@@ -260,61 +260,91 @@ export default function BookingWizard() {
               );
             })()}
 
-            {/* STEP 3 (kept earlier logic intact) */}
-            {step === 3 && (
-              <>
-                <h3 style={{ fontSize: "26px" }}>Duration</h3>
+{/* STEP 3 (kept earlier logic intact) */}
+{step === 3 && (
+  <>
+    <h3 style={{ fontSize: "26px" }}>Duration</h3>
 
-<div style={{
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "10px",
-  marginBottom: "20px"
-}}>
-                  <button
-                    onClick={() => updateBoat(0, "durationType", "hourly")}
-                    style={nextButtonStyle}
-                  >
-                    Hourly
-                  </button>
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "10px",
+      marginBottom: "20px"
+    }}>
 
-                  <button
-                    onClick={() => updateBoat(0, "durationType", "multi")}
-                    style={nextButtonStyle}
-                  >
-                    Multi-Day
-                  </button>
-                </div>
+      {/* HOURLY */}
+      <button
+        onClick={() => updateBoat(0, "durationType", "hourly")}
+        style={{
+          width: "100%",
+          padding: "16px",
+          borderRadius: "12px",
+          border: bookings[0].durationType === "hourly"
+            ? "2px solid #0f2f4f"
+            : "1px solid #ccc",
+          background: bookings[0].durationType === "hourly"
+            ? "#eef4f8"
+            : "#fff",
+          fontWeight: 600,
+          fontSize: "16px",
+          cursor: "pointer"
+        }}
+      >
+        Hourly
+      </button>
 
-                {bookings[0].durationType === "hourly" && (
-                  <div style={{ display: "grid", gap: "10px" }}>
-                    {DURATION_OPTIONS.map((opt) => (
-                      <button
-                        key={opt.key}
-                        onClick={() => {
-                          updateBoat(0, "durationKey", opt.key);
-                          updateBoat(0, "durationLabel", opt.label);
-                        }}
-                        style={cardStyle(bookings[0].durationKey === opt.key)}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
+      {/* MULTI-DAY */}
+      <button
+        onClick={() => updateBoat(0, "durationType", "multi")}
+        style={{
+          width: "100%",
+          padding: "16px",
+          borderRadius: "12px",
+          border: bookings[0].durationType === "multi"
+            ? "2px solid #0f2f4f"
+            : "1px solid #ccc",
+          background: bookings[0].durationType === "multi"
+            ? "#eef4f8"
+            : "#fff",
+          fontWeight: 600,
+          fontSize: "16px",
+          cursor: "pointer"
+        }}
+      >
+        Multi-Day
+      </button>
 
-                {bookings[0].durationType === "multi" && (
-                  <input
-                    type="number"
-                    value={bookings[0].days}
-                    onChange={(e) =>
-                      updateBoat(0, "days", Number(e.target.value))
-                    }
-                    style={inputStyle}
-                  />
-                )}
-              </>
-            )}
+    </div>
+
+    {bookings[0].durationType === "hourly" && (
+      <div style={{ display: "grid", gap: "10px" }}>
+        {DURATION_OPTIONS.map((opt) => (
+          <button
+            key={opt.key}
+            onClick={() => {
+              updateBoat(0, "durationKey", opt.key);
+              updateBoat(0, "durationLabel", opt.label);
+            }}
+            style={cardStyle(bookings[0].durationKey === opt.key)}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {bookings[0].durationType === "multi" && (
+      <input
+        type="number"
+        value={bookings[0].days}
+        onChange={(e) =>
+          updateBoat(0, "days", Number(e.target.value))
+        }
+        style={inputStyle}
+      />
+    )}
+  </>
+)}
 
             {/* STEP 4 */}
 {/* STEP 4 */}
