@@ -328,7 +328,12 @@ export default function BookingWizard() {
                         })
                       });
                     }}
-                    style={{ ...nextButtonStyle, minWidth: "220px" }}
+                    style={{
+  ...nextButtonStyle,
+  flex: 1,
+  fontSize: "19px",
+  padding: "18px 26px"
+}}
                   >
                     Request Booking
                   </button>
