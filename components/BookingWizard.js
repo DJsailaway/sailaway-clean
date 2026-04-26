@@ -354,6 +354,33 @@ export default function BookingWizard() {
                 </button>
               </>
             )}
+              {/* ---------------- NAVIGATION ---------------- */}
+{step >= 3 && (
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "30px"
+  }}>
+    
+    {/* BACK */}
+    <button
+      onClick={back}
+      style={backButtonStyle}
+    >
+      ← Back
+    </button>
+
+    {/* NEXT (only for step 3 & 4) */}
+    {step < 5 && (
+      <button
+        onClick={next}
+        style={nextButtonStyle}
+      >
+        Next →
+      </button>
+    )}
+  </div>
+)}
 
           </div>
         </div>
