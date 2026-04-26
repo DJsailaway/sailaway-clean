@@ -448,34 +448,27 @@ export default function BookingWizard() {
   </>
 )}
 {/* ---------------- NAVIGATION ---------------- */}
-{step >= 2 && (
-<div style={{
-  display: "flex",
-  justifyContent: "space-between",
-  gap: "12px",
-  marginTop: "30px"
-}}>
 
-    {/* BACK (available from Step 2 onwards) */}
-<button
-  onClick={back}
-  style={{
-    ...backButtonStyle,
-    flex: 1,
-    width: "100%"
-  }}
->
-  ← Back
-</button>
-
-{/* NEXT only for Step 3 & 4 */}
-{step >= 3 && step < 5 && step !== 5 && (
+/* STEP 2: Back only */
+{step === 2 && (
   <div style={{
     display: "flex",
-    gap: "12px",
+    justifyContent: "flex-start",
     marginTop: "30px"
   }}>
-    
+    <button onClick={back} style={backButtonStyle}>
+      ← Back
+    </button>
+  </div>
+)}
+
+/* STEP 3: Back + Next */
+{step === 3 && (
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "30px"
+  }}>
     <button onClick={back} style={backButtonStyle}>
       ← Back
     </button>
@@ -483,12 +476,25 @@ export default function BookingWizard() {
     <button onClick={next} style={nextButtonStyle}>
       Next →
     </button>
-
   </div>
 )}
 
-          </div>
-        </div>
+/* STEP 4: Back + Next */
+{step === 4 && (
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "30px"
+  }}>
+    <button onClick={back} style={backButtonStyle}>
+      ← Back
+    </button>
+
+    <button onClick={next} style={nextButtonStyle}>
+      Next →
+    </button>
+  </div>
+)}
 
         {/* TOTAL */}
         <div style={{
