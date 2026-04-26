@@ -306,79 +306,81 @@ export default function BookingWizard() {
             </>
           )}
 
-{/* ---------------- NAVIGATION (SINGLE SOURCE OF TRUTH) ---------------- */}
+{/* ---------------- SAFE NAVIGATION SYSTEM ---------------- */}
 {step >= 2 && (
   <div
     style={{
       display: "flex",
-      justifyContent: "flex-start",
-      gap: "12px",
+      alignItems: "center",
       marginTop: "30px"
     }}
   >
-    {/* BACK (Step 2–5) */}
+    {/* BACK (Steps 2–5) */}
     <button
       onClick={back}
       style={{
         ...backButtonStyle,
-        flex: "0 0 140px"
+        width: "140px",
+        flexShrink: 0
       }}
     >
       ← Back
     </button>
 
-    {/* STEP 3 + 4 → NEXT */}
-    {step >= 3 && step < 5 && (
-      <button
-        onClick={next}
-        style={{
-          ...nextButtonStyle,
-          flex: 1
-        }}
-      >
-        Next →
-      </button>
-    )}
+    {/* RIGHT SIDE AREA */}
+    <div style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
 
-    {/* STEP 5 → SUBMIT (no duplicate back here!) */}
-    {step === 5 && (
-      <button
-        onClick={async () => {
-          try {
-            const res = await fetch("/api/bookings", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                name,
-                email,
-                phone,
-                bookings,
-                total,
-                location: customLocation || location
-              })
-            });
+      {/* STEP 3 + 4 → NEXT */}
+      {step >= 3 && step < 5 && (
+        <button
+          onClick={next}
+          style={{
+            ...nextButtonStyle,
+            width: "180px"
+          }}
+        >
+          Next →
+        </button>
+      )}
 
-            if (res.ok) {
-              alert("Booking request sent successfully!");
-            } else {
-              alert("Failed to send booking.");
+      {/* STEP 5 → SUBMIT */}
+      {step === 5 && (
+        <button
+          onClick={async () => {
+            try {
+              const res = await fetch("/api/bookings", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name,
+                  email,
+                  phone,
+                  bookings,
+                  total,
+                  location: customLocation || location
+                })
+              });
+
+              if (res.ok) {
+                alert("Booking request sent successfully!");
+              } else {
+                alert("Failed to send booking.");
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Something went wrong.");
             }
-          } catch (err) {
-            console.error(err);
-            alert("Something went wrong.");
-          }
-        }}
-        style={{
-          ...nextButtonStyle,
-          flex: 1,
-          fontSize: "18px"
-        }}
-      >
-        Request Booking
-      </button>
-    )}
+          }}
+          style={{
+            ...nextButtonStyle,
+            minWidth: "220px"
+          }}
+        >
+          Request Booking
+        </button>
+      )}
+
+    </div>
   </div>
 )}
 
