@@ -41,11 +41,9 @@ const DURATION_OPTIONS = [
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-
   durationType: "hourly",
   durationKey: "2h",
   durationLabel: "2 Hours",
-
   days: 7
 });
 
@@ -87,7 +85,7 @@ export default function BookingWizard() {
   const next = () => setStep((s) => Math.min(5, s + 1));
   const back = () => setStep((s) => Math.max(1, s - 1));
 
-  // ---------------- STYLES (UNCHANGED) ----------------
+  // ---------------- STYLES ----------------
   const inputStyle = {
     width: "100%",
     padding: "16px",
@@ -141,6 +139,7 @@ export default function BookingWizard() {
         paddingBottom: "110px"
       }}>
 
+        {/* LEFT */}
         <div style={{
           flex: 1,
           background: "#fff",
@@ -195,7 +194,7 @@ export default function BookingWizard() {
             );
           })()}
 
-          {/* STEP 3 (UNCHANGED UI) */}
+          {/* STEP 3 */}
           {step === 3 && (
             <>
               <h3 style={{ fontSize: "26px" }}>Duration</h3>
@@ -271,119 +270,64 @@ export default function BookingWizard() {
             </>
           )}
 
-          {/* STEP 5 */}
+          {/* STEP 5 (NO INTERNAL BUTTONS — FIXED) */}
           {step === 5 && (
             <>
               <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
               <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
               <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-
-              <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
-                <button onClick={back} style={{ ...backButtonStyle, flex: "0 0 120px" }}>
-                  ← Back
-                </button>
-
-                <button
-                  style={{ ...nextButtonStyle, flex: 1 }}
-                  onClick={async () => {
-                    await fetch("/api/bookings", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        name,
-                        email,
-                        phone,
-                        bookings,
-                        total,
-                        location: customLocation || location
-                      })
-                    });
-                  }}
-                >
-                  Request Booking
-                </button>
-              </div>
             </>
           )}
 
-{/* ---------------- SAFE NAVIGATION SYSTEM ---------------- */}
-{step >= 2 && (
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      marginTop: "30px"
-    }}
-  >
-    {/* BACK (Steps 2–5) */}
-    <button
-      onClick={back}
-      style={{
-        ...backButtonStyle,
-        width: "140px",
-        flexShrink: 0
-      }}
-    >
-      ← Back
-    </button>
+          {/* 🔒 LOCKED NAVIGATION SYSTEM */}
+          {step >= 2 && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "30px"
+            }}>
+              <button
+                onClick={back}
+                style={{ ...backButtonStyle, width: "140px", flexShrink: 0 }}
+              >
+                ← Back
+              </button>
 
-    {/* RIGHT SIDE AREA */}
-    <div style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
+              <div style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
+                {step >= 3 && step < 5 && (
+                  <button onClick={next} style={{ ...nextButtonStyle, width: "180px" }}>
+                    Next →
+                  </button>
+                )}
 
-      {/* STEP 3 + 4 → NEXT */}
-      {step >= 3 && step < 5 && (
-        <button
-          onClick={next}
-          style={{
-            ...nextButtonStyle,
-            width: "180px"
-          }}
-        >
-          Next →
-        </button>
-      )}
+                {step === 5 && (
+                  <button
+                    onClick={async () => {
+                      await fetch("/api/bookings", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name,
+                          email,
+                          phone,
+                          bookings,
+                          total,
+                          location: customLocation || location
+                        })
+                      });
+                    }}
+                    style={{ ...nextButtonStyle, minWidth: "220px" }}
+                  >
+                    Request Booking
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
 
-      {/* STEP 5 → SUBMIT */}
-      {step === 5 && (
-        <button
-          onClick={async () => {
-            try {
-              const res = await fetch("/api/bookings", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name,
-                  email,
-                  phone,
-                  bookings,
-                  total,
-                  location: customLocation || location
-                })
-              });
+        </div>
 
-              if (res.ok) {
-                alert("Booking request sent successfully!");
-              } else {
-                alert("Failed to send booking.");
-              }
-            } catch (err) {
-              console.error(err);
-              alert("Something went wrong.");
-            }
-          }}
-          style={{
-            ...nextButtonStyle,
-            minWidth: "220px"
-          }}
-        >
-          Request Booking
-        </button>
-      )}
-
-    </div>
-  </div>
-)}
-
+        {/* RIGHT TOTAL */}
         <div style={{
           width: "300px",
           background: "#0f2f4f",
@@ -394,6 +338,7 @@ export default function BookingWizard() {
           <h3>Total</h3>
           <div style={{ fontSize: "32px" }}>£{total}</div>
         </div>
+
       </div>
     </>
   );
