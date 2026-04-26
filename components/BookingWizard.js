@@ -311,7 +311,7 @@ export default function BookingWizard() {
   <div
     style={{
       display: "flex",
-      justifyContent: "space-between",
+      justifyContent: "flex-start",
       gap: "12px",
       marginTop: "30px"
     }}
