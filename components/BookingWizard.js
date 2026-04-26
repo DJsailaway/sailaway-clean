@@ -286,10 +286,14 @@ export default function BookingWizard() {
               alignItems: "center",
               marginTop: "30px"
             }}>
-              <button
-                onClick={back}
-                style={{ ...backButtonStyle, width: "140px", flexShrink: 0 }}
-              >
+<button
+  onClick={back}
+  style={{
+    ...backButtonStyle,
+    flex: "0 0 160px",
+    fontSize: "18px"
+  }}
+>
                 ← Back
               </button>
 
