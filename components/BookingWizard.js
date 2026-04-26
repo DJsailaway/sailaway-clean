@@ -297,7 +297,7 @@ export default function BookingWizard() {
                 ← Back
               </button>
 
-              <div style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
+              <div style={{ marginLeft: "auto", display: "flex", gap: "12px", minWidth: "420px" }}>
                 {step >= 3 && step < 5 && (
                   <button
   onClick={next}
