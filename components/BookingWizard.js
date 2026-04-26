@@ -306,22 +306,81 @@ export default function BookingWizard() {
             </>
           )}
 
-          {/* NAVIGATION (ONLY ONE SYSTEM) */}
-          {step === 3 && (
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
-              <button onClick={back} style={backButtonStyle}>Back</button>
-              <button onClick={next} style={nextButtonStyle}>Next</button>
-            </div>
-          )}
+{/* ---------------- NAVIGATION (SINGLE SOURCE OF TRUTH) ---------------- */}
+{step >= 2 && (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      gap: "12px",
+      marginTop: "30px"
+    }}
+  >
+    {/* BACK (Step 2–5) */}
+    <button
+      onClick={back}
+      style={{
+        ...backButtonStyle,
+        flex: "0 0 140px"
+      }}
+    >
+      ← Back
+    </button>
 
-          {step === 4 && (
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
-              <button onClick={back} style={backButtonStyle}>Back</button>
-              <button onClick={next} style={nextButtonStyle}>Next</button>
-            </div>
-          )}
+    {/* STEP 3 + 4 → NEXT */}
+    {step >= 3 && step < 5 && (
+      <button
+        onClick={next}
+        style={{
+          ...nextButtonStyle,
+          flex: 1
+        }}
+      >
+        Next →
+      </button>
+    )}
 
-        </div>
+    {/* STEP 5 → SUBMIT (no duplicate back here!) */}
+    {step === 5 && (
+      <button
+        onClick={async () => {
+          try {
+            const res = await fetch("/api/bookings", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                phone,
+                bookings,
+                total,
+                location: customLocation || location
+              })
+            });
+
+            if (res.ok) {
+              alert("Booking request sent successfully!");
+            } else {
+              alert("Failed to send booking.");
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Something went wrong.");
+          }
+        }}
+        style={{
+          ...nextButtonStyle,
+          flex: 1,
+          fontSize: "18px"
+        }}
+      >
+        Request Booking
+      </button>
+    )}
+  </div>
+)}
 
         <div style={{
           width: "300px",
