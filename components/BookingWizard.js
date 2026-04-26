@@ -279,68 +279,87 @@ export default function BookingWizard() {
             </>
           )}
 
-          {/* 🔒 LOCKED NAVIGATION SYSTEM */}
-          {step >= 2 && (
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "30px"
-            }}>
-<button
-  onClick={back}
-  style={{
-    ...backButtonStyle,
-    flex: "0 0 160px",
-    fontSize: "18px"
-  }}
->
-                ← Back
-              </button>
+{/* 🔒 LOCKED NAVIGATION SYSTEM */}
+{step >= 2 && (
+  <div style={{
+    display: "flex",
+    alignItems: "center",
+    marginTop: "30px"
+  }}>
 
-              <div style={{ marginLeft: "auto", display: "flex", gap: "12px", minWidth: "420px" }}>
-                {step >= 3 && step < 5 && (
-                  <button
-  onClick={next}
-  style={{
-    ...nextButtonStyle,
-    flex: "0 0 240px",
-    fontSize: "18px",
-    padding: "18px 26px"
-  }}
->
-                    Next →
-                  </button>
-                )}
+    {/* BACK */}
+    <button
+      onClick={back}
+      style={{
+        ...backButtonStyle,
+        flex: "0 0 160px",
+        fontSize: "18px"
+      }}
+    >
+      ← Back
+    </button>
 
-                {step === 5 && (
-                  <button
-                    onClick={async () => {
-                      await fetch("/api/bookings", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          name,
-                          email,
-                          phone,
-                          bookings,
-                          total,
-                          location: customLocation || location
-                        })
-                      });
-                    }}
-                    style={{
-  ...nextButtonStyle,
-  flex: 1,
-  fontSize: "19px",
-  padding: "18px 26px"
-}}
-                  >
-                    Request Booking
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
+    {/* RIGHT SIDE */}
+    <div style={{
+      marginLeft: "auto",
+      display: "flex",
+      gap: "12px",
+      alignItems: "stretch",
+      width: "420px"
+    }}>
+
+      {/* NEXT (Step 3–4) */}
+      {step >= 3 && step < 5 && (
+        <button
+          onClick={next}
+          style={{
+            ...nextButtonStyle,
+            flex: 1,
+            fontSize: "18px",
+            padding: "18px 26px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          Next →
+        </button>
+      )}
+
+      {/* REQUEST (Step 5) */}
+      {step === 5 && (
+        <button
+          onClick={async () => {
+            await fetch("/api/bookings", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name,
+                email,
+                phone,
+                bookings,
+                total,
+                location: customLocation || location
+              })
+            });
+          }}
+          style={{
+            ...nextButtonStyle,
+            flex: 1,
+            fontSize: "19px",
+            padding: "18px 26px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          Request Booking
+        </button>
+      )}
+
+    </div>
+  </div>
+)}
 
         </div>
 
