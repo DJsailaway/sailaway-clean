@@ -382,33 +382,71 @@ export default function BookingWizard() {
 )}
 
             {/* STEP 5 */}
-            {step === 5 && (
-              <>
-                <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-                <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-                <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+{step === 5 && (
+  <>
+    <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
+    <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+    <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
 
-                <button
-                  style={nextButtonStyle}
-                  onClick={async () => {
-                    await fetch("/api/bookings", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        name,
-                        email,
-                        phone,
-                        bookings,
-                        total,
-                        location: customLocation || location
-                      })
-                    });
-                  }}
-                >
-                  Request Booking
-                </button>
-              </>
-            )}
+    <div style={{
+      display: "flex",
+      gap: "12px",
+      marginTop: "20px"
+    }}>
+
+      {/* BACK */}
+      <button
+        onClick={back}
+        style={{
+          ...backButtonStyle,
+          flex: "0 0 120px"
+        }}
+      >
+        ← Back
+      </button>
+
+      {/* REQUEST BOOKING */}
+      <button
+        style={{
+          ...nextButtonStyle,
+          flex: 1,
+          fontSize: "18px",
+          padding: "16px"
+        }}
+        onClick={async () => {
+          try {
+            const res = await fetch("/api/bookings", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                phone,
+                bookings,
+                total,
+                location: customLocation || location
+              })
+            });
+
+            if (res.ok) {
+              alert("Booking request sent successfully!");
+            } else {
+              alert("Failed to send booking.");
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Something went wrong.");
+          }
+        }}
+      >
+        Request Booking
+      </button>
+
+    </div>
+  </>
+)}
 {/* ---------------- NAVIGATION ---------------- */}
 {step >= 2 && (
 <div style={{
