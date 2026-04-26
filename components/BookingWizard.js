@@ -148,6 +148,8 @@ export default function BookingWizard() {
             Step {step} of 5
           </h2>
 
+<div style={{ minHeight: "420px" }}>
+
           {/* STEP 1 */}
           {step === 1 && (
             <div style={{ display: "grid", gap: "15px", minHeight: "320px" }}>
@@ -279,6 +281,8 @@ export default function BookingWizard() {
               <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
             </div>
           )}
+
+</div>
 
           {/* NAVIGATION (UNCHANGED) */}
           {step >= 2 && (
