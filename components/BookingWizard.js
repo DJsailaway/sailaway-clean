@@ -265,7 +265,12 @@ export default function BookingWizard() {
               <>
                 <h3 style={{ fontSize: "26px" }}>Duration</h3>
 
-                <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+<div style={{
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "10px",
+  marginBottom: "20px"
+}}>
                   <button
                     onClick={() => updateBoat(0, "durationType", "hourly")}
                     style={nextButtonStyle}
