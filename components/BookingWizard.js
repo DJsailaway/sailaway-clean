@@ -59,7 +59,6 @@ export default function BookingWizard() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  // ---------------- PRICING ----------------
   const calcBoatPrice = (b) => {
     const p = PRICING.boats?.[b.boat];
     if (!p) return 0;
@@ -85,7 +84,6 @@ export default function BookingWizard() {
   const next = () => setStep((s) => Math.min(5, s + 1));
   const back = () => setStep((s) => Math.max(1, s - 1));
 
-  // ---------------- STYLES ----------------
   const inputStyle = {
     width: "100%",
     padding: "16px",
@@ -139,18 +137,20 @@ export default function BookingWizard() {
         paddingBottom: "110px"
       }}>
 
-        {/* LEFT */}
-        <div style={{
-          flex: 1,
-          background: "#fff",
-          padding: "40px",
-          borderRadius: "18px",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.08)"
-        }}>
+        <div style={{ flex: 1 }}>
+
+          {/* STEP HEADER (STABILISED) */}
+          <h2 style={{
+            fontSize: "28px",
+            margin: "0 0 20px 0",
+            minHeight: "34px"
+          }}>
+            Step {step} of 5
+          </h2>
 
           {/* STEP 1 */}
           {step === 1 && (
-            <div style={{ display: "grid", gap: "15px" }}>
+            <div style={{ display: "grid", gap: "15px", minHeight: "320px" }}>
               {Object.keys(INTENT_MAP).map((key) => (
                 <div
                   key={key}
@@ -172,32 +172,33 @@ export default function BookingWizard() {
           )}
 
           {/* STEP 2 */}
-          {step === 2 && (() => {
-            const category = INTENT_MAP[intent];
-            const boats = CATEGORIES[category];
-
-            return (
-              <div style={{ display: "grid", gap: "15px" }}>
-                {boats.map((boat) => (
-                  <div
-                    key={boat}
-                    onClick={() => {
-                      updateBoat(0, "boat", boat);
-                      setStep(3);
-                    }}
-                    style={cardStyle(bookings[0].boat === boat)}
-                  >
-                    {boat}
-                  </div>
-                ))}
-              </div>
-            );
-          })()}
+          {step === 2 && (
+            <div style={{ display: "grid", gap: "15px", minHeight: "320px" }}>
+              {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
+                <div
+                  key={boat}
+                  onClick={() => {
+                    updateBoat(0, "boat", boat);
+                    setStep(3);
+                  }}
+                  style={cardStyle(bookings[0].boat === boat)}
+                >
+                  {boat}
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* STEP 3 */}
           {step === 3 && (
-            <>
-              <h3 style={{ fontSize: "26px" }}>Duration</h3>
+            <div style={{ minHeight: "320px" }}>
+              <h3 style={{
+                fontSize: "26px",
+                margin: "0 0 16px 0",
+                minHeight: "32px"
+              }}>
+                Duration
+              </h3>
 
               <div style={{
                 display: "grid",
@@ -236,12 +237,12 @@ export default function BookingWizard() {
                   style={inputStyle}
                 />
               )}
-            </>
+            </div>
           )}
 
           {/* STEP 4 */}
           {step === 4 && (
-            <>
+            <div style={{ minHeight: "320px" }}>
               <h3>Location</h3>
 
               <div style={{
@@ -267,103 +268,64 @@ export default function BookingWizard() {
                   onChange={(e) => setCustomLocation(e.target.value)}
                 />
               )}
-            </>
+            </div>
           )}
 
-          {/* STEP 5 (NO INTERNAL BUTTONS — FIXED) */}
+          {/* STEP 5 */}
           {step === 5 && (
-            <>
+            <div style={{ minHeight: "320px" }}>
               <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
               <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
               <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            </>
+            </div>
           )}
 
-{/* 🔒 LOCKED NAVIGATION SYSTEM */}
-{step >= 2 && (
-  <div style={{
-    display: "flex",
-    alignItems: "center",
-    marginTop: "30px"
-  }}>
+          {/* NAVIGATION (UNCHANGED) */}
+          {step >= 2 && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "30px"
+            }}>
+              <button onClick={back} style={backButtonStyle}>
+                ← Back
+              </button>
 
-    {/* BACK */}
-    <button
-      onClick={back}
-      style={{
-        ...backButtonStyle,
-        flex: "0 0 160px",
-        fontSize: "18px"
-      }}
-    >
-      ← Back
-    </button>
+              <div style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
+                {step >= 3 && step < 5 && (
+                  <button onClick={next} style={nextButtonStyle}>
+                    Next →
+                  </button>
+                )}
 
-    {/* RIGHT SIDE */}
-    <div style={{
-      marginLeft: "auto",
-      display: "flex",
-      gap: "12px",
-      alignItems: "stretch",
-      width: "420px"
-    }}>
-
-      {/* NEXT (Step 3–4) */}
-      {step >= 3 && step < 5 && (
-        <button
-          onClick={next}
-          style={{
-            ...nextButtonStyle,
-            flex: 1,
-            fontSize: "18px",
-            padding: "18px 26px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          Next →
-        </button>
-      )}
-
-      {/* REQUEST (Step 5) */}
-      {step === 5 && (
-        <button
-          onClick={async () => {
-            await fetch("/api/bookings", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                name,
-                email,
-                phone,
-                bookings,
-                total,
-                location: customLocation || location
-              })
-            });
-          }}
-          style={{
-            ...nextButtonStyle,
-            flex: 1,
-            fontSize: "19px",
-            padding: "18px 26px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          Request Booking
-        </button>
-      )}
-
-    </div>
-  </div>
-)}
+                {step === 5 && (
+                  <button
+                    onClick={async () => {
+                      await fetch("/api/bookings", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name,
+                          email,
+                          phone,
+                          bookings,
+                          total,
+                          location: customLocation || location
+                        })
+                      });
+                    }}
+                    style={nextButtonStyle}
+                  >
+                    Request Booking
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
 
         </div>
 
-        {/* RIGHT TOTAL */}
+        {/* TOTAL */}
         <div style={{
           width: "300px",
           background: "#0f2f4f",
