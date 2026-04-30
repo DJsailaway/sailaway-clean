@@ -156,10 +156,10 @@ export default function BookingWizard() {
           {/* ✅ FIXED CONTAINER */}
           <div style={{
             display: "flex",
-flexDirection: "column",
-minHeight: "420px",
-height: "auto",
-justifyContent: "flex-start"
+            flexDirection: "column",
+            height: "auto",
+            justifyContent: "flex-start"
+            gap: "12px",
           }}>
 
             {/* STEP 1 */}
