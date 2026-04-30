@@ -127,6 +127,14 @@ export default function BookingWizard() {
     color: "#333"
   };
 
+  const steps = [
+  "Boat",
+  "Selection",
+  "Duration",
+  "Location",
+  "Details"
+];
+
   return (
     <>
       <div style={{
@@ -137,39 +145,52 @@ export default function BookingWizard() {
         paddingBottom: "40px"
       }}>
 
-<div style={{
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start"
-}}>
-
-{/* STEP HEADER (STABILISED) */}
-<h2 style={{
-  fontSize: "28px",
-  margin: "0 0 10px 0",
-  minHeight: "34px"
-}}>
-  Step {step} of 5
+{/* STEP TRACKER */}
 <div style={{
   display: "flex",
   gap: "6px",
   marginBottom: "16px"
 }}>
-  {[1, 2, 3, 4, 5].map((i) => (
-    <div
-      key={i}
-      style={{
-        flex: 1,
-        height: "8px",
-        borderRadius: "999px",
-        background: i <= step ? "#0f2f4f" : "#e6e6e6",
-        transition: "background 0.25s ease"
-      }}
-    />
-  ))}
+  {steps.map((label, i) => {
+    const stepNumber = i + 1;
+    const active = step === stepNumber;
+    const completed = step > stepNumber;
+
+    return (
+      <div
+        key={label}
+        onClick={() => setStep(stepNumber)}
+        style={{
+          flex: 1,
+          padding: "6px 8px",
+          borderRadius: "10px",
+          textAlign: "center",
+          fontSize: "12px",
+          cursor: "pointer",
+          background: active
+            ? "#0f2f4f"
+            : completed
+            ? "#2d5a7a"
+            : "#e6e6e6",
+          color: active || completed ? "#fff" : "#333",
+          transition: "all 0.2s ease",
+          userSelect: "none"
+        }}
+      >
+        {label}
+      </div>
+    );
+  })}
 </div>
-    </h2>
+
+{/* STEP HEADER */}
+<h2 style={{
+  fontSize: "28px",
+  margin: "0 0 20px 0",
+  minHeight: "34px"
+}}>
+  Step {step} of 5
+</h2>
 
           {/* ✅ FIXED CONTAINER */}
           <div style={{
