@@ -51,6 +51,7 @@ export default function BookingWizard() {
   const [step, setStep] = useState(1);
   const [intent, setIntent] = useState("Motor");
   const [bookings, setBookings] = useState([createBoat()]);
+  const progress = (step / 5) * 100;
 
   const [location, setLocation] = useState("St Anthony");
   const [customLocation, setCustomLocation] = useState("");
