@@ -134,7 +134,7 @@ export default function BookingWizard() {
         gap: "20px",
         maxWidth: "1200px",
         margin: "40px auto",
-        paddingBottom: "110px"
+        paddingBottom: "40px"
       }}>
 
         <div style={{
