@@ -145,6 +145,15 @@ export default function BookingWizard() {
         paddingBottom: "40px"
       }}>
 
+          {/* ✅ FIXED CONTAINER */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "auto",
+            justifyContent: "flex-start",
+            gap: "12px",
+          }}>
+
 {/* STEP TRACKER */}
 <div style={{
   display: "flex",
@@ -191,15 +200,6 @@ export default function BookingWizard() {
 }}>
   Step {step} of 5
 </h2>
-
-          {/* ✅ FIXED CONTAINER */}
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "auto",
-            justifyContent: "flex-start",
-            gap: "12px",
-          }}>
 
             {/* STEP 1 */}
             {step === 1 && (
