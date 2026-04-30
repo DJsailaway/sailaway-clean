@@ -158,7 +158,7 @@ export default function BookingWizard() {
             display: "flex",
             flexDirection: "column",
             height: "auto",
-            justifyContent: "flex-start"
+            justifyContent: "flex-start",
             gap: "12px",
           }}>
 
