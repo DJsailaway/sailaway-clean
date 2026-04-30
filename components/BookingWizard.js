@@ -51,7 +51,6 @@ export default function BookingWizard() {
   const [step, setStep] = useState(1);
   const [intent, setIntent] = useState("Motor");
   const [bookings, setBookings] = useState([createBoat()]);
-  const progress = (step / 5) * 100;
 
   const [location, setLocation] = useState("St Anthony");
   const [customLocation, setCustomLocation] = useState("");
@@ -152,23 +151,25 @@ export default function BookingWizard() {
   minHeight: "34px"
 }}>
   Step {step} of 5
-</h2>
-
 <div style={{
-  width: "100%",
-  height: "8px",
-  background: "#e6e6e6",
-  borderRadius: "999px",
-  overflow: "hidden",
-  marginBottom: "20px"
+  display: "flex",
+  gap: "6px",
+  marginBottom: "16px"
 }}>
-  <div style={{
-    width: `${progress}%`,
-    height: "100%",
-    background: "#0f2f4f",
-    transition: "width 0.3s ease"
-  }} />
+  {[1, 2, 3, 4, 5].map((i) => (
+    <div
+      key={i}
+      style={{
+        flex: 1,
+        height: "8px",
+        borderRadius: "999px",
+        background: i <= step ? "#0f2f4f" : "#e6e6e6",
+        transition: "background 0.25s ease"
+      }}
+    />
+  ))}
 </div>
+    </h2>
 
           {/* ✅ FIXED CONTAINER */}
           <div style={{
