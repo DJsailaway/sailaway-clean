@@ -321,7 +321,7 @@ export default function BookingWizard() {
                 display: "flex",
                 gap: "12px",
                 alignItems: "stretch",
-                width: "420px"
+                alignSelf: "flex-end"
               }}>
 
                 {step >= 3 && step < 5 && (
