@@ -409,7 +409,6 @@ export default function BookingWizard() {
           )}
 
         </div>
- </div> 
 
       {/* RIGHT COLUMN (TOTAL) */}
       <div style={{
