@@ -144,14 +144,30 @@ export default function BookingWizard() {
   justifyContent: "flex-start"
 }}>
 
-          {/* STEP HEADER (STABILISED) */}
-          <h2 style={{
-            fontSize: "28px",
-            margin: "0 0 20px 0",
-            minHeight: "34px"
-          }}>
-            Step {step} of 5
-          </h2>
+{/* STEP HEADER (STABILISED) */}
+<h2 style={{
+  fontSize: "28px",
+  margin: "0 0 10px 0",
+  minHeight: "34px"
+}}>
+  Step {step} of 5
+</h2>
+
+<div style={{
+  width: "100%",
+  height: "8px",
+  background: "#e6e6e6",
+  borderRadius: "999px",
+  overflow: "hidden",
+  marginBottom: "20px"
+}}>
+  <div style={{
+    width: `${progress}%`,
+    height: "100%",
+    background: "#0f2f4f",
+    transition: "width 0.3s ease"
+  }} />
+</div>
 
           {/* ✅ FIXED CONTAINER */}
           <div style={{
