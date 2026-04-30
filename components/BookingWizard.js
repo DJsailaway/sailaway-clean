@@ -154,50 +154,50 @@ export default function BookingWizard() {
     gap: "12px",
   }}>
 
-{/* STEP TRACKER */}
-<div style={{
-  display: "flex",
-  gap: "6px",
-  marginBottom: "16px"
-}}>
-  {steps.map((label, i) => {
-    const stepNumber = i + 1;
-    const active = step === stepNumber;
-    const completed = step > stepNumber;
+  {/* STEP TRACKER */}
+  <div style={{
+    display: "flex",
+    gap: "6px",
+    marginBottom: "16px"
+  }}>
+    {steps.map((label, i) => {
+      const stepNumber = i + 1;
+      const active = step === stepNumber;
+      const completed = step > stepNumber;
 
-    return (
-      <div
-        key={label}
-        onClick={() => setStep(stepNumber)}
-        style={{
-          flex: 1,
-          padding: "6px 8px",
-          borderRadius: "10px",
-          textAlign: "center",
-          fontSize: "12px",
-          cursor: "pointer",
-          background: active
-            ? "#0f2f4f"
-            : completed
-            ? "#2d5a7a"
-            : "#e6e6e6",
-          color: active || completed ? "#fff" : "#333",
-          transition: "all 0.2s ease",
-          userSelect: "none"
-        }}
-      >
-        {label}
-      </div>
-    );
-  })}
-</div>
+      return (
+        <div
+          key={label}
+          onClick={() => setStep(stepNumber)}
+          style={{
+            flex: 1,
+            padding: "6px 8px",
+            borderRadius: "10px",
+            textAlign: "center",
+            fontSize: "12px",
+            cursor: "pointer",
+            background: active
+              ? "#0f2f4f"
+              : completed
+              ? "#2d5a7a"
+              : "#e6e6e6",
+            color: active || completed ? "#fff" : "#333",
+            transition: "all 0.2s ease",
+            userSelect: "none"
+          }}
+        >
+          {label}
+        </div>
+      );
+    })}
+  </div>
 
-{/* STEP HEADER */}
-<h2 style={{
-  fontSize: "28px",
-  margin: "0 0 20px 0",
-  minHeight: "34px"
-}}>
+  {/* STEP HEADER */}
+  <h2 style={{
+    fontSize: "28px",
+    margin: "0 0 20px 0",
+    minHeight: "34px"
+  }}>
   Step {step} of 5
 </h2>
 
@@ -407,8 +407,6 @@ export default function BookingWizard() {
               </div>
             </div>
           )}
-
-        </div>
 
       {/* RIGHT COLUMN (TOTAL) */}
       <div style={{
