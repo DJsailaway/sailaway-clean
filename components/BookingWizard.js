@@ -136,7 +136,7 @@ export default function BookingWizard() {
 ];
 
   return (
-    <>
+    
 <div style={{
   display: "flex",
   gap: "20px",
@@ -421,6 +421,5 @@ export default function BookingWizard() {
       </div>
 
     </div>
-  </>
 );
 }
