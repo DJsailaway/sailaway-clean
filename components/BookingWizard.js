@@ -154,8 +154,6 @@ export default function BookingWizard() {
     gap: "12px",
   }}>
 
- </div> 
-
 {/* STEP TRACKER */}
 <div style={{
   display: "flex",
@@ -411,6 +409,7 @@ export default function BookingWizard() {
           )}
 
         </div>
+ </div> 
 
       {/* RIGHT COLUMN (TOTAL) */}
       <div style={{
