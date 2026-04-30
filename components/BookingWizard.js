@@ -137,22 +137,22 @@ export default function BookingWizard() {
 
   return (
     <>
-      <div style={{
-        display: "flex",
-        gap: "20px",
-        maxWidth: "1200px",
-        margin: "40px auto",
-        paddingBottom: "40px"
-      }}>
+<div style={{
+  display: "flex",
+  gap: "20px",
+  maxWidth: "1200px",
+  margin: "40px auto",
+  paddingBottom: "40px"
+}}>
 
-          {/* ✅ FIXED CONTAINER */}
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "auto",
-            justifyContent: "flex-start",
-            gap: "12px",
-          }}>
+  {/* LEFT COLUMN */}
+  <div style={{
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    gap: "12px",
+  }}>
 
 {/* STEP TRACKER */}
 <div style={{
@@ -410,19 +410,19 @@ export default function BookingWizard() {
 
         </div>
 
-        {/* TOTAL */}
-        <div style={{
-          width: "300px",
-          background: "#0f2f4f",
-          color: "#fff",
-          padding: "20px",
-          borderRadius: "16px"
-        }}>
-          <h3>Total</h3>
-          <div style={{ fontSize: "32px" }}>£{total}</div>
-        </div>
-
+      {/* RIGHT COLUMN (TOTAL) */}
+      <div style={{
+        width: "300px",
+        background: "#0f2f4f",
+        color: "#fff",
+        padding: "20px",
+        borderRadius: "16px"
+      }}>
+        <h3>Total</h3>
+        <div style={{ fontSize: "32px" }}>£{total}</div>
       </div>
-    </>
-  );
+
+    </div>
+  </>
+);
 }
