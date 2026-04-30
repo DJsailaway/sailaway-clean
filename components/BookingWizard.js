@@ -154,6 +154,8 @@ export default function BookingWizard() {
     gap: "12px",
   }}>
 
+ </div> 
+
 {/* STEP TRACKER */}
 <div style={{
   display: "flex",
