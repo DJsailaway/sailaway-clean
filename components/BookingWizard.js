@@ -137,10 +137,11 @@ export default function BookingWizard() {
         paddingBottom: "40px"
       }}>
 
-        <div style={{
+<div style={{
   flex: 1,
   display: "flex",
-  flexDirection: "column"
+  flexDirection: "column",
+  justifyContent: "flex-start"
 }}>
 
           {/* STEP HEADER (STABILISED) */}
