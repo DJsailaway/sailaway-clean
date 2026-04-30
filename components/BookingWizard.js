@@ -148,222 +148,219 @@ export default function BookingWizard() {
             Step {step} of 5
           </h2>
 
-<div style={{ minHeight: "420px" }}>
+          {/* ✅ FIXED CONTAINER */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "420px"
+          }}>
 
-          {/* STEP 1 */}
-          {step === 1 && (
-            <div style={{ display: "grid", gap: "15px", minHeight: "320px" }}>
-              {Object.keys(INTENT_MAP).map((key) => (
-                <div
-                  key={key}
-                  onClick={() => {
-                    setIntent(key);
-                    const category = INTENT_MAP[key];
-                    const copy = [...bookings];
-                    copy[0].category = category;
-                    copy[0].boat = CATEGORIES[category][0];
-                    setBookings(copy);
-                    setStep(2);
-                  }}
-                  style={cardStyle(intent === key)}
-                >
-                  <strong>{key}</strong>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* STEP 2 */}
-          {step === 2 && (
-            <div style={{ display: "grid", gap: "15px", minHeight: "320px" }}>
-              {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
-                <div
-                  key={boat}
-                  onClick={() => {
-                    updateBoat(0, "boat", boat);
-                    setStep(3);
-                  }}
-                  style={cardStyle(bookings[0].boat === boat)}
-                >
-                  {boat}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* STEP 3 */}
-          {step === 3 && (
-            <div style={{ minHeight: "320px" }}>
-              <h3 style={{
-                fontSize: "26px",
-                margin: "0 0 16px 0",
-                minHeight: "32px"
-              }}>
-                Duration
-              </h3>
-
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "10px",
-                marginBottom: "20px"
-              }}>
-                <button onClick={() => updateBoat(0, "durationType", "hourly")} style={nextButtonStyle}>
-                  Hourly
-                </button>
-
-                <button onClick={() => updateBoat(0, "durationType", "multi")} style={nextButtonStyle}>
-                  Multi-Day
-                </button>
-              </div>
-
-              {bookings[0].durationType === "hourly" && (
-                <div style={{ display: "grid", gap: "10px" }}>
-                  {DURATION_OPTIONS.map((opt) => (
-                    <button
-                      key={opt.key}
-                      onClick={() => updateBoat(0, "durationKey", opt.key)}
-                      style={cardStyle(bookings[0].durationKey === opt.key)}
-                    >
-                      {opt.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              {bookings[0].durationType === "multi" && (
-                <input
-                  type="number"
-                  value={bookings[0].days}
-                  onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
-                  style={inputStyle}
-                />
-              )}
-            </div>
-          )}
-
-          {/* STEP 4 */}
-          {step === 4 && (
-            <div style={{ minHeight: "320px" }}>
-              <h3>Location</h3>
-
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "12px"
-              }}>
-                {[...Object.keys(PRICING.locations), "Other"].map((loc) => (
+            {/* STEP 1 */}
+            {step === 1 && (
+              <div style={{ display: "grid", gap: "15px", flex: 1 }}>
+                {Object.keys(INTENT_MAP).map((key) => (
                   <div
-                    key={loc}
-                    onClick={() => setLocation(loc)}
-                    style={cardStyle(location === loc)}
+                    key={key}
+                    onClick={() => {
+                      setIntent(key);
+                      const category = INTENT_MAP[key];
+                      const copy = [...bookings];
+                      copy[0].category = category;
+                      copy[0].boat = CATEGORIES[category][0];
+                      setBookings(copy);
+                      setStep(2);
+                    }}
+                    style={cardStyle(intent === key)}
                   >
-                    {loc}
+                    <strong>{key}</strong>
                   </div>
                 ))}
               </div>
+            )}
 
-              {location === "Other" && (
-                <input
-                  style={inputStyle}
-                  value={customLocation}
-                  onChange={(e) => setCustomLocation(e.target.value)}
-                />
-              )}
+            {/* STEP 2 */}
+            {step === 2 && (
+              <div style={{ display: "grid", gap: "15px", flex: 1 }}>
+                {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
+                  <div
+                    key={boat}
+                    onClick={() => {
+                      updateBoat(0, "boat", boat);
+                      setStep(3);
+                    }}
+                    style={cardStyle(bookings[0].boat === boat)}
+                  >
+                    {boat}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* STEP 3 */}
+            {step === 3 && (
+              <div style={{ flex: 1 }}>
+                <h3 style={{
+                  fontSize: "26px",
+                  margin: "0 0 16px 0",
+                  minHeight: "32px"
+                }}>
+                  Duration
+                </h3>
+
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "10px",
+                  marginBottom: "20px"
+                }}>
+                  <button onClick={() => updateBoat(0, "durationType", "hourly")} style={nextButtonStyle}>
+                    Hourly
+                  </button>
+
+                  <button onClick={() => updateBoat(0, "durationType", "multi")} style={nextButtonStyle}>
+                    Multi-Day
+                  </button>
+                </div>
+
+                {bookings[0].durationType === "hourly" && (
+                  <div style={{ display: "grid", gap: "10px" }}>
+                    {DURATION_OPTIONS.map((opt) => (
+                      <button
+                        key={opt.key}
+                        onClick={() => updateBoat(0, "durationKey", opt.key)}
+                        style={cardStyle(bookings[0].durationKey === opt.key)}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {bookings[0].durationType === "multi" && (
+                  <input
+                    type="number"
+                    value={bookings[0].days}
+                    onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
+                    style={inputStyle}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* STEP 4 */}
+            {step === 4 && (
+              <div style={{ flex: 1 }}>
+                <h3>Location</h3>
+
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "12px"
+                }}>
+                  {[...Object.keys(PRICING.locations), "Other"].map((loc) => (
+                    <div
+                      key={loc}
+                      onClick={() => setLocation(loc)}
+                      style={cardStyle(location === loc)}
+                    >
+                      {loc}
+                    </div>
+                  ))}
+                </div>
+
+                {location === "Other" && (
+                  <input
+                    style={inputStyle}
+                    value={customLocation}
+                    onChange={(e) => setCustomLocation(e.target.value)}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* STEP 5 */}
+            {step === 5 && (
+              <div style={{ flex: 1 }}>
+                <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
+                <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+                <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+              </div>
+            )}
+
+          </div>
+
+          {/* 🔒 LOCKED NAVIGATION SYSTEM (UNCHANGED) */}
+          {step >= 2 && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "30px"
+            }}>
+
+              <button
+                onClick={back}
+                style={{
+                  ...backButtonStyle,
+                  flex: "0 0 160px",
+                  fontSize: "18px",
+                  padding: "16px 26px"
+                }}
+              >
+                ← Back
+              </button>
+
+              <div style={{
+                marginLeft: "auto",
+                display: "flex",
+                gap: "12px",
+                alignItems: "stretch",
+                width: "420px"
+              }}>
+
+                {step >= 3 && step < 5 && (
+                  <button
+                    onClick={next}
+                    style={{
+                      ...nextButtonStyle,
+                      flex: "0 0 240px",
+                      fontSize: "18px",
+                      padding: "18px 26px"
+                    }}
+                  >
+                    Next →
+                  </button>
+                )}
+
+                {step === 5 && (
+                  <button
+                    onClick={async () => {
+                      await fetch("/api/bookings", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name,
+                          email,
+                          phone,
+                          bookings,
+                          total,
+                          location: customLocation || location
+                        })
+                      });
+                    }}
+                    style={{
+                      ...nextButtonStyle,
+                      flex: "0 0 260px",
+                      fontSize: "19px",
+                      padding: "18px 26px"
+                    }}
+                  >
+                    Request Booking
+                  </button>
+                )}
+
+              </div>
             </div>
           )}
-
-          {/* STEP 5 */}
-          {step === 5 && (
-            <div style={{ minHeight: "320px" }}>
-              <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-              <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-              <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            </div>
-          )}
-
-</div>
-
-{/* 🔒 LOCKED NAVIGATION SYSTEM */}
-{step >= 2 && (
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      marginTop: "30px"
-    }}
-  >
-
-    {/* BACK */}
-    <button
-      onClick={back}
-      style={{
-        ...backButtonStyle,
-        flex: "0 0 160px",
-        fontSize: "18px",
-        padding: "16px 26px"
-      }}
-    >
-      ← Back
-    </button>
-
-    {/* RIGHT SIDE */}
-    <div
-      style={{
-        marginLeft: "auto",
-        display: "flex",
-        gap: "12px",
-        alignItems: "stretch",
-        width: "420px"
-      }}
-    >
-
-      {/* NEXT (Step 3–4) */}
-      {step >= 3 && step < 5 && (
-        <button
-          onClick={next}
-          style={{
-            ...nextButtonStyle,
-            flex: "0 0 240px",
-            fontSize: "18px",
-            padding: "18px 26px"
-          }}
-        >
-          Next →
-        </button>
-      )}
-
-      {/* REQUEST (Step 5) */}
-      {step === 5 && (
-        <button
-          onClick={async () => {
-            await fetch("/api/bookings", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                name,
-                email,
-                phone,
-                bookings,
-                total,
-                location: customLocation || location
-              })
-            });
-          }}
-          style={{
-            ...nextButtonStyle,
-            flex: "0 0 260px",
-            fontSize: "19px",
-            padding: "18px 26px"
-          }}
-        >
-          Request Booking
-        </button>
-      )}
-
-    </div>
-  </div>
-)}
 
         </div>
 
