@@ -286,11 +286,11 @@ justifyContent: "flex-start"
             {/* STEP 5 */}
 {step === 5 && (
   <div style={{ display: "grid", gap: "12px" }}>
-                <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-                <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-                <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-              </div>
-            )}
+    <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
+    <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+    <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+  </div>
+)}
 
           </div>
 
