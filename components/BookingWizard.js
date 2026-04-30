@@ -157,7 +157,7 @@ export default function BookingWizard() {
 
             {/* STEP 1 */}
             {step === 1 && (
-              <div style={{ display: "grid", gap: "15px", flex: 1 }}>
+              <div style={{ display: "grid", gap: "15px", alignContent: "start" }}>
                 {Object.keys(INTENT_MAP).map((key) => (
                   <div
                     key={key}
@@ -180,7 +180,7 @@ export default function BookingWizard() {
 
             {/* STEP 2 */}
             {step === 2 && (
-              <div style={{ display: "grid", gap: "15px", flex: 1 }}>
+              <div style={{ display: "grid", gap: "15px", alignContent: "start" }}>
                 {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
                   <div
                     key={boat}
@@ -294,7 +294,7 @@ export default function BookingWizard() {
             <div style={{
               display: "flex",
               alignItems: "center",
-              marginTop: "30px"
+              marginTop: "12px"
             }}>
 
               <button
