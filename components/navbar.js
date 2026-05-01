@@ -146,15 +146,20 @@ export default function Navbar() {
             <Link href="/st-anthony-helford-river" style={linkStyle}>Location</Link>
 
             {/* Desktop CTA */}
-<div
-  onClick={() => {
-    const el = document.getElementById("booking-wizard");
+<Link
+  href="/#booking"
+  onClick={(e) => {
+    // If already on homepage, prevent full reload behaviour
+    if (router.pathname === "/") {
+      e.preventDefault();
 
-    if (el) {
-      el.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+      const el = document.getElementById("booking-wizard");
+      if (el) {
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
     }
   }}
   style={{
@@ -164,12 +169,11 @@ export default function Navbar() {
     borderRadius: "8px",
     fontWeight: 700,
     textDecoration: "none",
-    cursor: "pointer",
-    userSelect: "none"
+    cursor: "pointer"
   }}
 >
   Book
-</div>
+</Link>
           </div>
         )}
 
