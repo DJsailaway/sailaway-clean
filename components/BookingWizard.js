@@ -222,7 +222,7 @@ export default function BookingWizard() {
               </div>
             )}
 
-            {/* STEP 3 */}
+{/* STEP 3 */}
 {step === 3 && (
   <div style={{ flex: 1 }}>
     <h3 style={{
@@ -233,19 +233,22 @@ export default function BookingWizard() {
       Duration
     </h3>
 
-    {/* TYPE SELECTOR */}
+    {/* MODE SELECTION (EQUAL WEIGHT) */}
     <div style={{
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      gap: "10px",
+      gap: "12px",
       marginBottom: "20px"
     }}>
       <button
         onClick={() => updateBoat(0, "durationType", "hourly")}
         style={{
           ...nextButtonStyle,
-          background: bookings[0].durationType === "hourly" ? "#0f2f4f" : "#ccc",
-          opacity: bookings[0].durationType === "hourly" ? 1 : 0.6
+          opacity: bookings[0].durationType === "hourly" ? 1 : 0.85,
+          transform: bookings[0].durationType === "hourly"
+            ? "scale(1.02)"
+            : "scale(1)",
+          transition: "all 0.2s ease"
         }}
       >
         Hourly
@@ -255,11 +258,14 @@ export default function BookingWizard() {
         onClick={() => updateBoat(0, "durationType", "multi")}
         style={{
           ...nextButtonStyle,
-          background: bookings[0].durationType === "multi" ? "#0f2f4f" : "#ccc",
-          opacity: bookings[0].durationType === "multi" ? 1 : 0.6
+          opacity: bookings[0].durationType === "multi" ? 1 : 0.85,
+          transform: bookings[0].durationType === "multi"
+            ? "scale(1.02)"
+            : "scale(1)",
+          transition: "all 0.2s ease"
         }}
       >
-        Multi-Day
+        Multi-day
       </button>
     </div>
 
@@ -354,7 +360,7 @@ export default function BookingWizard() {
           color: "#666",
           textAlign: "center"
         }}>
-          Minimum 1 day (7 is typical for weekend hire)
+          Select number of days (7 is typical for weekend hire)
         </div>
       </div>
     )}
