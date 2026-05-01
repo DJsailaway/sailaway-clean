@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PRICING } from "../lib/pricing";
 
 // ---------------- INTENT → CATEGORY ----------------
@@ -60,6 +60,16 @@ export default function BookingWizard() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+
+  // ✅ OPTION A: scroll-to-step ref
+  const wizardRef = useRef(null);
+
+  useEffect(() => {
+    wizardRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }, [step]);
 
   const calcBoatPrice = (b) => {
     const p = PRICING.boats?.[b.boat];
@@ -130,97 +140,93 @@ export default function BookingWizard() {
   };
 
   return (
-    <>
-      <div style={{
+    <div
+      ref={wizardRef}
+      style={{
         display: "flex",
         gap: "20px",
         maxWidth: "1200px",
         margin: "40px auto",
         paddingBottom: "40px"
+      }}
+    >
+
+      {/* LEFT */}
+      <div style={{
+        flex: 1,
+        display: "flex",
+        flexDirection: "column"
       }}>
 
-        {/* LEFT COLUMN */}
+        <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
+          Step {step} of 5
+        </h2>
+
+        <div style={{ display: "flex", gap: "6px", marginBottom: "16px" }}>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div
+              key={i}
+              style={{
+                flex: 1,
+                height: "8px",
+                borderRadius: "999px",
+                background: i <= step ? "#0f2f4f" : "#e6e6e6"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* ✅ FIXED VIEWPORT HEIGHT */}
         <div style={{
           flex: 1,
+          minHeight: "calc(100vh - 220px)",
+          maxHeight: "calc(100vh - 220px)",
+          overflowY: "auto",
           display: "flex",
-          flexDirection: "column"
+          flexDirection: "column",
+          gap: "12px"
         }}>
 
-          {/* STEP HEADER */}
-          <h2 style={{
-            fontSize: "28px",
-            margin: "0 0 10px 0",
-            minHeight: "34px"
-          }}>
-            Step {step} of 5
-          </h2>
+          {/* STEP 1 */}
+          {step === 1 && (
+            <div style={{ display: "grid", gap: "15px" }}>
+              {Object.keys(INTENT_MAP).map((key) => (
+                <div
+                  key={key}
+                  onClick={() => {
+                    setIntent(key);
+                    const category = INTENT_MAP[key];
+                    const copy = [...bookings];
+                    copy[0].category = category;
+                    copy[0].boat = CATEGORIES[category][0];
+                    setBookings(copy);
+                    setStep(2);
+                  }}
+                  style={cardStyle(intent === key)}
+                >
+                  <strong>{key}</strong>
+                </div>
+              ))}
+            </div>
+          )}
 
-          {/* PROGRESS BAR */}
-          <div style={{ display: "flex", gap: "6px", marginBottom: "16px" }}>
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div
-                key={i}
-                style={{
-                  flex: 1,
-                  height: "8px",
-                  borderRadius: "999px",
-                  background: i <= step ? "#0f2f4f" : "#e6e6e6"
-                }}
-              />
-            ))}
-          </div>
-
-          {/* 🧱 STABLE STEP VIEWPORT (KEY FIX) */}
-          <div style={{
-            flex: 1,
-            minHeight: "420px",
-            maxHeight: "420px",
-            overflowY: "auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px"
-          }}>
-
-            {/* STEP 1 */}
-            {step === 1 && (
-              <div style={{ display: "grid", gap: "15px" }}>
-                {Object.keys(INTENT_MAP).map((key) => (
-                  <div
-                    key={key}
-                    onClick={() => {
-                      setIntent(key);
-                      const category = INTENT_MAP[key];
-                      const copy = [...bookings];
-                      copy[0].category = category;
-                      copy[0].boat = CATEGORIES[category][0];
-                      setBookings(copy);
-                      setStep(2);
-                    }}
-                    style={cardStyle(intent === key)}
-                  >
-                    <strong>{key}</strong>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* STEP 2 */}
-            {step === 2 && (
-              <div style={{ display: "grid", gap: "15px" }}>
-                {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
-                  <div
-                    key={boat}
-                    onClick={() => {
-                      updateBoat(0, "boat", boat);
-                      setStep(3);
-                    }}
-                    style={cardStyle(bookings[0].boat === boat)}
-                  >
-                    {boat}
-                  </div>
-                ))}
-              </div>
-            )}
+          {/* STEP 2 */}
+          {step === 2 && (
+            <div style={{ display: "grid", gap: "15px" }}>
+              {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
+                <div
+                  key={boat}
+                  onClick={() => {
+                    updateBoat(0, "boat", boat);
+                    setStep(3);
+                  }}
+                  style={cardStyle(bookings[0].boat === boat)}
+                >
+                  {boat}
+                </div>
+              ))}
+            </div>
+          )}
 
 {/* STEP 3 */}
 {step === 3 && (
@@ -521,19 +527,18 @@ export default function BookingWizard() {
 
         </div>
 
-        {/* RIGHT COLUMN */}
-        <div style={{
-          width: "300px",
-          background: "#0f2f4f",
-          color: "#fff",
-          padding: "20px",
-          borderRadius: "16px"
-        }}>
-          <h3>Total</h3>
-          <div style={{ fontSize: "32px" }}>£{total}</div>
-        </div>
-
+      {/* RIGHT */}
+      <div style={{
+        width: "300px",
+        background: "#0f2f4f",
+        color: "#fff",
+        padding: "20px",
+        borderRadius: "16px"
+      }}>
+        <h3>Total</h3>
+        <div style={{ fontSize: "32px" }}>£{total}</div>
       </div>
-    </>
+
+    </div>
   );
 }
