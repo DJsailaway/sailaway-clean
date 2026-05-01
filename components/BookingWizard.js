@@ -273,36 +273,60 @@ export default function BookingWizard() {
             )}
 
             {/* STEP 4 */}
-            {step === 4 && (
-              <div style={{ flex: 1 }}>
-                <h3>Location</h3>
+{step === 4 && (
+  <div style={{ flex: 1 }}>
+    <h3>Location</h3>
 
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "12px"
-                }}>
-                  {[...Object.keys(PRICING.locations), "Other"].map((loc) => (
-                    <div
-                      key={loc}
-                      onClick={() => setLocation(loc)}
-                      style={cardStyle(location === loc)}
-                    >
-                      {loc}
-                    </div>
-                  ))}
-                </div>
+    {/* PRIMARY CHOICE */}
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "12px",
+      marginBottom: "12px"
+    }}>
+      <div
+        onClick={() => setLocation("St Anthony")}
+        style={cardStyle(location === "St Anthony")}
+      >
+        St Anthony
+      </div>
 
-                {location === "Other" && (
-                  <input
-                    style={inputStyle}
-                    value={customLocation}
-                    onChange={(e) => setCustomLocation(e.target.value)}
-                  />
-                )}
-              </div>
-            )}
+      <div
+        onClick={() => setLocation("Other")}
+        style={cardStyle(location === "Other")}
+      >
+        Other
+      </div>
+    </div>
 
+    {/* EXPANDED OPTIONS */}
+    {location === "Other" && (
+      <div style={{ display: "grid", gap: "10px" }}>
+
+        {/* Preset locations (excluding St Anthony) */}
+        {Object.keys(PRICING.locations)
+          .filter(loc => loc !== "St Anthony")
+          .map((loc) => (
+            <div
+              key={loc}
+              onClick={() => setLocation(loc)}
+              style={cardStyle(location === loc)}
+            >
+              {loc}
+            </div>
+          ))}
+
+        {/* Custom input */}
+        <input
+          placeholder="Enter custom location"
+          style={inputStyle}
+          value={customLocation}
+          onChange={(e) => setCustomLocation(e.target.value)}
+        />
+      </div>
+    )}
+  </div>
+)}
             {/* STEP 5 */}
 {step === 5 && (
   <div style={{ display: "grid", gap: "12px" }}>
