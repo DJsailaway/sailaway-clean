@@ -56,7 +56,6 @@ export default function BookingWizard() {
   const [customLocation, setCustomLocation] = useState("");
   const [showOtherLocations, setShowOtherLocations] = useState(false);
   const [locationMode, setLocationMode] = useState("st-anthony");
-// "st-anthony" | "preset" | "custom"
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -140,52 +139,51 @@ export default function BookingWizard() {
         paddingBottom: "40px"
       }}>
 
-<div style={{
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start"
-}}>
+        {/* LEFT COLUMN */}
+        <div style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column"
+        }}>
 
-{/* STEP HEADER (STABILISED) */}
-<h2 style={{
-  fontSize: "28px",
-  margin: "0 0 10px 0",
-  minHeight: "34px"
-}}>
-  Step {step} of 5
-<div style={{
-  display: "flex",
-  gap: "6px",
-  marginBottom: "16px"
-}}>
-  {[1, 2, 3, 4, 5].map((i) => (
-    <div
-      key={i}
-      style={{
-        flex: 1,
-        height: "8px",
-        borderRadius: "999px",
-        background: i <= step ? "#0f2f4f" : "#e6e6e6",
-        transition: "background 0.25s ease"
-      }}
-    />
-  ))}
-</div>
-    </h2>
+          {/* STEP HEADER */}
+          <h2 style={{
+            fontSize: "28px",
+            margin: "0 0 10px 0",
+            minHeight: "34px"
+          }}>
+            Step {step} of 5
+          </h2>
 
-          {/* ✅ FIXED CONTAINER */}
+          {/* PROGRESS BAR */}
+          <div style={{ display: "flex", gap: "6px", marginBottom: "16px" }}>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div
+                key={i}
+                style={{
+                  flex: 1,
+                  height: "8px",
+                  borderRadius: "999px",
+                  background: i <= step ? "#0f2f4f" : "#e6e6e6"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* 🧱 STABLE STEP VIEWPORT (KEY FIX) */}
           <div style={{
+            flex: 1,
+            minHeight: "420px",
+            maxHeight: "420px",
+            overflowY: "auto",
             display: "flex",
             flexDirection: "column",
-            height: "auto",
-            justifyContent: "flex-start",
-            gap: "12px",
+            gap: "12px"
           }}>
 
             {/* STEP 1 */}
             {step === 1 && (
-              <div style={{ display: "grid", gap: "15px", alignContent: "start" }}>
+              <div style={{ display: "grid", gap: "15px" }}>
                 {Object.keys(INTENT_MAP).map((key) => (
                   <div
                     key={key}
@@ -208,14 +206,14 @@ export default function BookingWizard() {
 
             {/* STEP 2 */}
             {step === 2 && (
-              <div style={{ display: "grid", gap: "15px", alignContent: "start" }}>
+              <div style={{ display: "grid", gap: "15px" }}>
                 {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
                   <div
                     key={boat}
                     onClick={() => {
                       updateBoat(0, "boat", boat);
                       setStep(3);
-                      }}
+                    }}
                     style={cardStyle(bookings[0].boat === boat)}
                   >
                     {boat}
@@ -523,7 +521,7 @@ export default function BookingWizard() {
 
         </div>
 
-        {/* TOTAL */}
+        {/* RIGHT COLUMN */}
         <div style={{
           width: "300px",
           background: "#0f2f4f",
