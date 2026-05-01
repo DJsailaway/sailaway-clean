@@ -55,6 +55,7 @@ export default function BookingWizard() {
   const [location, setLocation] = useState("St Anthony");
   const [customLocation, setCustomLocation] = useState("");
   const [showOtherLocations, setShowOtherLocations] = useState(false);
+  const selected = bookings[0].durationType;
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -240,18 +241,11 @@ export default function BookingWizard() {
       gap: "10px",
       marginBottom: "20px"
     }}>
-      <button
+<button
   onClick={() => updateBoat(0, "durationType", "hourly")}
   style={{
     ...nextButtonStyle,
-    opacity:
-      bookings[0].durationType && bookings[0].durationType !== "hourly"
-        ? 0.35
-        : 1,
-    filter:
-      bookings[0].durationType === "hourly"
-        ? "brightness(1.05)"
-        : "none",
+    opacity: selected === "hourly" ? 1 : selected ? 0.35 : 1,
     transition: "all 0.2s ease"
   }}
 >
@@ -262,14 +256,7 @@ export default function BookingWizard() {
   onClick={() => updateBoat(0, "durationType", "multi")}
   style={{
     ...nextButtonStyle,
-    opacity:
-      bookings[0].durationType && bookings[0].durationType !== "multi"
-        ? 0.35
-        : 1,
-    filter:
-      bookings[0].durationType === "multi"
-        ? "brightness(1.05)"
-        : "none",
+    opacity: selected === "multi" ? 1 : selected ? 0.35 : 1,
     transition: "all 0.2s ease"
   }}
 >
