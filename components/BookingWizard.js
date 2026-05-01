@@ -301,7 +301,11 @@ return (
 
     {/* HOURLY OPTIONS */}
     {bookings[0].durationType === "hourly" && (
-      <div style={{ display: "grid", gap: "10px" }}>
+      <div style={{
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "10px"
+}}>
         {DURATION_OPTIONS.map((opt) => (
           <button
             key={opt.key}
