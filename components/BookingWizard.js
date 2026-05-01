@@ -417,31 +417,14 @@ return (
       style={inputStyle}
     />
 
-{/* TIME SLOTS — VERTICAL SCROLLER */}
-<div
-  style={{
-    marginTop: "12px",
-    maxHeight: "220px",
-    overflowY: "auto",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "10px",
-    paddingRight: "4px"
-  }}
->
-  {generateTimeSlots(
-    bookings[0].durationType,
-    bookings[0].durationKey
-  ).map((t) => (
-    <button
-      key={t}
-      onClick={() => setTime(t)}
-      style={cardStyle(time === t)}
-    >
-      {t}
-    </button>
-  ))}
-</div>
+{/* TIME PICKER */}
+<input
+  type="time"
+  step="1800" // 30 minutes
+  value={time}
+  onChange={(e) => setTime(e.target.value)}
+  style={inputStyle}
+/>
   </div>
 )}
 
