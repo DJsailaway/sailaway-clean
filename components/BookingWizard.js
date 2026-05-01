@@ -144,17 +144,17 @@ useEffect(() => {
     color: "#333"
   };
 
-  return (
-    <div
-      ref={wizardRef}
-      style={{
-        display: "flex",
-        gap: "20px",
-        maxWidth: "1200px",
-        margin: "40px auto",
-        paddingBottom: "40px"
-      }}
-    >
+return (
+  <div
+    id="booking-wizard"
+    style={{
+      display: "flex",
+      gap: "20px",
+      maxWidth: "1200px",
+      margin: "40px auto",
+      paddingBottom: "40px"
+    }}
+  >
 
       {/* LEFT */}
       <div style={{
