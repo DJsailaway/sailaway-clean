@@ -41,7 +41,7 @@ const DURATION_OPTIONS = [
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-  durationType: "hourly",
+  durationType: "null",
   durationKey: "2h",
   durationLabel: "2 Hours",
   days: 7
@@ -233,41 +233,28 @@ export default function BookingWizard() {
       Duration
     </h3>
 
-    {/* MODE SELECTION (EQUAL WEIGHT) */}
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "12px",
-      marginBottom: "20px"
-    }}>
-      <button
-        onClick={() => updateBoat(0, "durationType", "hourly")}
-        style={{
-          ...nextButtonStyle,
-          opacity: bookings[0].durationType === "hourly" ? 1 : 0.85,
-          transform: bookings[0].durationType === "hourly"
-            ? "scale(1.02)"
-            : "scale(1)",
-          transition: "all 0.2s ease"
-        }}
-      >
-        Hourly
-      </button>
+    {/* MODE SELECTION ONLY (NO PREVIEW CONTENT YET) */}
+    {!bookings[0].durationType && (
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "12px"
+      }}>
+        <button
+          onClick={() => updateBoat(0, "durationType", "hourly")}
+          style={nextButtonStyle}
+        >
+          Hourly
+        </button>
 
-      <button
-        onClick={() => updateBoat(0, "durationType", "multi")}
-        style={{
-          ...nextButtonStyle,
-          opacity: bookings[0].durationType === "multi" ? 1 : 0.85,
-          transform: bookings[0].durationType === "multi"
-            ? "scale(1.02)"
-            : "scale(1)",
-          transition: "all 0.2s ease"
-        }}
-      >
-        Multi-day
-      </button>
-    </div>
+        <button
+          onClick={() => updateBoat(0, "durationType", "multi")}
+          style={nextButtonStyle}
+        >
+          Multi-day
+        </button>
+      </div>
+    )}
 
     {/* HOURLY OPTIONS */}
     {bookings[0].durationType === "hourly" && (
@@ -311,11 +298,7 @@ export default function BookingWizard() {
         }}>
           <button
             onClick={() =>
-              updateBoat(
-                0,
-                "days",
-                Math.max(1, bookings[0].days - 1)
-              )
+              updateBoat(0, "days", Math.max(1, bookings[0].days - 1))
             }
             style={{
               ...nextButtonStyle,
@@ -338,11 +321,7 @@ export default function BookingWizard() {
 
           <button
             onClick={() =>
-              updateBoat(
-                0,
-                "days",
-                bookings[0].days + 1
-              )
+              updateBoat(0, "days", bookings[0].days + 1)
             }
             style={{
               ...nextButtonStyle,
@@ -353,14 +332,6 @@ export default function BookingWizard() {
           >
             +
           </button>
-        </div>
-
-        <div style={{
-          fontSize: "14px",
-          color: "#666",
-          textAlign: "center"
-        }}>
-          Select number of days (7 is typical for weekend hire)
         </div>
       </div>
     )}
