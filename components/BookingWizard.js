@@ -158,11 +158,12 @@ return (
   >
 
       {/* LEFT */}
-      <div style={{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column"
-      }}>
+<div style={{
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  maxHeight: "calc(100vh - 140px)"
+}}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
           Step {step} of 5
