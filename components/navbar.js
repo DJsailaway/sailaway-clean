@@ -146,19 +146,30 @@ export default function Navbar() {
             <Link href="/st-anthony-helford-river" style={linkStyle}>Location</Link>
 
             {/* Desktop CTA */}
-            <Link
-              href="/#booking"
-              style={{
-                background: "#0f2f4f",
-                color: "white",
-                padding: "8px 16px",
-                borderRadius: "8px",
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
-            >
-              Book
-            </Link>
+<div
+  onClick={() => {
+    const el = document.getElementById("booking-wizard");
+
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+  }}
+  style={{
+    background: "#0f2f4f",
+    color: "white",
+    padding: "8px 16px",
+    borderRadius: "8px",
+    fontWeight: 700,
+    textDecoration: "none",
+    cursor: "pointer",
+    userSelect: "none"
+  }}
+>
+  Book
+</div>
           </div>
         )}
 
