@@ -417,28 +417,36 @@ return (
       style={inputStyle}
     />
 
-    {/* TIME SLOTS */}
-    <div
+{/* TIME SLOTS — SCROLLER */}
+<div
+  style={{
+    display: "flex",
+    overflowX: "auto",
+    gap: "10px",
+    marginTop: "12px",
+    paddingBottom: "8px",
+    scrollSnapType: "x mandatory"
+  }}
+>
+  {generateTimeSlots(
+    bookings[0].durationType,
+    bookings[0].durationKey
+  ).map((t) => (
+    <button
+      key={t}
+      onClick={() => setTime(t)}
       style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "10px",
-        marginTop: "12px"
+        ...cardStyle(time === t),
+        minWidth: "120px",
+        flex: "0 0 auto",
+        scrollSnapAlign: "center",
+        textAlign: "center"
       }}
     >
-      {generateTimeSlots(
-        bookings[0].durationType,
-        bookings[0].durationKey
-      ).map((t) => (
-        <button
-          key={time}
-          onClick={() => setTime(t)}
-          style={cardStyle(time === t)}
-        >
-          {t}
-        </button>
-      ))}
-    </div>
+      {t}
+    </button>
+  ))}
+</div>
   </div>
 )}
 
