@@ -162,8 +162,7 @@ return (
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  maxHeight: "calc(100vh - 140px)",
-  justifyContent: "space-between"
+  maxHeight: "calc(100vh - 180px)"
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
@@ -537,12 +536,16 @@ return (
 
       {/* RIGHT */}
       <div style={{
-        width: "300px",
-        background: "#0f2f4f",
-        color: "#fff",
-        padding: "20px",
-        borderRadius: "16px"
-      }}>
+  width: "300px",
+  maxHeight: "calc(100vh - 180px)",
+  background: "#0f2f4f",
+  color: "#fff",
+  padding: "20px",
+  borderRadius: "16px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between"
+}}>
         <h3>Total</h3>
         <div style={{ fontSize: "32px" }}>£{total}</div>
       </div>
