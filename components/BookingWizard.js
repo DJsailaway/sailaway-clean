@@ -233,45 +233,36 @@ export default function BookingWizard() {
       Duration
     </h3>
 
-    {/* MODE SELECTION (always first, always visible) */}
+    {/* MODE SELECTION */}
     <div style={{
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "10px",
-  marginBottom: "20px"
-}}>
-  <button
-    onClick={() => updateBoat(0, "durationType", "hourly")}
-    style={{
-      ...nextButtonStyle,
-      opacity: bookings[0].durationType && bookings[0].durationType !== "hourly"
-        ? 0.35
-        : 1,
-      transform: bookings[0].durationType === "hourly"
-        ? "scale(1.02)"
-        : "scale(1)",
-      transition: "all 0.2s ease"
-    }}
-  >
-    Hourly
-  </button>
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "10px",
+      marginBottom: "20px"
+    }}>
+      <button
+        onClick={() => updateBoat(0, "durationType", "hourly")}
+        style={{
+          ...nextButtonStyle,
+          opacity: bookings[0].durationType && bookings[0].durationType !== "hourly"
+            ? 0.4
+            : 1
+        }}
+      >
+        Hourly
+      </button>
 
-  <button
-    onClick={() => updateBoat(0, "durationType", "multi")}
-    style={{
-      ...nextButtonStyle,
-      opacity: bookings[0].durationType && bookings[0].durationType !== "multi"
-        ? 0.35
-        : 1,
-      transform: bookings[0].durationType === "multi"
-        ? "scale(1.02)"
-        : "scale(1)",
-      transition: "all 0.2s ease"
-    }}
-  >
-    Multi-Day
-  </button>
-</div>
+      <button
+        onClick={() => updateBoat(0, "durationType", "multi")}
+        style={{
+          ...nextButtonStyle,
+          opacity: bookings[0].durationType && bookings[0].durationType !== "multi"
+            ? 0.4
+            : 1
+        }}
+      >
+        Multi-Day
+      </button>
     </div>
 
     {/* HOURLY OPTIONS */}
@@ -295,9 +286,7 @@ export default function BookingWizard() {
         type="number"
         min="1"
         value={bookings[0].days}
-        onChange={(e) =>
-          updateBoat(0, "days", Number(e.target.value))
-        }
+        onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
         style={inputStyle}
       />
     )}
