@@ -363,10 +363,11 @@ export default function BookingWizard() {
         marginBottom: "16px",
       }}
     >
-      {/* ST ANTHONY (always visible) */}
+      {/* ST ANTHONY */}
       <div
         onClick={() => {
           setLocation("St Anthony");
+          setShowOtherLocations(false);
         }}
         style={{
           ...cardStyle(location === "St Anthony"),
@@ -381,11 +382,13 @@ export default function BookingWizard() {
 
       {/* OTHER LOCATIONS TOGGLE */}
       <div
-        onClick={() => setShowOtherLocations((s) => !s)}
+        onClick={() => {
+          setShowOtherLocations(true);
+          setLocation(""); // clears selection context
+        }}
         style={{
           ...cardStyle(
-            showOtherLocations &&
-              location !== "St Anthony"
+            showOtherLocations && location !== "St Anthony"
           ),
           display: "flex",
           justifyContent: "space-between",
@@ -398,7 +401,7 @@ export default function BookingWizard() {
     </div>
 
     {/* EXPANDED LIST */}
-    {showOtherLocations && (
+    {showOtherLocations && location !== "Other" && (
       <div
         style={{
           display: "grid",
@@ -410,13 +413,6 @@ export default function BookingWizard() {
       >
         {Object.keys(PRICING.locations)
           .filter((loc) => loc !== "St Anthony")
-          .filter((loc) => {
-            // If nothing selected OR St Anthony selected → show all
-            if (!location || location === "St Anthony") return true;
-
-            // Otherwise only show selected location
-            return loc === location;
-          })
           .map((loc) => (
             <div
               key={loc}
@@ -435,17 +431,34 @@ export default function BookingWizard() {
               {location === loc && <span>✓</span>}
             </div>
           ))}
+
+        {/* CUSTOM OPTION */}
+        <div
+          onClick={() => setLocation("Other")}
+          style={{
+            ...cardStyle(location === "Other"),
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "16px",
+          }}
+        >
+          <span>Other (enter manually)</span>
+          {location === "Other" && <span>✓</span>}
+        </div>
       </div>
     )}
 
-    {/* CUSTOM LOCATION INPUT (only if needed) */}
+    {/* CUSTOM INPUT (ONLY WHEN "Other" SELECTED) */}
     {location === "Other" && (
-      <input
-        style={inputStyle}
-        value={customLocation}
-        onChange={(e) => setCustomLocation(e.target.value)}
-        placeholder="Enter custom location"
-      />
+      <div style={{ marginTop: "12px" }}>
+        <input
+          style={inputStyle}
+          value={customLocation}
+          onChange={(e) => setCustomLocation(e.target.value)}
+          placeholder="Enter custom location"
+        />
+      </div>
     )}
   </div>
 )}
