@@ -277,41 +277,44 @@ export default function BookingWizard() {
 {step === 4 && (
   <div style={{ flex: 1 }}>
     <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
-      Choose Location
+      Location
     </h3>
 
     {/* MAIN OPTIONS */}
-    <div style={{
-      display: "grid",
-      gap: "12px",
-      marginBottom: "16px"
-    }}>
-
-      {/* ST ANTHONY */}
+    <div
+      style={{
+        display: "grid",
+        gap: "12px",
+        marginBottom: "16px",
+      }}
+    >
+      {/* ST ANTHONY (always visible) */}
       <div
         onClick={() => {
           setLocation("St Anthony");
-          setShowOtherLocations(false);
         }}
         style={{
           ...cardStyle(location === "St Anthony"),
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <span>St Anthony</span>
-        {location === "St Anthony" && "✓"}
+        {location === "St Anthony" && <span>✓</span>}
       </div>
 
-      {/* OTHER */}
+      {/* OTHER LOCATIONS TOGGLE */}
       <div
-        onClick={() => setShowOtherLocations(!showOtherLocations)}
+        onClick={() => setShowOtherLocations((s) => !s)}
         style={{
-          ...cardStyle(showOtherLocations),
+          ...cardStyle(
+            showOtherLocations &&
+              location !== "St Anthony"
+          ),
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <span>Other Locations</span>
@@ -319,46 +322,54 @@ export default function BookingWizard() {
       </div>
     </div>
 
-    {/* EXPANDED OTHER LOCATIONS */}
+    {/* EXPANDED LIST */}
     {showOtherLocations && (
-      <div style={{
-        display: "grid",
-        gap: "10px",
-        paddingLeft: "10px",
-        borderLeft: "3px solid #0f2f4f",
-        marginBottom: "16px"
-      }}>
+      <div
+        style={{
+          display: "grid",
+          gap: "10px",
+          paddingLeft: "12px",
+          borderLeft: "3px solid #0f2f4f",
+          marginBottom: "16px",
+        }}
+      >
         {Object.keys(PRICING.locations)
           .filter((loc) => loc !== "St Anthony")
+          .filter((loc) => {
+            // If nothing selected OR St Anthony selected → show all
+            if (!location || location === "St Anthony") return true;
+
+            // Otherwise only show selected location
+            return loc === location;
+          })
           .map((loc) => (
             <div
               key={loc}
               onClick={() => {
                 setLocation(loc);
-                setShowOtherLocations(false); // collapse after select
               }}
               style={{
                 ...cardStyle(location === loc),
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                fontSize: "16px"
+                fontSize: "16px",
               }}
             >
               <span>{loc}</span>
-              {location === loc && "✓"}
+              {location === loc && <span>✓</span>}
             </div>
           ))}
       </div>
     )}
 
-    {/* CUSTOM LOCATION */}
+    {/* CUSTOM LOCATION INPUT (only if needed) */}
     {location === "Other" && (
       <input
         style={inputStyle}
-        placeholder="Enter custom location"
         value={customLocation}
         onChange={(e) => setCustomLocation(e.target.value)}
+        placeholder="Enter custom location"
       />
     )}
   </div>
