@@ -294,13 +294,58 @@ export default function BookingWizard() {
 
     {/* MULTI-DAY INPUT */}
     {bookings[0].durationType === "multi" && (
-      <input
-        type="number"
-        min="1"
-        value={bookings[0].days}
-        onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
-        style={inputStyle}
-      />
+      <div style={{
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "12px",
+  marginTop: "10px"
+}}>
+  <button
+    onClick={() =>
+      updateBoat(
+        0,
+        "days",
+        Math.max(1, bookings[0].days - 1)
+      )
+    }
+    style={{
+      ...nextButtonStyle,
+      width: "60px",
+      padding: "12px 0",
+      fontSize: "20px"
+    }}
+  >
+    −
+  </button>
+
+  <div style={{
+    fontSize: "22px",
+    fontWeight: "600",
+    minWidth: "60px",
+    textAlign: "center"
+  }}>
+    {bookings[0].days}
+  </div>
+
+  <button
+    onClick={() =>
+      updateBoat(
+        0,
+        "days",
+        bookings[0].days + 1
+      )
+    }
+    style={{
+      ...nextButtonStyle,
+      width: "60px",
+      padding: "12px 0",
+      fontSize: "20px"
+    }}
+  >
+    +
+  </button>
+</div>
     )}
   </div>
 )}
