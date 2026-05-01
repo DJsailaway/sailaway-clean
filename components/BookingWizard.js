@@ -223,55 +223,143 @@ export default function BookingWizard() {
             )}
 
             {/* STEP 3 */}
-            {step === 3 && (
-              <div style={{ flex: 1 }}>
-                <h3 style={{
-                  fontSize: "26px",
-                  margin: "0 0 16px 0",
-                  minHeight: "32px"
-                }}>
-                  Duration
-                </h3>
+{step === 3 && (
+  <div style={{ flex: 1 }}>
+    <h3 style={{
+      fontSize: "26px",
+      margin: "0 0 16px 0",
+      minHeight: "32px"
+    }}>
+      Duration
+    </h3>
 
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "10px",
-                  marginBottom: "20px"
-                }}>
-                  <button onClick={() => updateBoat(0, "durationType", "hourly")} style={nextButtonStyle}>
-                    Hourly
-                  </button>
+    {/* TYPE SELECTOR */}
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "10px",
+      marginBottom: "20px"
+    }}>
+      <button
+        onClick={() => updateBoat(0, "durationType", "hourly")}
+        style={{
+          ...nextButtonStyle,
+          background: bookings[0].durationType === "hourly" ? "#0f2f4f" : "#ccc",
+          opacity: bookings[0].durationType === "hourly" ? 1 : 0.6
+        }}
+      >
+        Hourly
+      </button>
 
-                  <button onClick={() => updateBoat(0, "durationType", "multi")} style={nextButtonStyle}>
-                    Multi-Day
-                  </button>
-                </div>
+      <button
+        onClick={() => updateBoat(0, "durationType", "multi")}
+        style={{
+          ...nextButtonStyle,
+          background: bookings[0].durationType === "multi" ? "#0f2f4f" : "#ccc",
+          opacity: bookings[0].durationType === "multi" ? 1 : 0.6
+        }}
+      >
+        Multi-Day
+      </button>
+    </div>
 
-                {bookings[0].durationType === "hourly" && (
-                  <div style={{ display: "grid", gap: "10px" }}>
-                    {DURATION_OPTIONS.map((opt) => (
-                      <button
-                        key={opt.key}
-                        onClick={() => updateBoat(0, "durationKey", opt.key)}
-                        style={cardStyle(bookings[0].durationKey === opt.key)}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
+    {/* HOURLY OPTIONS */}
+    {bookings[0].durationType === "hourly" && (
+      <div style={{ display: "grid", gap: "10px" }}>
+        {DURATION_OPTIONS.map((opt) => (
+          <button
+            key={opt.key}
+            onClick={() => updateBoat(0, "durationKey", opt.key)}
+            style={cardStyle(bookings[0].durationKey === opt.key)}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    )}
 
-                {bookings[0].durationType === "multi" && (
-                  <input
-                    type="number"
-                    value={bookings[0].days}
-                    onChange={(e) => updateBoat(0, "days", Number(e.target.value))}
-                    style={inputStyle}
-                  />
-                )}
-              </div>
-            )}
+    {/* MULTI-DAY STEPPER */}
+    {bookings[0].durationType === "multi" && (
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        marginTop: "10px"
+      }}>
+        <div style={{
+          fontSize: "18px",
+          fontWeight: 600
+        }}>
+          Number of days
+        </div>
+
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "20px",
+          padding: "16px",
+          borderRadius: "12px",
+          border: "1px solid #ddd",
+          background: "#f8fafc"
+        }}>
+          <button
+            onClick={() =>
+              updateBoat(
+                0,
+                "days",
+                Math.max(1, bookings[0].days - 1)
+              )
+            }
+            style={{
+              ...nextButtonStyle,
+              width: "50px",
+              height: "50px",
+              borderRadius: "10px"
+            }}
+          >
+            −
+          </button>
+
+          <div style={{
+            fontSize: "28px",
+            fontWeight: "bold",
+            minWidth: "60px",
+            textAlign: "center"
+          }}>
+            {bookings[0].days}
+          </div>
+
+          <button
+            onClick={() =>
+              updateBoat(
+                0,
+                "days",
+                bookings[0].days + 1
+              )
+            }
+            style={{
+              ...nextButtonStyle,
+              width: "50px",
+              height: "50px",
+              borderRadius: "10px"
+            }}
+          >
+            +
+          </button>
+        </div>
+
+        <div style={{
+          fontSize: "14px",
+          color: "#666",
+          textAlign: "center"
+        }}>
+          Minimum 1 day (7 is typical for weekend hire)
+        </div>
+      </div>
+    )}
+  </div>
+)}
 
 {/* STEP 4 */}
 {step === 4 && (
