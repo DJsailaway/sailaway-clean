@@ -417,15 +417,16 @@ return (
       style={inputStyle}
     />
 
-{/* TIME SLOTS — SCROLLER */}
+{/* TIME SLOTS — VERTICAL SCROLLER */}
 <div
   style={{
-    display: "flex",
-    overflowX: "auto",
-    gap: "10px",
     marginTop: "12px",
-    paddingBottom: "8px",
-    scrollSnapType: "x mandatory"
+    maxHeight: "220px",
+    overflowY: "auto",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "10px",
+    paddingRight: "4px"
   }}
 >
   {generateTimeSlots(
@@ -435,13 +436,7 @@ return (
     <button
       key={t}
       onClick={() => setTime(t)}
-      style={{
-        ...cardStyle(time === t),
-        minWidth: "120px",
-        flex: "0 0 auto",
-        scrollSnapAlign: "center",
-        textAlign: "center"
-      }}
+      style={cardStyle(time === t)}
     >
       {t}
     </button>
