@@ -55,7 +55,6 @@ export default function BookingWizard() {
   const [location, setLocation] = useState("St Anthony");
   const [customLocation, setCustomLocation] = useState("");
   const [showOtherLocations, setShowOtherLocations] = useState(false);
-  const [durationModeSelected, setDurationModeSelected] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -213,7 +212,6 @@ export default function BookingWizard() {
                     key={boat}
                     onClick={() => {
                       updateBoat(0, "boat", boat);
-                      setDurationModeSelected(false); // reset Step 3 state
                       setStep(3);
                       }}
                     style={cardStyle(bookings[0].boat === boat)}
@@ -235,38 +233,36 @@ export default function BookingWizard() {
       Duration
     </h3>
 
-    {/* MODE SELECTION */}
-    {!durationModeSelected && (
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "10px",
-        marginBottom: "20px"
-      }}>
-        <button
-          onClick={() => {
-            updateBoat(0, "durationType", "hourly");
-            setDurationModeSelected(true);
-          }}
-          style={nextButtonStyle}
-        >
-          Hourly
-        </button>
+    {/* MODE SELECTOR (always visible) */}
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "10px",
+      marginBottom: "20px"
+    }}>
+      <button
+        onClick={() => updateBoat(0, "durationType", "hourly")}
+        style={{
+          ...nextButtonStyle,
+          opacity: bookings[0].durationType === "hourly" ? 1 : 0.6
+        }}
+      >
+        Hourly
+      </button>
 
-        <button
-          onClick={() => {
-            updateBoat(0, "durationType", "multi");
-            setDurationModeSelected(true);
-          }}
-          style={nextButtonStyle}
-        >
-          Multi-Day
-        </button>
-      </div>
-    )}
+      <button
+        onClick={() => updateBoat(0, "durationType", "multi")}
+        style={{
+          ...nextButtonStyle,
+          opacity: bookings[0].durationType === "multi" ? 1 : 0.6
+        }}
+      >
+        Multi-Day
+      </button>
+    </div>
 
     {/* HOURLY OPTIONS */}
-    {durationModeSelected && bookings[0].durationType === "hourly" && (
+    {bookings[0].durationType === "hourly" && (
       <div style={{ display: "grid", gap: "10px" }}>
         {DURATION_OPTIONS.map((opt) => (
           <button
@@ -280,8 +276,8 @@ export default function BookingWizard() {
       </div>
     )}
 
-    {/* MULTI DAY PICKER */}
-    {durationModeSelected && bookings[0].durationType === "multi" && (
+    {/* MULTI-DAY PICKER */}
+    {bookings[0].durationType === "multi" && (
       <input
         type="number"
         min="1"
