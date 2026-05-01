@@ -41,7 +41,7 @@ const DURATION_OPTIONS = [
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-  durationType: "null",
+  durationType: null,
   durationKey: "2h",
   durationLabel: "2 Hours",
   days: 7
@@ -55,7 +55,6 @@ export default function BookingWizard() {
   const [location, setLocation] = useState("St Anthony");
   const [customLocation, setCustomLocation] = useState("");
   const [showOtherLocations, setShowOtherLocations] = useState(false);
-  const selected = bookings[0].durationType;
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -245,7 +244,11 @@ export default function BookingWizard() {
   onClick={() => updateBoat(0, "durationType", "hourly")}
   style={{
     ...nextButtonStyle,
-    opacity: selected && selected !== "hourly" ? 0.35 : 1
+    opacity:
+      bookings[0].durationType === null ||
+      bookings[0].durationType === "hourly"
+        ? 1
+        : 0.35
   }}
 >
   Hourly
@@ -255,7 +258,11 @@ export default function BookingWizard() {
   onClick={() => updateBoat(0, "durationType", "multi")}
   style={{
     ...nextButtonStyle,
-    opacity: selected && selected !== "multi" ? 0.35 : 1
+    opacity:
+      bookings[0].durationType === null ||
+      bookings[0].durationType === "multi"
+        ? 1
+        : 0.35
   }}
 >
   Multi-Day
