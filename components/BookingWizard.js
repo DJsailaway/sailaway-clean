@@ -219,23 +219,32 @@ return (
             </div>
           )}
 
-          {/* STEP 2 */}
-          {step === 2 && (
-            <div style={{ display: "grid", gap: "15px" }}>
-              {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
-                <div
-                  key={boat}
-                  onClick={() => {
-                    updateBoat(0, "boat", boat);
-                    setStep(3);
-                  }}
-                  style={cardStyle(bookings[0].boat === boat)}
-                >
-                  {boat}
-                </div>
-              ))}
-            </div>
-          )}
+{/* STEP 2 */}
+{step === 2 && (
+  <div
+    style={{
+      display: "grid",
+      gap: "15px",
+      gridTemplateColumns:
+        INTENT_MAP[intent] === "Motor Boats"
+          ? "1fr"
+          : "1fr 1fr"
+    }}
+  >
+    {CATEGORIES[INTENT_MAP[intent]].map((boat) => (
+      <div
+        key={boat}
+        onClick={() => {
+          updateBoat(0, "boat", boat);
+          setStep(3);
+        }}
+        style={cardStyle(bookings[0].boat === boat)}
+      >
+        {boat}
+      </div>
+    ))}
+  </div>
+)}
 
 {/* STEP 3 */}
 {step === 3 && (
