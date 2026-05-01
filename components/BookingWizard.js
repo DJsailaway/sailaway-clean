@@ -54,6 +54,7 @@ export default function BookingWizard() {
 
   const [location, setLocation] = useState("St Anthony");
   const [customLocation, setCustomLocation] = useState("");
+  const [showOtherLocations, setShowOtherLocations] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -272,7 +273,7 @@ export default function BookingWizard() {
               </div>
             )}
 
-            {/* STEP 4 */}
+{/* STEP 4 */}
 {step === 4 && (
   <div style={{ flex: 1 }}>
     <h3>Location</h3>
@@ -285,31 +286,49 @@ export default function BookingWizard() {
       marginBottom: "12px"
     }}>
       <div
-        onClick={() => setLocation("St Anthony")}
+        onClick={() => {
+          setLocation("St Anthony");
+          setShowOtherLocations(false);
+        }}
         style={cardStyle(location === "St Anthony")}
       >
         St Anthony
       </div>
 
       <div
-        onClick={() => setLocation("Other")}
-        style={cardStyle(location === "Other")}
+        onClick={() => setShowOtherLocations(true)}
+        style={cardStyle(showOtherLocations)}
       >
         Other
       </div>
     </div>
 
+    {/* SELECTED OTHER LOCATION (collapsed view) */}
+    {location !== "St Anthony" && !showOtherLocations && (
+      <div style={{
+        marginBottom: "12px",
+        padding: "14px",
+        borderRadius: "12px",
+        background: "#eef4f8",
+        border: "1px solid #ccc"
+      }}>
+        Selected: {location}
+      </div>
+    )}
+
     {/* EXPANDED OPTIONS */}
-    {location === "Other" && (
+    {showOtherLocations && (
       <div style={{ display: "grid", gap: "10px" }}>
 
-        {/* Preset locations (excluding St Anthony) */}
         {Object.keys(PRICING.locations)
           .filter(loc => loc !== "St Anthony")
           .map((loc) => (
             <div
               key={loc}
-              onClick={() => setLocation(loc)}
+              onClick={() => {
+                setLocation(loc);
+                setShowOtherLocations(false); // 👈 collapse after selection
+              }}
               style={cardStyle(location === loc)}
             >
               {loc}
@@ -321,7 +340,10 @@ export default function BookingWizard() {
           placeholder="Enter custom location"
           style={inputStyle}
           value={customLocation}
-          onChange={(e) => setCustomLocation(e.target.value)}
+          onChange={(e) => {
+            setCustomLocation(e.target.value);
+            setLocation(e.target.value);
+          }}
         />
       </div>
     )}
