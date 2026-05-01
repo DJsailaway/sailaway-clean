@@ -241,7 +241,10 @@ export default function BookingWizard() {
       marginBottom: "20px"
     }}>
 <button
-  onClick={() => updateBoat(0, "durationType", "hourly")}
+  onClick={() => {
+  updateBoat(0, "durationType", "hourly");
+  updateBoat(0, "days", 7); // reset multi-day safely
+}}
   style={{
     ...nextButtonStyle,
     opacity:
@@ -255,7 +258,10 @@ export default function BookingWizard() {
 </button>
 
 <button
-  onClick={() => updateBoat(0, "durationType", "multi")}
+  onClick={() => {
+  updateBoat(0, "durationType", "multi");
+  updateBoat(0, "durationKey", "2h"); // reset hourly safely
+}}
   style={{
     ...nextButtonStyle,
     opacity:
