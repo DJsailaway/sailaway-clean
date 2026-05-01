@@ -276,79 +276,94 @@ export default function BookingWizard() {
 {/* STEP 4 */}
 {step === 4 && (
   <div style={{ flex: 1 }}>
-    <h3>Location</h3>
+    <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
+      Choose Location
+    </h3>
 
-    {/* PRIMARY CHOICE */}
+    {/* MAIN OPTIONS */}
     <div style={{
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
       gap: "12px",
-      marginBottom: "12px"
+      marginBottom: "16px"
     }}>
+
+      {/* ST ANTHONY */}
       <div
         onClick={() => {
           setLocation("St Anthony");
           setShowOtherLocations(false);
         }}
-        style={cardStyle(location === "St Anthony")}
+        style={{
+          ...cardStyle(location === "St Anthony"),
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
       >
-        St Anthony
+        <span>St Anthony</span>
+        {location === "St Anthony" && "✓"}
       </div>
 
+      {/* OTHER */}
       <div
-        onClick={() => setShowOtherLocations(true)}
-        style={cardStyle(showOtherLocations)}
+        onClick={() => setShowOtherLocations(!showOtherLocations)}
+        style={{
+          ...cardStyle(showOtherLocations),
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
       >
-        Other
+        <span>Other Locations</span>
+        <span>{showOtherLocations ? "−" : "+"}</span>
       </div>
     </div>
 
-    {/* SELECTED OTHER LOCATION (collapsed view) */}
-    {location !== "St Anthony" && !showOtherLocations && (
-      <div style={{
-        marginBottom: "12px",
-        padding: "14px",
-        borderRadius: "12px",
-        background: "#eef4f8",
-        border: "1px solid #ccc"
-      }}>
-        Selected: {location}
-      </div>
-    )}
-
-    {/* EXPANDED OPTIONS */}
+    {/* EXPANDED OTHER LOCATIONS */}
     {showOtherLocations && (
-      <div style={{ display: "grid", gap: "10px" }}>
-
+      <div style={{
+        display: "grid",
+        gap: "10px",
+        paddingLeft: "10px",
+        borderLeft: "3px solid #0f2f4f",
+        marginBottom: "16px"
+      }}>
         {Object.keys(PRICING.locations)
-          .filter(loc => loc !== "St Anthony")
+          .filter((loc) => loc !== "St Anthony")
           .map((loc) => (
             <div
               key={loc}
               onClick={() => {
                 setLocation(loc);
-                setShowOtherLocations(false); // 👈 collapse after selection
+                setShowOtherLocations(false); // collapse after select
               }}
-              style={cardStyle(location === loc)}
+              style={{
+                ...cardStyle(location === loc),
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                fontSize: "16px"
+              }}
             >
-              {loc}
+              <span>{loc}</span>
+              {location === loc && "✓"}
             </div>
           ))}
-
-        {/* Custom input */}
-        <input
-          placeholder="Enter custom location"
-          style={inputStyle}
-          value={customLocation}
-          onChange={(e) => {
-            setCustomLocation(e.target.value);
-            setLocation(e.target.value);
-          }}
-        />
       </div>
+    )}
+
+    {/* CUSTOM LOCATION */}
+    {location === "Other" && (
+      <input
+        style={inputStyle}
+        placeholder="Enter custom location"
+        value={customLocation}
+        onChange={(e) => setCustomLocation(e.target.value)}
+      />
     )}
   </div>
 )}
+
             {/* STEP 5 */}
 {step === 5 && (
   <div style={{ display: "grid", gap: "12px" }}>
