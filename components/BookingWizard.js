@@ -162,7 +162,8 @@ return (
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  maxHeight: "calc(100vh - 140px)"
+  maxHeight: "calc(100vh - 140px)",
+  justifyContent: "space-between"
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
