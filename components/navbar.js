@@ -147,21 +147,7 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
 <Link
-  href="/#booking"
-  onClick={(e) => {
-    // If already on homepage, prevent full reload behaviour
-    if (router.pathname === "/") {
-      e.preventDefault();
-
-      const el = document.getElementById("booking-wizard");
-      if (el) {
-        el.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-      }
-    }
-  }}
+  href="/#booking-wizard"
   style={{
     background: "#0f2f4f",
     color: "white",
@@ -169,7 +155,6 @@ export default function Navbar() {
     borderRadius: "8px",
     fontWeight: 700,
     textDecoration: "none",
-    cursor: "pointer"
   }}
 >
   Book
