@@ -235,11 +235,43 @@ export default function BookingWizard() {
 
     {/* MODE SELECTION (always first, always visible) */}
     <div style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "10px",
-      marginBottom: "20px"
-    }}>
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "10px",
+  marginBottom: "20px"
+}}>
+  <button
+    onClick={() => updateBoat(0, "durationType", "hourly")}
+    style={{
+      ...nextButtonStyle,
+      opacity: bookings[0].durationType && bookings[0].durationType !== "hourly"
+        ? 0.35
+        : 1,
+      transform: bookings[0].durationType === "hourly"
+        ? "scale(1.02)"
+        : "scale(1)",
+      transition: "all 0.2s ease"
+    }}
+  >
+    Hourly
+  </button>
+
+  <button
+    onClick={() => updateBoat(0, "durationType", "multi")}
+    style={{
+      ...nextButtonStyle,
+      opacity: bookings[0].durationType && bookings[0].durationType !== "multi"
+        ? 0.35
+        : 1,
+      transform: bookings[0].durationType === "multi"
+        ? "scale(1.02)"
+        : "scale(1)",
+      transition: "all 0.2s ease"
+    }}
+  >
+    Multi-Day
+  </button>
+</div>
       <button
         onClick={() => updateBoat(0, "durationType", "hourly")}
         style={{
