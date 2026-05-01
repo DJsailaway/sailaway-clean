@@ -56,6 +56,7 @@ export default function BookingWizard() {
   const [customLocation, setCustomLocation] = useState("");
   const [showOtherLocations, setShowOtherLocations] = useState(false);
   const [locationMode, setLocationMode] = useState("st-anthony");
+  const [shouldFocusWizard, setShouldFocusWizard] = useState(false);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -64,12 +65,16 @@ export default function BookingWizard() {
   // ✅ OPTION A: scroll-to-step ref
   const wizardRef = useRef(null);
 
-  useEffect(() => {
-    wizardRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-  }, [step]);
+useEffect(() => {
+  if (!shouldFocusWizard) return;
+
+  wizardRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  setShouldFocusWizard(false); // reset after use
+}, [step, shouldFocusWizard]);
 
   const calcBoatPrice = (b) => {
     const p = PRICING.boats?.[b.boat];
