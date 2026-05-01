@@ -41,7 +41,7 @@ const DURATION_OPTIONS = [
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-  durationType: "null",
+  durationType: "hourly",
   durationKey: "2h",
   durationLabel: "2 Hours",
   days: 7
@@ -233,28 +233,33 @@ export default function BookingWizard() {
       Duration
     </h3>
 
-    {/* MODE SELECTION ONLY (NO PREVIEW CONTENT YET) */}
-    {!bookings[0].durationType && (
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "12px"
-      }}>
-        <button
-          onClick={() => updateBoat(0, "durationType", "hourly")}
-          style={nextButtonStyle}
-        >
-          Hourly
-        </button>
+    {/* MODE SELECTOR (ALWAYS VISIBLE) */}
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "12px",
+      marginBottom: "20px"
+    }}>
+      <button
+        onClick={() => updateBoat(0, "durationType", "hourly")}
+        style={{
+          ...nextButtonStyle,
+          opacity: bookings[0].durationType === "hourly" ? 1 : 0.7
+        }}
+      >
+        Hourly
+      </button>
 
-        <button
-          onClick={() => updateBoat(0, "durationType", "multi")}
-          style={nextButtonStyle}
-        >
-          Multi-day
-        </button>
-      </div>
-    )}
+      <button
+        onClick={() => updateBoat(0, "durationType", "multi")}
+        style={{
+          ...nextButtonStyle,
+          opacity: bookings[0].durationType === "multi" ? 1 : 0.7
+        }}
+      >
+        Multi-day
+      </button>
+    </div>
 
     {/* HOURLY OPTIONS */}
     {bookings[0].durationType === "hourly" && (
@@ -275,64 +280,50 @@ export default function BookingWizard() {
     {bookings[0].durationType === "multi" && (
       <div style={{
         display: "flex",
-        flexDirection: "column",
-        gap: "12px",
-        marginTop: "10px"
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "20px",
+        padding: "16px",
+        borderRadius: "12px",
+        border: "1px solid #ddd",
+        background: "#f8fafc"
       }}>
-        <div style={{
-          fontSize: "18px",
-          fontWeight: 600
-        }}>
-          Number of days
-        </div>
+        <button
+          onClick={() =>
+            updateBoat(0, "days", Math.max(1, bookings[0].days - 1))
+          }
+          style={{
+            ...nextButtonStyle,
+            width: "50px",
+            height: "50px",
+            borderRadius: "10px"
+          }}
+        >
+          −
+        </button>
 
         <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "20px",
-          padding: "16px",
-          borderRadius: "12px",
-          border: "1px solid #ddd",
-          background: "#f8fafc"
+          fontSize: "28px",
+          fontWeight: "bold",
+          minWidth: "60px",
+          textAlign: "center"
         }}>
-          <button
-            onClick={() =>
-              updateBoat(0, "days", Math.max(1, bookings[0].days - 1))
-            }
-            style={{
-              ...nextButtonStyle,
-              width: "50px",
-              height: "50px",
-              borderRadius: "10px"
-            }}
-          >
-            −
-          </button>
-
-          <div style={{
-            fontSize: "28px",
-            fontWeight: "bold",
-            minWidth: "60px",
-            textAlign: "center"
-          }}>
-            {bookings[0].days}
-          </div>
-
-          <button
-            onClick={() =>
-              updateBoat(0, "days", bookings[0].days + 1)
-            }
-            style={{
-              ...nextButtonStyle,
-              width: "50px",
-              height: "50px",
-              borderRadius: "10px"
-            }}
-          >
-            +
-          </button>
+          {bookings[0].days}
         </div>
+
+        <button
+          onClick={() =>
+            updateBoat(0, "days", bookings[0].days + 1)
+          }
+          style={{
+            ...nextButtonStyle,
+            width: "50px",
+            height: "50px",
+            borderRadius: "10px"
+          }}
+        >
+          +
+        </button>
       </div>
     )}
   </div>
