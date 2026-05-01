@@ -145,17 +145,19 @@ useEffect(() => {
   };
 
 return (
-  <div
-    id="booking-wizard"
-    style={{
-      display: "flex",
-      gap: "20px",
-      maxWidth: "1200px",
-      margin: "40px auto",
-      paddingBottom: "40px",
-      scrollMarginTop: "90px"
-    }}
-  >
+<div
+  id="booking-wizard"
+  style={{
+    display: "flex",
+    gap: "20px",
+    width: "100%",
+    maxWidth: "1200px",
+    margin: "40px auto",
+    padding: "0 16px 40px",
+    scrollMarginTop: "90px",
+    boxSizing: "border-box"
+  }}
+>
 
       {/* LEFT */}
 <div style={{
