@@ -233,7 +233,7 @@ export default function BookingWizard() {
       Duration
     </h3>
 
-    {/* MODE SELECTOR (always visible) */}
+    {/* MODE SELECTION (always first, always visible) */}
     <div style={{
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
@@ -276,7 +276,7 @@ export default function BookingWizard() {
       </div>
     )}
 
-    {/* MULTI-DAY PICKER */}
+    {/* MULTI-DAY INPUT */}
     {bookings[0].durationType === "multi" && (
       <input
         type="number"
