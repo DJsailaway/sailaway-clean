@@ -41,7 +41,7 @@ const DURATION_OPTIONS = [
 const createBoat = () => ({
   category: "Motor Boats",
   boat: CATEGORIES["Motor Boats"][0],
-  durationType: "hourly",
+  durationType: "null",
   durationKey: "2h",
   durationLabel: "2 Hours",
   days: 7
