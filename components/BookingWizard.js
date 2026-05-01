@@ -64,6 +64,30 @@ export default function BookingWizard() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  const generateTimeSlots = (durationType, durationKey) => {
+  const slots = [];
+
+  let start = 9 * 60;   // 09:00 in minutes
+  let end = 17 * 60;    // 17:00 cutoff
+
+  if (durationType === "hourly") {
+    if (durationKey === "1h") end = 16 * 60;
+    if (durationKey === "2h") end = 15 * 60;
+  }
+
+  if (durationType === "multi") {
+    start = 9 * 60;
+  }
+
+  for (let t = start; t <= end; t += 30) {
+    const h = Math.floor(t / 60);
+    const m = t % 60 === 0 ? "00" : "30";
+    slots.push(`${h.toString().padStart(2, "0")}:${m}`);
+  }
+
+  return slots;
+};
+
   // ✅ OPTION A: scroll-to-step ref
   const wizardRef = useRef(null);
 
@@ -381,13 +405,11 @@ return (
 {/* STEP 4 — DATE & TIME */}
 {step === 4 && (
   <div style={{ flex: 1 }}>
-    <h3 style={{
-      fontSize: "26px",
-      margin: "0 0 16px 0"
-    }}>
-      When would you like to go?
+    <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
+      Select Date & Start Time
     </h3>
 
+    {/* DATE */}
     <input
       type="date"
       value={date}
@@ -395,12 +417,28 @@ return (
       style={inputStyle}
     />
 
-    <input
-      type="time"
-      value={time}
-      onChange={(e) => setTime(e.target.value)}
-      style={inputStyle}
-    />
+    {/* TIME SLOTS */}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "10px",
+        marginTop: "12px"
+      }}
+    >
+      {generateTimeSlots(
+        bookings[0].durationType,
+        bookings[0].durationKey
+      ).map((time) => (
+        <button
+          key={time}
+          onClick={() => setTime(time)}
+          style={cardStyle(time === time)}
+        >
+          {time}
+        </button>
+      ))}
+    </div>
   </div>
 )}
 
