@@ -272,25 +272,6 @@ export default function BookingWizard() {
     Multi-Day
   </button>
 </div>
-      <button
-        onClick={() => updateBoat(0, "durationType", "hourly")}
-        style={{
-          ...nextButtonStyle,
-          opacity: bookings[0].durationType === "hourly" ? 1 : 0.6
-        }}
-      >
-        Hourly
-      </button>
-
-      <button
-        onClick={() => updateBoat(0, "durationType", "multi")}
-        style={{
-          ...nextButtonStyle,
-          opacity: bookings[0].durationType === "multi" ? 1 : 0.6
-        }}
-      >
-        Multi-Day
-      </button>
     </div>
 
     {/* HOURLY OPTIONS */}
