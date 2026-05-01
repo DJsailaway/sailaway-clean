@@ -57,6 +57,8 @@ export default function BookingWizard() {
   const [showOtherLocations, setShowOtherLocations] = useState(false);
   const [locationMode, setLocationMode] = useState("st-anthony");
   const [shouldFocusWizard, setShouldFocusWizard] = useState(false);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -98,7 +100,7 @@ useEffect(() => {
     setBookings(copy);
   };
 
-  const next = () => setStep((s) => Math.min(5, s + 1));
+  const next = () => setStep((s) => Math.min(6, s + 1));
   const back = () => setStep((s) => Math.max(1, s - 1));
 
   const inputStyle = {
@@ -168,11 +170,11 @@ return (
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
-          Step {step} of 5
+          Step {step} of 6
         </h2>
 
         <div style={{ display: "flex", gap: "6px", marginBottom: "16px" }}>
-          {[1, 2, 3, 4, 5].map((i) => (
+          {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
               key={i}
               style={{
@@ -376,8 +378,34 @@ return (
   </div>
 )}
 
-{/* STEP 4 */}
+{/* STEP 4 — DATE & TIME */}
 {step === 4 && (
+  <div style={{ flex: 1 }}>
+    <h3 style={{
+      fontSize: "26px",
+      margin: "0 0 16px 0"
+    }}>
+      When would you like to go?
+    </h3>
+
+    <input
+      type="date"
+      value={date}
+      onChange={(e) => setDate(e.target.value)}
+      style={inputStyle}
+    />
+
+    <input
+      type="time"
+      value={time}
+      onChange={(e) => setTime(e.target.value)}
+      style={inputStyle}
+    />
+  </div>
+)}
+
+{/* STEP 5 */}
+{step === 5 && (
   <div style={{ flex: 1 }}>
     <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
       Location
@@ -463,8 +491,8 @@ return (
   </div>
 )}
 
-            {/* STEP 5 */}
-{step === 5 && (
+            {/* STEP 6 */}
+{step === 6 && (
   <div style={{ display: "grid", gap: "12px" }}>
     <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
     <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
@@ -502,7 +530,7 @@ return (
                 alignSelf: "flex-end"
               }}>
 
-                {step >= 3 && step < 5 && (
+                {step >= 3 && step < 6 && (
                   <button
                     onClick={next}
                     style={{
@@ -516,7 +544,7 @@ return (
                   </button>
                 )}
 
-                {step === 5 && (
+                {step === 6 && (
                   <button
                     onClick={async () => {
                       await fetch("/api/bookings", {
@@ -527,6 +555,8 @@ return (
                           email,
                           phone,
                           bookings,
+                          date,
+                          time,
                           total,
                           location: customLocation || location
                         })
