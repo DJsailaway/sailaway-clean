@@ -429,13 +429,13 @@ return (
       {generateTimeSlots(
         bookings[0].durationType,
         bookings[0].durationKey
-      ).map((time) => (
+      ).map((t) => (
         <button
           key={time}
-          onClick={() => setTime(time)}
-          style={cardStyle(time === time)}
+          onClick={() => setTime(t)}
+          style={cardStyle(time === t)}
         >
-          {time}
+          {t}
         </button>
       ))}
     </div>
