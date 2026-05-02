@@ -72,11 +72,6 @@ const getTimeLimits = (durationType, durationKey) => {
     if (durationKey === "full") return { min: "09:00", max: "09:00" };
   }
 
-  const { min, max } = getTimeLimits(
-  bookings[0].durationType,
-  bookings[0].durationKey
-);
-
   return { min: "09:00", max: "17:00" };
 };
 };
@@ -398,6 +393,10 @@ return (
 {/* STEP 4 — DATE & TIME */}
 {step === 4 && (
   <div style={{ flex: 1 }}>
+  const { min, max } = getTimeLimits(
+  bookings[0].durationType,
+  bookings[0].durationKey
+);
     <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
       Select Date & Start Time
     </h3>
