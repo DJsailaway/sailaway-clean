@@ -74,7 +74,11 @@ const getTimeLimits = (durationType, durationKey) => {
 
   return { min: "09:00", max: "17:00" };
 };
-};
+  
+  const { min, max } = getTimeLimits(
+  bookings[0].durationType,
+  bookings[0].durationKey
+);
 
   // ✅ OPTION A: scroll-to-step ref
   const wizardRef = useRef(null);
@@ -393,10 +397,6 @@ return (
 {/* STEP 4 — DATE & TIME */}
 {step === 4 && (
   <div style={{ flex: 1 }}>
-  const { min, max } = getTimeLimits(
-  bookings[0].durationType,
-  bookings[0].durationKey
-);
     <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
       Select Date & Start Time
     </h3>
