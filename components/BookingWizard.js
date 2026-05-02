@@ -438,39 +438,106 @@ return (
       style={inputStyle}
     />
 
-{/* TIME PICKER — WHEEL STYLE */}
-<div
-  style={{
-    marginTop: "12px",
-    height: "220px",
-    overflowY: "auto",
-    scrollSnapType: "y mandatory",
-    borderRadius: "12px",
-    border: "1px solid #ddd",
-    padding: "8px"
-  }}
->
-  {generateTimeSlots(min, max).map((t) => (
+    {/* WHEEL PICKER WRAPPER */}
     <div
-      key={t}
-      onClick={() => setTime(t)}
       style={{
-        padding: "14px",
-        textAlign: "center",
-        borderRadius: "10px",
-        marginBottom: "8px",
-        cursor: "pointer",
-        scrollSnapAlign: "center",
-        background: time === t ? "#0f2f4f" : "#f8fafc",
-        color: time === t ? "#fff" : "#0f2f4f",
-        fontWeight: 600,
-        transition: "all 0.2s ease"
+        marginTop: "12px",
+        height: "260px",
+        overflowY: "auto",
+        scrollSnapType: "y mandatory",
+        WebkitOverflowScrolling: "touch",
+        borderRadius: "14px",
+        border: "1px solid #ddd",
+        position: "relative",
+        background: "#fff"
+      }}
+      onScroll={(e) => {
+        const container = e.target;
+        const children = Array.from(container.children);
+        const center = container.scrollTop + container.clientHeight / 2;
+
+        let closest = null;
+        let closestDist = Infinity;
+
+        children.forEach((child) => {
+          const rect = child.getBoundingClientRect();
+          const parentRect = container.getBoundingClientRect();
+
+          const childCenter =
+            child.offsetTop - container.scrollTop + child.offsetHeight / 2;
+
+          const dist = Math.abs(center - childCenter);
+
+          if (dist < closestDist) {
+            closestDist = dist;
+            closest = child.dataset.value;
+          }
+        });
+
+        if (closest) setTime(closest);
       }}
     >
-      {t}
+      {/* TOP FADE */}
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "80px",
+          background:
+            "linear-gradient(to bottom, white, rgba(255,255,255,0))",
+          zIndex: 2,
+          pointerEvents: "none"
+        }}
+      />
+
+      {generateTimeSlots(min, max).map((t) => (
+        <div
+          key={t}
+          data-value={t}
+          onClick={() => setTime(t)}
+          style={{
+            height: "44px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            scrollSnapAlign: "center",
+            fontSize: "18px",
+            fontWeight: time === t ? 700 : 500,
+            color: time === t ? "#0f2f4f" : "#888",
+            transform: time === t ? "scale(1.05)" : "scale(0.95)",
+            transition: "all 0.2s ease",
+            cursor: "pointer"
+          }}
+        >
+          {t}
+        </div>
+      ))}
+
+      {/* BOTTOM FADE */}
+      <div
+        style={{
+          position: "sticky",
+          bottom: 0,
+          height: "80px",
+          background:
+            "linear-gradient(to top, white, rgba(255,255,255,0))",
+          zIndex: 2,
+          pointerEvents: "none"
+        }}
+      />
     </div>
-  ))}
-</div>
+
+    {/* CENTER HIGHLIGHT BAR */}
+    <div
+      style={{
+        position: "relative",
+        top: "-130px",
+        height: "44px",
+        borderTop: "1px solid rgba(15,47,79,0.2)",
+        borderBottom: "1px solid rgba(15,47,79,0.2)",
+        pointerEvents: "none"
+      }}
+    />
   </div>
 )}
 
