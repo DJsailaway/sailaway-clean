@@ -438,34 +438,39 @@ return (
       style={inputStyle}
     />
 
-    {/* TIME SCROLLER */}
+{/* TIME PICKER — WHEEL STYLE */}
+<div
+  style={{
+    marginTop: "12px",
+    height: "220px",
+    overflowY: "auto",
+    scrollSnapType: "y mandatory",
+    borderRadius: "12px",
+    border: "1px solid #ddd",
+    padding: "8px"
+  }}
+>
+  {generateTimeSlots(min, max).map((t) => (
     <div
+      key={t}
+      onClick={() => setTime(t)}
       style={{
-        marginTop: "12px",
-        maxHeight: "240px",
-        overflowY: "auto",
-        border: "1px solid #ddd",
-        borderRadius: "12px",
-        padding: "8px",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "10px",
-        scrollSnapType: "y mandatory"
+        padding: "14px",
+        textAlign: "center",
+        borderRadius: "10px",
+        marginBottom: "8px",
+        cursor: "pointer",
+        scrollSnapAlign: "center",
+        background: time === t ? "#0f2f4f" : "#f8fafc",
+        color: time === t ? "#fff" : "#0f2f4f",
+        fontWeight: 600,
+        transition: "all 0.2s ease"
       }}
     >
-      {generateTimeSlots(min, max).map((t) => (
-        <button
-          key={t}
-          onClick={() => setTime(t)}
-          style={{
-            ...cardStyle(time === t),
-            scrollSnapAlign: "start"
-          }}
-        >
-          {t}
-        </button>
-      ))}
+      {t}
     </div>
+  ))}
+</div>
   </div>
 )}
 
