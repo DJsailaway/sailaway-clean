@@ -213,7 +213,7 @@ return (
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  height: "calc(100vh - 160px)",
+  height: "calc(100vh - 170px)",
   minHeight: 0
 }}>
 
@@ -243,6 +243,8 @@ return (
           flexDirection: "column",
           gap: "12px",
           paddingBottom: "20px"
+          minHeight: 0,
+          paddingBottom: "12px",
         }}>
 
           {/* STEP 1 */}
@@ -600,8 +602,9 @@ return (
             <div style={{
               display: "flex",
               alignItems: "center",
-              marginTop: "12px",
-              paddingBottom: "20px",
+              marginTop: "16px",
+              paddingTop: "6px",
+              paddingBottom: "8px"
               position: "sticky",
               bottom: 0,
               background: "white",
