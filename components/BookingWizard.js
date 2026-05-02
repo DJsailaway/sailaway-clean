@@ -64,28 +64,21 @@ export default function BookingWizard() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  const generateTimeSlots = (durationType, durationKey) => {
-  const slots = [];
-
-  let start = 9 * 60;   // 09:00 in minutes
-  let end = 17 * 60;    // 17:00 cutoff
-
+const getTimeLimits = (durationType, durationKey) => {
   if (durationType === "hourly") {
-    if (durationKey === "1h") end = 16 * 60;
-    if (durationKey === "2h") end = 15 * 60;
+    if (durationKey === "1h") return { min: "09:00", max: "16:00" };
+    if (durationKey === "2h") return { min: "09:00", max: "15:00" };
+    if (durationKey === "half") return { min: "09:00", max: "13:00" };
+    if (durationKey === "full") return { min: "09:00", max: "09:00" };
   }
 
-  if (durationType === "multi") {
-    start = 9 * 60;
-  }
+  const { min, max } = getTimeLimits(
+  bookings[0].durationType,
+  bookings[0].durationKey
+);
 
-  for (let t = start; t <= end; t += 30) {
-    const h = Math.floor(t / 60);
-    const m = t % 60 === 0 ? "00" : "30";
-    slots.push(`${h.toString().padStart(2, "0")}:${m}`);
-  }
-
-  return slots;
+  return { min: "09:00", max: "17:00" };
+};
 };
 
   // ✅ OPTION A: scroll-to-step ref
@@ -420,7 +413,9 @@ return (
 {/* TIME PICKER */}
 <input
   type="time"
-  step="1800" // 30 minutes
+  step="1800"
+  min={min}
+  max={max}
   value={time}
   onChange={(e) => setTime(e.target.value)}
   style={inputStyle}
