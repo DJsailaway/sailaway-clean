@@ -213,7 +213,8 @@ return (
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  maxHeight: "calc(100vh - 160px)"
+  height: "calc(100vh - 160px)",
+  minHeight: 0
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
@@ -236,13 +237,12 @@ return (
 
         {/* ✅ FIXED VIEWPORT HEIGHT */}
         <div style={{
-          flex: 1,
-          minHeight: "calc(100vh - 220px)",
-          maxHeight: "calc(100vh - 220px)",
+          flex: 1,    
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
-          gap: "12px"
+          gap: "12px",
+          paddingBottom: "20px"
         }}>
 
           {/* STEP 1 */}
@@ -597,12 +597,16 @@ return (
 
           {/* 🔒 LOCKED NAVIGATION SYSTEM (UNCHANGED) */}
           {step >= 2 && (
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "8px",
-                paddingBottom: "12px"
-              }}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "12px",
+              paddingBottom: "20px",
+              position: "sticky",
+              bottom: 0,
+              background: "white",
+              zIndex: 10
+            }}>
 
               <button
                 onClick={back}
