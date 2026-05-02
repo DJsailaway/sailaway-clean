@@ -239,7 +239,7 @@ return (
         <div style={{
           flex: 1,
           minHeight: 0,
-          maxHeight: "calc(100vh - 220px)",
+          maxHeight: "calc(100vh - 160px)",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
