@@ -237,14 +237,14 @@ return (
 
         {/* ✅ FIXED VIEWPORT HEIGHT */}
         <div style={{
-          flex: 1,    
+          flex: 1,
+          minHeight: 0,
+          maxHeight: "calc(100vh - 220px)",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          paddingBottom: "20px"
-          minHeight: 0,
-          paddingBottom: "12px",
+          paddingBottom: "12px"
         }}>
 
           {/* STEP 1 */}
