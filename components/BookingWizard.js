@@ -438,107 +438,40 @@ return (
       style={inputStyle}
     />
 
-    {/* WHEEL PICKER WRAPPER */}
-    <div
+{/* TIME PICKER — CLEAN SNAP SCROLLER */}
+<div
+  style={{
+    marginTop: "12px",
+    height: "240px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollSnapType: "y mandatory",
+    borderRadius: "12px",
+    border: "1px solid #ddd",
+    background: "#fff"
+  }}
+>
+  {generateTimeSlots(min, max).map((t) => (
+    <button
+      key={t}
+      onClick={() => setTime(t)}
       style={{
-        marginTop: "12px",
-        height: "260px",
-        overflowY: "auto",
-        scrollSnapType: "y mandatory",
-        WebkitOverflowScrolling: "touch",
-        borderRadius: "14px",
-        border: "1px solid #ddd",
-        position: "relative",
-        background: "#fff"
-      }}
-      onScroll={(e) => {
-        const container = e.target;
-        const children = Array.from(container.children);
-        const center = container.scrollTop + container.clientHeight / 2;
-
-        let closest = null;
-        let closestDist = Infinity;
-
-        children.forEach((child) => {
-          const rect = child.getBoundingClientRect();
-          const parentRect = container.getBoundingClientRect();
-
-          const childCenter =
-            child.offsetTop - container.scrollTop + child.offsetHeight / 2;
-
-          const dist = Math.abs(center - childCenter);
-
-          if (dist < closestDist) {
-            closestDist = dist;
-            closest = child.dataset.value;
-          }
-        });
-
-        if (closest) setTime(closest);
+        width: "100%",
+        height: "48px",
+        border: "none",
+        background: "transparent",
+        scrollSnapAlign: "center",
+        fontSize: "18px",
+        fontWeight: time === t ? 700 : 500,
+        color: time === t ? "#0f2f4f" : "#777",
+        cursor: "pointer",
+        transition: "all 0.2s ease"
       }}
     >
-      {/* TOP FADE */}
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          height: "80px",
-          background:
-            "linear-gradient(to bottom, white, rgba(255,255,255,0))",
-          zIndex: 2,
-          pointerEvents: "none"
-        }}
-      />
-
-      {generateTimeSlots(min, max).map((t) => (
-        <div
-          key={t}
-          data-value={t}
-          onClick={() => setTime(t)}
-          style={{
-            height: "44px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            scrollSnapAlign: "center",
-            fontSize: "18px",
-            fontWeight: time === t ? 700 : 500,
-            color: time === t ? "#0f2f4f" : "#888",
-            transform: time === t ? "scale(1.05)" : "scale(0.95)",
-            transition: "all 0.2s ease",
-            cursor: "pointer"
-          }}
-        >
-          {t}
-        </div>
-      ))}
-
-      {/* BOTTOM FADE */}
-      <div
-        style={{
-          position: "sticky",
-          bottom: 0,
-          height: "80px",
-          background:
-            "linear-gradient(to top, white, rgba(255,255,255,0))",
-          zIndex: 2,
-          pointerEvents: "none"
-        }}
-      />
-    </div>
-
-    {/* CENTER HIGHLIGHT BAR */}
-    <div
-      style={{
-        position: "relative",
-        top: "-130px",
-        height: "44px",
-        borderTop: "1px solid rgba(15,47,79,0.2)",
-        borderBottom: "1px solid rgba(15,47,79,0.2)",
-        pointerEvents: "none"
-      }}
-    />
-  </div>
+      {t}
+    </button>
+  ))}
+</div>
 )}
 
 {/* STEP 5 */}
