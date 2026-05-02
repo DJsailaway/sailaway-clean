@@ -64,6 +64,8 @@ export default function BookingWizard() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  const [showTimePicker, setShowTimePicker] = useState(true);
+
 const getTimeLimits = (durationType, durationKey) => {
   if (durationType === "hourly") {
     if (durationKey === "1h") return { min: "09:00", max: "16:00" };
