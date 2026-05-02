@@ -215,7 +215,6 @@ return (
   flexDirection: "column",
   height: "100vh",
   minHeight: 0,
-  overflow: "hidden",
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
@@ -240,12 +239,10 @@ return (
         <div style={{
           flex: 1,
           minHeight: 0,
-          maxHeight: "calc(100vh - 240px)",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          paddingBottom: "80px"
         }}>
 
           {/* STEP 1 */}
@@ -606,15 +603,18 @@ return (
 
           {/* 🔒 LOCKED NAVIGATION SYSTEM (UNCHANGED) */}
           {step >= 2 && (
-            <div style={{
+            <div 
+              style={{
               display: "flex",
               alignItems: "center",
-              marginTop: "auto",
-              paddingTop: "10px", 
+              paddingTop: "10px",
               paddingBottom: "16px",
               background: "white",
-              zIndex: 10
-            }}>
+              zIndex: 10,
+              position: "sticky",
+              bottom: 0,
+              boxShadow: "0 -8px 20px rgba(0,0,0,0.08)"
+              }}
 
               <button
                 onClick={back}
