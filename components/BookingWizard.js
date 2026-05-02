@@ -239,7 +239,7 @@ return (
         <div style={{
           flex: 1,
           minHeight: 0,
-          maxHeight: "none",
+          maxHeight: "calc(100vh - 240px)",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
@@ -458,19 +458,25 @@ return (
     )}
 
     {/* TIME PICKER — SCROLL + AUTO COLLAPSE */}
-    {showTimePicker && (
-      <div
-        style={{
-          marginTop: "12px",
-          height: "240px",
-          overflowY: "auto",
-          overflowX: "hidden",
-          scrollSnapType: "y mandatory",
-          borderRadius: "12px",
-          border: "1px solid #ddd",
-          background: "#fff"
-        }}
-      >
+{showTimePicker && (
+  <div
+    ref={(el) => {
+      if (el && time === "10:00") {
+        el.scrollTop = 120; // centers around 10:00 roughly
+      }
+    }}
+    style={{
+      marginTop: "12px",
+      height: "220px",
+      maxHeight: "220px",
+      overflowY: "auto",
+      overflowX: "hidden",
+      scrollSnapType: "y mandatory",
+      borderRadius: "12px",
+      border: "1px solid #ddd",
+      background: "#fff"
+    }}
+  >
         {generateTimeSlots(min, max).map((t) => (
           <button
             key={t}
