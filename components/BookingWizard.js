@@ -214,7 +214,7 @@ return (
   display: "flex",
   flexDirection: "column",
   height: "100vh",
-  minHeight: 0
+  minHeight: 0,
   overflow: "hidden",
 }}>
 
