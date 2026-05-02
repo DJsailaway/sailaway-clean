@@ -80,6 +80,35 @@ const getTimeLimits = (durationType, durationKey) => {
   bookings[0].durationKey
 );
 
+  const generateTimeSlots = (min, max) => {
+  const slots = [];
+
+  const [minH, minM] = min.split(":").map(Number);
+  const [maxH, maxM] = max.split(":").map(Number);
+
+  let start = minH * 60 + minM;
+  const end = maxH * 60 + maxM;
+
+  for (let t = start; t <= end; t += 30) {
+    const h = Math.floor(t / 60);
+    const m = t % 60;
+
+    slots.push(
+      `${String(h).padStart(2, "0")}:${m === 0 ? "00" : "30"}`
+    );
+  }
+
+  return slots;
+};
+
+  useEffect(() => {
+  const slots = generateTimeSlots(min, max);
+
+  if (!time && slots.length > 0) {
+    setTime(slots.includes("10:00") ? "10:00" : slots[0]);
+  }
+}, [min, max]);
+
   // ✅ OPTION A: scroll-to-step ref
   const wizardRef = useRef(null);
 
@@ -409,16 +438,34 @@ return (
       style={inputStyle}
     />
 
-{/* TIME PICKER */}
-<input
-  type="time"
-  step="1800"
-  min={min}
-  max={max}
-  value={time}
-  onChange={(e) => setTime(e.target.value)}
-  style={inputStyle}
-/>
+    {/* TIME SCROLLER */}
+    <div
+      style={{
+        marginTop: "12px",
+        maxHeight: "240px",
+        overflowY: "auto",
+        border: "1px solid #ddd",
+        borderRadius: "12px",
+        padding: "8px",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "10px",
+        scrollSnapType: "y mandatory"
+      }}
+    >
+      {generateTimeSlots(min, max).map((t) => (
+        <button
+          key={t}
+          onClick={() => setTime(t)}
+          style={{
+            ...cardStyle(time === t),
+            scrollSnapAlign: "start"
+          }}
+        >
+          {t}
+        </button>
+      ))}
+    </div>
   </div>
 )}
 
