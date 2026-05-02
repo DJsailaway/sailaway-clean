@@ -604,7 +604,7 @@ return (
               alignItems: "center",
               marginTop: "16px",
               paddingTop: "6px",
-              paddingBottom: "8px"
+              paddingBottom: "8px",
               position: "sticky",
               bottom: 0,
               background: "white",
