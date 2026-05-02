@@ -423,14 +423,12 @@ return (
   </div>
 )}
 
-{/* STEP 4 — DATE & TIME */}
 {step === 4 && (
   <div style={{ flex: 1 }}>
     <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
       Select Date & Start Time
     </h3>
 
-    {/* DATE */}
     <input
       type="date"
       value={date}
@@ -438,40 +436,37 @@ return (
       style={inputStyle}
     />
 
-{/* TIME PICKER — CLEAN SNAP SCROLLER */}
-<div
-  style={{
-    marginTop: "12px",
-    height: "240px",
-    overflowY: "auto",
-    overflowX: "hidden",
-    scrollSnapType: "y mandatory",
-    borderRadius: "12px",
-    border: "1px solid #ddd",
-    background: "#fff"
-  }}
->
-  {generateTimeSlots(min, max).map((t) => (
-    <button
-      key={t}
-      onClick={() => setTime(t)}
-      style={{
-        width: "100%",
-        height: "48px",
-        border: "none",
-        background: "transparent",
-        scrollSnapAlign: "center",
-        fontSize: "18px",
-        fontWeight: time === t ? 700 : 500,
-        color: time === t ? "#0f2f4f" : "#777",
-        cursor: "pointer",
-        transition: "all 0.2s ease"
-      }}
-    >
-      {t}
-    </button>
-  ))}
-</div>
+    <div style={{
+      marginTop: "12px",
+      height: "240px",
+      overflowY: "auto",
+      overflowX: "hidden",
+      scrollSnapType: "y mandatory",
+      borderRadius: "12px",
+      border: "1px solid #ddd",
+      background: "#fff"
+    }}>
+      {generateTimeSlots(min, max).map((t) => (
+        <button
+          key={t}
+          onClick={() => setTime(t)}
+          style={{
+            width: "100%",
+            height: "48px",
+            border: "none",
+            background: "transparent",
+            scrollSnapAlign: "center",
+            fontSize: "18px",
+            fontWeight: time === t ? 700 : 500,
+            color: time === t ? "#0f2f4f" : "#777",
+            cursor: "pointer"
+          }}
+        >
+          {t}
+        </button>
+      ))}
+    </div>
+  </div>
 )}
 
 {/* STEP 5 */}
