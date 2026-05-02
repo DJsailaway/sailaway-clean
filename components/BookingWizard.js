@@ -215,6 +215,7 @@ return (
   flexDirection: "column",
   height: "100vh",
   minHeight: 0
+  overflow: "hidden",
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
@@ -244,7 +245,7 @@ return (
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          paddingBottom: "120px"
+          paddingBottom: "80px"
         }}>
 
           {/* STEP 1 */}
@@ -608,12 +609,9 @@ return (
             <div style={{
               display: "flex",
               alignItems: "center",
-              marginTop: "16px",
-              paddingTop: "10px",
-              paddingBottom: "20px",
-              boxShadow: "0 -8px 20px rgba(0,0,0,0.08)",
-              position: "sticky",
-              bottom: 0,
+              marginTop: "auto",
+              paddingTop: "10px", 
+              paddingBottom: "16px",
               background: "white",
               zIndex: 10
             }}>
