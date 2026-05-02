@@ -213,7 +213,7 @@ return (
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  height: "calc(100vh - 170px)",
+  height: "100vh",
   minHeight: 0
 }}>
 
@@ -239,12 +239,12 @@ return (
         <div style={{
           flex: 1,
           minHeight: 0,
-          maxHeight: "calc(100vh - 160px)",
+          maxHeight: "none",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          paddingBottom: "12px"
+          paddingBottom: "120px"
         }}>
 
           {/* STEP 1 */}
@@ -603,8 +603,9 @@ return (
               display: "flex",
               alignItems: "center",
               marginTop: "16px",
-              paddingTop: "6px",
-              paddingBottom: "8px",
+              paddingTop: "10px",
+              paddingBottom: "20px",
+              boxShadow: "0 -8px 20px rgba(0,0,0,0.08)",
               position: "sticky",
               bottom: 0,
               background: "white",
