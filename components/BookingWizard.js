@@ -597,11 +597,12 @@ return (
 
           {/* 🔒 LOCKED NAVIGATION SYSTEM (UNCHANGED) */}
           {step >= 2 && (
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "12px"
-            }}>
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "8px",
+                paddingBottom: "12px"
+              }}>
 
               <button
                 onClick={back}
