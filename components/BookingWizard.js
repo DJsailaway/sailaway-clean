@@ -69,6 +69,15 @@ export default function BookingWizard() {
   const isHourly = bookings[0].durationType === "hourly";
   const skipLocationStep = isHourly;
 
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+  check();
+  window.addEventListener("resize", check);
+  return () => window.removeEventListener("resize", check);
+}, []);
+
   const steps = skipLocationStep
   ? [1, 2, 3, 4, 6]
   : [1, 2, 3, 4, 5, 6];
@@ -234,8 +243,8 @@ return (
   id="booking-wizard"
   style={{
     display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: isMobile ? "column" : "row",
+    flexWrap: "nowrap",
     gap: "20px",
     width: "100%",
     maxWidth: "1200px",
