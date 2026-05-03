@@ -757,33 +757,6 @@ return (
     Request Booking
   </button>
 )}
-                    onClick={async () => {
-                      await fetch("/api/bookings", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          name,
-                          email,
-                          phone,
-                          bookings,
-                          date,
-                          time,
-                          total,
-                          location: customLocation || location
-                        })
-                      });
-                    }}
-                    style={{
-                      ...nextButtonStyle,
-                      flex: "0 0 260px",
-                      fontSize: "19px",
-                      padding: "18px 26px"
-                    }}
-                  >
-                    Request Booking
-                  </button>
-                )}
-
               </div>
             </div>
           )}
