@@ -427,7 +427,7 @@ return (
 
 {/* STEP 4 — DATE & TIME */}
 {step === 4 && (
-  <div style={{ flex: 1 }}>
+  <div>
     <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
       Select Date & Start Time
     </h3>
