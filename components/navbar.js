@@ -191,9 +191,7 @@ if (!isClient) return null;
         {/* MOBILE BURGER */}
         {isMobile && (
           <button
-            onClick={() =>
-              setMobileMenuOpen(!mobileMenuOpen);
-            }
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
               fontSize: "28px",
               background: "none",
