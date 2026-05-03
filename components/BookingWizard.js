@@ -786,6 +786,7 @@ return (
   borderRadius: "16px",
   display: "flex",
   flexDirection: "column",
+  alignSelf: "stretch",
   justifyContent: "space-between"
 }}>
         <h3>Total</h3>
