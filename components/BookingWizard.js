@@ -727,7 +727,36 @@ return (
                 )}
 
                 {step === 6 && (
-                  <button
+  <button
+    disabled={!isStep6Valid}
+    onClick={async () => {
+      await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          bookings,
+          date,
+          time,
+          total,
+          location: customLocation || location
+        })
+      });
+    }}
+    style={{
+      ...nextButtonStyle,
+      flex: "0 0 260px",
+      fontSize: "19px",
+      padding: "18px 26px",
+      opacity: isStep6Valid ? 1 : 0.4,
+      cursor: isStep6Valid ? "pointer" : "not-allowed"
+    }}
+  >
+    Request Booking
+  </button>
+)}
                     onClick={async () => {
                       await fetch("/api/bookings", {
                         method: "POST",
