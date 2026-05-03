@@ -73,7 +73,15 @@ export default function BookingWizard() {
   ? [1, 2, 3, 4, 6]
   : [1, 2, 3, 4, 5, 6];
 
-const getTimeLimits = (durationType, durationKey) => {
+  const today = new Date();
+  const minDate = new Date(today);
+  minDate.setDate(today.getDate() + 1);
+
+  const maxDate = new Date(today.getFullYear(), 9, 31);
+
+  const formatDate = (d) => d.toISOString().split("T")[0];
+
+  const getTimeLimits = (durationType, durationKey) => {
   if (durationType === "hourly") {
     if (durationKey === "1h") return { min: "09:00", max: "16:00" };
     if (durationKey === "2h") return { min: "09:00", max: "15:00" };
@@ -469,6 +477,8 @@ return (
       type="date"
       value={date}
       onChange={(e) => setDate(e.target.value)}
+      min={formatDate(minDate)}
+      max={formatDate(maxDate)}
       style={inputStyle}
     />
 
