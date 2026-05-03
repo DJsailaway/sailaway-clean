@@ -118,6 +118,19 @@ const getTimeLimits = (durationType, durationKey) => {
   }
 }, [min, max]);
 
+  const isValidEmail = (email) => {
+  return /\S+@\S+\.\S+/.test(email);
+};
+
+  const isValidPhone = (phone) => {
+  return phone.replace(/\D/g, "").length >= 10;
+};
+
+  const isStep6Valid =
+  name.trim() !== "" &&
+  isValidEmail(email) &&
+  isValidPhone(phone);
+  
   // ✅ OPTION A: scroll-to-step ref
   const wizardRef = useRef(null);
 
@@ -616,9 +629,39 @@ return (
             {/* STEP 6 */}
 {step === 6 && (
   <div style={{ display: "grid", gap: "12px" }}>
-    <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-    <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-    <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+    
+    <input
+      style={inputStyle}
+      placeholder="Name"
+      onChange={(e) => setName(e.target.value)}
+    />
+
+    <input
+      style={inputStyle}
+      placeholder="Phone"
+      onChange={(e) => setPhone(e.target.value)}
+    />
+
+    {/* Phone validation message */}
+    {phone && !isValidPhone(phone) && (
+      <div style={{ color: "red", fontSize: "13px" }}>
+        Please enter a valid phone number
+      </div>
+    )}
+
+    <input
+      style={inputStyle}
+      placeholder="Email"
+      onChange={(e) => setEmail(e.target.value)}
+    />
+
+    {/* Email validation message */}
+    {email && !isValidEmail(email) && (
+      <div style={{ color: "red", fontSize: "13px" }}>
+        Please enter a valid email address
+      </div>
+    )}
+
     {/* ✅ TRUST TEXT */}
     <div style={{
       fontSize: "14px",
@@ -628,6 +671,7 @@ return (
     }}>
       We only use your details to confirm your booking — no spam.
     </div>
+
   </div>
 )}
 
