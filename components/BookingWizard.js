@@ -777,9 +777,9 @@ return (
 
       {/* RIGHT */}
       <div style={{
-  width: "100%",
-  maxWidth: "300px",
   flex: "1 1 300px",
+  width: "100%",
+  maxWidth: "320px",
   maxHeight: "calc(100vh - 180px)",
   background: "#0f2f4f",
   color: "#fff",
