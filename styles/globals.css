@@ -13,3 +13,13 @@ a {
 * {
   box-sizing: border-box;
 }
+@media (max-width: 768px) {
+  #booking-wizard {
+    flex-direction: column !important;
+  }
+
+  #booking-wizard > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
