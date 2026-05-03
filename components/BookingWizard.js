@@ -257,10 +257,10 @@ return (
 
       {/* LEFT */}
 <div style={{
-  flex: "1 1 600px",
+  flex: 1,
+  minWidth: 0,
   display: "flex",
   flexDirection: "column",
-  height: "100vh",
   minHeight: 0,
 }}>
 
@@ -786,7 +786,8 @@ return (
 
       {/* RIGHT */}
       <div style={{
-  flex: "1 1 300px",
+  flex: 1,
+  minWidth: 0,
   width: "100%",
   maxWidth: "320px",
   maxHeight: "calc(100vh - 180px)",
