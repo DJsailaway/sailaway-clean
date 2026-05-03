@@ -12,13 +12,14 @@ export default function Navbar() {
 
   // Detect mobile safely (no hydration issues)
 useEffect(() => {
-  const check = () => {
-    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
-  };
+  const mq = window.matchMedia("(max-width: 768px)");
 
-  check();
-  window.addEventListener("resize", check);
-  return () => window.removeEventListener("resize", check);
+  const update = () => setIsMobile(mq.matches);
+
+  update();
+  mq.addEventListener("change", update);
+
+  return () => mq.removeEventListener("change", update);
 }, []);
 
   // Close on outside click
@@ -72,7 +73,8 @@ useEffect(() => {
     }
   };
 
-  if (isMobile === undefined) return null;
+  const isClient = typeof window !== "undefined";
+if (!isClient) return null;
   
   return (
     <nav
@@ -100,8 +102,8 @@ useEffect(() => {
           <Image
             src="/logo-sailaway.jpg"
             alt="Logo"
-            width={180}
-            height={60}
+            width={isMobile ? 120 : 180}
+            height={isMobile ? 40 : 60}
             priority
           />
         </Link>
@@ -166,6 +168,24 @@ useEffect(() => {
 </Link>
           </div>
         )}
+
+{isMobile && (
+  <Link
+    href="/#booking-wizard"
+    style={{
+      background: "#0f2f4f",
+      color: "white",
+      padding: "8px 12px",
+      borderRadius: "8px",
+      fontWeight: 700,
+      textDecoration: "none",
+      marginLeft: "auto",
+      marginRight: "12px"
+    }}
+  >
+    Book
+  </Link>
+)}
 
         {/* MOBILE BURGER */}
         {isMobile && (
