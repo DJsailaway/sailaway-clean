@@ -5,18 +5,21 @@ import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(undefined);
 
   const navRef = useRef();
   const router = useRouter();
 
   // Detect mobile safely (no hydration issues)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+useEffect(() => {
+  const check = () => {
+    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+  };
+
+  check();
+  window.addEventListener("resize", check);
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   // Close on outside click
   useEffect(() => {
@@ -69,6 +72,8 @@ export default function Navbar() {
     }
   };
 
+  if (isMobile === undefined) return null;
+  
   return (
     <nav
       ref={navRef}
