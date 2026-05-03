@@ -73,9 +73,6 @@ useEffect(() => {
       setOpenDropdown(action === "open" ? menu : null);
     }
   };
-
-  const isClient = typeof window !== "undefined";
-if (!isClient) return null;
   
   return (
     <nav
