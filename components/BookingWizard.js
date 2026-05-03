@@ -558,92 +558,106 @@ return (
 
 {/* STEP 5 */}
 {step === 5 && (
-  <div style={{ flex: 1 }}>
+  <div style={{ flex: 1, minHeight: 0 }}>
+
     <h3 style={{
-  fontSize: "26px",
-  margin: "0 0 16px 0",
-  lineHeight: 1.2
-}}>
+      fontSize: "26px",
+      margin: "0 0 16px 0",
+      lineHeight: 1.2
+    }}>
       Location
     </h3>
 
-    {/* MODE SELECTION */}
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "10px",
-        marginBottom: "20px",
-      }}
-    >
-      {/* ST ANTHONY */}
-      <button
-        onClick={() => {
-          setLocationMode("st-anthony");
-          setLocation("St Anthony");
-        }}
-        style={{
-          ...nextButtonStyle,
-          opacity: locationMode === "st-anthony" ? 1 : 0.35,
-        }}
-      >
-        St Anthony
-      </button>
+    {/* ✅ SCROLL CONTAINER ADDED (fixes broken Step 5 scroll) */}
+    <div style={{
+      flex: 1,
+      minHeight: 0,
+      overflowY: "auto",
+      display: "flex",
+      flexDirection: "column",
+      gap: "12px",
+      paddingRight: "4px"
+    }}>
 
-      {/* OTHER LOCATIONS */}
-      <button
-        onClick={() => {
-          setLocationMode("preset");
-        }}
-        style={{
-          ...nextButtonStyle,
-          opacity: locationMode === "preset" ? 1 : 0.35,
-        }}
-      >
-        Other Locations
-      </button>
-    </div>
-
-    {/* PRESET LIST */}
-    {locationMode === "preset" && (
+      {/* MODE SELECTION */}
       <div
         style={{
           display: "grid",
+          gridTemplateColumns: "1fr 1fr",
           gap: "10px",
-          marginBottom: "16px",
+          marginBottom: "20px",
         }}
       >
-        {Object.keys(PRICING.locations)
-          .filter((loc) => loc !== "St Anthony")
-          .map((loc) => (
-            <button
-              key={loc}
-              onClick={() => setLocation(loc)}
-              style={cardStyle(location === loc)}
-            >
-              {loc}
-            </button>
-          ))}
-
-        {/* CUSTOM OPTION */}
+        {/* ST ANTHONY */}
         <button
-          onClick={() => setLocationMode("custom")}
-          style={cardStyle(locationMode === "custom")}
+          onClick={() => {
+            setLocationMode("st-anthony");
+            setLocation("St Anthony");
+          }}
+          style={{
+            ...nextButtonStyle,
+            opacity: locationMode === "st-anthony" ? 1 : 0.35,
+          }}
         >
-          Other (enter manually)
+          St Anthony
+        </button>
+
+        {/* OTHER LOCATIONS */}
+        <button
+          onClick={() => {
+            setLocationMode("preset");
+          }}
+          style={{
+            ...nextButtonStyle,
+            opacity: locationMode === "preset" ? 1 : 0.35,
+          }}
+        >
+          Other Locations
         </button>
       </div>
-    )}
 
-    {/* CUSTOM INPUT */}
-    {locationMode === "custom" && (
-      <input
-        style={inputStyle}
-        value={customLocation}
-        onChange={(e) => setCustomLocation(e.target.value)}
-        placeholder="Enter custom location"
-      />
-    )}
+      {/* PRESET LIST */}
+      {locationMode === "preset" && (
+        <div
+          style={{
+            display: "grid",
+            gap: "10px",
+            marginBottom: "16px",
+          }}
+        >
+          {Object.keys(PRICING.locations)
+            .filter((loc) => loc !== "St Anthony")
+            .map((loc) => (
+              <button
+                key={loc}
+                onClick={() => setLocation(loc)}
+                style={cardStyle(location === loc)}
+              >
+                {loc}
+              </button>
+            ))}
+
+          {/* CUSTOM OPTION */}
+          <button
+            onClick={() => setLocationMode("custom")}
+            style={cardStyle(locationMode === "custom")}
+          >
+            Other (enter manually)
+          </button>
+        </div>
+      )}
+
+      {/* CUSTOM INPUT */}
+      {locationMode === "custom" && (
+        <input
+          style={inputStyle}
+          value={customLocation}
+          onChange={(e) => setCustomLocation(e.target.value)}
+          placeholder="Enter custom location"
+        />
+      )}
+
+    </div>
   </div>
 )}
 
