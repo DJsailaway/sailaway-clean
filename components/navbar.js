@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isMobile, setIsMobile] = useState(undefined);
 
@@ -191,7 +192,7 @@ if (!isClient) return null;
         {isMobile && (
           <button
             onClick={() =>
-              setOpenDropdown(openDropdown === "mobile" ? null : "mobile")
+              setMobileMenuOpen(!mobileMenuOpen);
             }
             style={{
               fontSize: "28px",
@@ -205,7 +206,7 @@ if (!isClient) return null;
       </div>
 
       {/* MOBILE MENU */}
-      {isMobile && openDropdown === "mobile" && (
+      {isMobile && mobileMenuOpen && (
         <div style={{ padding: "10px 24px", borderTop: "1px solid #eee" }}>
           <Link href="/" style={item}>Home</Link>
 
