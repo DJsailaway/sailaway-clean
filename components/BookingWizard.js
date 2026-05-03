@@ -66,6 +66,13 @@ export default function BookingWizard() {
 
   const [showTimePicker, setShowTimePicker] = useState(true);
 
+  const isHourly = bookings[0].durationType === "hourly";
+  const skipLocationStep = isHourly;
+
+  const steps = skipLocationStep
+  ? [1, 2, 3, 4, 6]
+  : [1, 2, 3, 4, 5, 6];
+
 const getTimeLimits = (durationType, durationKey) => {
   if (durationType === "hourly") {
     if (durationKey === "1h") return { min: "09:00", max: "16:00" };
@@ -147,8 +154,16 @@ useEffect(() => {
     setBookings(copy);
   };
 
-  const next = () => setStep((s) => Math.min(6, s + 1));
-  const back = () => setStep((s) => Math.max(1, s - 1));
+  const next = () =>
+  setStep((s) => {
+    if (s === 4 && skipLocationStep) return 6;
+    return Math.min(6, s + 1);
+  });
+  const back = () =>
+  setStep((s) => {
+    if (s === 6 && skipLocationStep) return 4;
+    return Math.max(1, s - 1);
+  });
 
   const inputStyle = {
     width: "100%",
@@ -218,11 +233,11 @@ return (
 }}>
 
         <h2 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>
-          Step {step} of 6
+          Step {steps.indexOf(step) + 1} of {steps.length}
         </h2>
 
         <div style={{ display: "flex", gap: "6px", marginBottom: "16px" }}>
-          {[1, 2, 3, 4, 5, 6].map((i) => (
+          {steps.map((i) => (
             <div
               key={i}
               style={{
