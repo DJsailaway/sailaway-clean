@@ -234,6 +234,8 @@ return (
   id="booking-wizard"
   style={{
     display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
     gap: "20px",
     width: "100%",
     maxWidth: "1200px",
@@ -246,7 +248,7 @@ return (
 
       {/* LEFT */}
 <div style={{
-  flex: 1,
+  flex: "1 1 600px",
   display: "flex",
   flexDirection: "column",
   height: "100vh",
@@ -776,6 +778,7 @@ return (
       {/* RIGHT */}
       <div style={{
   width: "300px",
+  flex: "1 1 300px",   // 👈 THIS is what makes it responsive
   maxHeight: "calc(100vh - 180px)",
   background: "#0f2f4f",
   color: "#fff",
