@@ -443,7 +443,11 @@ return (
 {/* STEP 4 — DATE & TIME */}
 {step === 4 && (
   <div style={{ flex: 1, minHeight: 0 }}>
-    <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
+    <h3 style={{
+  fontSize: "26px",
+  margin: "0 0 16px 0",
+  lineHeight: 1.2
+}}>
       Select Date & Start Time
     </h3>
 
@@ -521,7 +525,11 @@ return (
 {/* STEP 5 */}
 {step === 5 && (
   <div style={{ flex: 1 }}>
-    <h3 style={{ fontSize: "26px", marginBottom: "16px" }}>
+    <h3 style={{
+  fontSize: "26px",
+  margin: "0 0 16px 0",
+  lineHeight: 1.2
+}}>
       Location
     </h3>
 
