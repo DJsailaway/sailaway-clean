@@ -257,10 +257,10 @@ return (
 
       {/* LEFT */}
 <div style={{
-  flex: 1,
-  minWidth: 0,
+  flex: "1 1 600px",
   display: "flex",
   flexDirection: "column",
+  height: "100vh",
   minHeight: 0,
 }}>
 
