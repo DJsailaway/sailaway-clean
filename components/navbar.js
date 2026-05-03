@@ -220,5 +220,27 @@ useEffect(() => {
         </div>
       )}
     </nav>
+<a
+  href="tel:+441326231357"
+  style={{
+    position: "fixed",
+    bottom: "18px",
+    right: "18px",
+    background: "#0f2f4f",
+    color: "white",
+    padding: "14px 16px",
+    borderRadius: "999px",
+    fontWeight: 700,
+    fontSize: "14px",
+    textDecoration: "none",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+    zIndex: 9999,
+    display: isMobile ? "flex" : "none",
+    alignItems: "center",
+    gap: "8px",
+  }}
+>
+  📞 Call
+</a>
   );
 }
