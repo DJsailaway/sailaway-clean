@@ -619,6 +619,15 @@ return (
     <input style={inputStyle} placeholder="Name" onChange={(e) => setName(e.target.value)} />
     <input style={inputStyle} placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
     <input style={inputStyle} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+    {/* ✅ TRUST TEXT */}
+    <div style={{
+      fontSize: "14px",
+      color: "#666",
+      marginTop: "4px",
+      lineHeight: 1.4
+    }}>
+      We only use your details to confirm your booking — no spam.
+    </div>
   </div>
 )}
 
