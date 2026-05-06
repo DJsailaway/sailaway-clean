@@ -25,15 +25,21 @@ useEffect(() => {
 
   // Close on outside click
   useEffect(() => {
-    function handleClickOutside(e) {
-      if (navRef.current && !navRef.current.contains(e.target)) {
-        setOpenDropdown(null);
-      }
-    }
-document.addEventListener("click", handleClickOutside);
-return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  function handleClickOutside(e) {
+    if (!navRef.current) return;
 
+    if (!navRef.current.contains(e.target)) {
+      setOpenDropdown(null);
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+  
   const linkStyle = {
     fontWeight: 700,
     padding: "10px 12px",
