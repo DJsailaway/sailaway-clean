@@ -73,6 +73,8 @@ return () => document.removeEventListener("click", handleClickOutside);
       setOpenDropdown(action === "open" ? menu : null);
     }
   };
+
+  if (isMobile === undefined) return null;
   
   return (
     <nav
