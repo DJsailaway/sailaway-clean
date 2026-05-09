@@ -106,7 +106,13 @@ useEffect(() => {
   bookings[0].durationKey
 );
 
-  const generateTimeSlots = (min, max) => {
+const generateTimeSlots = (min, max, durationType, durationKey) => {
+  // 🚨 SPECIAL RULE: Half-day bookings
+  if (durationType === "hourly" && durationKey === "half") {
+    return ["09:00", "13:00"];
+  }
+
+  // Default behaviour (everything else)
   const slots = [];
 
   const [minH, minM] = min.split(":").map(Number);
@@ -128,7 +134,12 @@ useEffect(() => {
 };
 
   useEffect(() => {
-  const slots = generateTimeSlots(min, max);
+  const slots = generateTimeSlots(
+  min,
+  max,
+  bookings[0].durationType,
+  bookings[0].durationKey
+);
 
   if (!time && slots.length > 0) {
     setTime(slots.includes("10:00") ? "10:00" : slots[0]);
@@ -516,7 +527,12 @@ return (
       background: "#fff"
     }}
   >
-        {generateTimeSlots(min, max).map((t) => (
+        {generateTimeSlots(
+  min,
+  max,
+  bookings[0].durationType,
+  bookings[0].durationKey
+).map((t) => (
           <button
             key={t}
             onClick={() => {
