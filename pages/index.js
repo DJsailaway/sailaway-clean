@@ -28,38 +28,82 @@ export default function BookingPage() {
         }
       />
 
-      {/* 🌊 CTA NAV BUTTONS */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "12px",
-          padding: "25px 20px",
-          maxWidth: "1000px",
-          margin: "0 auto",
-        }}
-      >
-        <a href="/motor-boat-hire-helford">
-          <button style={buttonStyle}>Our Motor Boats</button>
-        </a>
+{/* 🌊 HERITAGE / TRUST SECTION */}
+<div
+  style={{
+    maxWidth: "850px",
+    margin: "0 auto",
+    padding: "70px 24px 50px",
+    textAlign: "center",
+  }}
+>
+  <p
+    style={{
+      color: "#0f2f4f",
+      fontWeight: 700,
+      letterSpacing: "1px",
+      textTransform: "uppercase",
+      fontSize: "13px",
+      marginBottom: "18px",
+    }}
+  >
+    A Cornish Tradition Since the 1930s
+  </p>
 
-        <a href="/sailing-boat-hire-helford">
-          <button style={buttonStyle}>Our Sailing Boats</button>
-        </a>
+  <h2
+    style={{
+      fontSize: "clamp(32px, 5vw, 52px)",
+      lineHeight: 1.1,
+      marginBottom: "28px",
+      color: "#0f2f4f",
+    }}
+  >
+    Explore one of Cornwall’s most beautiful stretches of coastline with the county’s largest family-run hire fleet.
+  </h2>
 
-        <a href="/kayak-hire-helford">
-          <button style={buttonStyle}>Our Kayaks & SUPs</button>
-        </a>
+  <p
+    style={{
+      fontSize: "19px",
+      lineHeight: 1.8,
+      color: "#444",
+      marginBottom: "22px",
+    }}
+  >
+    For generations, families have come to St Anthony to explore the Helford River by boat. Many of the families who hired from us in the 1930s still return today.
+  </p>
 
-        <a href="/st-anthony-helford-river">
-          <button style={buttonStyle}>Location</button>
-        </a>
+  <p
+    style={{
+      fontSize: "19px",
+      lineHeight: 1.8,
+      color: "#444",
+      marginBottom: "22px",
+    }}
+  >
+    Still family-run, we remain dedicated to offering simple, memorable days on the water — from peaceful creeks and hidden beaches to some of Cornwall’s most unspoilt scenery.
+  </p>
 
-        <a href="/boat-hire-faq">
-          <button style={buttonStyle}>FAQs</button>
-        </a>
-      </div>
+  <p
+    style={{
+      fontSize: "18px",
+      fontWeight: 600,
+      color: "#0f2f4f",
+      marginBottom: "18px",
+    }}
+  >
+    No experience is needed for most boats.
+  </p>
+
+  <p
+    style={{
+      fontSize: "18px",
+      lineHeight: 1.7,
+      color: "#555",
+    }}
+  >
+    Whether it’s your first time on the water or part of a long-standing family tradition, we’ll help you find the right boat for your day.
+  </p>
+</div>
 
       {/* 🌊 SECTION TITLE */}
       <div
@@ -99,3 +143,36 @@ const buttonStyle = {
   letterSpacing: "0.2px",
   boxShadow: "0 6px 16px rgba(15, 47, 79, 0.15)",
 };
+
+      {/* 🌊 CTA NAV BUTTONS */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "12px",
+          padding: "25px 20px",
+          maxWidth: "1000px",
+          margin: "0 auto",
+        }}
+      >
+        <a href="/motor-boat-hire-helford">
+          <button style={buttonStyle}>Our Motor Boats</button>
+        </a>
+
+        <a href="/sailing-boat-hire-helford">
+          <button style={buttonStyle}>Our Sailing Boats</button>
+        </a>
+
+        <a href="/kayak-hire-helford">
+          <button style={buttonStyle}>Our Kayaks & SUPs</button>
+        </a>
+
+        <a href="/st-anthony-helford-river">
+          <button style={buttonStyle}>Location</button>
+        </a>
+
+        <a href="/boat-hire-faq">
+          <button style={buttonStyle}>FAQs</button>
+        </a>
+      </div>
