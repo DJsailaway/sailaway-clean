@@ -1,11 +1,16 @@
+import { useState } from "react";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
 import BookingWizard from "../components/BookingWizard";
 
+export default function BookingPage() {
+
 const [activeImage, setActiveImage] = useState(null);
 
-export default function BookingPage() {
+const isMobile =
+  typeof window !== "undefined" && window.innerWidth < 768;
+  
   return (
     <>
       <Head>
@@ -368,25 +373,6 @@ export default function BookingPage() {
   </div>
 </div>
 
-    </>
-  );
-}
-
-// ---------------- BUTTON STYLE (RESTORED LUXURY SIZE) ----------------
-
-const buttonStyle = {
-  padding: "12px 18px",
-  backgroundColor: "#1e3a5f",
-  color: "white",
-  border: "none",
-  borderRadius: "10px",
-  fontWeight: 700,
-  cursor: "pointer",
-  fontSize: "15px",
-  letterSpacing: "0.2px",
-  boxShadow: "0 6px 16px rgba(15, 47, 79, 0.15)",
-};
-
 {activeImage && (
   <div
     onClick={() => setActiveImage(null)}
@@ -413,3 +399,24 @@ const buttonStyle = {
     />
   </div>
 )}
+              
+    </>
+  );
+}
+
+// ---------------- BUTTON STYLE (RESTORED LUXURY SIZE) ----------------
+
+const buttonStyle = {
+  padding: "12px 18px",
+  backgroundColor: "#1e3a5f",
+  color: "white",
+  border: "none",
+  borderRadius: "10px",
+  fontWeight: 700,
+  cursor: "pointer",
+  fontSize: "15px",
+  letterSpacing: "0.2px",
+  boxShadow: "0 6px 16px rgba(15, 47, 79, 0.15)",
+};
+
+
