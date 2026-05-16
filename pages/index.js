@@ -176,3 +176,216 @@ const buttonStyle = {
           <button style={buttonStyle}>FAQs</button>
         </a>
       </div>
+
+{/* 🌊 EXPERIENCE GALLERY / STORY SECTION */}
+<div
+  style={{
+    maxWidth: "1400px",
+    margin: "0 auto",
+    padding: "100px 24px",
+  }}
+>
+  {/* SECTION HEADER */}
+  <div
+    style={{
+      maxWidth: "760px",
+      margin: "0 auto 70px",
+      textAlign: "center",
+    }}
+  >
+    <p
+      style={{
+        color: "#0f2f4f",
+        fontWeight: 700,
+        letterSpacing: "1px",
+        textTransform: "uppercase",
+        fontSize: "13px",
+        marginBottom: "18px",
+      }}
+    >
+      Explore the Helford
+    </p>
+
+    <h2
+      style={{
+        fontSize: "clamp(34px, 5vw, 58px)",
+        lineHeight: 1.08,
+        color: "#0f2f4f",
+        marginBottom: "24px",
+      }}
+    >
+      Hidden creeks, quiet beaches and unforgettable days on the water.
+    </h2>
+
+    <p
+      style={{
+        fontSize: "19px",
+        lineHeight: 1.8,
+        color: "#555",
+      }}
+    >
+      From peaceful family adventures to traditional sailing on one of
+      Cornwall’s most beautiful rivers, every trip on the Helford feels a
+      little different.
+    </p>
+  </div>
+
+  {/* EDITORIAL LAYOUT */}
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(12, 1fr)",
+      gap: "22px",
+      alignItems: "start",
+    }}
+  >
+
+    {/* LARGE PORTRAIT — 1063 x 2364 */}
+    <div
+      style={{
+        gridColumn: "span 4",
+        borderRadius: "26px",
+        overflow: "hidden",
+        boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+      }}
+    >
+      <img
+        src="/gallery-daisy.jpg"
+        alt="Family boating on the Helford River"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    </div>
+
+    {/* RIGHT COLUMN GROUP */}
+    <div
+      style={{
+        gridColumn: "span 8",
+        display: "grid",
+        gap: "22px",
+      }}
+    >
+
+      {/* WIDE LANDSCAPE — 3499 x 2183 */}
+      <div
+        style={{
+          borderRadius: "26px",
+          overflow: "hidden",
+          boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+        }}
+      >
+        <img
+          src="/gallery-aerial.jpg"
+          alt="Aerial view of Helford River"
+          style={{
+            width: "100%",
+            display: "block",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
+      {/* LOWER GRID */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.15fr 1fr",
+          gap: "22px",
+          alignItems: "start",
+        }}
+      >
+
+        {/* TALL PORTRAIT — 1512 x 2016 */}
+        <div
+          style={{
+            borderRadius: "26px",
+            overflow: "hidden",
+            boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+          }}
+        >
+          <img
+            src="/gallery-sailing.jpg"
+            alt="Traditional sailing boat on the Helford"
+            style={{
+              width: "100%",
+              display: "block",
+              objectFit: "cover",
+            }}
+          />
+        </div>
+
+        {/* STACKED SMALLER IMAGES */}
+        <div
+          style={{
+            display: "grid",
+            gap: "22px",
+          }}
+        >
+
+          {/* LANDSCAPE — 2500 x 1875 */}
+          <div
+            style={{
+              borderRadius: "26px",
+              overflow: "hidden",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+            }}
+          >
+            <img
+              src="/gallery-creek.jpg"
+              alt="Exploring hidden creeks"
+              style={{
+                width: "100%",
+                display: "block",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+
+          {/* OLD LANDSCAPE — 2400 x 1800 */}
+          <div
+            style={{
+              borderRadius: "26px",
+              overflow: "hidden",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+              position: "relative",
+            }}
+          >
+            <img
+              src="/gallery-heritage.jpg"
+              alt="Historic boating on the Helford River"
+              style={{
+                width: "100%",
+                display: "block",
+                objectFit: "cover",
+                filter: "contrast(1.02) saturate(0.92)",
+              }}
+            />
+
+            {/* OPTIONAL HERITAGE LABEL */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "18px",
+                left: "18px",
+                background: "rgba(15,47,79,0.82)",
+                color: "#fff",
+                padding: "10px 14px",
+                borderRadius: "999px",
+                fontSize: "13px",
+                fontWeight: 600,
+                letterSpacing: "0.3px",
+              }}
+            >
+              Family photographs from the Helford
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
