@@ -250,7 +250,7 @@ const buttonStyle = {
       }}
     >
       <img
-        src="/gallery-daisy.jpg"
+        src="/drascombe.jpg"
         alt="Family boating on the Helford River"
         style={{
           width: "100%",
@@ -279,7 +279,7 @@ const buttonStyle = {
         }}
       >
         <img
-          src="/gallery-aerial.jpg"
+          src="/Rowing-on-Gillan-Creek.jpg"
           alt="Aerial view of Helford River"
           style={{
             width: "100%",
@@ -308,7 +308,7 @@ const buttonStyle = {
           }}
         >
           <img
-            src="/gallery-sailing.jpg"
+            src="/Bass-Boat-Daisy-up-creek.jpg"
             alt="Traditional sailing boat on the Helford"
             style={{
               width: "100%",
@@ -335,7 +335,7 @@ const buttonStyle = {
             }}
           >
             <img
-              src="/gallery-creek.jpg"
+              src="/Bass-Boat-Bosahan-Beach.jpg"
               alt="Exploring hidden creeks"
               style={{
                 width: "100%",
@@ -355,7 +355,7 @@ const buttonStyle = {
             }}
           >
             <img
-              src="/gallery-heritage.jpg"
+              src="/St-Anthony-in-Meneage.jpg"
               alt="Historic boating on the Helford River"
               style={{
                 width: "100%",
