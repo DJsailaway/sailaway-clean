@@ -263,7 +263,7 @@ const isMobile =
 
       {/* WIDE LANDSCAPE - OLD ROWING — 3499 x 2183 */}
       <div
-      onClick={() => isMobile && setActiveImage("/Rowing-on-Gillan-Creek.jpg")}
+      onClick={() => isMobile && setActiveImage("/St-Anthony-in-Meneage.jpg")}
         style={{
           borderRadius: "26px",
           overflow: "hidden",
@@ -272,8 +272,8 @@ const isMobile =
         }}
       >
         <img
-          src="/Rowing-on-Gillan-Creek.jpg"
-          alt="Aerial view of Helford River"
+          src="/St-Anthony-in-Meneage.jpg"
+          alt="St Anthony-in-Meneage"
           style={{
             width: "100%",
             display: "block",
@@ -304,7 +304,7 @@ const isMobile =
         >
           <img
             src="/Bass-Boat-Daisy-up-creek.jpg"
-            alt="Traditional sailing boat on the Helford"
+            alt="Boating on Gillan Creek"
             style={{
               width: "100%",
               display: "block",
@@ -343,9 +343,9 @@ const isMobile =
             />
           </div>
 
-          {/* OLD LANDSCAPE - ST A FROM ALBIA — 2400 x 1800 */}
+          {/* OLD LANDSCAPE — 2400 x 1800 */}
           <div
-            onClick={() => isMobile && setActiveImage("/St-Anthony-in-Meneage.jpg")}
+            onClick={() => isMobile && setActiveImage("/Rowing-on-Gillan-Creek.jpg")}
             style={{
               borderRadius: "26px",
               overflow: "hidden",
@@ -354,7 +354,7 @@ const isMobile =
             }}
           >
             <img
-              src="/St-Anthony-in-Meneage.jpg"
+              src="/Rowing-on-Gillan-Creek.jpg"
               alt="Historic boating on the Helford River"
               style={{
                 width: "100%",
