@@ -347,23 +347,6 @@ export default function BookingPage() {
               }}
             />
 
-            {/* OPTIONAL HERITAGE LABEL */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "18px",
-                left: "18px",
-                background: "rgba(15,47,79,0.82)",
-                color: "#fff",
-                padding: "10px 14px",
-                borderRadius: "999px",
-                fontSize: "13px",
-                fontWeight: 600,
-                letterSpacing: "0.3px",
-              }}
-            >
-              Family photographs from the Helford
-            </div>
           </div>
 
         </div>
