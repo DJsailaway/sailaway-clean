@@ -125,24 +125,6 @@ export default function BookingPage() {
       <div style={{ paddingBottom: "80px" }}>
         <BookingWizard />
       </div>
-    </>
-  );
-}
-
-// ---------------- BUTTON STYLE (RESTORED LUXURY SIZE) ----------------
-
-const buttonStyle = {
-  padding: "12px 18px",
-  backgroundColor: "#1e3a5f",
-  color: "white",
-  border: "none",
-  borderRadius: "10px",
-  fontWeight: 700,
-  cursor: "pointer",
-  fontSize: "15px",
-  letterSpacing: "0.2px",
-  boxShadow: "0 6px 16px rgba(15, 47, 79, 0.15)",
-};
 
       {/* 🌊 CTA NAV BUTTONS */}
       <div
@@ -389,3 +371,22 @@ const buttonStyle = {
     </div>
   </div>
 </div>
+
+    </>
+  );
+}
+
+// ---------------- BUTTON STYLE (RESTORED LUXURY SIZE) ----------------
+
+const buttonStyle = {
+  padding: "12px 18px",
+  backgroundColor: "#1e3a5f",
+  color: "white",
+  border: "none",
+  borderRadius: "10px",
+  fontWeight: 700,
+  cursor: "pointer",
+  fontSize: "15px",
+  letterSpacing: "0.2px",
+  boxShadow: "0 6px 16px rgba(15, 47, 79, 0.15)",
+};
