@@ -3,6 +3,8 @@ import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
 import BookingWizard from "../components/BookingWizard";
 
+const [activeImage, setActiveImage] = useState(null);
+
 export default function BookingPage() {
   return (
     <>
@@ -224,6 +226,7 @@ export default function BookingPage() {
 
     {/* LARGE PORTRAIT  - DRASCOMBE — 1063 x 2364 */}
     <div
+      onClick={() => isMobile && setActiveImage("/drascombe.jpg")}
       style={{
         gridColumn: "span 4",
         borderRadius: "26px",
@@ -239,6 +242,7 @@ export default function BookingPage() {
           height: "100%",
           objectFit: "cover",
           display: "block",
+          cursor: "pointer",
         }}
       />
     </div>
@@ -254,10 +258,12 @@ export default function BookingPage() {
 
       {/* WIDE LANDSCAPE - OLD ROWING — 3499 x 2183 */}
       <div
+      onClick={() => isMobile && setActiveImage("/Rowing-on-Gillan-Creek.jpg")}
         style={{
           borderRadius: "26px",
           overflow: "hidden",
           boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+          cursor: "pointer",
         }}
       >
         <img
@@ -283,10 +289,12 @@ export default function BookingPage() {
 
         {/* TALL PORTRAIT - DAISY UP CREEK — 1512 x 2016 */}
         <div
+      onClick={() => isMobile && setActiveImage("/Bass-Boat-Daisy-up-creek.jpg")}
           style={{
             borderRadius: "26px",
             overflow: "hidden",
             boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+            cursor: "pointer",
           }}
         >
           <img
@@ -296,6 +304,7 @@ export default function BookingPage() {
               width: "100%",
               display: "block",
               objectFit: "cover",
+              cursor: "pointer",
             }}
           />
         </div>
@@ -310,6 +319,7 @@ export default function BookingPage() {
 
           {/* LANDSCAPE — BASS BOAT FROM CLIFFS - 2500 x 1875 */}
           <div
+            onClick={() => isMobile && setActiveImage("/Bass-Boat-Bosahan-Beach.jpg")}
             style={{
               borderRadius: "26px",
               overflow: "hidden",
@@ -323,12 +333,14 @@ export default function BookingPage() {
                 width: "100%",
                 display: "block",
                 objectFit: "cover",
+                cursor: "pointer",
               }}
             />
           </div>
 
           {/* OLD LANDSCAPE - ST A FROM ALBIA — 2400 x 1800 */}
           <div
+            onClick={() => isMobile && setActiveImage("/St-Anthony-in-Meneage.jpg")}
             style={{
               borderRadius: "26px",
               overflow: "hidden",
@@ -344,6 +356,7 @@ export default function BookingPage() {
                 display: "block",
                 objectFit: "cover",
                 filter: "contrast(1.02) saturate(0.92)",
+                cursor: "pointer",
               }}
             />
 
@@ -373,3 +386,30 @@ const buttonStyle = {
   letterSpacing: "0.2px",
   boxShadow: "0 6px 16px rgba(15, 47, 79, 0.15)",
 };
+
+{activeImage && (
+  <div
+    onClick={() => setActiveImage(null)}
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.88)",
+      zIndex: 9999,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px",
+    }}
+  >
+    <img
+      src={activeImage}
+      alt=""
+      style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        borderRadius: "18px",
+        objectFit: "contain",
+      }}
+    />
+  </div>
+)}
