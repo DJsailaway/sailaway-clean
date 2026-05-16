@@ -240,7 +240,7 @@ const buttonStyle = {
     }}
   >
 
-    {/* LARGE PORTRAIT — 1063 x 2364 */}
+    {/* LARGE PORTRAIT  - DRASCOMBE — 1063 x 2364 */}
     <div
       style={{
         gridColumn: "span 4",
@@ -270,7 +270,7 @@ const buttonStyle = {
       }}
     >
 
-      {/* WIDE LANDSCAPE — 3499 x 2183 */}
+      {/* WIDE LANDSCAPE - OLD ROWING — 3499 x 2183 */}
       <div
         style={{
           borderRadius: "26px",
@@ -299,7 +299,7 @@ const buttonStyle = {
         }}
       >
 
-        {/* TALL PORTRAIT — 1512 x 2016 */}
+        {/* TALL PORTRAIT - DAISY UP CREEK — 1512 x 2016 */}
         <div
           style={{
             borderRadius: "26px",
@@ -326,7 +326,7 @@ const buttonStyle = {
           }}
         >
 
-          {/* LANDSCAPE — 2500 x 1875 */}
+          {/* LANDSCAPE — BASS BOAT FROM CLIFFS - 2500 x 1875 */}
           <div
             style={{
               borderRadius: "26px",
@@ -345,7 +345,7 @@ const buttonStyle = {
             />
           </div>
 
-          {/* OLD LANDSCAPE — 2400 x 1800 */}
+          {/* OLD LANDSCAPE - ST A FROM ALBIA — 2400 x 1800 */}
           <div
             style={{
               borderRadius: "26px",
