@@ -295,7 +295,7 @@ return (
         <div style={{
           flex: 1,
           minHeight: 0,
-          overflowY: "auto",
+          overflowY: isMobile ? "visible" : "auto",
           display: "flex",
           flexDirection: "column",
           gap: "12px",
