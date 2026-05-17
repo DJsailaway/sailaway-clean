@@ -52,7 +52,9 @@ useEffect(() => {
     position: "absolute",
     top: "100%",
     left: 0,
-    background: "#fff",
+    backdropFilter: "blur(14px)",
+    background: "rgba(255,255,255,0.78)",
+    borderBottom: "1px solid rgba(0,0,0,0.05)",
     boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
     borderRadius: "10px",
     minWidth: "220px",
@@ -88,8 +90,9 @@ useEffect(() => {
       style={{
         position: "sticky",
         top: 0,
-        background: "white",
-        borderBottom: "1px solid #eee",
+        backdropFilter: "blur(14px)",
+        background: "rgba(255,255,255,0.78)",
+        borderBottom: "1px solid rgba(0,0,0,0.05)",
         zIndex: 1000,
       }}
     >
