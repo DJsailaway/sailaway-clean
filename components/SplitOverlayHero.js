@@ -55,10 +55,9 @@ useEffect(() => {
           position: "absolute",
           inset: 0,
           background:
-          "linear-gradient(120deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.02) 65%, rgba(255,255,255,0.06) 100%)",
+          "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.02) 65%, rgba(255,255,255,0.06) 100%)",
           backgroundSize: "200% 200%",
-          animation: "waterShimmer 14s ease-in-out infinite",
-          mixBlendMode: "screen",
+          animation: "waterShimmer 6s ease-in-out infinite",
           zIndex: 1,
           pointerEvents: "none",
   }}
