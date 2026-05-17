@@ -49,6 +49,21 @@ useEffect(() => {
         }}
       />
 
+      {/* SUBTLE WATER LIGHT EFFECT */}
+        <div
+          style={{
+          position: "absolute",
+          inset: 0,
+          background:
+          "linear-gradient(120deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.02) 65%, rgba(255,255,255,0.06) 100%)",
+          backgroundSize: "200% 200%",
+          animation: "waterShimmer 14s ease-in-out infinite",
+          mixBlendMode: "screen",
+          zIndex: 1,
+          pointerEvents: "none",
+  }}
+/>
+
       {/* LIGHT OVERLAY (optional) */}
       <div
         style={{
