@@ -66,7 +66,7 @@ const isMobile =
       color: "#0f2f4f",
     }}
   >
-    Explore one of Cornwall’s most beautiful stretches of coastline with the county’s largest family-run hire fleet.
+    Explore one of Cornwall’s most beautiful stretches of coastline with the county’s largest hire fleet.
   </h2>
 
   <p
@@ -77,7 +77,7 @@ const isMobile =
       marginBottom: "22px",
     }}
   >
-    For generations, families have come to St Anthony to explore the Helford River by boat. Many of the families who hired from us in the 1930s still return today.
+    For generations, people have come to St Anthony to explore the Helford River by boat. Many of the families who hired from us in the 1930s still return today.
   </p>
 
   <p
