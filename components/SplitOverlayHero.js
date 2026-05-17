@@ -43,7 +43,7 @@ useEffect(() => {
         style={{
           objectFit: "cover",
           objectPosition: objectPosition,
-          zIndex: 0
+          zIndex: 0,
           transform: `translateY(${offsetY}px)`,
           transition: "transform 0.08s linear",
         }}
