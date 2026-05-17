@@ -10,6 +10,20 @@ export default function SplitOverlayHero({
   overlayOpacity = 0.1,
   objectPosition = "center"
 }) {
+
+  const [offsetY, setOffsetY] = useState(0);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setOffsetY(window.scrollY * 0.35);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () =>
+    window.removeEventListener("scroll", handleScroll);
+}, []);
+  
   return (
     <div
       style={{
@@ -17,6 +31,8 @@ export default function SplitOverlayHero({
         width: "100%",
         height: height,
         overflow: "hidden"
+        transform: `translateY(${offsetY}px)`,
+        transition: "transform 0.08s linear",
       }}
     >
       {/* IMAGE */}
