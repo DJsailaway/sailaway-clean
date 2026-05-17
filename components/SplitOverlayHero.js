@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function SplitOverlayHero({
   imageSrc,
@@ -30,9 +31,7 @@ useEffect(() => {
         position: "relative",
         width: "100%",
         height: height,
-        overflow: "hidden"
-        transform: `translateY(${offsetY}px)`,
-        transition: "transform 0.08s linear",
+        overflow: "hidden",
       }}
     >
       {/* IMAGE */}
@@ -45,6 +44,8 @@ useEffect(() => {
           objectFit: "cover",
           objectPosition: objectPosition,
           zIndex: 0
+          transform: `translateY(${offsetY}px)`,
+          transition: "transform 0.08s linear",
         }}
       />
 
