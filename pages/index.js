@@ -42,6 +42,7 @@ const isMobile =
     margin: "0 auto",
     padding: "70px 24px 50px",
     textAlign: "center",
+    background: "#fcfcfb",
   }}
 >
   <p
@@ -117,6 +118,7 @@ const isMobile =
         style={{
           textAlign: "center",
           padding: "30px 20px 10px",
+          background: "#ffffff",
         }}
       >
         <h2 style={{ color: "#0f2f4f" }}>
@@ -172,6 +174,8 @@ const isMobile =
     maxWidth: "1400px",
     margin: "0 auto",
     padding: "100px 24px",
+    background:
+  "linear-gradient(to bottom, #ffffff, #f5f8fa)",
   }}
 >
   {/* SECTION HEADER */}
