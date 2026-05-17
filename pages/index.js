@@ -124,7 +124,7 @@ const isMobile =
         </h2>
 
         <p style={{ opacity: 0.7 }}>
-          A guided concierge-style booking experience.
+          Select your boat and when and where you'd like to depart - leave the rest to us.
         </p>
       </div>
 
@@ -229,28 +229,59 @@ const isMobile =
     }}
   >
 
-    {/* LARGE PORTRAIT  - DRASCOMBE — 1063 x 2364 */}
-    <div
-      onClick={() => isMobile && setActiveImage("/drascombe.jpg")}
+{/* LEFT COLUMN */}
+<div
+  style={{
+    gridColumn: "span 4",
+    display: "grid",
+    gap: "22px",
+    alignContent: "start",
+  }}
+>
+
+  {/* LARGE PORTRAIT */}
+  <div
+    onClick={() => isMobile && setActiveImage("/drascombe.jpg")}
+    style={{
+      borderRadius: "26px",
+      overflow: "hidden",
+      boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+      cursor: isMobile ? "pointer" : "default",
+    }}
+  >
+    <img
+      src="/drascombe.jpg"
+      alt="Family boating on the Helford River"
       style={{
-        gridColumn: "span 4",
-        borderRadius: "26px",
-        overflow: "hidden",
-        boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+        width: "100%",
+        display: "block",
+        objectFit: "cover",
       }}
-    >
-      <img
-        src="/drascombe.jpg"
-        alt="Family boating on the Helford River"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-          cursor: "pointer",
-        }}
-      />
-    </div>
+    />
+  </div>
+
+  {/* NEW LANDSCAPE IMAGE */}
+  <div
+    onClick={() => isMobile && setActiveImage("/Longboat Poppy calm.jpg")}
+    style={{
+      borderRadius: "26px",
+      overflow: "hidden",
+      boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+      cursor: isMobile ? "pointer" : "default",
+    }}
+  >
+    <img
+      src="/Longboat Poppy calm.jpg"
+      alt="Exploring the Helford River"
+      style={{
+        width: "100%",
+        display: "block",
+        objectFit: "cover",
+      }}
+    />
+  </div>
+
+</div>
 
     {/* RIGHT COLUMN GROUP */}
     <div
