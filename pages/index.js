@@ -50,7 +50,6 @@ const isMobile =
       color: "#0f2f4f",
       fontWeight: 700,
       letterSpacing: "1px",
-      textTransform: "uppercase",
       fontSize: "13px",
       marginBottom: "18px",
     }}
