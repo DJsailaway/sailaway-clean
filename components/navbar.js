@@ -260,7 +260,7 @@ useEffect(() => {
     fontSize: "14px",
     textDecoration: "none",
     boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
-    zIndex: 9999,
+    zIndex: 50,
     display: isMobile ? "flex" : "none",
     alignItems: "center",
     gap: "8px",
