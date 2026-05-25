@@ -91,7 +91,7 @@ useEffect(() => {
         position: "sticky",
         top: 0,
         backdropFilter: "blur(14px)",
-        background: "rgba(255,255,255,0.78)",
+        background: "rgba(255,255,255,0.94)",
         borderBottom: "1px solid rgba(0,0,0,0.05)",
         zIndex: 1000,
       }}
