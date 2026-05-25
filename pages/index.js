@@ -222,187 +222,230 @@ const isMobile =
     </p>
   </div>
 
-  {/* EDITORIAL LAYOUT */}
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(12, 1fr)",
-      gap: "22px",
-      alignItems: "start",
-    }}
-  >
-
-{/* LEFT COLUMN */}
+{/* 🌊 EDITORIAL STORY LAYOUT */}
 <div
   style={{
-    gridColumn: "span 4",
     display: "grid",
-    gap: "22px",
-    alignContent: "start",
+    gap: isMobile ? "18px" : "42px",
   }}
 >
 
-  {/* LARGE PORTRAIT */}
+  {/* ================= ROW 1 ================= */}
   <div
-    onClick={() => isMobile && setActiveImage("/drascombe.jpg")}
     style={{
-      borderRadius: "26px",
-      overflow: "hidden",
-      boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
-      cursor: isMobile ? "pointer" : "default",
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr",
+      gap: "22px",
+      alignItems: "stretch",
     }}
   >
-    <img
-      src="/drascombe.jpg"
-      alt="Family boating on the Helford River"
+
+    {/* TALL SAIL IMAGE */}
+    <div
+      onClick={() => isMobile && setActiveImage("/drascombe.jpg")}
       style={{
-        width: "100%",
-        display: "block",
-        objectFit: "cover",
+        borderRadius: "28px",
+        overflow: "hidden",
+        boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+        cursor: "pointer",
+        minHeight: isMobile ? "420px" : "760px",
       }}
-    />
-  </div>
+    >
+      <img
+        src="/drascombe.jpg"
+        alt="Traditional sailing on the Helford"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    </div>
 
-  {/* NEW LANDSCAPE IMAGE */}
-  <div
-    onClick={() => isMobile && setActiveImage("/Longboat Poppy calm.jpg")}
-    style={{
-      borderRadius: "26px",
-      overflow: "hidden",
-      boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
-      cursor: isMobile ? "pointer" : "default",
-    }}
-  >
-    <img
-      src="/Longboat Poppy calm.jpg"
-      alt="Exploring the Helford River"
-      style={{
-        width: "100%",
-        display: "block",
-        objectFit: "cover",
-      }}
-    />
-  </div>
-
-</div>
-
-    {/* RIGHT COLUMN GROUP */}
+    {/* RIGHT LANDSCAPE COLUMN */}
     <div
       style={{
-        gridColumn: "span 8",
         display: "grid",
+        gridTemplateRows: "1fr auto",
         gap: "22px",
       }}
     >
 
-      {/* WIDE LANDSCAPE - OLD ROWING — 3499 x 2183 */}
+      {/* LARGE LANDSCAPE */}
       <div
-      onClick={() => isMobile && setActiveImage("/St-Anthony-in-Meneage.jpg")}
+        onClick={() =>
+          isMobile &&
+          setActiveImage("/St-Anthony-in-Meneage.jpg")
+        }
         style={{
-          borderRadius: "26px",
+          borderRadius: "28px",
           overflow: "hidden",
           boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
           cursor: "pointer",
+          minHeight: isMobile ? "240px" : "420px",
         }}
       >
         <img
           src="/St-Anthony-in-Meneage.jpg"
-          alt="St Anthony-in-Meneage"
+          alt="The Helford River"
           style={{
             width: "100%",
-            display: "block",
+            height: "100%",
             objectFit: "cover",
+            display: "block",
           }}
         />
       </div>
 
-      {/* LOWER GRID */}
+      {/* SMALL LANDSCAPE */}
       <div
+        onClick={() =>
+          isMobile &&
+          setActiveImage("/Bass-Boat-Bosahan-Beach.jpg")
+        }
         style={{
-          display: "grid",
-          gridTemplateColumns: "1.15fr 1fr",
-          gap: "22px",
-          alignItems: "start",
+          borderRadius: "28px",
+          overflow: "hidden",
+          boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+          cursor: "pointer",
+          minHeight: isMobile ? "180px" : "300px",
         }}
       >
-
-        {/* TALL PORTRAIT - DAISY UP CREEK — 1512 x 2016 */}
-        <div
-      onClick={() => isMobile && setActiveImage("/Bass-Boat-Daisy-up-creek.jpg")}
+        <img
+          src="/Bass-Boat-Bosahan-Beach.jpg"
+          alt="Cornish coastline"
           style={{
-            borderRadius: "26px",
-            overflow: "hidden",
-            boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
-            cursor: "pointer",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
+
+    </div>
+  </div>
+
+  {/* ================= ROW 2 ================= */}
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr",
+      gap: "22px",
+      alignItems: "stretch",
+    }}
+  >
+
+    {/* LEFT LANDSCAPE COLUMN */}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateRows: "1fr auto",
+        gap: "22px",
+      }}
+    >
+
+      {/* LARGE LANDSCAPE */}
+      <div
+        onClick={() =>
+          isMobile &&
+          setActiveImage("/Rowing-on-Gillan-Creek.jpg")
+        }
+        style={{
+          borderRadius: "28px",
+          overflow: "hidden",
+          boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+          cursor: "pointer",
+          minHeight: isMobile ? "240px" : "420px",
+        }}
+      >
+        <img
+          src="/Rowing-on-Gillan-Creek.jpg"
+          alt="Exploring the Helford"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
+
+      {/* VINTAGE IMAGE */}
+      <div
+        onClick={() =>
+          isMobile &&
+          setActiveImage("/St-Anthony-in-Meneage.jpg")
+        }
+        style={{
+          borderRadius: "28px",
+          overflow: "hidden",
+          boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+          cursor: "pointer",
+          position: "relative",
+          minHeight: isMobile ? "180px" : "260px",
+        }}
+      >
+        <img
+          src="/St-Anthony-in-Meneage.jpg"
+          alt="Historic Helford boating"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            filter: "contrast(1.02) saturate(0.92)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            bottom: "18px",
+            left: "18px",
+            background: "rgba(15,47,79,0.82)",
+            color: "#fff",
+            padding: "10px 14px",
+            borderRadius: "999px",
+            fontSize: "13px",
+            fontWeight: 600,
           }}
         >
-          <img
-            src="/Bass-Boat-Daisy-up-creek.jpg"
-            alt="Boating on Gillan Creek"
-            style={{
-              width: "100%",
-              display: "block",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-          />
-        </div>
-
-        {/* STACKED SMALLER IMAGES */}
-        <div
-          style={{
-            display: "grid",
-            gap: "22px",
-          }}
-        >
-
-          {/* LANDSCAPE — BASS BOAT FROM CLIFFS - 2500 x 1875 */}
-          <div
-            onClick={() => isMobile && setActiveImage("/Bass-Boat-Bosahan-Beach.jpg")}
-            style={{
-              borderRadius: "26px",
-              overflow: "hidden",
-              boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
-            }}
-          >
-            <img
-              src="/Bass-Boat-Bosahan-Beach.jpg"
-              alt="Exploring hidden creeks"
-              style={{
-                width: "100%",
-                display: "block",
-                objectFit: "cover",
-                cursor: "pointer",
-              }}
-            />
-          </div>
-
-          {/* OLD LANDSCAPE — 2400 x 1800 */}
-          <div
-            onClick={() => isMobile && setActiveImage("/Rowing-on-Gillan-Creek.jpg")}
-            style={{
-              borderRadius: "26px",
-              overflow: "hidden",
-              boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
-              position: "relative",
-            }}
-          >
-            <img
-              src="/Rowing-on-Gillan-Creek.jpg"
-              alt="Historic boating on the Helford River"
-              style={{
-                width: "100%",
-                display: "block",
-                objectFit: "cover",
-                filter: "contrast(1.02) saturate(0.92)",
-                cursor: "pointer",
-              }}
-            />
-
-          </div>
-
+          Family photographs from the Helford
         </div>
       </div>
+
+    </div>
+
+    {/* GIRL PORTRAIT */}
+    <div
+      onClick={() =>
+        isMobile &&
+        setActiveImage("/Bass-Boat-Daisy-up-creek.jpg")
+      }
+      style={{
+        borderRadius: "28px",
+        overflow: "hidden",
+        boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+        cursor: "pointer",
+        minHeight: isMobile ? "420px" : "760px",
+      }}
+    >
+      <img
+        src="/Bass-Boat-Daisy-up-creek.jpg"
+        alt="Family boating on the Helford"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    </div>
+
+  </div>
+</div>
     </div>
   </div>
 </div>
