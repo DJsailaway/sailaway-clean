@@ -85,7 +85,8 @@ useEffect(() => {
   if (isMobile === undefined) return null;
   
   return (
-    <nav
+    <>
+      <nav
       ref={navRef}
       style={{
         position: "sticky",
@@ -269,6 +270,7 @@ useEffect(() => {
   }}
 >
   📞 Call
-</a>
-  );
+    </a>
+  </>
+);
 }
