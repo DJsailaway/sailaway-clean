@@ -341,7 +341,7 @@ const isMobile =
     <div
       style={{
         display: "grid",
-        gridTemplateRows: "1fr auto",
+        gridTemplateRows: "1.2fr 0.7fr",
         gap: "22px",
       }}
     >
