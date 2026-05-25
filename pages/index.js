@@ -393,16 +393,26 @@ const isMobile =
     </div>
   )}
 
-  {/* ================= MOBILE VERSION ================= */}
-  {isMobile && (
+{/* ================= MOBILE VERSION ================= */}
+{isMobile && (
+  <div
+    style={{
+      display: "grid",
+      gap: "18px",
+    }}
+  >
+
+    {/* TOP COLLAGE ROW */}
     <div
       style={{
         display: "grid",
+        gridTemplateColumns: "0.85fr 1.15fr",
         gap: "18px",
+        alignItems: "stretch",
       }}
     >
 
-      {/* HERO PORTRAIT */}
+      {/* DRASCOMBE PORTRAIT */}
       <div
         onClick={() => setActiveImage("/drascombe.jpg")}
         style={{
@@ -416,7 +426,7 @@ const isMobile =
           alt=""
           style={{
             width: "100%",
-            height: "420px",
+            height: "320px",
             objectFit: "cover",
             objectPosition: "center",
             display: "block",
@@ -424,30 +434,7 @@ const isMobile =
         />
       </div>
 
-      {/* LANDSCAPE */}
-      <div
-        onClick={() =>
-          setActiveImage("/St-Anthony-in-Meneage.jpg")
-        }
-        style={{
-          borderRadius: "24px",
-          overflow: "hidden",
-          boxShadow: "0 14px 34px rgba(0,0,0,0.14)",
-        }}
-      >
-        <img
-          src="/St-Anthony-in-Meneage.jpg"
-          alt=""
-          style={{
-            width: "100%",
-            height: "240px",
-            objectFit: "cover",
-            display: "block",
-          }}
-        />
-      </div>
-
-      {/* PORTRAIT */}
+      {/* DAISY IMAGE */}
       <div
         onClick={() =>
           setActiveImage("/Bass-Boat-Daisy-up-creek.jpg")
@@ -463,7 +450,7 @@ const isMobile =
           alt=""
           style={{
             width: "100%",
-            height: "420px",
+            height: "320px",
             objectFit: "cover",
             objectPosition: "center",
             display: "block",
@@ -471,78 +458,78 @@ const isMobile =
         />
       </div>
 
-      {/* TWO LANDSCAPES */}
-      <div
+    </div>
+
+    {/* WIDE LANDSCAPE */}
+    <div
+      onClick={() =>
+        setActiveImage("/St-Anthony-in-Meneage.jpg")
+      }
+      style={{
+        borderRadius: "24px",
+        overflow: "hidden",
+        boxShadow: "0 14px 34px rgba(0,0,0,0.14)",
+      }}
+    >
+      <img
+        src="/St-Anthony-in-Meneage.jpg"
+        alt=""
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "18px",
+          width: "100%",
+          height: "220px",
+          objectFit: "cover",
+          display: "block",
         }}
-      >
+      />
+    </div>
 
-        <div
-          onClick={() =>
-            setActiveImage("/Bass-Boat-Bosahan-Beach.jpg")
-          }
-          style={{
-            borderRadius: "20px",
-            overflow: "hidden",
-            boxShadow: "0 12px 28px rgba(0,0,0,0.12)",
-          }}
-        >
-          <img
-            src="/Bass-Boat-Bosahan-Beach.jpg"
-            alt=""
-            style={{
-              width: "100%",
-              height: "160px",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-        </div>
+    {/* TWO SMALL LANDSCAPES */}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "18px",
+      }}
+    >
 
-        <div
-          onClick={() =>
-            setActiveImage("/Rowing-on-Gillan-Creek.jpg")
-          }
-          style={{
-            borderRadius: "20px",
-            overflow: "hidden",
-            boxShadow: "0 12px 28px rgba(0,0,0,0.12)",
-          }}
-        >
-          <img
-            src="/Rowing-on-Gillan-Creek.jpg"
-            alt=""
-            style={{
-              width: "100%",
-              height: "160px",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-        </div>
-
-      </div>
-
-      {/* FINAL WIDE IMAGE */}
       <div
         onClick={() =>
-          setActiveImage("/Longboat Poppy calm.jpg")
+          setActiveImage("/Bass-Boat-Bosahan-Beach.jpg")
         }
         style={{
-          borderRadius: "24px",
+          borderRadius: "20px",
           overflow: "hidden",
-          boxShadow: "0 14px 34px rgba(0,0,0,0.14)",
+          boxShadow: "0 12px 28px rgba(0,0,0,0.12)",
         }}
       >
         <img
-          src="/Longboat Poppy calm.jpg"
+          src="/Bass-Boat-Bosahan-Beach.jpg"
           alt=""
           style={{
             width: "100%",
-            height: "220px",
+            height: "160px",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
+
+      <div
+        onClick={() =>
+          setActiveImage("/Rowing-on-Gillan-Creek.jpg")
+        }
+        style={{
+          borderRadius: "20px",
+          overflow: "hidden",
+          boxShadow: "0 12px 28px rgba(0,0,0,0.12)",
+        }}
+      >
+        <img
+          src="/Rowing-on-Gillan-Creek.jpg"
+          alt=""
+          style={{
+            width: "100%",
+            height: "160px",
             objectFit: "cover",
             display: "block",
           }}
@@ -550,7 +537,32 @@ const isMobile =
       </div>
 
     </div>
-  )}
+
+    {/* FINAL WIDE IMAGE */}
+    <div
+      onClick={() =>
+        setActiveImage("/Longboat Poppy calm.jpg")
+      }
+      style={{
+        borderRadius: "24px",
+        overflow: "hidden",
+        boxShadow: "0 14px 34px rgba(0,0,0,0.14)",
+      }}
+    >
+      <img
+        src="/Longboat Poppy calm.jpg"
+        alt=""
+        style={{
+          width: "100%",
+          height: "220px",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    </div>
+
+  </div>
+)}
 </div>
 
 {activeImage && (
