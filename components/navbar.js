@@ -246,6 +246,8 @@ useEffect(() => {
           <Link href="/st-anthony-helford-river" style={item}>Location</Link>
         </div>
       )}
+    </nav>
+        
         <a
   href="tel:+441326231357"
   style={{
@@ -268,6 +270,5 @@ useEffect(() => {
 >
   📞 Call
 </a>
-    </nav>
   );
 }
