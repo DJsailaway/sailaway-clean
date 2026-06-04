@@ -11,20 +11,33 @@ export default function SplitOverlayHero({
   overlayOpacity = 0.1,
   objectPosition = "center"
 }) {
-
   const [offsetY, setOffsetY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    setOffsetY(window.scrollY * 0.35);
-  };
+  // Parallax
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffsetY(window.scrollY * 0.35);
+    };
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () =>
-    window.removeEventListener("scroll", handleScroll);
-}, []);
-  
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Mobile detection
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+
+    check();
+
+    window.addEventListener("resize", check);
+
+    return () =>
+      window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <div
       style={{
@@ -50,42 +63,53 @@ useEffect(() => {
       />
 
       {/* SUBTLE WATER LIGHT EFFECT */}
-        <div
-          style={{
+      <div
+        style={{
           position: "absolute",
           inset: 0,
           background:
-          "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.02) 65%, rgba(255,255,255,0.06) 100%)",
+            "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.02) 65%, rgba(255,255,255,0.06) 100%)",
           backgroundSize: "200% 200%",
           animation: "waterShimmer 6s ease-in-out infinite",
           zIndex: 1,
           pointerEvents: "none",
-  }}
-/>
+        }}
+      />
 
-      {/* LIGHT OVERLAY (optional) */}
+      {/* DARK OVERLAY */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           backgroundColor: `rgba(0,0,0,${overlayOpacity})`,
-          zIndex: 1
+          zIndex: 1,
         }}
       />
 
-      {/* TOP LEFT TEXT */}
+      {/* TOP TEXT */}
       <div
         style={{
           position: "absolute",
-          top: "30px",
-          left: "30px",
-          right: "30px",
+          top: isMobile ? "20px" : "30px",
+          left: isMobile ? "18px" : "30px",
+          right: isMobile ? "18px" : "30px",
           color: "white",
           zIndex: 2,
-          maxWidth: "600px"
+          maxWidth: isMobile ? "100%" : "600px",
         }}
       >
-        <h1 style={{ marginBottom: "10px" }}>{title}</h1>
+        <h1
+          style={{
+            marginBottom: "10px",
+            fontSize: isMobile
+              ? "32px"
+              : "clamp(40px, 5vw, 64px)",
+            lineHeight: 1.05,
+          }}
+        >
+          {title}
+        </h1>
+
         {topContent}
       </div>
 
@@ -93,18 +117,18 @@ useEffect(() => {
       <div
         style={{
           position: "absolute",
-          bottom: "30px",
-          left: "30px",
-          right: "30px",
+          bottom: isMobile ? "20px" : "30px",
+          left: isMobile ? "18px" : "30px",
+          right: isMobile ? "18px" : "30px",
           color: "white",
           zIndex: 2,
-          maxWidth: "600px"
+          maxWidth: isMobile ? "100%" : "600px",
         }}
       >
         {bottomContent}
       </div>
 
-              <style jsx>{`
+      <style jsx>{`
         @keyframes waterShimmer {
           0% {
             background-position: 0% 50%;
@@ -117,7 +141,6 @@ useEffect(() => {
           }
         }
       `}</style>
-        
     </div>
   );
 }
