@@ -18,6 +18,9 @@ export default function BoatyardServices() {
         imageSrc="/helford-boatyard.jpg"
         imageAlt="Boat launching at St Anthony on the Helford River"
         title="Boat Launching on the Helford River"
+        showScrollCue={true}
+        scrollTarget="page-content"
+        scrollLabel="Explore"
         topContent={
           <p
             style={{
