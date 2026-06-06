@@ -270,7 +270,7 @@ export default function Location() {
     }}
   >
     <iframe
-      src="https://www.google.com/maps?q=St+Anthony,+Helford+River,+Cornwall&z=17&output=embed"
+      src="https://www.google.com/maps?&output=embed&z=17&ll=50.0832,-5.1176"
       width="100%"
       height="280"
       style={{ border: 0 }}
