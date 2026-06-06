@@ -26,6 +26,9 @@ const isMobile =
         alt="Boat Hire on Helford River"
         title="Boat Hire on the Helford River, Cornwall"
         overlayStrength="light"
+        showScrollCue={true}
+        scrollTarget="page-content"
+        scrollLabel="Explore"
         topContent={
           <div style={{ textShadow: "0 2px 20px rgba(0,0,0,0.65)" }}>
             <p>
