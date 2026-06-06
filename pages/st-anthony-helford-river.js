@@ -270,7 +270,7 @@ export default function Location() {
     }}
   >
     <iframe
-      src="https://www.google.com/maps?ll=50.08944978350336,-5.1040&z=15&output=embed"
+      src="https://www.google.com/maps?ll=50.08944978350336,-5.1040&z=14&output=embed"
       width="100%"
       height="280"
       style={{ border: 0 }}
