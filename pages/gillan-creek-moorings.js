@@ -29,7 +29,14 @@ export default function Moorings() {
         }
       />
 
-      <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+<div
+  id="page-content"
+  style={{
+    padding: "40px 20px",
+    maxWidth: "900px",
+    margin: "0 auto",
+  }}
+>
         <h2>Our Moorings Services</h2>
         <ul>
           <li>Seasonal and short-term moorings</li>
