@@ -23,50 +23,65 @@ export default function BoatStorage() {
         title="Boat Storage at St Anthony on the Helford River"
         objectPosition="center bottom"
         overlayOpacity={0.05}
-        topContent={
-          <p>
-            Secure and convenient boat storage at St Anthony, perfectly positioned for easy access to the Helford River.
-          </p>
-        }
-        bottomContent={
-          <p>
-            Ideal for local boat owners, our storage offers a practical and accessible way to keep your boat close to the water throughout the season.
-          </p>
-        }
       />
 
       {/* MAIN CONTENT */}
-      <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+          padding: "60px 20px",
+        }}
+      >
         <h2>Boat Storage Services</h2>
 
-        <ul>
+        <p>
+          Secure and convenient boat storage at St Anthony, perfectly positioned
+          for easy access to the Helford River and the surrounding coastline.
+        </p>
+
+        <ul
+          style={{
+            lineHeight: 1.9,
+            marginBottom: "30px",
+          }}
+        >
           <li>Seasonal boat storage at St Anthony</li>
           <li>Convenient access to the Helford River</li>
-          <li>Suitable for small boats, dinghies, and tenders</li>
-          <li>Ideal for Helford River boat owners</li>
+          <li>Suitable for small boats, dinghies and tenders</li>
+          <li>Ideal for local Helford River boat owners</li>
         </ul>
 
         <h2>Boat Storage on the Helford River</h2>
+
         <p>
-          Our boat storage at St Anthony is perfectly located for those using the Helford River.
+          Keeping your boat stored locally means less time towing, easier
+          launching and more opportunities to enjoy a day on the water whenever
+          the weather is right.
         </p>
 
         <p>
-          Keeping your boat stored locally means less hassle, quicker access to the water, and more time boating.
+          Our storage area at St Anthony provides a practical base for regular
+          users of the Helford River, with straightforward access for launching
+          and collecting your boat throughout the season.
         </p>
 
         <h2>Why Store Your Boat at St Anthony?</h2>
+
         <p>
-          St Anthony offers a quiet and accessible location for boat storage on the Helford River.
+          Many of our storage customers also use our launching and boatyard
+          services, making St Anthony a simple one-stop location for keeping
+          their boats ready to enjoy.
         </p>
 
         <h2>Location</h2>
+
         <p>St Anthony, Helford River, Cornwall.</p>
 
-        {/* 🔻 CTA HUB (FULL BOATYARD SYSTEM) */}
+        {/* CTA HUB */}
         <CTASection
           title="Explore our full boatyard services"
-          subtitle="Everything you need for launching, maintaining, and storing your boat on the Helford River:"
+          subtitle="Everything you need for launching, maintaining and storing your boat on the Helford River:"
           buttons={[
             {
               text: "Boat Launching",
