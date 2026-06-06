@@ -264,7 +264,7 @@ export default function Location() {
 
 <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden" }}>
   <iframe
-    src="https://www.google.com/maps?ll=50.08944978350336,-5.1080&z=14&output=embed"
+    src="https://www.google.com/maps?ll=50.08944978350336,-5.1100&z=14&output=embed"
     width="100%"
     height="280"
     style={{ border: 0 }}
