@@ -182,7 +182,7 @@ export default function SplitOverlayHero({
   </div>
 )}
         
-      <style jsx>{`
+<style jsx>{`
   @keyframes waterShimmer {
     0% {
       background-position: 0% 50%;
