@@ -16,6 +16,9 @@ export default function Moorings() {
         imageSrc="/moorings-gillan-creek.jpg"
         imageAlt="Boat moorings at Gillan Creek"
         title="Moorings at Gillan Creek on the Helford River"
+        showScrollCue={true}
+        scrollTarget="page-content"
+        scrollLabel="Explore"
         topContent={
           <p>
             Secure and convenient boat moorings in one of Cornwall’s most sheltered and scenic river locations.
