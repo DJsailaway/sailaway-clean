@@ -30,6 +30,7 @@ export default function BoatyardServices() {
       />
 
       <div
+        id="page-content"
         style={{
           fontFamily: "sans-serif",
           padding: "40px 20px",
