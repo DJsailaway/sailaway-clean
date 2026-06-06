@@ -213,31 +213,101 @@ export default function Location() {
           }}
         />
 
-        <div
-          id="directions"
-          style={{
-          scrollMarginTop: "120px",
-          }}
-        >
-          <h2>How to Get Here</h2>
+<div
+  id="directions"
+  style={{
+    scrollMarginTop: "120px", // 👈 add this
+  }}
+>
+  <h2>How to Get Here</h2>
 
-          <p>
-            Follow the signs towards Helford and St Anthony.
-            The final approach narrows into quiet country
-            lanes before opening onto the river.
-          </p>
+  <p>
+    St Anthony sits at the very end of quiet Cornish lanes on the edge of the
+    :contentReference[oaicite:0]{index=0}, where the road naturally gives way to the water.
+  </p>
 
-          <p>
-            There is parking nearby and easy access to the
-            beach, slipway and boating facilities.
-          </p>
+  <p>
+    Follow signs towards Helford and St Anthony. The final approach is narrow
+    and winding, but it opens directly onto the river — a quiet destination
+    with no through traffic.
+  </p>
 
-          <p>
-            It is one of those increasingly rare places where
-            there is no through traffic — just the river
-            waiting at the end of the road.
-          </p>
-        </div>
+  <h3 style={{ marginTop: "30px" }}>By Car</h3>
+
+  <p>
+    There is a well-maintained on-site car park available for visitors,
+    conveniently located close to the slipway and river access points.
+  </p>
+
+  <p>
+    From here, it is a short walk to the water, beach areas, and moorings.
+  </p>
+
+  <h3 style={{ marginTop: "30px" }}>By Ferry</h3>
+
+  <p>
+    A seasonal ferry operates across the river from the south side of the
+    Helford, offering a relaxed and scenic way to reach St Anthony without
+    needing to drive around the estuary.
+  </p>
+
+  <p>
+    It is a popular option for walkers and those exploring the Helford’s
+    footpaths and creeks.
+  </p>
+
+  <h3 style={{ marginTop: "30px" }}>Location Map</h3>
+
+  <p>
+    For reference, the map below shows St Anthony and the surrounding area.
+  </p>
+
+  <div
+    style={{
+      marginTop: "18px",
+      borderRadius: "12px",
+      overflow: "hidden",
+    }}
+  >
+    <iframe
+      src="https://www.google.com/maps?q=St+Anthony+Helford+River&output=embed"
+      width="100%"
+      height="280"
+      style={{ border: 0 }}
+      loading="lazy"
+    />
+  </div>
+
+  <div
+    style={{
+      marginTop: "14px",
+      display: "flex",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+      gap: "10px",
+    }}
+  >
+    <a
+      href="https://www.google.com/maps?q=St+Anthony+Helford+River"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        textDecoration: "none",
+        padding: "10px 16px",
+        borderRadius: "999px",
+        border: "1px solid #ccc",
+        color: "#333",
+        fontWeight: 500,
+      }}
+    >
+      Open in Google Maps
+    </a>
+
+    <span style={{ fontSize: "0.9rem", opacity: 0.7 }}>
+      Best experienced slowly — by road or river
+    </span>
+  </div>
+</div>
 
         <CTASection
           title="Start exploring the Helford"
