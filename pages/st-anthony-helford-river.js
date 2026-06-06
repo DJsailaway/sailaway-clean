@@ -262,13 +262,6 @@ export default function Location() {
     For reference, the map below shows St Anthony and the surrounding area.
   </p>
 
-  <div
-    style={{
-      marginTop: "18px",
-      borderRadius: "12px",
-      overflow: "hidden",
-    }}
-  >
 <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden" }}>
   <iframe
     src="https://www.google.com/maps?ll=50.08944978350336,-5.1040&z=15&output=embed"
@@ -282,8 +275,8 @@ export default function Location() {
   <div
     style={{
       position: "absolute",
-      top: "50%",
-      left: "50%",
+      top: "60%",
+      left: "80%",
       transform: "translate(-50%, -100%)",
       fontSize: "28px",
       pointerEvents: "none",
