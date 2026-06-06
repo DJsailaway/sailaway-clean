@@ -15,6 +15,9 @@ export default function GillanCreekFerry() {
         imageSrc="/gillan-creek-ferry.jpg"
         alt="Gillan Creek Ferry crossing"
         title="Gillan Creek Ferry"
+        showScrollCue={true}
+        scrollTarget="page-content"
+        scrollLabel="Explore"
         topContent={
           <>
             <p>
@@ -40,16 +43,13 @@ export default function GillanCreekFerry() {
     margin: "0 auto",
   }}
 >
-        <h2>About the Ferry</h2>
-        <p>
-          The Gillan Creek Ferry offers a traditional river crossing, saving a long walk around the creek.
-        </p>
-
-        <h2>Who Uses It?</h2>
+        <h2>About the ferry:</h2>
         <ul>
-          <li>Walkers on coastal routes</li>
-          <li>Visitors exploring the Helford area</li>
-          <li>Locals needing a quick crossing</li>
+          <li>The crossing runs around three hours either side of high tide</li>
+          <li>From the first of April to the end of October</li>
+          <li>The ferry runs on demand - simply call us or flip the sign down to call the ferryman</li>
+          <li>Capacity is 6 people but we can simply return for larger parties</li>
+          <li>The cost is £5 per person; dogs and luggage travel free</li> 
         </ul>
 
         <h2>Location</h2>
