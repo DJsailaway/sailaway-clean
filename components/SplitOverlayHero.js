@@ -183,35 +183,37 @@ export default function SplitOverlayHero({
 )}
         
       <style jsx>{`
-        @keyframes waterShimmer {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}
-@keyframes floatArrow {
-  0% {
-    transform: translateY(0px);
-    opacity: 0.85;
+  @keyframes waterShimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
-  50% {
-    transform: translateY(6px);
-    opacity: 1;
-  }
+  @keyframes floatArrow {
+    0% {
+      transform: translateY(0px);
+      opacity: 0.85;
+    }
 
-  100% {
-    transform: translateY(0px);
-    opacity: 0.85;
+    50% {
+      transform: translateY(6px);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(0px);
+      opacity: 0.85;
+    }
   }
-}
-</style>
+`}</style>
     </div>
   );
 }
