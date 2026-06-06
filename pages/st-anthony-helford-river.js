@@ -1,4 +1,3 @@
-```jsx
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
