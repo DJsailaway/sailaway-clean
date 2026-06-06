@@ -213,7 +213,12 @@ export default function Location() {
           }}
         />
 
-        <div id="directions">
+        <div
+          id="directions"
+          style={{
+          scrollMarginTop: "120px",
+          }}
+        >
           <h2>How to Get Here</h2>
 
           <p>
