@@ -10,7 +10,8 @@ export default function BoatyardServices() {
         <title>Boatyard Services Helford River | Moorings & Launching Cornwall</title>
         <meta
           name="description"
-          content="Boatyard services on the Helford River including boat launching, moorings, and storage. Based in St Anthony, Cornwall."
+          content="Boatyard services on the Helford River including marine joinery, electrical work, painting and varnishing,
+          repairs, maintenance and bespoke metalwork. Based in St Anthony, Cornwall."
         />
       </Head>
 
@@ -24,7 +25,7 @@ export default function BoatyardServices() {
         title="Boatyard Services on the Helford River"
         topContent={
           <p>
-            Reliable boatyard services including launching, moorings and storage from our base at St Anthony.
+            Reliable boatyard services from our experienced team at St Anthony.
           </p>
         }
       />
@@ -40,7 +41,8 @@ export default function BoatyardServices() {
       >
         <p>
           We offer a range of boatyard services from our base at St Anthony on the Helford River, Cornwall.
-          Whether you need launching, moorings, or general support, we provide a reliable and friendly service.
+          Whether you need gardianage, metalwork, GRP repairs, joinery or general maintenance, we provide 
+          a reliable and friendly service.
         </p>
 
         <h2>Our Services</h2>
