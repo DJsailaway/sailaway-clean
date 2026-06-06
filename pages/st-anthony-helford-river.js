@@ -276,7 +276,7 @@ export default function Location() {
     style={{
       position: "absolute",
       top: "55%",
-      left: "83%",
+      left: "81%",
       transform: "translate(-50%, -100%)",
       fontSize: "28px",
       pointerEvents: "none",
