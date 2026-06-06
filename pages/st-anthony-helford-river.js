@@ -95,7 +95,14 @@ export default function Location() {
           </div>
         </div>
 
-        <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }} />
+        <div
+          id="page-content"
+          style={{
+          padding: "40px 20px",
+          maxWidth: "900px",
+          margin: "0 auto",
+          }}
+        >
       </div>
     </>
   );
