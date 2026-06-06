@@ -76,7 +76,9 @@ export default function BoatyardServices() {
           Launching at St Anthony gives you direct access to peaceful waters
           without congestion. Within minutes of launching you can explore hidden
           creeks, sheltered anchorages and some of Cornwall's most beautiful
-          coastline.
+          coastline. On-site facilities include trailer storage, a dinghy and
+          tender park, moorings, experienced boatyard staff, winter boat storage,
+          customer toilets and ample car parking.
         </p>
 
         <h2>Location</h2>
