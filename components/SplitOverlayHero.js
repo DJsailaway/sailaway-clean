@@ -9,10 +9,24 @@ export default function SplitOverlayHero({
   bottomContent,
   height = "500px",
   overlayOpacity = 0.1,
-  objectPosition = "center"
+  objectPosition = "center",
+  showScrollCue = false,
+  scrollTarget = "page-content",
+  scrollLabel = "Explore more"
 }) {
   const [offsetY, setOffsetY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  const scrollToContent = () => {
+  const target = document.getElementById(scrollTarget);
+
+  if (target) {
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
 
   // Parallax
   useEffect(() => {
@@ -128,6 +142,46 @@ export default function SplitOverlayHero({
         {bottomContent}
       </div>
 
+      {showScrollCue && (
+  <div
+    onClick={scrollToContent}
+    style={{
+      position: "absolute",
+      bottom: "26px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      zIndex: 3,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      cursor: "pointer",
+      color: "rgba(255,255,255,0.95)",
+      userSelect: "none",
+    }}
+  >
+    <div
+      style={{
+        fontSize: "11px",
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        marginBottom: "8px",
+        fontWeight: 600,
+      }}
+    >
+      {scrollLabel}
+    </div>
+
+    <div
+      style={{
+        fontSize: "26px",
+        animation: "floatArrow 2.8s ease-in-out infinite",
+      }}
+    >
+      ⌄
+    </div>
+  </div>
+)}
+        
       <style jsx>{`
         @keyframes waterShimmer {
           0% {
@@ -140,7 +194,24 @@ export default function SplitOverlayHero({
             background-position: 0% 50%;
           }
         }
-      `}</style>
+      `}
+@keyframes floatArrow {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 0.85;
+  }
+}
+</style>
     </div>
   );
 }
