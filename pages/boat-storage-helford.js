@@ -27,10 +27,11 @@ export default function BoatStorage() {
 
       {/* MAIN CONTENT */}
       <div
+        id="page-content"
         style={{
-          maxWidth: "900px",
-          margin: "0 auto",
-          padding: "60px 20px",
+        maxWidth: "900px",
+        margin: "0 auto",
+        padding: "60px 20px",
         }}
       >
         <h2>Boat Storage Services</h2>
