@@ -223,7 +223,7 @@ export default function Location() {
 
   <p>
     St Anthony sits at the very end of quiet Cornish lanes on the edge of the
-    :contentReference[oaicite:0]{index=0}, where the road naturally gives way to the water.
+    Helford River, where the road naturally gives way to the water.
   </p>
 
   <p>
