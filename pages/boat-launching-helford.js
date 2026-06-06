@@ -49,16 +49,18 @@ export default function BoatyardServices() {
           }}
         >
           <li>Slipway launching on the Helford River</li>
-          <li>Suitable for small boats, dinghies and tenders</li>
+          <li>Facilities for most boats from dinghies to yachts</li>
           <li>Easy access at St Anthony</li>
-          <li>Friendly local advice and assistance</li>
+          <li>Experienced local advice and assistance</li>
+          <li>Full suite of marine services available from moorings to joinery</li>
+          <li>Self-launch or full tractor assistance available</li>
         </ul>
 
         <p>
           We provide reliable and convenient boat launching on the Helford River
-          from our base at St Anthony, Cornwall. Whether you're launching a
-          small motorboat, sailing dinghy or day boat, our slipway offers easy
-          access to one of Cornwall’s most sheltered and scenic waterways.
+          from our base at St Anthony, Cornwall. Whether you're launching a yacht, 
+          motorboat, dayboat or dinghy, our experienced team handle hundreds of 
+          launches every year and will treat your boat with the care it deserves.
         </p>
 
         <h2>Launching on the Helford River</h2>
