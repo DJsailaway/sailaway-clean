@@ -269,14 +269,29 @@ export default function Location() {
       overflow: "hidden",
     }}
   >
-    <iframe
-      src="https://www.google.com/maps?ll=50.08944978350336,-5.1040&z=14&output=embed"
-      width="100%"
-      height="280"
-      style={{ border: 0 }}
-      loading="lazy"
-    />
+<div style={{ position: "relative", borderRadius: "12px", overflow: "hidden" }}>
+  <iframe
+    src="https://www.google.com/maps?ll=50.08944978350336,-5.1040&z=15&output=embed"
+    width="100%"
+    height="280"
+    style={{ border: 0 }}
+    loading="lazy"
+  />
+
+  {/* Fake pin overlay */}
+  <div
+    style={{
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -100%)",
+      fontSize: "28px",
+      pointerEvents: "none",
+    }}
+  >
+    📍
   </div>
+</div>
 
   <div
     style={{
