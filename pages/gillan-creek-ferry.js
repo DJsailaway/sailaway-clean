@@ -32,7 +32,14 @@ export default function GillanCreekFerry() {
         }
       />
 
-      <div style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
+<div
+  id="page-content"
+  style={{
+    padding: "40px 20px",
+    maxWidth: "900px",
+    margin: "0 auto",
+  }}
+>
         <h2>About the Ferry</h2>
         <p>
           The Gillan Creek Ferry offers a traditional river crossing, saving a long walk around the creek.
