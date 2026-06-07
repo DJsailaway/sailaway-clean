@@ -178,13 +178,6 @@ export default function Location() {
             borderTop: "1px solid #ddd",
           }}
         />
-        <hr
-          style={{
-            margin: "70px 0",
-            border: 0,
-            borderTop: "1px solid #ddd",
-          }}
-        />
 
 <div
   id="directions"
