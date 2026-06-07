@@ -45,16 +45,10 @@ export default function BoatyardServices() {
         <p>
           We offer a range of boatyard services from our base at St Anthony on the Helford River, Cornwall.
           Whether you need gardianage, metalwork, GRP repairs, joinery or general maintenance, we provide 
-          a reliable and friendly service.
+          a reliable and friendly service. Most of our work is bespoke, so call us to discuss your requirements.
         </p>
 
-        <h2>Our Services</h2>
-
-        <ul>
-          <li>Boat launching</li>
-          <li>Moorings on the Helford River</li>
-          <li>Seasonal boat storage</li>
-        </ul>
+        <h2>Ancilliary Services</h2>
 
         <h2>Boat Launching</h2>
         <p>
