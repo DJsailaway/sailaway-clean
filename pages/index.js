@@ -41,6 +41,7 @@ const isMobile =
 {/* 🌊 HERITAGE / TRUST SECTION */}
 <div
   style={{
+    id="page-content"
     maxWidth: "850px",
     margin: "0 auto",
     padding: "70px 24px 50px",
