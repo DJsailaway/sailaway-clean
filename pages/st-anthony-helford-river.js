@@ -178,36 +178,6 @@ export default function Location() {
             borderTop: "1px solid #ddd",
           }}
         />
-
-        <div
-          style={{
-            background: "#f7f7f5",
-            padding: "40px",
-            borderRadius: "14px",
-          }}
-        >
-          <h2>A Family Connection</h2>
-
-          <p>
-            For our family, St Anthony isn't simply somewhere
-            we work.
-          </p>
-
-          <p>
-            My great-grandfather is buried in the churchyard
-            overlooking the river, my grandfather rests there
-            too, and my father still talks about cycling along
-            the creek to catch the school bus before computers
-            were part of everyday life.
-          </p>
-
-          <p>
-            The Helford has shaped generations of our family,
-            and introducing people to it remains one of the
-            greatest pleasures of what we do.
-          </p>
-        </div>
-
         <hr
           style={{
             margin: "70px 0",
