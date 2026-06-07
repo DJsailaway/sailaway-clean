@@ -21,6 +21,9 @@ export default function BoatStorage() {
         imageSrc="/boat-storage-helford.jpg"
         imageAlt="Boat storage at St Anthony on the Helford River"
         title="Boat Storage at St Anthony on the Helford River"
+        showScrollCue={true}
+        scrollTarget="page-content"
+        scrollLabel="Explore"
         objectPosition="center bottom"
         overlayOpacity={0.05}
       />
