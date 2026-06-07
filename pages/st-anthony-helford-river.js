@@ -224,10 +224,6 @@ export default function Location() {
 
   <h3 style={{ marginTop: "30px" }}>Location Map</h3>
 
-  <p>
-    For reference, the map below shows St Anthony and the surrounding area.
-  </p>
-
 <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden" }}>
   <iframe
     src="https://www.google.com/maps?ll=50.08944978350336,-5.1240&z=14&output=embed"
@@ -276,10 +272,6 @@ export default function Location() {
     >
       Open in Google Maps
     </a>
-
-    <span style={{ fontSize: "0.9rem", opacity: 0.7 }}>
-      Best experienced slowly — by road or river
-    </span>
   </div>
 </div>
 
