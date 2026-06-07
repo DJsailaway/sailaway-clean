@@ -49,7 +49,8 @@ export default function Moorings() {
 
         <h2>Why Choose Gillan Creek?</h2>
         <p>
-          A quiet, sheltered location with easy access to the Helford River.
+          A quiet, sheltered location with easy access to the Helford River. Our moorings are fully licensend and insured, and
+          checked annually. We keep a close eye on the weather and prepare carefully for any incoming seas on our owners' behalf.
         </p>
 
         {/* 🔻 SINGLE CLEAN CTA WITH HORIZONTAL BUTTONS */}
