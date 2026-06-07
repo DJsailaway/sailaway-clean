@@ -76,9 +76,11 @@ export default function Location() {
         </h2>
 
         <p>
-          St Anthony isn't on the way to anywhere else.
-          The road winds through quiet Cornish lanes before
-          arriving at the river and simply... stopping.
+          At the end of quiet Cornish lanes, St Anthony isn't 
+          a place that changes much. The boats on the river may
+          be more modern, but the hamlet itself has barely 
+          altered over the centuries, and the pace of life 
+          still feels reassuringly familiar.
         </p>
 
         <p>
@@ -90,9 +92,11 @@ export default function Location() {
         </p>
 
         <p>
-          It is peaceful, beautifully unspoilt and perfectly
-          placed for exploring one of Cornwall's most
-          remarkable rivers.
+          It is a place that encourages people to slow down 
+          and adjust to the rhythm of the tides rather than 
+          the clock. Whether exploring quiet creeks, anchoring 
+          for lunch or simply watching the river change through 
+          the day, there is rarely any reason to hurry.
         </p>
 
         <hr
@@ -163,9 +167,8 @@ export default function Location() {
         <h3>Gillan Creek</h3>
 
         <p>
-          Head upstream on a high tide and the Helford becomes
-          quieter with every bend until it feels like you have
-          the river entirely to yourself.
+          Head upstream on a high tide between wooded
+          banks, nested by Kingfishers, Ibis and Swans
         </p>
 
         <hr
