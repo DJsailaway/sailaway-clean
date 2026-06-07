@@ -23,6 +23,9 @@ export default function BoatyardServices() {
         imageSrc="/boat-launching-helford.jpg"
         imageAlt="Boat launching on the Helford River"
         title="Boatyard Services on the Helford River"
+        showScrollCue={true}
+        scrollTarget="page-content"
+        scrollLabel="Explore"
         topContent={
           <p>
             Reliable boatyard services from our experienced team at St Anthony.
