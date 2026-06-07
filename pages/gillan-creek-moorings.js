@@ -19,17 +19,6 @@ export default function Moorings() {
         showScrollCue={true}
         scrollTarget="page-content"
         scrollLabel="Explore"
-        topContent={
-          <p>
-            Secure and convenient boat moorings in one of Cornwall’s most sheltered and scenic river locations.
-          </p>
-        }
-        bottomContent={
-          <p>
-            We offer secure and convenient boat moorings at Gillan Creek, part of the Helford River in Cornwall.
-            Ideal for local and visiting boat owners.
-          </p>
-        }
       />
 
 <div
