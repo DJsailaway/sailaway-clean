@@ -45,7 +45,7 @@ export default function Moorings() {
         {/* 🔻 SINGLE CLEAN CTA WITH HORIZONTAL BUTTONS */}
         <CTASection
           title="We offer comprehensive boat yard services"
-          subtitle="including launch and retrieval, metal-, fibreglass and wood-work, and storage:"
+          subtitle="including launch and retrieval, metal-, fibreglass and wood-work, rigging and storage:"
           buttons={[
             { text: "Boat Launching", link: "/boat-launching-helford" },
             { text: "Boatyard Services", link: "/boatyard-services", variant: "secondary" },
