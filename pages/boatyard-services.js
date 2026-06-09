@@ -11,7 +11,7 @@ export default function BoatyardServices() {
         <meta
           name="description"
           content="Boatyard services on the Helford River including marine joinery, electrical work, painting and varnishing,
-          repairs, maintenance and bespoke metalwork. Based in St Anthony, Cornwall."
+          rigging, repairs, maintenance and bespoke metalwork. Based in St Anthony, Cornwall."
         />
       </Head>
 
