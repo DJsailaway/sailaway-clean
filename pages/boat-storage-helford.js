@@ -52,7 +52,9 @@ export default function BoatStorage() {
         >
           <li>Seasonal boat storage at St Anthony</li>
           <li>Convenient access to the Helford River</li>
-          <li>Suitable for small boats, dinghies and tenders</li>
+          <li>Suitable for yachts, powerboats, dinghies and tenders</li>
+          <li>Comprehensive boatyard services on-site</li>
+          <li>Experienced boat staff through the off season</li>
           <li>Ideal for local Helford River boat owners</li>
         </ul>
 
@@ -61,7 +63,9 @@ export default function BoatStorage() {
         <p>
           Keeping your boat stored locally means less time towing, easier
           launching and more opportunities to enjoy a day on the water whenever
-          the weather is right.
+          the weather is right. Our expert team have decades of experience
+          preparing and caring for vessels and will take any unwanted jobs
+          on your behalf.
         </p>
 
         <p>
@@ -75,7 +79,10 @@ export default function BoatStorage() {
         <p>
           Many of our storage customers also use our launching and boatyard
           services, making St Anthony a simple one-stop location for keeping
-          their boats ready to enjoy.
+          their boats ready to enjoy. With moorings available as well, we're
+          able to offer a year-round solution for anyone wanting their boat
+          launched, moored, hauled out and stored, as well as any sundry
+          services like overhauling or antifouling.
         </p>
 
         <h2>Location</h2>
