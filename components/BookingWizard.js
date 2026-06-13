@@ -170,17 +170,40 @@ const generateTimeSlots = (min, max, durationType, durationKey) => {
   isValidEmail(email) &&
   isValidPhone(phone);
   
-  const calcBoatPrice = (b) => {
-    const p = PRICING.boats?.[b.boat];
-    if (!p) return 0;
+const calcBoatPrice = (b) => {
+  const p = PRICING.boats?.[b.boat];
+  if (!p) return 0;
 
-    if (b.durationType === "multi") {
-      if (b.days <= 7) return p.multiDay?.[b.days] || 0;
-      return (p.multiDay?.[7] || 0) + (b.days - 7) * p.extraDay;
+  // Multi-day pricing
+  if (b.durationType === "multi") {
+    if (b.days <= 7) {
+      return p.multiDay?.[b.days] || 0;
     }
 
-    return p.hourly?.[b.durationKey] || 0;
-  };
+    return (
+      (p.multiDay?.[7] || 0) +
+      (b.days - 7) * p.extraDay
+    );
+  }
+
+  // Hourly / day pricing
+  switch (b.durationKey) {
+    case "1h":
+      return p.hourly?.["1 hour"] || 0;
+
+    case "2h":
+      return p.hourly?.["2 hours"] || 0;
+
+    case "half":
+      return p.day?.["Half day (4 hours)"] || 0;
+
+    case "full":
+      return p.day?.["Full day (8 hours)"] || 0;
+
+    default:
+      return 0;
+  }
+};
 
   const total =
     bookings.reduce((sum, b) => sum + calcBoatPrice(b), 0) +
