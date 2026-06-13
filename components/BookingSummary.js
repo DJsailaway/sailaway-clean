@@ -49,7 +49,7 @@ export default function BookingSummary({
           <strong>Date & time</strong>
           <br />
           {date || "Select a date"}
-          {time ? ` · ${time}` : ""}
+          {time ? ` • ${time}` : ""}
         </div>
 
         <div>
