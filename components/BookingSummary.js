@@ -42,14 +42,14 @@ export default function BookingSummary({
         <div>
           <strong>Duration</strong>
           <br />
-          {duration || "—"}
+          {duration || "-"}
         </div>
 
         <div>
           <strong>Date & time</strong>
           <br />
           {date || "Select a date"}
-          {time && <> &nbsp;&middot;&nbsp;{time}</>}
+          {time && <> | {time}</>}
         </div>
 
         <div>
