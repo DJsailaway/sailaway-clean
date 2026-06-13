@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { PRICING } from "../lib/pricing";
+import BookingSummary from "./BookingSummary";
 
 // ---------------- INTENT → CATEGORY ----------------
 const INTENT_MAP = {
@@ -812,25 +813,30 @@ return (
 
         </div>
 
-      {/* RIGHT */}
-      <div style={{
-  flex: 1,
-  minWidth: 0,
-  width: "100%",
-  maxWidth: "320px",
-  maxHeight: "calc(100vh - 180px)",
-  background: "#0f2f4f",
-  color: "#fff",
-  padding: "20px",
-  borderRadius: "16px",
-  display: "flex",
-  flexDirection: "column",
-  alignSelf: "stretch",
-  justifyContent: "space-between"
-}}>
-        <h3>Total</h3>
-        <div style={{ fontSize: "32px" }}>£{total}</div>
-      </div>
+{/* RIGHT */}
+<div
+  style={{
+    flex: isMobile ? "1 1 auto" : "0 0 340px",
+    width: "100%",
+    maxWidth: isMobile ? "100%" : "340px",
+  }}
+>
+  <BookingSummary
+    boat={bookings[0].boat}
+    duration={
+      bookings[0].durationType === "multi"
+        ? `${bookings[0].days} day${bookings[0].days > 1 ? "s" : ""}`
+        : DURATION_OPTIONS.find(
+            (d) => d.key === bookings[0].durationKey
+          )?.label
+    }
+    date={date}
+    time={time}
+    location={customLocation || location}
+    total={total}
+    isMobile={isMobile}
+  />
+</div>
 
     </div>
   );
