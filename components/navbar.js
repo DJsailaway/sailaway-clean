@@ -6,7 +6,18 @@ import { useRouter } from "next/router";
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [isMobile, setIsMobile] = useState(undefined);
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const mq = window.matchMedia("(max-width: 768px)");
+
+  const update = () => setIsMobile(mq.matches);
+
+  update();
+  mq.addEventListener("change", update);
+
+  return () => mq.removeEventListener("change", update);
+}, []);
 
   const navRef = useRef();
   const router = useRouter();
@@ -81,8 +92,6 @@ useEffect(() => {
       setOpenDropdown(action === "open" ? menu : null);
     }
   };
-
-  if (isMobile === undefined) return null;
   
   return (
     <>
