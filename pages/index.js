@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
@@ -8,8 +8,16 @@ export default function BookingPage() {
 
 const [activeImage, setActiveImage] = useState(null);
 
-const isMobile =
-  typeof window !== "undefined" && window.innerWidth < 768;
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
   
   return (
     <>
