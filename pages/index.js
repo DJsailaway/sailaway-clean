@@ -25,10 +25,10 @@ useEffect(() => {
         <title>Boat Hire Helford River | Booking</title>
       </Head>
 
-      {/* NAVBAR (ONLY ONE INSTANCE) */}
+      {/* NAVBAR */}
       <Navbar />
 
-      {/* 🌊 HERO (RESTORED) */}
+      {/* 🌊 HERO */}
       <SplitOverlayHero
         imageSrc="/hero.jpg"
         alt="Boat Hire on Helford River"
