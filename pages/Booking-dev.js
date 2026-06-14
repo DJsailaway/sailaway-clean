@@ -1,4 +1,4 @@
-import BookingWizard from "./components/BookingWizardV2/BookingWizard";
+import BookingWizard from "../components/BookingWizardV2/BookingWizard";
 
 export default function BookingDev() {
   return (
