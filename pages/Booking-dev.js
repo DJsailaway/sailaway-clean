@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import BookingWizard from "../components/BookingWizard";
+import BookingWizard from "../components/BookingWizardV2/BookingWizard";
 
 export default function BookingDev() {
   return (
