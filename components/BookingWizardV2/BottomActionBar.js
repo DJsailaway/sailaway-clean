@@ -12,9 +12,10 @@ export default function BottomActionBar({
   return (
     <div
       style={{
-        position: "sticky",
+        position: "fixed",
         bottom: 0,
         left: 0,
+        right: 0,
         width: "100%",
         background: colours.card,
         borderTop: `1px solid ${colours.border}`,
