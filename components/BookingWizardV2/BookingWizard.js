@@ -21,14 +21,22 @@ export default function BookingWizard() {
       />
 
       <WizardLayout
-        summary={<PriceSummary />}
-      >
         <div style={{
-          padding: "40px",
-          fontSize: "20px"
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px"
         }}>
-          Shell working ✓
-        </div>
+  <h2 style={{ margin: 0 }}>Choose your activity</h2>
+
+  <div style={{
+    padding: "24px",
+    border: "1px solid #E5E7EB",
+    borderRadius: "16px",
+    background: "#fff"
+  }}>
+    Activity cards will go here
+  </div>
+</div>
       </WizardLayout>
 
       <BottomActionBar
