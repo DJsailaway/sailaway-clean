@@ -34,13 +34,16 @@ export default function BottomActionBar({
         background: colours.card,
         borderTop: `1px solid ${colours.border}`,
         boxShadow: shadows.card,
-        padding: `${spacing.md}px ${spacing.lg}px`,
+        padding: isMobile
+          ? `${spacing.sm}px ${spacing.md}px`
+          : `${spacing.md}px ${spacing.lg}px`,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         gap: spacing.md,
         zIndex: 1000,
-        backdropFilter: "blur(10px)"
+        backdropFilter: "blur(10px)",
+        boxSizing: "border-box"
       }}
     >
       {/* Back Button */}
@@ -51,13 +54,11 @@ export default function BottomActionBar({
           padding: isMobile
             ? `${spacing.sm}px ${spacing.md}px`
             : `${spacing.sm}px ${spacing.lg}px`,
-
-fontSize: isMobile ? "14px" : "16px",
+          fontSize: isMobile ? "14px" : "16px",
           borderRadius: radius.md,
           border: `1px solid ${colours.border}`,
           background: colours.card,
           color: colours.primary,
-          fontSize: "16px",
           fontWeight: 600,
           cursor: "pointer",
           transition: "0.25s ease"
@@ -122,17 +123,14 @@ fontSize: isMobile ? "14px" : "16px",
           padding: isMobile
             ? `${spacing.sm}px ${spacing.md}px`
             : `${spacing.sm}px ${spacing.xl}px`,
-
-fontSize: isMobile ? "14px" : "16px",
-
-whiteSpace: "nowrap",
+          fontSize: isMobile ? "14px" : "16px",
+          whiteSpace: "nowrap",
           borderRadius: radius.md,
           border: "none",
           background: disableNext
             ? colours.border
             : colours.primary,
           color: "#fff",
-          fontSize: "16px",
           fontWeight: 600,
           cursor: disableNext ? "not-allowed" : "pointer",
           transition: "0.25s ease",
