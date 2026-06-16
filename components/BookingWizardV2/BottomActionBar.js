@@ -35,7 +35,7 @@ export default function BottomActionBar({
         borderTop: `1px solid ${colours.border}`,
         boxShadow: shadows.card,
         padding: isMobile
-          ? `${spacing.sm}px ${spacing.md}px`
+          ? `${spacing.sm}px 8px`
           : `${spacing.md}px ${spacing.lg}px`,
         display: "flex",
         alignItems: "center",
@@ -72,8 +72,8 @@ export default function BottomActionBar({
   <div
     style={{
       textAlign: "center",
-      flex: 1,
-      minWidth: 0
+      flex: "0 1 auto",
+      minWidth: "80px",
     }}
   >
     <div
