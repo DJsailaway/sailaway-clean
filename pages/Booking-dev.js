@@ -6,7 +6,9 @@ export default function BookingDev() {
       style={{
         background: "#F8FAFC",
         minHeight: "100vh",
-        padding: "32px"
+        padding: "16px",
+        maxWidth: "1400px",
+        margin: "0 auto"
       }}
     >
       <BookingWizard />
