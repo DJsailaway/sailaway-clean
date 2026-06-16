@@ -1,18 +1,38 @@
+import { useEffect, useState } from "react";
+
 export default function WizardLayout({
   children,
   summary
 }) {
+  const [showSummary, setShowSummary] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setShowSummary(window.innerWidth >= 1100);
+    };
+
+    checkWidth();
+
+    window.addEventListener("resize", checkWidth);
+
+    return () =>
+      window.removeEventListener("resize", checkWidth);
+  }, []);
+
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "minmax(0, 1fr) 320px",
-        gap: "24px",
-        alignItems: "start",
-        width: "100%"
+        gridTemplateColumns: showSummary
+          ? "minmax(0, 1fr) 320px"
+          : "1fr",
+        gap: "32px",
+        width: "100%",
+        alignItems: "start"
       }}
     >
-      {/* Main wizard content */}
+      {/* Wizard */}
+
       <div
         style={{
           minWidth: 0
@@ -21,15 +41,22 @@ export default function WizardLayout({
         {children}
       </div>
 
-      {/* Summary panel */}
-      <aside
-        style={{
-          position: "sticky",
-          top: "100px"
-        }}
-      >
-        {summary}
-      </aside>
+      {/* Desktop Summary */}
+
+      {showSummary && (
+        <aside
+          style={{
+            position: "sticky",
+            top: "100px",
+            alignSelf: "start"
+          }}
+        >
+          {summary}
+        </aside>
+      )}
+    </div>
+  );
+}
     </div>
   );
 }
