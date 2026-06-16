@@ -1,17 +1,16 @@
-import { colours, spacing, radius, shadows } from "./styles";
 import { useEffect, useState } from "react";
+import { colours, spacing, radius, shadows } from "./styles";
 
 export default function BottomActionBar({
   onBack,
   onNext,
   backLabel = "Back",
-  nextLabel = "Continue",
+  nextLabel = "Next",
   total = "£0",
   showTotal = true,
   disableNext = false
 }) {
-
-    const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -31,7 +30,8 @@ export default function BottomActionBar({
         left: 0,
         right: 0,
         width: "100%",
-        background: colours.card,
+        background: "rgba(255,255,255,0.94)",
+        backdropFilter: "blur(10px)",
         borderTop: `1px solid ${colours.border}`,
         boxShadow: shadows.card,
         padding: isMobile
@@ -40,13 +40,12 @@ export default function BottomActionBar({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: spacing.md,
+        gap: spacing.sm,
         zIndex: 1000,
-        backdropFilter: "blur(10px)",
         boxSizing: "border-box"
       }}
     >
-      {/* Back Button */}
+      {/* Back */}
 
       <button
         onClick={onBack}
@@ -54,67 +53,39 @@ export default function BottomActionBar({
           padding: isMobile
             ? `${spacing.sm}px ${spacing.md}px`
             : `${spacing.sm}px ${spacing.lg}px`,
-          fontSize: isMobile ? "14px" : "16px",
           borderRadius: radius.md,
           border: `1px solid ${colours.border}`,
           background: colours.card,
           color: colours.primary,
+          fontSize: "16px",
           fontWeight: 600,
           cursor: "pointer",
-          transition: "0.25s ease"
+          transition: "0.25s ease",
+          whiteSpace: "nowrap",
+          flexShrink: 0
         }}
       >
-        ← {backLabel}
+        ‹ {backLabel}
       </button>
 
-{/* Desktop Total */}
-{showTotal && !isMobile && (
-  <div
-    style={{
-      textAlign: "center",
-      flex: "0 1 auto",
-      minWidth: "80px",
-    }}
-  >
-    <div
-      style={{
-        fontSize: "12px",
-        color: colours.textSecondary,
-        textTransform: "uppercase",
-        letterSpacing: "0.05em"
-      }}
-    >
-      Total
-    </div>
+      {/* Total */}
 
-    <div
-      style={{
-        fontSize: "28px",
-        fontWeight: 700,
-        color: colours.primary
-      }}
-    >
-      {total}
-    </div>
-  </div>
-)}
+      {showTotal && (
+        <div
+          style={{
+            flex: 1,
+            textAlign: "center",
+            fontSize: "16px",
+            fontWeight: 700,
+            color: colours.primary,
+            whiteSpace: "nowrap"
+          }}
+        >
+          {total}
+        </div>
+      )}
 
-{/* Mobile Total */}
-{showTotal && isMobile && (
-  <div
-    style={{
-      fontSize: "16px",
-      fontWeight: 700,
-      color: colours.primary,
-      flex: 1,
-      textAlign: "center"
-    }}
-  >
-    {total}
-  </div>
-)}
-
-      {/* Continue Button */}
+      {/* Next */}
 
       <button
         onClick={onNext}
@@ -123,21 +94,22 @@ export default function BottomActionBar({
           padding: isMobile
             ? `${spacing.sm}px ${spacing.md}px`
             : `${spacing.sm}px ${spacing.xl}px`,
-          fontSize: isMobile ? "14px" : "16px",
-          whiteSpace: "nowrap",
           borderRadius: radius.md,
           border: "none",
           background: disableNext
             ? colours.border
             : colours.primary,
           color: "#fff",
+          fontSize: "16px",
           fontWeight: 600,
           cursor: disableNext ? "not-allowed" : "pointer",
           transition: "0.25s ease",
-          opacity: disableNext ? 0.5 : 1
+          opacity: disableNext ? 0.5 : 1,
+          whiteSpace: "nowrap",
+          flexShrink: 0
         }}
       >
-        {nextLabel} →
+        {nextLabel} ›
       </button>
     </div>
   );
