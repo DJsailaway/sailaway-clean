@@ -25,7 +25,8 @@ export default function BottomActionBar({
         alignItems: "center",
         justifyContent: "space-between",
         gap: spacing.md,
-        zIndex: 100
+        zIndex: 1000,
+        backdropFilter: "blur(10px)"
       }}
     >
       {/* Back Button */}
