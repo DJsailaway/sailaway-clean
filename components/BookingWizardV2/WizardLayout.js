@@ -57,6 +57,3 @@ export default function WizardLayout({
     </div>
   );
 }
-    </div>
-  );
-}
