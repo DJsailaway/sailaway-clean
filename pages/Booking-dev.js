@@ -7,6 +7,7 @@ export default function BookingDev() {
         background: "#F8FAFC",
         minHeight: "100vh",
         padding: "16px",
+        paddingBottom: "90px"
         maxWidth: "1400px",
         margin: "0 auto"
       }}
