@@ -1,4 +1,5 @@
 import { colours, spacing, radius, shadows } from "./styles";
+import { useEffect, useState } from "react";
 
 export default function BottomActionBar({
   onBack,
@@ -9,6 +10,19 @@ export default function BottomActionBar({
   showTotal = true,
   disableNext = false
 }) {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+
+    check();
+
+    window.addEventListener("resize", check);
+
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <div
       style={{
@@ -34,7 +48,11 @@ export default function BottomActionBar({
       <button
         onClick={onBack}
         style={{
-          padding: `${spacing.sm}px ${spacing.lg}px`,
+          padding: isMobile
+            ? `${spacing.sm}px ${spacing.md}px`
+            : `${spacing.sm}px ${spacing.lg}px`,
+
+fontSize: isMobile ? "14px" : "16px",
           borderRadius: radius.md,
           border: `1px solid ${colours.border}`,
           background: colours.card,
@@ -48,37 +66,52 @@ export default function BottomActionBar({
         ← {backLabel}
       </button>
 
-      {/* Total */}
+{/* Desktop Total */}
+{showTotal && !isMobile && (
+  <div
+    style={{
+      textAlign: "center",
+      flex: 1,
+      minWidth: 0
+    }}
+  >
+    <div
+      style={{
+        fontSize: "12px",
+        color: colours.textSecondary,
+        textTransform: "uppercase",
+        letterSpacing: "0.05em"
+      }}
+    >
+      Total
+    </div>
 
-      {showTotal && (
-        <div
-          style={{
-            textAlign: "center",
-            flex: 1
-          }}
-        >
-          <div
-            style={{
-              fontSize: "12px",
-              color: colours.textSecondary,
-              textTransform: "uppercase",
-              letterSpacing: "0.05em"
-            }}
-          >
-            Total
-          </div>
+    <div
+      style={{
+        fontSize: "28px",
+        fontWeight: 700,
+        color: colours.primary
+      }}
+    >
+      {total}
+    </div>
+  </div>
+)}
 
-          <div
-            style={{
-              fontSize: "28px",
-              fontWeight: 700,
-              color: colours.primary
-            }}
-          >
-            {total}
-          </div>
-        </div>
-      )}
+{/* Mobile Total */}
+{showTotal && isMobile && (
+  <div
+    style={{
+      fontSize: "16px",
+      fontWeight: 700,
+      color: colours.primary,
+      flex: 1,
+      textAlign: "center"
+    }}
+  >
+    {total}
+  </div>
+)}
 
       {/* Continue Button */}
 
@@ -86,7 +119,13 @@ export default function BottomActionBar({
         onClick={onNext}
         disabled={disableNext}
         style={{
-          padding: `${spacing.sm}px ${spacing.xl}px`,
+          padding: isMobile
+            ? `${spacing.sm}px ${spacing.md}px`
+            : `${spacing.sm}px ${spacing.xl}px`,
+
+fontSize: isMobile ? "14px" : "16px",
+
+whiteSpace: "nowrap",
           borderRadius: radius.md,
           border: "none",
           background: disableNext
