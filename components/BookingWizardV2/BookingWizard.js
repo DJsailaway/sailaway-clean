@@ -30,20 +30,54 @@ export default function BookingWizard() {
             gap: "16px"
           }}
         >
-          <h2 style={{ margin: 0 }}>
-            Choose your activity
-          </h2>
-
           <div
-            style={{
-              padding: "24px",
-              border: "1px solid #E5E7EB",
-              borderRadius: "16px",
-              background: "#fff"
-            }}
-          >
-            Activity cards will go here
-          </div>
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "16px"
+  }}
+>
+  <div>
+    <h1
+      style={{
+        margin: 0,
+        color: "#123B5D",
+        fontSize: "2rem"
+      }}
+    >
+      Plan your time on the Helford
+    </h1>
+
+    <p
+      style={{
+        marginTop: "12px",
+        marginBottom: "28px",
+        fontSize: "1.2rem",
+        color: "#64748B"
+      }}
+    >
+      How would you like to explore?
+    </p>
+  </div>
+
+  <ActivityCard
+    title="Explore by motor boat"
+    description="Comfortable and flexible for families"
+    image="/images/wizard/motorboat.jpg"
+  />
+
+  <ActivityCard
+    title="Go sailing"
+    description="Traditional and hands-on"
+    image="/images/wizard/sailing.jpg"
+  />
+
+  <ActivityCard
+    title="Paddle the creeks"
+    description="Quiet and close to nature"
+    image="/images/wizard/paddle.jpg"
+  />
+</div>
         </div>
       </WizardLayout>
 
