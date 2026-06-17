@@ -2,6 +2,7 @@ import StepHeader from "./StepHeader";
 import WizardLayout from "./WizardLayout";
 import BottomActionBar from "./BottomActionBar";
 import PriceSummary from "./PriceSummary";
+import ActivityCard from "./ActivityCard";
 
 export default function BookingWizard() {
   return (
