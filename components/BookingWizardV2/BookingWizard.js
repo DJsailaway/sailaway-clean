@@ -43,7 +43,9 @@ export default function BookingWizard() {
       style={{
         margin: 0,
         color: "#123B5D",
-        fontSize: "2rem"
+        fontSize: "1.5rem",
+        fontWeight: 600,
+        marginBottom: "6px"
       }}
     >
       Plan your time on the Helford
@@ -53,7 +55,9 @@ export default function BookingWizard() {
       style={{
         marginTop: "12px",
         marginBottom: "28px",
-        fontSize: "1.2rem",
+        fontSize: "1rem",
+        fontWeight: 500,
+        marginBottom: "20px"
         color: "#64748B"
       }}
     >
