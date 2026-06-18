@@ -10,6 +10,8 @@ import ActivityCard from "./ActivityCard";
 export default function BookingWizard() {
   const [isMobile, setIsMobile] = useState(false);
 
+const [selectedActivity, setSelectedActivity] = useState(null);
+
   useEffect(() => {
     const check = () => {
       setIsMobile(window.innerWidth < 768);
