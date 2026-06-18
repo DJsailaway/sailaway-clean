@@ -4,9 +4,16 @@ export default function StepHeader({
   currentStep = 0,
   steps = []
 }) {
-  const isMobile =
-    typeof window !== "undefined" &&
-    window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   return (
     <div
