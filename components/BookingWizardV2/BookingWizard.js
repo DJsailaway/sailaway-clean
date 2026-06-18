@@ -1,4 +1,3 @@
-```jsx
 import { useEffect, useState } from "react";
 
 import StepHeader from "./StepHeader";
@@ -9,8 +8,7 @@ import ActivityCard from "./ActivityCard";
 
 export default function BookingWizard() {
   const [isMobile, setIsMobile] = useState(false);
-
-const [selectedActivity, setSelectedActivity] = useState(null);
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   useEffect(() => {
     const check = () => {
@@ -18,11 +16,9 @@ const [selectedActivity, setSelectedActivity] = useState(null);
     };
 
     check();
-
     window.addEventListener("resize", check);
 
-    return () =>
-      window.removeEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
 
   return (
@@ -40,7 +36,7 @@ const [selectedActivity, setSelectedActivity] = useState(null);
       />
 
       <WizardLayout
-        summary={<PriceSummary />}
+        SummaryComponent={PriceSummary}
       >
         <div
           style={{
@@ -111,4 +107,3 @@ const [selectedActivity, setSelectedActivity] = useState(null);
     </>
   );
 }
-```
