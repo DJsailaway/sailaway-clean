@@ -13,7 +13,7 @@ export default function ActivityCard({
         display: "flex",
         alignItems: "center",
         gap: "16px",
-        padding: "16px",
+        padding: "14px 18px 14px 52px",
         background: selected ? "#F3F8FC" : "#ffffff",
         border: selected
           ? "2px solid #C7A44D"
