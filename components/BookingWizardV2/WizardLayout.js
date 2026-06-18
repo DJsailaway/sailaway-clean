@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function WizardLayout({
   children,
-  summary
+  SummaryComponent
 }) {
   const [showSummary, setShowSummary] = useState(false);
 
@@ -12,11 +12,9 @@ export default function WizardLayout({
     };
 
     checkWidth();
-
     window.addEventListener("resize", checkWidth);
 
-    return () =>
-      window.removeEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
   return (
@@ -31,19 +29,13 @@ export default function WizardLayout({
         alignItems: "start"
       }}
     >
-      {/* Wizard */}
-
-      <div
-        style={{
-          minWidth: 0
-        }}
-      >
+      {/* Main wizard content */}
+      <div style={{ minWidth: 0 }}>
         {children}
       </div>
 
       {/* Desktop Summary */}
-
-      {showSummary && (
+      {showSummary && SummaryComponent && (
         <aside
           style={{
             position: "sticky",
@@ -51,7 +43,7 @@ export default function WizardLayout({
             alignSelf: "start"
           }}
         >
-          {summary}
+          <SummaryComponent />
         </aside>
       )}
     </div>
