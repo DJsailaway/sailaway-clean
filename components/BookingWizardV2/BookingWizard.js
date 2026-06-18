@@ -57,7 +57,7 @@ export default function BookingWizard() {
         marginBottom: "28px",
         fontSize: "1rem",
         fontWeight: 500,
-        marginBottom: "20px"
+        marginBottom: "20px",
         color: "#64748B"
       }}
     >
