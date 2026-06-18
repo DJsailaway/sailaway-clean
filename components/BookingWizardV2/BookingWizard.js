@@ -80,18 +80,24 @@ const [selectedActivity, setSelectedActivity] = useState(null);
             title="Explore by motor boat"
             description="Comfortable & family friendly"
             image="/images/wizard/motorboat.jpg"
+            selected={selectedActivity === "motor"}
+            onClick={() => setSelectedActivity("motor")}
           />
 
           <ActivityCard
             title="Go sailing"
             description="Traditional & hands-on"
             image="/images/wizard/sailing.jpg"
+            selected={selectedActivity === "sailing"}
+            onClick={() => setSelectedActivity("sailing")}
           />
 
           <ActivityCard
             title="Paddle the creeks"
             description="Quiet & close to nature"
             image="/images/wizard/paddle.jpg"
+            selected={selectedActivity === "paddle"}
+            onClick={() => setSelectedActivity("paddle")}
           />
         </div>
       </WizardLayout>
