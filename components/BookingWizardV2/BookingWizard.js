@@ -106,6 +106,7 @@ const [selectedActivity, setSelectedActivity] = useState(null);
         onBack={() => {}}
         onNext={() => {}}
         total="£0"
+        disableNext={!selectedActivity}
       />
     </>
   );
