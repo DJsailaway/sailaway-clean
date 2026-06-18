@@ -1,3 +1,6 @@
+```jsx
+import { useEffect, useState } from "react";
+
 import StepHeader from "./StepHeader";
 import WizardLayout from "./WizardLayout";
 import BottomActionBar from "./BottomActionBar";
@@ -5,10 +8,24 @@ import PriceSummary from "./PriceSummary";
 import ActivityCard from "./ActivityCard";
 
 export default function BookingWizard() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    check();
+
+    window.addEventListener("resize", check);
+
+    return () =>
+      window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <>
       <StepHeader
-        title="Book Your Boat"
         currentStep={0}
         steps={[
           "Activity",
@@ -18,7 +35,6 @@ export default function BookingWizard() {
           "Location",
           "Details"
         ]}
-        isMobile={false}
       />
 
       <WizardLayout
@@ -28,61 +44,53 @@ export default function BookingWizard() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "16px"
+            gap: isMobile ? "14px" : "18px"
           }}
         >
-          <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px"
-  }}
->
-  <div>
-    <h1
-      style={{
-        margin: 0,
-        color: "#123B5D",
-        fontSize: "1.5rem",
-        fontWeight: 600,
-        marginBottom: "6px"
-      }}
-    >
-      Plan your time on the Helford
-    </h1>
+          <div>
+            <h1
+              style={{
+                margin: 0,
+                marginBottom: isMobile ? "12px" : "8px",
+                fontSize: isMobile ? "1.75rem" : "2rem",
+                lineHeight: 1.1,
+                fontWeight: 600,
+                color: "#123B5D"
+              }}
+            >
+              Plan your time on the Helford
+            </h1>
 
-    <p
-      style={{
-        marginTop: "12px",
-        marginBottom: "28px",
-        fontSize: "1rem",
-        fontWeight: 500,
-        marginBottom: "20px",
-        color: "#64748B"
-      }}
-    >
-      How would you like to explore?
-    </p>
-  </div>
+            {!isMobile && (
+              <p
+                style={{
+                  margin: 0,
+                  color: "#64748B",
+                  fontSize: "1.05rem"
+                }}
+              >
+                How would you like to explore?
+              </p>
+            )}
+          </div>
 
-  <ActivityCard
-    title="Explore by motor boat"
-    description="Comfortable and flexible for families"
-    image="/images/wizard/motorboat.jpg"
-  />
+          <ActivityCard
+            title="Explore by motor boat"
+            description="Comfortable & family friendly"
+            image="/images/wizard/motorboat.jpg"
+          />
 
-  <ActivityCard
-    title="Go sailing"
-    description="Traditional and hands-on"
-    image="/images/wizard/sailing.jpg"
-  />
+          <ActivityCard
+            title="Go sailing"
+            description="Traditional & hands-on"
+            image="/images/wizard/sailing.jpg"
+          />
 
-  <ActivityCard
-    title="Paddle the creeks"
-    description="Quiet and close to nature"
-    image="/images/wizard/paddle.jpg"
-  />
-</div>
+          <ActivityCard
+            title="Paddle the creeks"
+            description="Quiet & close to nature"
+            image="/images/wizard/paddle.jpg"
+          />
         </div>
       </WizardLayout>
 
@@ -94,3 +102,4 @@ export default function BookingWizard() {
     </>
   );
 }
+```
