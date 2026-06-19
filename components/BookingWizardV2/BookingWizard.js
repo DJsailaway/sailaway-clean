@@ -13,10 +13,10 @@ export default function BookingWizard() {
         steps={[
           "Activity",
           "Boat",
-          "Duration",
+          "Length",
           "Date",
-          "Location",
-          "Details"
+          "Place",
+          "You"
         ]}
         isMobile={false}
       />
