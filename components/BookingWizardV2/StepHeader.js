@@ -45,8 +45,9 @@ useEffect(() => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                flex: 1,
-                minWidth: 0
+                flex: isMobile ? "0 0 auto" : 1,
+                minWidth: isMobile ? "72px" : 0,
+                padding: isMobile ? "0 4px" : 0
               }}
             >
               <div
