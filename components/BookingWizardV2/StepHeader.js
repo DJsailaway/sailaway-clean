@@ -27,7 +27,7 @@ useEffect(() => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-end",
-          gap: isMobile ? "8px" : "16px",
+          gap: isMobile ? "4px" : "16px",
           overflowX: "auto",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
@@ -46,7 +46,7 @@ useEffect(() => {
                 flexDirection: "column",
                 alignItems: "center",
                 flex: isMobile ? "0 0 auto" : 1,
-                minWidth: isMobile ? "72px" : 0,
+                minWidth: isMobile ? "56px" : 0,
                 padding: isMobile ? "0 4px" : 0
               }}
             >
