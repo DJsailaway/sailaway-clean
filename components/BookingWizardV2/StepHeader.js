@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { colours, spacing } from "./styles";
 
 export default function StepHeader({
