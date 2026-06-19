@@ -52,7 +52,8 @@ useEffect(() => {
             >
               <div
                 style={{
-                  fontSize: isMobile ? "12px" : "14px",
+                  fontSize: isMobile ? "10px" : "14px",
+                  letterSpacing: isMobile ? "0.2px" : 0,
                   fontWeight: current ? 700 : 600,
                   color:
                     current || completed
