@@ -52,16 +52,18 @@ useEffect(() => {
             >
               <div
                 style={{
-                  fontSize: isMobile ? "10px" : "14px",
-                  letterSpacing: isMobile ? "0.2px" : 0,
-                  fontWeight: current ? 700 : 600,
-                  color:
-                    current || completed
-                      ? colours.primary
-                      : colours.textSecondary,
-                  whiteSpace: "nowrap",
-                  transition: "all 0.25s ease"
-                }}
+                 fontSize: isMobile ? "10px" : "14px",
+                 lineHeight: 1.2,
+                 textAlign: "center",
+                 letterSpacing: isMobile ? "0.2px" : 0,
+                 fontWeight: current ? 700 : 500,
+                 color:
+                   current || completed
+                     ? colours.primary
+                     : colours.textSecondary,
+                 whiteSpace: "nowrap",
+                 transition: "all 0.25s ease"
+               }}
               >
                 {step}
               </div>
