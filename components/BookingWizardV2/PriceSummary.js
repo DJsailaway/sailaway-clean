@@ -22,22 +22,45 @@ export default function PriceSummary() {
       </div>
 
       <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "18px"
+  }}
+>
+  {[
+    ["Activity", "Not selected"],
+    ["Boat", "Not selected"],
+    ["Length", "Not selected"],
+    ["Date", "Not selected"],
+    ["Place", "Not selected"]
+  ].map(([label, value]) => (
+    <div key={label}>
+      <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "14px",
-          fontSize: "16px",
-          color: "#0F2F4F"
+          fontSize: "12px",
+          textTransform: "uppercase",
+          letterSpacing: "0.06em",
+          color: "#94A3B8",
+          marginBottom: "4px"
         }}
       >
-        <div>🚤 Boat not selected</div>
-
-        <div>⏱ Duration not selected</div>
-
-        <div>📅 Date not selected</div>
-
-        <div>📍 Location not selected</div>
+        {label}
       </div>
+
+      <div
+        style={{
+          fontSize: "16px",
+          fontWeight: 500,
+          color: "#0F2F4F",
+          minHeight: "22px"
+        }}
+      >
+        {value}
+      </div>
+    </div>
+  ))}
+</div>
 
       <div
         style={{
