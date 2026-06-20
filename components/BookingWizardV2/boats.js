@@ -85,7 +85,7 @@ export const boats = [
     activity: "paddle",
     title: "Single Kayak",
     description: "Quiet independant exploration",
-    capacity: "2 people",
+    capacity: "1 person",
     image: "/images/boats/single-kayak.jpg"
   },
 
