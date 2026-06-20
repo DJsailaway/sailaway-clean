@@ -12,7 +12,7 @@ export const boats = [
     id: "bass-boat",
     activity: "motor",
     title: "Bass Boat",
-    description: "Simple, nimble and perfect for smaller crews",
+    description: "Easy to drive and ideal for smaller groups",
     capacity: "5 people",
     image: "/images/boats/bass-boat.jpg"
   },
