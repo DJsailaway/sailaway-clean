@@ -24,7 +24,7 @@ export const boats = [
     description: "Traditional motor-sail dayboat with room to relax",
     capacity: "6 people",
     image: "/images/boats/drascombe.jpg"
-  }
+  },
 
     {
     id: "wayfarer",
