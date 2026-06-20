@@ -43,18 +43,6 @@ export default function BoatStep({
         >
           Choose your boat
         </h1>
-
-        {!isMobile && (
-          <p
-            style={{
-              marginTop: "8px",
-              color: "#64748B",
-              fontSize: "1rem"
-            }}
-          >
-            Select the craft that's right for your day.
-          </p>
-        )}
       </div>
 
       <div
