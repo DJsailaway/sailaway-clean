@@ -28,14 +28,14 @@ export default function BookingWizard() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px"
+            gap: "8px"
           }}
         >
           <div
   style={{
     display: "flex",
     flexDirection: "column",
-    gap: "10px"
+    gap: "8px"
   }}
 >
   <div>
@@ -53,7 +53,7 @@ export default function BookingWizard() {
 
     <p
       style={{
-        marginTop: "10px",
+        marginTop: "8px",
         marginBottom: "12px",
         fontSize: "1rem",
         fontWeight: 500,
