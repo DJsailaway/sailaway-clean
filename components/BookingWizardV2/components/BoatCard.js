@@ -4,6 +4,7 @@ export default function BoatCard({
   capacity,
   image,
   selected = false,
+  compact = false,
   onClick
 }) {
   return (
@@ -11,74 +12,98 @@ export default function BoatCard({
       onClick={onClick}
       style={{
         width: "100%",
-        border: selected ? "2px solid #123B5D" : "1px solid #E5E7EB",
-        borderRadius: "20px",
-        background: selected ? "#F6FAFD" : "#FFFFFF",
-        overflow: "hidden",
-        cursor: "pointer",
+        display: "flex",
+        flexDirection: compact ? "row" : "column",
+        alignItems: compact ? "center" : "stretch",
+
         padding: 0,
-        textAlign: "left",
-        transition: "all 0.25s ease",
+
+        border: selected
+          ? "2px solid #123B5D"
+          : "1px solid #E5E7EB",
+
+        borderRadius: "18px",
+
+        background: selected
+          ? "#F8FBFD"
+          : "#FFFFFF",
+
+        overflow: "hidden",
+
+        cursor: "pointer",
+
+        transition: "all 0.2s ease",
+
         boxShadow: selected
-          ? "0 10px 28px rgba(18,59,93,0.12)"
-          : "0 6px 18px rgba(0,0,0,0.05)"
+          ? "0 8px 24px rgba(18,59,93,0.10)"
+          : "0 4px 16px rgba(0,0,0,0.05)"
       }}
     >
-      <div
+      <img
+        src={image}
+        alt={title}
         style={{
-          aspectRatio: "16 / 9",
-          overflow: "hidden",
-          background: "#EEF2F7"
+          width: compact ? "110px" : "100%",
+          height: compact ? "90px" : "180px",
+
+          objectFit: "cover",
+
+          flexShrink: 0
         }}
-      >
-        <img
-          src={image}
-          alt={title}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block"
-          }}
-        />
-      </div>
+      />
 
       <div
         style={{
-          padding: "18px"
+          padding: compact ? "14px" : "18px",
+
+          display: "flex",
+          flexDirection: "column",
+
+          justifyContent: "center",
+
+          flex: 1,
+
+          textAlign: "left"
         }}
       >
         <div
           style={{
-            fontSize: "1.15rem",
+            fontSize: compact
+              ? "1rem"
+              : "1.15rem",
+
             fontWeight: 600,
-            color: "#123B5D",
-            marginBottom: "6px"
+
+            color: "#123B5D"
           }}
         >
           {title}
         </div>
 
-        <div
-          style={{
-            fontSize: "0.95rem",
-            color: "#64748B",
-            lineHeight: 1.5,
-            marginBottom: "14px"
-          }}
-        >
-          {description}
-        </div>
+        {!compact && (
+          <div
+            style={{
+              marginTop: "8px",
+
+              fontSize: "0.95rem",
+
+              lineHeight: 1.5,
+
+              color: "#64748B"
+            }}
+          >
+            {description}
+          </div>
+        )}
 
         <div
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            padding: "6px 12px",
-            borderRadius: "999px",
-            background: "#EEF5FA",
-            color: "#123B5D",
+            marginTop: compact ? "6px" : "14px",
+
             fontSize: "0.9rem",
+
+            color: "#123B5D",
+
             fontWeight: 500
           }}
         >
