@@ -23,7 +23,7 @@ export const boats = [
     title: "Drascombe Longboat",
     description: "Traditional motor-sail dayboat with room to relax",
     capacity: "6 people",
-    image: "/images/boats/drascombe.jpg"
+    image: "/images/boats/longboat.jpg"
   },
 
     {
