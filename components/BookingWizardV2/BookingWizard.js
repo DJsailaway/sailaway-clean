@@ -115,10 +115,14 @@ const [currentStep, setCurrentStep] = useState(0);
       </WizardLayout>
 
       <BottomActionBar
-        onBack={() => {}}
-        onNext={() => {}}
-        total="£0"
-      />
+        onBack={() =>
+        setCurrentStep(Math.max(0, currentStep - 1))
+       }
+       onNext={() =>
+        setCurrentStep(Math.min(5, currentStep + 1))
+       }
+       total="£0"
+     />
     </>
   );
 }
