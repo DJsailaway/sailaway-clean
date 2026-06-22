@@ -15,7 +15,6 @@ const [currentStep, setCurrentStep] = useState(0);
 const [durationMode, setDurationMode] = useState("hourly");
 const [durationKey, setDurationKey] = useState("2h");
 const [days, setDays] = useState(2);
-});
   
   return (
     <>
