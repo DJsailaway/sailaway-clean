@@ -3,6 +3,7 @@ import WizardLayout from "./WizardLayout";
 import BottomActionBar from "./BottomActionBar";
 import PriceSummary from "./PriceSummary";
 import ActivityCard from "./ActivityCard";
+import BoatStep from "./steps/BoatStep";
 
 export default function BookingWizard() {
   return (
