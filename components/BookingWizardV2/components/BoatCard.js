@@ -120,7 +120,11 @@ export default function BoatCard({
           style={{
             marginTop: compact ? "6px" : "14px",
 
-            fontSize: "0.8rem",
+            fontSize: isMotor
+              ? "0.85rem"
+              : isSailing
+                ? "0.8rem"
+                : "0.78rem",
 
             color: "#123B5D",
 
