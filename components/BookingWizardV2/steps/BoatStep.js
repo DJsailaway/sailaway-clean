@@ -68,6 +68,7 @@ export default function BoatStep({
             compact={isMobile}
             selected={selectedBoat === boat.id}
             onClick={() => onSelect(boat.id)}
+            variant={activity}
           />
         ))}
       </div>
