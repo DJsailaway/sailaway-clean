@@ -29,7 +29,7 @@ export default function BoatStep({
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: isMobile ? "10px" : "20px",
+        gap: isMobile ? "8px" : "20px",
       }}
     >
       <div>
