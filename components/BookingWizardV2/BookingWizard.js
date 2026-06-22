@@ -29,90 +29,82 @@ const [currentStep, setCurrentStep] = useState(0);
       />
 
       <WizardLayout
-        summary={<PriceSummary />}
-      >
-        <div
+  summary={<PriceSummary />}
+>
+  {currentStep === 0 && (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px"
+      }}
+    >
+      <div>
+        <h1
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px"
+            margin: 0,
+            color: "#123B5D",
+            fontSize: "1.5rem",
+            fontWeight: 600,
+            marginBottom: "6px"
           }}
         >
-          <div
-{currentStep === 0 && (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "8px"
-    }}
-  >
-    <div>
-      <h1
-        style={{
-          margin: 0,
-          color: "#123B5D",
-          fontSize: "1.5rem",
-          fontWeight: 600,
-          marginBottom: "6px"
-        }}
-      >
-        Plan your time on the Helford
-      </h1>
+          Plan your time on the Helford
+        </h1>
 
-      <p
-        style={{
-          marginTop: "8px",
-          marginBottom: "12px",
-          fontSize: "1rem",
-          fontWeight: 500,
-          color: "#64748B"
+        <p
+          style={{
+            marginTop: "8px",
+            marginBottom: "12px",
+            fontSize: "1rem",
+            fontWeight: 500,
+            color: "#64748B"
+          }}
+        >
+          How would you like to explore?
+        </p>
+      </div>
+
+      <ActivityCard
+        title="Explore by motor boat"
+        description="Comfortable and flexible for families"
+        image="/images/wizard/motorboat.jpg"
+        onClick={() => {
+          setActivity("motor");
+          setCurrentStep(1);
         }}
-      >
-        How would you like to explore?
-      </p>
+      />
+
+      <ActivityCard
+        title="Go sailing"
+        description="Traditional and hands-on"
+        image="/images/wizard/sailing.jpg"
+        onClick={() => {
+          setActivity("sailing");
+          setCurrentStep(1);
+        }}
+      />
+
+      <ActivityCard
+        title="Paddle the creeks"
+        description="Quiet and close to nature"
+        image="/images/wizard/paddle.jpg"
+        onClick={() => {
+          setActivity("paddle");
+          setCurrentStep(1);
+        }}
+      />
     </div>
+  )}
 
-    <ActivityCard
-      title="Explore by motor boat"
-      description="Comfortable and flexible for families"
-      image="/images/wizard/motorboat.jpg"
-      onClick={() => {
-        setActivity("motor");
-        setCurrentStep(1);
-      }}
+  {currentStep === 1 && (
+    <BoatStep
+      activity={activity}
+      selectedBoat={selectedBoat}
+      onSelect={setSelectedBoat}
     />
-
-    <ActivityCard
-      title="Go sailing"
-      description="Traditional and hands-on"
-      image="/images/wizard/sailing.jpg"
-      onClick={() => {
-        setActivity("sailing");
-        setCurrentStep(1);
-      }}
-    />
-
-    <ActivityCard
-      title="Paddle the creeks"
-      description="Quiet and close to nature"
-      image="/images/wizard/paddle.jpg"
-      onClick={() => {
-        setActivity("paddle");
-        setCurrentStep(1);
-      }}
-    />
-  </div>
-)}
-
-{currentStep === 1 && (
-  <BoatStep
-    activity={activity}
-    selectedBoat={selectedBoat}
-    onSelect={setSelectedBoat}
-  />
-)}
-      </WizardLayout>
+  )}
+</WizardLayout>
 
       <BottomActionBar
         onBack={() =>
