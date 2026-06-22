@@ -44,7 +44,7 @@ export default function BoatCard({
         alt={title}
         style={{
           width: compact ? "110px" : "100%",
-          height: compact ? "90px" : "180px",
+          height: compact ? "90px" : "130px",
 
           objectFit: "cover",
 
@@ -54,7 +54,7 @@ export default function BoatCard({
 
       <div
         style={{
-          padding: compact ? "14px" : "18px",
+          padding: compact ? "14px" : "12px",
 
           display: "flex",
           flexDirection: "column",
@@ -85,7 +85,7 @@ export default function BoatCard({
             style={{
               marginTop: "8px",
 
-              fontSize: "0.95rem",
+              fontSize: "0.85rem",
 
               lineHeight: 1.5,
 
@@ -100,7 +100,7 @@ export default function BoatCard({
           style={{
             marginTop: compact ? "6px" : "14px",
 
-            fontSize: "0.9rem",
+            fontSize: "0.8rem",
 
             color: "#123B5D",
 
