@@ -11,6 +11,11 @@ export default function BookingWizard() {
 const [activity, setActivity] = useState(null);
 const [selectedBoat, setSelectedBoat] = useState(null);
 const [currentStep, setCurrentStep] = useState(0);
+
+const [durationMode, setDurationMode] = useState("hourly");
+const [durationKey, setDurationKey] = useState("2h");
+const [days, setDays] = useState(2);
+});
   
   return (
     <>
@@ -104,6 +109,22 @@ const [currentStep, setCurrentStep] = useState(0);
       onSelect={setSelectedBoat}
     />
   )}
+
+  {currentStep === 2 && (
+  <DurationStep
+    value={{
+      durationMode,
+      durationKey,
+      days
+    }}
+    onChange={(patch) => {
+      setDuration((prev) => ({
+        ...prev,
+        ...patch
+      }));
+    }}
+  />
+)}
 </WizardLayout>
 
       <BottomActionBar
