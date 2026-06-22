@@ -8,6 +8,11 @@ export default function BoatCard({
   onClick,
   variant
 }) {
+
+  const isMotor = variant === "motor";
+  const isSailing = variant === "sailing";
+  const isPaddle = variant === "paddle";
+  
   return (
     <button
       onClick={onClick}
