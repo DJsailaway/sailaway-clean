@@ -24,7 +24,7 @@ export default function WizardLayout({
         gridTemplateColumns: showSummary
           ? "minmax(0, 1fr) 320px"
           : "1fr",
-        gap: isMobile ? "12px" : "16px",
+        gap: "16px",
         width: "100%",
         alignItems: "start"
       }}
