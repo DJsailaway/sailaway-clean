@@ -5,7 +5,8 @@ export default function BoatCard({
   image,
   selected = false,
   compact = false,
-  onClick
+  onClick,
+  variant
 }) {
   return (
     <button
