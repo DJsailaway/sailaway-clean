@@ -51,12 +51,12 @@ export default function BoatCard({
         style={{
           width: compact ? "110px" : "100%",
           height: compact
-  ? "90px"
-  : isMotor
-    ? "190px"
-    : isSailing
-      ? "150px"
-      : "140px",
+           ? "80px"
+           : isSailing
+             ? "130px"
+             : isMotor
+               ? "190px"
+               : "140px",
 
           objectFit: "cover",
 
@@ -66,7 +66,7 @@ export default function BoatCard({
 
       <div
         style={{
-          padding: compact ? "14px" : "12px",
+          padding: compact ? "10px" : "12px",
 
           display: "flex",
           flexDirection: "column",
@@ -99,7 +99,7 @@ export default function BoatCard({
         {!compact && (
           <div
             style={{
-              marginTop: "8px",
+              marginTop: compact ? "4px" : "8px",
 
               fontSize: isMotor
                 ? "0.9rem"
