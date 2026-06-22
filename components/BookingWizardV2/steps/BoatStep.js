@@ -50,7 +50,11 @@ export default function BoatStep({
           display: "grid",
           gridTemplateColumns: isMobile
             ? "1fr"
-            : `repeat(${filteredBoats.length}, 1fr)`,
+            : activity === "sailing"
+              ? "repeat(5, minmax(0, 1fr))"
+              : activity === "paddle"
+                ? "repeat(4, minmax(0, 1fr))"
+                : "repeat(2, minmax(0, 1fr))",
             gap: "16px"
           }}
       >
