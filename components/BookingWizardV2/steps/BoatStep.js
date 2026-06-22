@@ -50,11 +50,9 @@ export default function BoatStep({
           display: "grid",
           gridTemplateColumns: isMobile
             ? "1fr"
-            : filteredBoats.length === 2
-            ? "1fr 1fr"
-            : "1fr 1fr",
-          gap: "16px"
-        }}
+            : `repeat(${filteredBoats.length}, 1fr)`,
+            gap: "16px"
+          }}
       >
         {filteredBoats.map((boat) => (
           <BoatCard
