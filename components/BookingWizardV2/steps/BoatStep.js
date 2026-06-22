@@ -57,7 +57,7 @@ export default function BoatStep({
                 : "repeat(2, minmax(0, 1fr))",
             gap: activity === "sailing"
               ? (isMobile ? "8px" : "16px")
-              : (isMobile ? "16px"),
+              : (isMobile ? "16px" : "16px"),
           }}
       >
         {filteredBoats.map((boat) => (
