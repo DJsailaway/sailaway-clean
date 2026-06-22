@@ -66,23 +66,12 @@ export default function BookingWizard() {
     </p>
   </div>
 
-  <ActivityCard
-    title="Explore by motor boat"
-    description="Comfortable and flexible for families"
-    image="/images/wizard/motorboat.jpg"
-  />
-
-  <ActivityCard
-    title="Go sailing"
-    description="Traditional and hands-on"
-    image="/images/wizard/sailing.jpg"
-  />
-
-  <ActivityCard
-    title="Paddle the creeks"
-    description="Quiet and close to nature"
-    image="/images/wizard/paddle.jpg"
-  />
+<BoatStep
+  activity="sailing"
+  selectedBoat="wayfarer"
+  onSelect={(id) => console.log(id)}
+/>
+    
 </div>
         </div>
       </WizardLayout>
