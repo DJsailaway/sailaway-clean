@@ -82,19 +82,33 @@ export default function DurationStep({
             })
           }
           style={{
-            padding: "16px",
-            borderRadius: "16px",
-            border:
-              value.durationMode === "hourly"
-                ? "2px solid #123B5D"
-                : "1px solid #E5E7EB",
-            background:
-              value.durationMode === "hourly"
-                ? "#F8FBFD"
-                : "#FFFFFF",
-            fontWeight: 600,
-            cursor: "pointer"
-          }}
+  padding: "20px",
+  borderRadius: "18px",
+
+  border: "2px solid #123B5D",
+
+  background:
+    value.durationMode === null ||
+    value.durationMode === "hourly"
+      ? "#123B5D"
+      : "#FFFFFF",
+
+  color:
+    value.durationMode === null ||
+    value.durationMode === "hourly"
+      ? "#FFFFFF"
+      : "#123B5D",
+
+  fontWeight: 700,
+  fontSize: "1rem",
+
+  cursor: "pointer",
+
+  boxShadow:
+    value.durationMode === "hourly"
+      ? "0 8px 24px rgba(18,59,93,0.18)"
+      : "none"
+}}
         >
           Hourly
         </button>
@@ -106,19 +120,33 @@ export default function DurationStep({
             })
           }
           style={{
-            padding: "16px",
-            borderRadius: "16px",
-            border:
-              value.durationMode === "multi"
-                ? "2px solid #123B5D"
-                : "1px solid #E5E7EB",
-            background:
-              value.durationMode === "multi"
-                ? "#F8FBFD"
-                : "#FFFFFF",
-            fontWeight: 600,
-            cursor: "pointer"
-          }}
+  padding: "20px",
+  borderRadius: "18px",
+
+  border: "2px solid #123B5D",
+
+  background:
+    value.durationMode === null ||
+    value.durationMode === "multi"
+      ? "#123B5D"
+      : "#FFFFFF",
+
+  color:
+    value.durationMode === null ||
+    value.durationMode === "multi"
+      ? "#FFFFFF"
+      : "#123B5D",
+
+  fontWeight: 700,
+  fontSize: "1rem",
+
+  cursor: "pointer",
+
+  boxShadow:
+    value.durationMode === "multi"
+      ? "0 8px 24px rgba(18,59,93,0.18)"
+      : "none"
+}}
         >
           Multi-Day
         </button>
