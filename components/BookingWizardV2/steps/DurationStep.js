@@ -175,7 +175,6 @@ export default function DurationStep({
                 })
               }
               style={{
-                style={{
                   padding: isMobile
                   ? "18px"
                   : "26px",
