@@ -69,12 +69,14 @@ export default function DurationStep({
       {/* MODE SELECTOR */}
 
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "12px"
-        }}
-      >
+  style={{
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "1fr"
+      : "repeat(4, 1fr)",
+    gap: isMobile ? "10px" : "16px"
+  }}
+>
         <button
           onClick={() =>
             onChange({
@@ -82,7 +84,8 @@ export default function DurationStep({
             })
           }
           style={{
-  padding: "20px",
+  style={{
+  padding: "18px",
   borderRadius: "18px",
 
   border: "2px solid #123B5D",
@@ -173,7 +176,10 @@ export default function DurationStep({
                 })
               }
               style={{
-                padding: "18px",
+                style={{
+                  padding: isMobile
+                  ? "18px"
+                  : "26px",
                 borderRadius: "16px",
                 border:
                   value.durationKey === option.key
@@ -184,7 +190,10 @@ export default function DurationStep({
                     ? "#F8FBFD"
                     : "#FFFFFF",
                 cursor: "pointer",
-                fontWeight: 600
+                fontWeight: 600,
+                  fontSize: isMobile
+                    ? "1rem"
+                    : "1.1rem"
               }}
             >
               {option.label}
