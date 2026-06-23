@@ -1,131 +1,199 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const HOURLY_OPTIONS = [
+  {
+    key: "1h",
+    label: "1 Hour"
+  },
+  {
+    key: "2h",
+    label: "2 Hours"
+  },
+  {
+    key: "half",
+    label: "Half Day (4h)"
+  },
+  {
+    key: "full",
+    label: "Full Day (8h)"
+  }
+];
 
 export default function DurationStep({
+  activity,
   value,
   onChange
 }) {
-  const isHourly = value?.durationMode === "hourly";
+  const [isMobile, setIsMobile] = useState(false);
 
-  const hourlyOptions = [
-    { key: "1h", label: "1 Hour" },
-    { key: "2h", label: "2 Hours" },
-    { key: "half", label: "Half Day (4h)" },
-    { key: "full", label: "Full Day (8h)" },
-    { key: "week", label: "1 Week" }
-  ];
+  useEffect(() => {
+    const check = () =>
+      setIsMobile(window.innerWidth < 768);
 
-  const cardStyle = (selected) => ({
-    padding: "14px",
-    borderRadius: "14px",
-    border: selected ? "2px solid #123B5D" : "1px solid #E5E7EB",
-    background: selected ? "#F8FBFD" : "#FFFFFF",
-    cursor: "pointer",
-    fontWeight: 600,
-    color: "#123B5D",
-    textAlign: "center",
-    transition: "all 0.2s ease"
-  });
+    check();
 
-  const modeButton = (active) => ({
-    flex: 1,
-    padding: "12px",
-    borderRadius: "12px",
-    border: active ? "2px solid #123B5D" : "1px solid #E5E7EB",
-    background: active ? "#F8FBFD" : "#FFFFFF",
-    fontWeight: 600,
-    color: "#123B5D",
-    cursor: "pointer"
-  });
+    window.addEventListener("resize", check);
+
+    return () =>
+      window.removeEventListener("resize", check);
+  }, []);
+
+  const hourlyOptions =
+    activity === "sailing"
+      ? HOURLY_OPTIONS.filter(
+          (o) => o.key !== "1h"
+        )
+      : HOURLY_OPTIONS;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      
-      {/* TITLE */}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px"
+      }}
+    >
       <h1
         style={{
           margin: 0,
-          fontSize: "1.5rem",
-          fontWeight: 600,
-          color: "#123B5D"
+          color: "#123B5D",
+          fontSize: isMobile
+            ? "1.4rem"
+            : "1.8rem",
+          fontWeight: 600
         }}
       >
-        Choose duration
+        How long would you like the boat for?
       </h1>
 
-      {/* MODE SWITCH */}
-      <div style={{ display: "flex", gap: "10px" }}>
+      {/* MODE SELECTOR */}
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "12px"
+        }}
+      >
         <button
-          style={modeButton(isHourly)}
           onClick={() =>
             onChange({
               durationMode: "hourly"
             })
           }
+          style={{
+            padding: "16px",
+            borderRadius: "16px",
+            border:
+              value.durationMode === "hourly"
+                ? "2px solid #123B5D"
+                : "1px solid #E5E7EB",
+            background:
+              value.durationMode === "hourly"
+                ? "#F8FBFD"
+                : "#FFFFFF",
+            fontWeight: 600,
+            cursor: "pointer"
+          }}
         >
-          Hourly / Day
+          Hourly
         </button>
 
         <button
-          style={modeButton(!isHourly)}
           onClick={() =>
             onChange({
               durationMode: "multi"
             })
           }
+          style={{
+            padding: "16px",
+            borderRadius: "16px",
+            border:
+              value.durationMode === "multi"
+                ? "2px solid #123B5D"
+                : "1px solid #E5E7EB",
+            background:
+              value.durationMode === "multi"
+                ? "#F8FBFD"
+                : "#FFFFFF",
+            fontWeight: 600,
+            cursor: "pointer"
+          }}
         >
-          Multi-day
+          Multi-Day
         </button>
       </div>
 
-      {/* HOURLY OPTIONS */}
-      {isHourly && (
+      {/* HOURLY */}
+
+      {value.durationMode === "hourly" && (
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "10px"
+            gridTemplateColumns: isMobile
+              ? "1fr 1fr"
+              : "repeat(4, 1fr)",
+            gap: "12px"
           }}
         >
-          {hourlyOptions.map((opt) => (
+          {hourlyOptions.map((option) => (
             <button
-              key={opt.key}
-              style={cardStyle(value?.durationKey === opt.key)}
+              key={option.key}
               onClick={() =>
                 onChange({
-                  durationKey: opt.key
+                  durationKey: option.key
                 })
               }
+              style={{
+                padding: "18px",
+                borderRadius: "16px",
+                border:
+                  value.durationKey === option.key
+                    ? "2px solid #123B5D"
+                    : "1px solid #E5E7EB",
+                background:
+                  value.durationKey === option.key
+                    ? "#F8FBFD"
+                    : "#FFFFFF",
+                cursor: "pointer",
+                fontWeight: 600
+              }}
             >
-              {opt.label}
+              {option.label}
             </button>
           ))}
         </div>
       )}
 
-      {/* MULTI-DAY SELECTOR */}
-      {!isHourly && (
+      {/* MULTI DAY */}
+
+      {value.durationMode === "multi" && (
         <div
           style={{
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
-            gap: "14px",
+            alignItems: "center",
+            gap: "20px",
             marginTop: "10px"
           }}
         >
           <button
             onClick={() =>
               onChange({
-                days: Math.max(2, (value?.days || 2) - 1)
+                days: Math.max(
+                  2,
+                  value.days - 1
+                )
               })
             }
             style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "12px",
-              border: "1px solid #E5E7EB",
-              background: "#fff",
-              fontSize: "22px",
+              width: "64px",
+              height: "64px",
+              borderRadius: "16px",
+              border: "none",
+              background: "#123B5D",
+              color: "white",
+              fontSize: "28px",
               cursor: "pointer"
             }}
           >
@@ -134,29 +202,47 @@ export default function DurationStep({
 
           <div
             style={{
-              fontSize: "20px",
-              fontWeight: 600,
-              color: "#123B5D",
               minWidth: "80px",
               textAlign: "center"
             }}
           >
-            {value?.days || 2} days
+            <div
+              style={{
+                fontSize: "2rem",
+                fontWeight: 700,
+                color: "#123B5D"
+              }}
+            >
+              {value.days}
+            </div>
+
+            <div
+              style={{
+                color: "#64748B",
+                fontSize: "0.9rem"
+              }}
+            >
+              Days
+            </div>
           </div>
 
           <button
             onClick={() =>
               onChange({
-                days: Math.min(31, (value?.days || 2) + 1)
+                days: Math.min(
+                  31,
+                  value.days + 1
+                )
               })
             }
             style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "12px",
-              border: "1px solid #E5E7EB",
-              background: "#fff",
-              fontSize: "22px",
+              width: "64px",
+              height: "64px",
+              borderRadius: "16px",
+              border: "none",
+              background: "#123B5D",
+              color: "white",
+              fontSize: "28px",
               cursor: "pointer"
             }}
           >
