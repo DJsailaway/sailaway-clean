@@ -6,6 +6,7 @@ import BottomActionBar from "./BottomActionBar";
 import PriceSummary from "./PriceSummary";
 import ActivityCard from "./ActivityCard";
 import BoatStep from "./steps/BoatStep";
+import DurationStep from "./steps/DurationStep";
 
 export default function BookingWizard() {
 const [activity, setActivity] = useState(null);
@@ -105,11 +106,14 @@ const [days, setDays] = useState(2);
     <BoatStep
       activity={activity}
       selectedBoat={selectedBoat}
-      onSelect={setSelectedBoat}
+      onSelect={(boatId) => {
+        setSelectedBoat(boatId);
+        setCurrentStep(2);
+}}
     />
   )}
 
-  {currentStep === 2 && (
+{currentStep === 2 && (
   <DurationStep
     value={{
       durationMode,
@@ -117,10 +121,17 @@ const [days, setDays] = useState(2);
       days
     }}
     onChange={(patch) => {
-      setDuration((prev) => ({
-        ...prev,
-        ...patch
-      }));
+      if (patch.durationMode !== undefined) {
+        setDurationMode(patch.durationMode);
+      }
+
+      if (patch.durationKey !== undefined) {
+        setDurationKey(patch.durationKey);
+      }
+
+      if (patch.days !== undefined) {
+        setDays(patch.days);
+      }
     }}
   />
 )}
