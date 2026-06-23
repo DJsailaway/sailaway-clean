@@ -83,7 +83,6 @@ export default function DurationStep({
               durationMode: "hourly"
             })
           }
-          style={{
   style={{
   padding: "18px",
   borderRadius: "18px",
