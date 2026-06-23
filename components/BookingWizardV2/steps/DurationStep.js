@@ -69,14 +69,12 @@ export default function DurationStep({
       {/* MODE SELECTOR */}
 
       <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: isMobile
-      ? "1fr"
-      : "repeat(4, 1fr)",
-    gap: isMobile ? "10px" : "16px"
-  }}
->
+        style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "12px"
+      }}
+    >
         <button
           onClick={() =>
             onChange({
@@ -158,14 +156,14 @@ export default function DurationStep({
 
       {value.durationMode === "hourly" && (
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile
-              ? "1fr 1fr"
-              : "repeat(4, 1fr)",
-            gap: "12px"
-          }}
-        >
+         style={{
+           display: "grid",
+           gridTemplateColumns: isMobile
+             ? "1fr"
+             : "repeat(4, 1fr)",
+           gap: isMobile ? "10px" : "16px"
+         }}
+       >
           {hourlyOptions.map((option) => (
             <button
               key={option.key}
