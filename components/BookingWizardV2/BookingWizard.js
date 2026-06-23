@@ -13,7 +13,7 @@ const [activity, setActivity] = useState(null);
 const [selectedBoat, setSelectedBoat] = useState(null);
 const [currentStep, setCurrentStep] = useState(0);
 
-const [durationMode, setDurationMode] = useState("hourly");
+const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
 const [days, setDays] = useState(7);
   
