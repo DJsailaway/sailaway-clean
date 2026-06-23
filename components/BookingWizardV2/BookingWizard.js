@@ -114,26 +114,27 @@ const [days, setDays] = useState(7);
   )}
 
 {currentStep === 2 && (
-  <DurationStep
-    value={{
-      durationMode,
-      durationKey,
-      days
-    }}
-    onChange={(patch) => {
-      if (patch.durationMode !== undefined) {
-        setDurationMode(patch.durationMode);
-      }
+<DurationStep
+  activity={activity}
+  value={{
+    durationMode,
+    durationKey,
+    days
+  }}
+  onChange={(patch) => {
+    if (patch.durationMode !== undefined) {
+      setDurationMode(patch.durationMode);
+    }
 
-      if (patch.durationKey !== undefined) {
-        setDurationKey(patch.durationKey);
-      }
+    if (patch.durationKey !== undefined) {
+      setDurationKey(patch.durationKey);
+    }
 
-      if (patch.days !== undefined) {
-        setDays(patch.days);
-      }
-    }}
-  />
+    if (patch.days !== undefined) {
+      setDays(patch.days);
+    }
+  }}
+/>
 )}
 </WizardLayout>
 
