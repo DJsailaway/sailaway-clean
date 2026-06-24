@@ -107,7 +107,7 @@ export default function DateStep({
         }}
       />
 
-      {durationKey === "halfday" && (
+      {durationKey === "half" && (
         <div
           style={{
             display: "grid",
@@ -200,7 +200,7 @@ export default function DateStep({
         </div>
       )}
 
-      {durationKey === "fullday" && (
+      {durationKey === "full" && (
         <div
           style={{
             padding: "20px",
