@@ -11,11 +11,11 @@ const HOURLY_OPTIONS = [
   },
   {
     key: "half",
-    label: "Half Day (4h)"
+    label: "Half Day (4 Hours)"
   },
   {
     key: "full",
-    label: "Full Day (8h)"
+    label: "Full Day (8 Hours)"
   }
 ];
 
