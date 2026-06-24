@@ -7,6 +7,7 @@ import PriceSummary from "./PriceSummary";
 import ActivityCard from "./ActivityCard";
 import BoatStep from "./steps/BoatStep";
 import DurationStep from "./steps/DurationStep";
+import DateStep from "./steps/DateStep";
 
 export default function BookingWizard() {
 const [activity, setActivity] = useState(null);
@@ -16,6 +17,9 @@ const [currentStep, setCurrentStep] = useState(0);
 const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
 const [days, setDays] = useState(7);
+
+const [bookingDate, setBookingDate] = useState("");
+const [startTime, setStartTime] = useState("");
   
   return (
     <>
@@ -136,6 +140,28 @@ const [days, setDays] = useState(7);
   }}
 />
 )}
+
+    {currentStep === 3 && (
+  <DateStep
+    durationMode={durationMode}
+    durationKey={durationKey}
+    days={days}
+    value={{
+      date: bookingDate,
+      startTime
+    }}
+    onChange={(patch) => {
+      if (patch.date) {
+        setBookingDate(patch.date);
+      }
+
+      if (patch.startTime) {
+        setStartTime(patch.startTime);
+      }
+    }}
+  />
+)}
+    
 </WizardLayout>
 
       <BottomActionBar
