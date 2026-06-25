@@ -10,6 +10,8 @@ export default function DateStep({
   onChange
 }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
