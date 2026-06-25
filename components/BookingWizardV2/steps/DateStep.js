@@ -85,35 +85,59 @@ export default function DateStep({
     boxShadow: "0 4px 16px rgba(0,0,0,0.04)"
   }}
 >
-      <h1
-        style={{
-  width: "100%",
-  padding: "14px 16px",
-  borderRadius: "12px",
-  border: "1px solid #D1D5DB",
-  fontSize: "1rem",
-  color: "#123B5D"
-}}
-      >
-        Choose your date
-      </h1>
-
-      <input
-        type="date"
-        min={minDate}
-        value={value.date || ""}
-        onChange={(e) =>
-          onChange({
-            date: e.target.value
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "18px"
+  }}
+>
+  <DateCard
+    value={
+      value.date
+        ? new Date(value.date).toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
           })
-        }
-        style={{
-          padding: "14px",
-          borderRadius: "14px",
-          border: "1px solid #E5E7EB",
-          fontSize: "1rem"
-        }}
-      />
+        : null
+    }
+    onClick={() => setShowDatePicker(!showDatePicker)}
+  />
+
+  {showDatePicker && (
+    <input
+      type="date"
+      min={minDate}
+      value={value.date || ""}
+      onChange={(e) => {
+        onChange({
+          date: e.target.value
+        });
+
+        setShowDatePicker(false);
+        setShowTimePicker(true);
+      }}
+      style={{
+        padding: "14px",
+        borderRadius: "14px",
+        border: "1px solid #E5E7EB",
+        fontSize: "1rem"
+      }}
+    />
+  )}
+
+  <TimeCard
+    disabled={!value.date}
+    value={value.startTime}
+    onClick={() => {
+      if (value.date) {
+        setShowTimePicker(!showTimePicker);
+      }
+    }}
+  />
+</div>
 
       {durationKey === "half" && (
         <div
