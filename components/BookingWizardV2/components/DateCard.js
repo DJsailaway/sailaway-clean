@@ -1,0 +1,56 @@
+export default function DateCard({
+  value,
+  onClick
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        width: "100%",
+        padding: "24px",
+        borderRadius: "20px",
+        border: "1px solid #E5E7EB",
+        background: "#FFFFFF",
+        boxShadow: "0 6px 20px rgba(0,0,0,0.05)",
+        cursor: "pointer",
+        textAlign: "left",
+        transition: "all .2s ease"
+      }}
+    >
+      <div
+        style={{
+          fontSize: "0.85rem",
+          fontWeight: 600,
+          color: "#64748B",
+          textTransform: "uppercase",
+          letterSpacing: ".05em"
+        }}
+      >
+        📅 Date
+      </div>
+
+      <div
+        style={{
+          marginTop: "14px",
+          fontSize: "1.35rem",
+          fontWeight: 600,
+          color: "#123B5D"
+        }}
+      >
+        {value || "What date would you like your boat?"}
+      </div>
+
+      <div
+        style={{
+          marginTop: "10px",
+          color: "#64748B",
+          fontSize: ".95rem"
+        }}
+      >
+        {value
+          ? "Tap to change"
+          : "Tap to choose a date"}
+      </div>
+    </button>
+  );
+}
