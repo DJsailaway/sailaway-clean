@@ -73,19 +73,23 @@ export default function DateStep({
 
   return (
     <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px"
-      }}
-    >
+  style={{
+    background: "#FFFFFF",
+    border: "1px solid #E5E7EB",
+    borderRadius: "18px",
+    padding: "20px",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.04)"
+  }}
+>
       <h1
         style={{
-          margin: 0,
-          color: "#123B5D",
-          fontSize: isMobile ? "1.4rem" : "1.8rem",
-          fontWeight: 600
-        }}
+  width: "100%",
+  padding: "14px 16px",
+  borderRadius: "12px",
+  border: "1px solid #D1D5DB",
+  fontSize: "1rem",
+  color: "#123B5D"
+}}
       >
         Choose your date
       </h1>
