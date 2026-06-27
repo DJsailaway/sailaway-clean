@@ -143,6 +143,10 @@ export default function DateStep({
       }
     }}
   />
+
+  {showTimePicker && (
+  <>    
+  
 </div>
 
       {durationKey === "half" && (
@@ -164,11 +168,14 @@ export default function DateStep({
           ].map((slot) => (
             <button
               key={slot.id}
-              onClick={() =>
+              onClick={() => {
                 onChange({
-                  startTime: slot.id
-                })
-              }
+                startTime: slot.id
+                });
+
+              setShowTimePicker(false);
+            }}
+
               style={{
                 padding: "18px",
                 borderRadius: "18px",
@@ -208,11 +215,14 @@ export default function DateStep({
           {availableTimes.map((time) => (
             <button
               key={time}
-              onClick={() =>
+              onClick={() => {
                 onChange({
-                  startTime: time
-                })
-              }
+                startTime: time
+            });
+
+            setShowTimePicker(false);
+            }}
+           
               style={{
                 padding: "18px",
                 borderRadius: "18px",
@@ -263,6 +273,8 @@ export default function DateStep({
               background: "#F8FBFD"
             }}
           >
+              </>
+            )}
             <div
               style={{
                 fontWeight: 600,
