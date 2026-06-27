@@ -68,7 +68,6 @@ return (
     </div>
   </div>
 
-    {/* EXPANDED CONTENT */}
     {expanded && (
       <div
         style={{
