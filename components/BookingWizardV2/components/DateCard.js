@@ -7,14 +7,14 @@ export default function DateCard({
       onClick={onClick}
       style={{
         width: "100%",
-        padding: "24px",
+        padding: value ? "14px 20px" : "24px",
         borderRadius: "20px",
         border: "1px solid #E5E7EB",
         background: "#FFFFFF",
         boxShadow: "0 6px 20px rgba(0,0,0,0.05)",
         cursor: "pointer",
         textAlign: "left",
-        transition: "all .2s ease"
+        transition: "all .25s ease"
       }}
     >
       <div
@@ -31,8 +31,8 @@ export default function DateCard({
 
       <div
         style={{
-          marginTop: "14px",
-          fontSize: "1.35rem",
+          marginTop: value ? "6px" : "14px",
+          fontSize: value ? "1rem" : "1.35rem",
           fontWeight: 600,
           color: "#123B5D"
         }}
@@ -44,7 +44,7 @@ export default function DateCard({
         style={{
           marginTop: "10px",
           color: "#64748B",
-          fontSize: ".95rem"
+          fontSize: ".8rem"
         }}
       >
         {value
