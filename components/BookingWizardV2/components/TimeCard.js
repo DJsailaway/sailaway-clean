@@ -27,21 +27,10 @@ return (
         cursor: disabled ? "default" : "pointer"
       }}
     >
-      <div
-        style={{
-          fontSize: ".85rem",
-          fontWeight: 600,
-          color: "#64748B",
-          textTransform: "uppercase",
-          letterSpacing: ".05em"
-        }}
-      >
-        🕘 Time
-      </div>
 
       <div
         style={{
-          marginTop: "14px",
+          marginTop: "0px",
           fontSize: "1.35rem",
           fontWeight: 600,
           color: "#123B5D"
