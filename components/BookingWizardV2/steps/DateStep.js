@@ -146,9 +146,7 @@ export default function DateStep({
 
   {showTimePicker && (
   <>    
-  
-</div>
-
+      
       {durationKey === "half" && (
         <div
           style={{
@@ -263,37 +261,40 @@ export default function DateStep({
         </div>
       )}
 
-      {durationMode === "multiday" &&
-        value.date && (
-          <div
-            style={{
-              padding: "20px",
-              borderRadius: "18px",
-              border: "1px solid #E5E7EB",
-              background: "#F8FBFD"
-            }}
-          >
-              </>
-            )}
-            <div
-              style={{
-                fontWeight: 600,
-                color: "#123B5D"
-              }}
-            >
-              {days} day hire
-            </div>
+     {durationMode === "multiday" &&
+  value.date && (
+    <div
+      style={{
+        padding: "20px",
+        borderRadius: "18px",
+        border: "1px solid #E5E7EB",
+        background: "#F8FBFD"
+      }}
+    >
+      <div
+        style={{
+          fontWeight: 600,
+          color: "#123B5D"
+        }}
+      >
+        {days} day hire
+      </div>
 
-            <div
-              style={{
-                marginTop: "8px",
-                color: "#64748B"
-              }}
-            >
-              Return date: {returnDate}
-            </div>
-          </div>
-        )}
+      <div
+        style={{
+          marginTop: "8px",
+          color: "#64748B"
+        }}
+      >
+        Return date: {returnDate}
+      </div>
     </div>
-  );
+  )}
+
+  </>
+)}
+
+</div>
+</div>
+);
 }
