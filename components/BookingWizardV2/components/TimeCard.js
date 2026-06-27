@@ -66,7 +66,6 @@ return (
           : "Tap to choose"}
       </div>
     </div>
-  </div>
 
     {expanded && (
       <div
