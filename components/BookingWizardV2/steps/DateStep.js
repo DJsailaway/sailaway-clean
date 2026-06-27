@@ -134,165 +134,110 @@ export default function DateStep({
       }}
     />
 
-  <TimeCard
-    disabled={!value.date}
-    value={value.startTime}
-    onClick={() => {
-      if (value.date) {
-        setShowTimePicker(!showTimePicker);
-      }
-    }}
-  />
-
-  {showTimePicker && (
-  <>    
-      
-      {durationKey === "half" && (
-        <div
-          style={{
-            display: "grid",
-            gap: "12px"
-          }}
-        >
-          {[
-            {
-              id: "morning",
-              label: "Morning · 09:00–13:00"
-            },
-            {
-              id: "afternoon",
-              label: "Afternoon · 13:00–17:00"
-            }
-          ].map((slot) => (
-            <button
-              key={slot.id}
-              onClick={() => {
-                onChange({
-                startTime: slot.id
-                });
-
-              setShowTimePicker(false);
-            }}
-
-              style={{
-                padding: "18px",
-                borderRadius: "18px",
-                border:
-                  value.startTime === slot.id
-                    ? "2px solid #123B5D"
-                    : "1px solid #E5E7EB",
-                background:
-                  value.startTime === slot.id
-                    ? "#123B5D"
-                    : "#FFFFFF",
-                color:
-                  value.startTime === slot.id
-                    ? "#FFFFFF"
-                    : "#123B5D",
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
-            >
-              {slot.label}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {(durationKey === "1h" ||
-        durationKey === "2h") && (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile
-              ? "repeat(2, 1fr)"
-              : "repeat(4, 1fr)",
-            gap: "12px"
-          }}
-        >
-          {availableTimes.map((time) => (
-            <button
-              key={time}
-              onClick={() => {
-                onChange({
-                startTime: time
-            });
-
+<TimeCard
+  disabled={!value.date}
+  value={value.startTime}
+  expanded={showTimePicker}
+  onClick={() => {
+    if (value.date) {
+      setShowTimePicker((prev) => !prev);
+    }
+  }}
+>
+  {/* HALF DAY */}
+  {durationKey === "half" && (
+    <div
+      style={{
+        display: "grid",
+        gap: "12px"
+      }}
+    >
+      {[
+        { id: "morning", label: "Morning · 09:00–13:00" },
+        { id: "afternoon", label: "Afternoon · 13:00–17:00" }
+      ].map((slot) => (
+        <button
+          key={slot.id}
+          onClick={() => {
+            onChange({ startTime: slot.id });
             setShowTimePicker(false);
-            }}
-           
-              style={{
-                padding: "18px",
-                borderRadius: "18px",
-                border:
-                  value.startTime === time
-                    ? "2px solid #123B5D"
-                    : "1px solid #E5E7EB",
-                background:
-                  value.startTime === time
-                    ? "#123B5D"
-                    : "#FFFFFF",
-                color:
-                  value.startTime === time
-                    ? "#FFFFFF"
-                    : "#123B5D",
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
-            >
-              {time}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {durationKey === "full" && (
-        <div
+          }}
           style={{
-            padding: "20px",
+            padding: "18px",
             borderRadius: "18px",
-            border: "1px solid #E5E7EB",
-            background: "#F8FBFD",
-            color: "#123B5D",
-            fontWeight: 600
+            border:
+              value.startTime === slot.id
+                ? "2px solid #123B5D"
+                : "1px solid #E5E7EB",
+            background:
+              value.startTime === slot.id ? "#123B5D" : "#FFFFFF",
+            color:
+              value.startTime === slot.id ? "#FFFFFF" : "#123B5D",
+            fontWeight: 600,
+            cursor: "pointer"
           }}
         >
-          Full Day Hire · 09:00–17:00
-        </div>
-      )}
+          {slot.label}
+        </button>
+      ))}
+    </div>
+  )}
 
-     {durationMode === "multiday" &&
-  value.date && (
+  {/* HOURLY */}
+  {(durationKey === "1h" || durationKey === "2h") && (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: isMobile
+          ? "repeat(2, 1fr)"
+          : "repeat(4, 1fr)",
+        gap: "12px"
+      }}
+    >
+      {availableTimes.map((time) => (
+        <button
+          key={time}
+          onClick={() => {
+            onChange({ startTime: time });
+            setShowTimePicker(false);
+          }}
+          style={{
+            padding: "18px",
+            borderRadius: "18px",
+            border:
+              value.startTime === time
+                ? "2px solid #123B5D"
+                : "1px solid #E5E7EB",
+            background:
+              value.startTime === time ? "#123B5D" : "#FFFFFF",
+            color:
+              value.startTime === time ? "#FFFFFF" : "#123B5D",
+            fontWeight: 600,
+            cursor: "pointer"
+          }}
+        >
+          {time}
+        </button>
+      ))}
+    </div>
+  )}
+
+  {/* FULL DAY */}
+  {durationKey === "full" && (
     <div
       style={{
         padding: "20px",
         borderRadius: "18px",
         border: "1px solid #E5E7EB",
-        background: "#F8FBFD"
+        background: "#F8FBFD",
+        color: "#123B5D",
+        fontWeight: 600
       }}
     >
-      <div
-        style={{
-          fontWeight: 600,
-          color: "#123B5D"
-        }}
-      >
-        {days} day hire
-      </div>
-
-      <div
-        style={{
-          marginTop: "8px",
-          color: "#64748B"
-        }}
-      >
-        Return date: {returnDate}
-      </div>
+      Full Day Hire · 09:00–17:00
     </div>
   )}
-
-  </>
-)}
+</TimeCard>
 
 </div>
 </div>
