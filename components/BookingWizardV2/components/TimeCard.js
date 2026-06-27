@@ -9,7 +9,7 @@ return (
   <div
     style={{
       width: "100%",
-      padding: "24px",
+      padding: "20px",
       borderRadius: "20px",
       border: "1px solid #E5E7EB",
       background: disabled ? "#F8FAFC" : "#FFFFFF",
@@ -41,19 +41,19 @@ return (
           : value || "Choose a time"}
       </div>
 
-      <div
-        style={{
-          marginTop: "10px",
-          color: "#64748B",
-          fontSize: ".95rem"
-        }}
-      >
-        {disabled
-          ? "Select a date first"
-          : value
-          ? "Tap to change"
-          : "Tap to choose"}
-      </div>
+{(disabled || value) && (
+  <div
+    style={{
+      marginTop: "10px",
+      color: "#64748B",
+      fontSize: ".95rem"
+    }}
+  >
+    {disabled
+      ? "Select a date first"
+      : "Tap to change"}
+  </div>
+)}
     </div>
 
     {expanded && (
