@@ -1,12 +1,12 @@
 export default function TimeCard({
   value,
   disabled,
-  onClick
+  onClick,
+  expanded,
+  children
 }) {
   return (
-    <button
-      disabled={disabled}
-      onClick={onClick}
+    <div
       style={{
         width: "100%",
         padding: "24px",
@@ -18,6 +18,12 @@ export default function TimeCard({
         textAlign: "left",
         opacity: disabled ? .6 : 1,
         transition: "all .2s ease"
+      }}
+    >
+      <div
+        onClick={!disabled ? onClick : undefined}
+        style={{
+        cursor: disabled ? "default" : "pointer"
       }}
     >
       <div
@@ -58,6 +64,17 @@ export default function TimeCard({
           ? "Tap to change"
           : "Tap to choose"}
       </div>
-    </button>
+        {expanded && (
+  <div
+    style={{
+      marginTop: "16px",
+      display: "grid",
+      gap: "12px"
+    }}
+  >
+    {children}
+  </div>
+)}
+    </div>
   );
 }
