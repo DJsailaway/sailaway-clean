@@ -1,4 +1,3 @@
-```jsx
 import { useState } from "react";
 
 const locations = [
@@ -248,5 +247,3 @@ export default function LocationStep({
     </div>
   );
 }
-```
-
