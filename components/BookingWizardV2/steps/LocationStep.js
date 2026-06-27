@@ -12,7 +12,7 @@ const locations = [
   { name: "Lorelei", price: 36 }
 ];
 
-export default function PlaceStep({
+export default function LocationStep({
   value,
   onChange
 }) {
