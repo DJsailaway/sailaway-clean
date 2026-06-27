@@ -18,8 +18,7 @@ export default function DateCard({
       }}
     >
       <div
-      
-      <div
+
         style={{
           marginTop: value ? "6px" : "14px",
           fontSize: value ? "1rem" : "1.35rem",
