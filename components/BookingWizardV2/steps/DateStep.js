@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import DateCard from "../components/DateCard";
 import TimeCard from "../components/TimeCard";
 
@@ -10,8 +10,9 @@ export default function DateStep({
   onChange
 }) {
   const [isMobile, setIsMobile] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const dateInputRef = useRef(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -103,11 +104,17 @@ export default function DateStep({
           })
         : null
     }
-    onClick={() => setShowDatePicker(!showDatePicker)}
+    onClick={() => {
+  if (dateInputRef.current?.showPicker) {
+    dateInputRef.current.showPicker();
+  } else {
+    dateInputRef.current?.focus();
+  }
+}}
   />
 
-  {showDatePicker && (
     <input
+      ref={dateInputRef}
       type="date"
       min={minDate}
       value={value.date || ""}
@@ -116,17 +123,16 @@ export default function DateStep({
           date: e.target.value
         });
 
-        setShowDatePicker(false);
         setShowTimePicker(true);
       }}
       style={{
-        padding: "14px",
-        borderRadius: "14px",
-        border: "1px solid #E5E7EB",
-        fontSize: "1rem"
+        position: "absolute",
+        opacity: 0,
+        width: 1,
+        height: 1,
+        overflow: "hidden"
       }}
     />
-  )}
 
   <TimeCard
     disabled={!value.date}
