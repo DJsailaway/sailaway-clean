@@ -116,7 +116,7 @@ export default function DurationStep({
         <button
           onClick={() =>
             onChange({
-              durationMode: "multi"
+              durationMode: "multiday"
             })
           }
           style={{
@@ -127,13 +127,13 @@ export default function DurationStep({
 
   background:
     value.durationMode === null ||
-    value.durationMode === "multi"
+    value.durationMode === "multiday"
       ? "#123B5D"
       : "#FFFFFF",
 
   color:
     value.durationMode === null ||
-    value.durationMode === "multi"
+    value.durationMode === "multiday"
       ? "#FFFFFF"
       : "#123B5D",
 
@@ -143,7 +143,7 @@ export default function DurationStep({
   cursor: "pointer",
 
   boxShadow:
-    value.durationMode === "multi"
+    value.durationMode === "multiday"
       ? "0 8px 24px rgba(18,59,93,0.18)"
       : "none"
 }}
@@ -200,7 +200,7 @@ export default function DurationStep({
 
       {/* MULTI DAY */}
 
-      {value.durationMode === "multi" && (
+      {value.durationMode === "multiday" && (
         <div
           style={{
             display: "flex",
