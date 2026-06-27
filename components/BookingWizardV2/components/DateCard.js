@@ -18,17 +18,7 @@ export default function DateCard({
       }}
     >
       <div
-        style={{
-          fontSize: "0.85rem",
-          fontWeight: 600,
-          color: "#64748B",
-          textTransform: "uppercase",
-          letterSpacing: ".05em"
-        }}
-      >
-        📅 Date
-      </div>
-
+      
       <div
         style={{
           marginTop: value ? "6px" : "14px",
