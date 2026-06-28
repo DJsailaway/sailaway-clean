@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const locations = [
   { name: "Helford Village", price: 36 },
@@ -19,12 +19,28 @@ export default function LocationStep({
     value.mode || "boatyard"
   );
 
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () =>
+    window.removeEventListener("resize", check);
+}, []);
+
+const [showDeliveryList, setShowDeliveryList] =
+  useState(false);
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "18px"
+        gap: "22px"
       }}
     >
       <h1
@@ -50,7 +66,17 @@ export default function LocationStep({
 
       {/* ST ANTHONY */}
 
-      <button
+    <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "1fr"
+      : "320px 1fr",
+    gap: "18px",
+    alignItems: "start"
+  }}
+>
+    <button
         onClick={() => {
           setMode("boatyard");
 
@@ -104,6 +130,7 @@ export default function LocationStep({
           Included
         </div>
       </button>
+<div>
 
       {/* DELIVERY */}
 
@@ -160,14 +187,26 @@ export default function LocationStep({
         </div>
       </button>
 
-      {mode === "delivery" && (
-        <div
-          style={{
-            display: "grid",
-            gap: "12px",
-            marginTop: "6px"
-          }}
-        >
+{mode === "delivery" && (
+  <div
+    style={{
+      position: "relative"
+    }}
+  >
+    <div
+      style={{
+        display: "grid",
+        gap: "12px",
+        marginTop: "6px",
+        maxHeight: "320px",
+        overflowY: "auto",
+        paddingRight: "6px",
+        border: "1px solid #E5E7EB",
+        borderRadius: "18px",
+        padding: "12px",
+        background: "#FFFFFF"
+      }}
+    >
           {locations.map((location) => (
             <button
               key={location.name}
@@ -243,7 +282,13 @@ export default function LocationStep({
             />
           )}
         </div>
-      )}
+      </div>
+    )}
+
+    </div>
+
+    </div>
+
     </div>
   );
 }
