@@ -108,7 +108,7 @@ const [showDeliveryList, setShowDeliveryList] =
             color: "#123B5D"
           }}
         >
-          📍 Meet us at St Anthony
+          Meet us at St Anthony
         </div>
 
         <div
@@ -164,7 +164,7 @@ const [showDeliveryList, setShowDeliveryList] =
             color: "#123B5D"
           }}
         >
-          🌊 Meet us along the Helford
+          Meet us along the Helford
         </div>
 
         <div
@@ -260,7 +260,7 @@ const [showDeliveryList, setShowDeliveryList] =
               cursor: "pointer"
             }}
           >
-            📍 Somewhere else…
+            Somewhere else…
           </button>
 
           {value.location === "Other" && (
