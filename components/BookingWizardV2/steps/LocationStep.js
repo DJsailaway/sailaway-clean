@@ -61,7 +61,7 @@ export default function LocationStep({
           lineHeight: 1.2
         }}
       >
-        Where would you like to meet us?
+        Where will you start?
       </h1>
 
       {!isMobile && (
@@ -292,7 +292,7 @@ export default function LocationStep({
               padding: "14px",
 
               maxHeight: isMobile
-                ? "55vh"
+                ? "40vh"
                 : "420px",
 
               overflowY: "auto",
