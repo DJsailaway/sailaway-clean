@@ -15,32 +15,48 @@ export default function LocationStep({
   value,
   onChange
 }) {
-  const [mode, setMode] = useState(value.mode || "boatyard");
-  const [isMobile, setIsMobile] = useState(false);
+
+  const [mode, setMode] = useState(
+    value.mode || "boatyard"
+  );
+
+  const [deliveryOpen, setDeliveryOpen] =
+    useState(false);
+
+  const [isMobile, setIsMobile] =
+    useState(false);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+
+    const check = () =>
+      setIsMobile(window.innerWidth < 768);
 
     check();
 
     window.addEventListener("resize", check);
 
-    return () => window.removeEventListener("resize", check);
+    return () =>
+      window.removeEventListener("resize", check);
+
   }, []);
 
   return (
+
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "18px"
+        gap: isMobile ? "18px" : "24px"
       }}
     >
+
       <h1
         style={{
           margin: 0,
           color: "#123B5D",
-          fontSize: isMobile ? "1.25rem" : "1.5rem",
+          fontSize: isMobile
+            ? "1.25rem"
+            : "1.5rem",
           fontWeight: 600,
           lineHeight: 1.2
         }}
@@ -49,51 +65,90 @@ export default function LocationStep({
       </h1>
 
       {!isMobile && (
+
         <p
           style={{
             margin: 0,
             color: "#64748B"
           }}
         >
-          For multi-day hires we can meet you at the boatyard or deliver around the Helford.
+          For multi-day hires we can meet you at the
+          boatyard or deliver to several locations
+          around the Helford.
         </p>
+
       )}
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "320px 1fr",
+
+          gridTemplateColumns: isMobile
+            ? "1fr"
+            : "320px 1fr",
+
           gap: "18px",
+
           alignItems: "start"
         }}
       >
-        {/* LEFT COLUMN */}
+
+        {/* LEFT CARD */}
 
         <button
+
           onClick={() => {
+
             setMode("boatyard");
 
+            setDeliveryOpen(false);
+
             onChange({
+
               mode: "boatyard",
+
               location: "St Anthony",
+
               deliveryCharge: 0
+
             });
+
           }}
+
           style={{
-            padding: "22px",
+
+            padding: deliveryOpen && isMobile
+              ? "18px"
+              : "22px",
+
             borderRadius: "18px",
+
             border:
+
               mode === "boatyard"
+
                 ? "2px solid #123B5D"
+
                 : "1px solid #E5E7EB",
+
             background:
+
               mode === "boatyard"
+
                 ? "#F8FBFD"
+
                 : "#FFFFFF",
+
             textAlign: "left",
-            cursor: "pointer"
+
+            cursor: "pointer",
+
+            transition: "all .25s ease"
+
           }}
+
         >
+
           <div
             style={{
               fontWeight: 600,
@@ -104,140 +159,252 @@ export default function LocationStep({
             Meet us at St Anthony
           </div>
 
-          <div
-            style={{
-              marginTop: "8px",
-              color: "#64748B"
-            }}
-          >
-            Collect your boat from our boatyard.
-          </div>
+          {!(deliveryOpen && isMobile) && (
+            <>
+              <div
+                style={{
+                  marginTop: "8px",
+                  color: "#64748B"
+                }}
+              >
+                Collect your boat from our boatyard.
+              </div>
 
-          <div
-            style={{
-              marginTop: "12px",
-              color: "#15803D",
-              fontWeight: 600
-            }}
-          >
-            Included
-          </div>
+              <div
+                style={{
+                  marginTop: "14px",
+                  fontWeight: 600,
+                  color: "#15803D"
+                }}
+              >
+                Included
+              </div>
+            </>
+          )}
+
         </button>
 
-        {/* RIGHT COLUMN */}
+        {/* RIGHT SIDE */}
 
-        <div
+        <div>
+
+                <button
+          onClick={() => {
+
+            setMode("delivery");
+            setDeliveryOpen(!deliveryOpen);
+
+            onChange({
+              mode: "delivery"
+            });
+
+          }}
+
           style={{
-            position: "relative"
+
+            width: "100%",
+
+            padding: "22px",
+
+            borderRadius: deliveryOpen
+              ? "18px 18px 0 0"
+              : "18px",
+
+            border:
+
+              mode === "delivery"
+
+                ? "2px solid #123B5D"
+
+                : "1px solid #E5E7EB",
+
+            background:
+
+              mode === "delivery"
+
+                ? "#F8FBFD"
+
+                : "#FFFFFF",
+
+            textAlign: "left",
+
+            cursor: "pointer",
+
+            transition: "all .25s ease"
+
           }}
         >
-          <button
-            onClick={() => {
-              setMode("delivery");
 
-              onChange({
-                mode: "delivery"
-              });
-            }}
+          <div
             style={{
-              width: "100%",
-              padding: "22px",
-              borderRadius: "18px",
-              border:
-                mode === "delivery"
-                  ? "2px solid #123B5D"
-                  : "1px solid #E5E7EB",
-              background:
-                mode === "delivery"
-                  ? "#F8FBFD"
-                  : "#FFFFFF",
-              textAlign: "left",
-              cursor: "pointer"
+              fontWeight: 600,
+              fontSize: "1.1rem",
+              color: "#123B5D"
             }}
           >
-            <div
-              style={{
-                fontWeight: 600,
-                fontSize: "1.1rem",
-                color: "#123B5D"
-              }}
-            >
-              Meet us elsewhere on the Helford
-            </div>
+            Meet us elsewhere
+          </div>
+
+          {!deliveryOpen && (
+
+            <>
+              <div
+                style={{
+                  marginTop: "8px",
+                  color: "#64748B"
+                }}
+              >
+                Choose a location around the Helford.
+              </div>
+
+              <div
+                style={{
+                  marginTop: "14px",
+                  fontWeight: 600,
+                  color: "#123B5D"
+                }}
+              >
+                Included / +£36
+              </div>
+            </>
+
+          )}
+
+        </button>
+
+        {deliveryOpen && (
+
+          <div
+            style={{
+
+              border: "2px solid #123B5D",
+
+              borderTop: "none",
+
+              borderRadius: isMobile
+
+                ? "0 0 18px 18px"
+
+                : "0 0 18px 18px",
+
+              background: "#FFFFFF",
+
+              padding: "14px",
+
+              maxHeight: isMobile
+                ? "55vh"
+                : "420px",
+
+              overflowY: "auto",
+
+              boxShadow:
+                "0 12px 30px rgba(0,0,0,.08)"
+
+            }}
+          >
 
             <div
               style={{
-                marginTop: "8px",
-                color: "#64748B"
-              }}
-            >
-              Choose one of our popular delivery locations.
-            </div>
-
-            <div
-              style={{
-                marginTop: "12px",
-                fontWeight: 600,
-                color: "#123B5D"
-              }}
-            >
-              Included to +£36
-            </div>
-          </button>
-
-          {mode === "delivery" && (
-            <div
-              style={{
-                marginTop: "14px",
-                border: "1px solid #E5E7EB",
-                borderRadius: "18px",
-                background: "#FFFFFF",
-                maxHeight: isMobile ? "52vh" : "340px",
-                overflowY: "auto",
-                padding: "12px",
                 display: "grid",
-                gap: "10px",
-                boxShadow: "0 12px 30px rgba(0,0,0,.08)"
+                gap: "10px"
               }}
             >
+
               {locations.map((location) => (
+
                 <button
                   key={location.name}
+
                   onClick={() =>
                     onChange({
+
                       mode: "delivery",
+
                       location: location.name,
-                      deliveryCharge: location.price
+
+                      deliveryCharge:
+                        location.price
+
                     })
                   }
+
                   style={{
+
                     padding: "16px",
+
                     borderRadius: "14px",
+
                     border:
-                      value.location === location.name
+
+                      value.location ===
+                      location.name
+
                         ? "2px solid #123B5D"
+
                         : "1px solid #E5E7EB",
+
                     background:
-                      value.location === location.name
+
+                      value.location ===
+                      location.name
+
                         ? "#F8FBFD"
+
                         : "#FFFFFF",
+
                     display: "flex",
-                    justifyContent: "space-between",
+
+                    justifyContent:
+                      "space-between",
+
                     alignItems: "center",
-                    cursor: "pointer"
+
+                    cursor: "pointer",
+
+                    transition: "all .2s ease"
+
                   }}
                 >
-                  <span>{location.name}</span>
+
+                  <span>
+
+                    {location.name}
+
+                  </span>
 
                   <strong>
+
                     {location.price === 0
+
                       ? "Included"
+
                       : `+£${location.price}`}
+
                   </strong>
+
                 </button>
+
               ))}
 
-              <button
+              <div
+                style={{
+                  height: "1px",
+                  background: "#E5E7EB",
+                  margin: "6px 0"
+                }}
+              />
+
+              <div
+                style={{
+                  fontWeight: 600,
+                  color: "#123B5D",
+                  marginBottom: "4px"
+                }}
+              >
+                Can't see your location?
+              </div>
+
+                          <button
                 onClick={() =>
                   onChange({
                     mode: "delivery",
@@ -247,8 +414,14 @@ export default function LocationStep({
                 style={{
                   padding: "16px",
                   borderRadius: "14px",
-                  border: "1px solid #E5E7EB",
-                  background: "#FFFFFF",
+                  border:
+                    value.location === "Other"
+                      ? "2px solid #123B5D"
+                      : "1px solid #E5E7EB",
+                  background:
+                    value.location === "Other"
+                      ? "#F8FBFD"
+                      : "#FFFFFF",
                   textAlign: "left",
                   cursor: "pointer"
                 }}
@@ -258,7 +431,7 @@ export default function LocationStep({
 
               {value.location === "Other" && (
                 <textarea
-                  placeholder="Where would you like to meet us?"
+                  placeholder="Where would you like us to meet you?"
                   value={value.customLocation || ""}
                   onChange={(e) =>
                     onChange({
@@ -266,18 +439,24 @@ export default function LocationStep({
                     })
                   }
                   style={{
+                    marginTop: "8px",
                     minHeight: "90px",
                     padding: "16px",
                     borderRadius: "14px",
                     border: "1px solid #D1D5DB",
-                    resize: "vertical"
+                    resize: "vertical",
+                    fontFamily: "inherit",
+                    fontSize: "0.95rem"
                   }}
                 />
               )}
+
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
       </div>
     </div>
-  );
+  </div>
+);
 }
