@@ -292,7 +292,7 @@ export default function LocationStep({
               padding: "14px",
 
               maxHeight: isMobile
-                ? "40vh"
+                ? "38vh"
                 : "420px",
 
               overflowY: "auto",
