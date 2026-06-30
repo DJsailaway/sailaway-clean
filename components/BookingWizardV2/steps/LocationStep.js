@@ -140,6 +140,8 @@ const [showDeliveryList, setShowDeliveryList] =
         onClick={() => {
           setMode("delivery");
 
+          setShowDeliveryList(!showDeliveryList);
+
           onChange({
             mode: "delivery"
           });
@@ -169,24 +171,40 @@ const [showDeliveryList, setShowDeliveryList] =
           Meet us along the Helford
         </div>
 
-        <div
-          style={{
-            marginTop: "8px",
-            color: "#64748B"
-          }}
-        >
-          We'll deliver your boat to a convenient location.
-        </div>
+        {!showDeliveryList && (
+  <>
+    <div
+      style={{
+        marginTop: "8px",
+        color: "#64748B"
+      }}
+    >
+      We'll deliver your boat to a convenient location.
+    </div>
 
-        <div
-          style={{
-            marginTop: "14px",
-            fontWeight: 600,
-            color: "#123B5D"
-          }}
-        >
-          From Included / +£36
-        </div>
+    <div
+      style={{
+        marginTop: "14px",
+        fontWeight: 600,
+        color: "#123B5D"
+      }}
+    >
+      From Included / +£36
+    </div>
+  </>
+)}
+{showDeliveryList && (
+  <div
+    style={{
+      marginTop: "20px",
+      maxHeight: isMobile ? "320px" : "420px",
+      overflowY: "auto",
+      display: "grid",
+      gap: "10px",
+      borderTop: "1px solid #E5E7EB",
+      paddingTop: "18px"
+    }}
+  >  
       </button>
 
 {mode === "delivery" && (
