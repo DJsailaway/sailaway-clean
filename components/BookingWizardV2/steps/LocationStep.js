@@ -47,14 +47,15 @@ const [showDeliveryList, setShowDeliveryList] =
         style={{
           margin: 0,
           color: "#123B5D",
-          fontSize: "1.5rem",
+          fontSize: isMobile ? "1.3rem" : "1.5rem",
           fontWeight: 600
         }}
       >
         Where would you like to meet us?
       </h1>
 
-      <p
+      {!isMobile && (
+        <p
         style={{
           margin: 0,
           color: "#64748B"
@@ -62,7 +63,8 @@ const [showDeliveryList, setShowDeliveryList] =
       >
         For multi-day hires we can meet you at the boatyard or deliver to
         several locations around the Helford.
-      </p>
+         </p>
+      )}
 
       {/* ST ANTHONY */}
 
