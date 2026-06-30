@@ -293,7 +293,10 @@ const inputStyle = {
 
   } else {
 
-    setCurrentStep(Math.min(5, currentStep + 1));
+    setCurrentStep((prev) => {
+  const maxStep = requiresDeliveryStep ? 5 : 4;
+  return Math.min(maxStep, prev + 1);
+});
 
   }
 }}
