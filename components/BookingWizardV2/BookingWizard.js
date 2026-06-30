@@ -30,7 +30,24 @@ const [place, setPlace] = useState({
 
 const requiresDeliveryStep =
   durationMode === "multiday" &&
-  days >= 2;  
+  days >= 2;
+
+const [customer, setCustomer] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  notes: ""
+});
+
+const inputStyle = {
+  padding: "16px",
+  borderRadius: "14px",
+  border: "1px solid #E5E7EB",
+  fontSize: "1rem",
+  outline: "none",
+  color: "#123B5D"
+};
+  
   return (
     <>
       <StepHeader
@@ -182,6 +199,79 @@ const requiresDeliveryStep =
       }));
     }}
   />
+)}
+
+{currentStep === 5 && (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "16px"
+    }}
+  >
+    <h1
+      style={{
+        margin: 0,
+        fontSize: "1.4rem",
+        color: "#123B5D",
+        fontWeight: 600
+      }}
+    >
+      Your details
+    </h1>
+
+    <input
+      placeholder="Full name"
+      value={customer.name}
+      onChange={(e) =>
+        setCustomer({
+          ...customer,
+          name: e.target.value
+        })
+      }
+      style={inputStyle}
+    />
+
+    <input
+      placeholder="Email"
+      value={customer.email}
+      onChange={(e) =>
+        setCustomer({
+          ...customer,
+          email: e.target.value
+        })
+      }
+      style={inputStyle}
+    />
+
+    <input
+      placeholder="Phone number"
+      value={customer.phone}
+      onChange={(e) =>
+        setCustomer({
+          ...customer,
+          phone: e.target.value
+        })
+      }
+      style={inputStyle}
+    />
+
+    <textarea
+      placeholder="Anything we should know?"
+      value={customer.notes}
+      onChange={(e) =>
+        setCustomer({
+          ...customer,
+          notes: e.target.value
+        })
+      }
+      style={{
+        ...inputStyle,
+        minHeight: "120px",
+        resize: "vertical"
+      }}
+    />
+  </div>
 )}
     
 </WizardLayout>
