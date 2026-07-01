@@ -55,8 +55,7 @@ export default function ContactStep({
           lineHeight: 1.5
         }}
       >
-        We'll use these details to confirm your booking and contact you if we
-        need to discuss anything before your trip.
+        We use these details to confirm your booking - no spam.
       </p>
 
       <input
@@ -96,7 +95,7 @@ export default function ContactStep({
       />
 
       <textarea
-        placeholder="Anything you'd like us to know? (optional)"
+        placeholder="Anything you'd like us to know?"
         value={value.notes}
         onChange={(e) =>
           onChange({
