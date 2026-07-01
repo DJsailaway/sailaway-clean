@@ -9,6 +9,8 @@ import BoatStep from "./steps/BoatStep";
 import DurationStep from "./steps/DurationStep";
 import DateStep from "./steps/DateStep";
 import LocationStep from "./steps/LocationStep";
+import ContactStep from "./steps/ContactStep";
+
 
 export default function BookingWizard() {
 const [activity, setActivity] = useState(null);
@@ -202,76 +204,15 @@ const inputStyle = {
 )}
 
 {currentStep === 5 && (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "16px"
+  <ContactStep
+    value={customer}
+    onChange={(patch) => {
+      setCustomer((prev) => ({
+        ...prev,
+        ...patch
+      }));
     }}
-  >
-    <h1
-      style={{
-        margin: 0,
-        fontSize: "1.4rem",
-        color: "#123B5D",
-        fontWeight: 600
-      }}
-    >
-      Your details
-    </h1>
-
-    <input
-      placeholder="Full name"
-      value={customer.name}
-      onChange={(e) =>
-        setCustomer({
-          ...customer,
-          name: e.target.value
-        })
-      }
-      style={inputStyle}
-    />
-
-    <input
-      placeholder="Email"
-      value={customer.email}
-      onChange={(e) =>
-        setCustomer({
-          ...customer,
-          email: e.target.value
-        })
-      }
-      style={inputStyle}
-    />
-
-    <input
-      placeholder="Phone number"
-      value={customer.phone}
-      onChange={(e) =>
-        setCustomer({
-          ...customer,
-          phone: e.target.value
-        })
-      }
-      style={inputStyle}
-    />
-
-    <textarea
-      placeholder="Anything we should know?"
-      value={customer.notes}
-      onChange={(e) =>
-        setCustomer({
-          ...customer,
-          notes: e.target.value
-        })
-      }
-      style={{
-        ...inputStyle,
-        minHeight: "120px",
-        resize: "vertical"
-      }}
-    />
-  </div>
+  />
 )}
     
 </WizardLayout>
