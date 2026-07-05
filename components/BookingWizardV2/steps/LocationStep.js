@@ -73,8 +73,7 @@ export default function LocationStep({
           }}
         >
           For multi-day hires we can meet you at the
-          boatyard or deliver to several locations
-          around the Helford.
+          boatyard or deliver around the Helford.
         </p>
 
       )}
@@ -276,37 +275,21 @@ export default function LocationStep({
           )}
 
         </button>
-
+            
         {deliveryOpen && (
 
-          <div
-            style={{
-
-              border: "2px solid #123B5D",
-
-              borderTop: "none",
-
-              borderRadius: isMobile
-
-                ? "0 0 18px 18px"
-
-                : "0 0 18px 18px",
-
-              background: "#FFFFFF",
-
-              padding: "14px",
-
-              maxHeight: isMobile
-                ? "38vh"
-                : "420px",
-
-              overflowY: "auto",
-
-              boxShadow:
-                "0 12px 30px rgba(0,0,0,.08)"
-
-            }}
-          >
+  <div
+    style={{
+      border: "2px solid #123B5D",
+      borderTop: "none",
+      borderRadius: "0 0 18px 18px",
+      background: "#FFFFFF",
+      padding: "14px",
+      maxHeight: isMobile ? "38vh" : "420px",
+      overflowY: "auto",
+      boxShadow: "0 12px 30px rgba(0,0,0,.08)"
+    }}
+  >
 
             <div
               style={{
