@@ -85,7 +85,7 @@ export default function LocationStep({
 
           gridTemplateColumns: isMobile
             ? "1fr"
-            : "320px 1fr",
+            : "minmax(260px,300px) minmax(260px,300px) minmax(320px,1fr)",
 
           gap: "18px",
 
