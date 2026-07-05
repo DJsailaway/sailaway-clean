@@ -186,7 +186,11 @@ export default function LocationStep({
 
         {/* RIGHT SIDE */}
 
-        <div>
+        <div
+          style={{
+             alignSelf: "start"
+          }}
+        >
 
                 <button
           onClick={() => {
@@ -203,6 +207,7 @@ export default function LocationStep({
           style={{
 
             width: "100%",
+            height: "100%",
 
             padding: "22px",
 
