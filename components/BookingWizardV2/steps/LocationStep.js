@@ -86,7 +86,7 @@ export default function LocationStep({
             ? "1fr"
             : "minmax(260px,300px) minmax(260px,300px) minmax(320px,1fr)",
 
-          gap: "18px",
+          gap: isMobile ? "0" : "18px",
 
           alignItems: "start"
         }}
@@ -284,11 +284,13 @@ export default function LocationStep({
   <div
     style={{
       border: "2px solid #123B5D",
-      borderTop: "none",
-      borderRadius: "0 0 18px 18px",
+      borderTop: isMobile ? "none" : "2px solid #123B5D",
+      borderRadius: isMobile
+        ? "0 0 18px 18px"
+        : "18px",
       background: "#FFFFFF",
       padding: "14px",
-      maxHeight: isMobile ? "38vh" : "220px",
+      maxHeight: isMobile ? "38vh" : "240px",
       overflowY: "auto",
       boxShadow: "0 12px 30px rgba(0,0,0,.08)"
     }}
