@@ -206,8 +206,9 @@ export default function LocationStep({
           style={{
 
             width: "100%",
-
             padding: "22px",
+            minHeight: "130px",
+            alignSelf: "start",
 
             borderRadius: deliveryOpen
               ? "18px 18px 0 0"
@@ -284,7 +285,7 @@ export default function LocationStep({
       borderRadius: "0 0 18px 18px",
       background: "#FFFFFF",
       padding: "14px",
-      maxHeight: isMobile ? "38vh" : "300px",
+      maxHeight: isMobile ? "38vh" : "240px",
       overflowY: "auto",
       boxShadow: "0 12px 30px rgba(0,0,0,.08)"
     }}
