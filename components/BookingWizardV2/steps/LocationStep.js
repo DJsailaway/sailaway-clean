@@ -187,10 +187,7 @@ export default function LocationStep({
 
         <div
           style={{
-            alignSelf: "start",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0"
+            display: "contents"
           }}
         >
 
