@@ -290,6 +290,7 @@ export default function LocationStep({
         : "18px",
       background: "#FFFFFF",
       padding: "14px",
+      marginTop: isMobile ? "-1px" : "0",
       maxHeight: isMobile ? "38vh" : "240px",
       overflowY: "auto",
       boxShadow: "0 12px 30px rgba(0,0,0,.08)"
