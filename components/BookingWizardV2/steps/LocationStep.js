@@ -398,52 +398,46 @@ export default function LocationStep({
                 Can't see your location?
               </div>
 
-                          <button
-                onClick={() =>
-                  onChange({
-                    mode: "delivery",
-                    location: "Other"
-                  })
-                }
-                style={{
-                  padding: "16px",
-                  borderRadius: "14px",
-                  border:
-                    value.location === "Other"
-                      ? "2px solid #123B5D"
-                      : "1px solid #E5E7EB",
-                  background:
-                    value.location === "Other"
-                      ? "#F8FBFD"
-                      : "#FFFFFF",
-                  textAlign: "left",
-                  cursor: "pointer"
-                }}
-              >
-                Somewhere else…
-              </button>
-
-              {value.location === "Other" && (
-                <textarea
-                  placeholder="Where would you like us to meet you?"
-                  value={value.customLocation || ""}
-                  onChange={(e) =>
-                    onChange({
-                      customLocation: e.target.value
-                    })
-                  }
-                  style={{
-                    marginTop: "8px",
-                    minHeight: "90px",
-                    padding: "16px",
-                    borderRadius: "14px",
-                    border: "1px solid #D1D5DB",
-                    resize: "vertical",
-                    fontFamily: "inherit",
-                    fontSize: "0.95rem"
-                  }}
-                />
-              )}
+{value.location !== "Other" ? (
+  <button
+    onClick={() =>
+      onChange({
+        mode: "delivery",
+        location: "Other"
+      })
+    }
+    style={{
+      padding: "16px",
+      borderRadius: "14px",
+      border: "1px solid #E5E7EB",
+      background: "#FFFFFF",
+      textAlign: "left",
+      cursor: "pointer"
+    }}
+  >
+    Somewhere else…
+  </button>
+) : (
+  <textarea
+    autoFocus
+    placeholder="Where would you like us to meet you?"
+    value={value.customLocation || ""}
+    onChange={(e) =>
+      onChange({
+        customLocation: e.target.value
+      })
+    }
+    style={{
+      minHeight: "90px",
+      padding: "16px",
+      borderRadius: "14px",
+      border: "1px solid #D1D5DB",
+      resize: "vertical",
+      fontFamily: "inherit",
+      fontSize: "0.95rem"
+    }}
+  />
+)}
 
             </div>
           </div>
