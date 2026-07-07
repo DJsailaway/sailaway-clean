@@ -279,8 +279,6 @@ export default function LocationStep({
 
         </button>
 
-        {!isMobile && <div id="desktop-delivery-panel"></div>}
-
         {deliveryOpen && (
 
   <div
