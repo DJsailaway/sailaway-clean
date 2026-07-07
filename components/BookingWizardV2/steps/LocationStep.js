@@ -187,7 +187,10 @@ export default function LocationStep({
 
         <div
           style={{
-             alignSelf: "start"
+            alignSelf: "start",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0"
           }}
         >
 
@@ -275,7 +278,9 @@ export default function LocationStep({
           )}
 
         </button>
-            
+
+        {!isMobile && <div id="desktop-delivery-panel"></div>}
+
         {deliveryOpen && (
 
   <div
