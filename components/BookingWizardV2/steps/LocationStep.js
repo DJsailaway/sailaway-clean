@@ -252,7 +252,7 @@ export default function LocationStep({
             Meet us elsewhere
           </div>
 
-          {!deliveryOpen && (
+          {(!deliveryOpen || !isMobile) && (
 
             <>
               <div
