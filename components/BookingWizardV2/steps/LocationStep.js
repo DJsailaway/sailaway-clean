@@ -187,9 +187,7 @@ export default function LocationStep({
 
 <div
   style={{
-    display: isMobile ? "contents" : "flex",
-    flexDirection: "column",
-    alignSelf: "start"
+    display: "contents"
   }}
 >
 
