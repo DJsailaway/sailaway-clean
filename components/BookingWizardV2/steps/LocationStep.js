@@ -185,11 +185,13 @@ export default function LocationStep({
 
         {/* RIGHT SIDE */}
 
-        <div
-          style={{
-            display: "contents"
-          }}
-        >
+<div
+  style={{
+    display: isMobile ? "contents" : "flex",
+    flexDirection: "column",
+    alignSelf: "start"
+  }}
+>
 
                 <button
           onClick={() => {
