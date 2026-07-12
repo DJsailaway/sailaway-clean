@@ -37,7 +37,7 @@ const requiresDeliveryStep =
 const progressSteps = [
   {
     key: "boat",
-    label: selectedBoat || "Boat"
+    label: selectedBoat?.shortTitle || "Boat"
   },
   {
     key: "duration",
@@ -180,10 +180,10 @@ const inputStyle = {
     <BoatStep
       activity={activity}
       selectedBoat={selectedBoat}
-      onSelect={(boatId) => {
-        setSelectedBoat(boatId);
+      onSelect={(boat) => {
+        setSelectedBoat(boat);
         setCurrentStep(2);
-}}
+      }}
     />
   )}
 
