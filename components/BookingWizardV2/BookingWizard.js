@@ -79,6 +79,14 @@ const getPlaceLabel = () => {
 
   return place.shortTitle || place.location;
 };
+
+const truncateLabel = (text, maxLength = 15) => {
+  if (!text) return "";
+
+  return text.length > maxLength
+    ? `${text.slice(0, maxLength)}…`
+    : text;
+};
   
   const date = new Date(bookingDate);
 
