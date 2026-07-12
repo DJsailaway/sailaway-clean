@@ -58,6 +58,19 @@ const getDurationLabel = () => {
   return "Length";
 };
 
+const getDateLabel = () => {
+  if (!bookingDate) {
+    return "Date";
+  }
+
+  const date = new Date(bookingDate);
+
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short"
+  });
+};
+
 const progressSteps = [
   {
     key: "boat",
@@ -68,8 +81,8 @@ const progressSteps = [
     label: getDurationLabel()
   },
   {
-    key: "date",
-    label: "Date"
+  key: "date",
+  label: getDateLabel()
   },
   ...(requiresDeliveryStep
     ? [
