@@ -34,6 +34,30 @@ const requiresDeliveryStep =
   durationMode === "multiday" &&
   days >= 2;
 
+const getDurationLabel = () => {
+  if (durationMode === "multiday") {
+    return `${days} Days`;
+  }
+
+  if (durationKey === "1h") {
+    return "1 Hour";
+  }
+
+  if (durationKey === "2h") {
+    return "2 Hours";
+  }
+
+  if (durationKey === "half") {
+    return "Half Day";
+  }
+
+  if (durationKey === "full") {
+    return "Full Day";
+  }
+
+  return "Length";
+};
+
 const progressSteps = [
   {
     key: "boat",
@@ -41,7 +65,7 @@ const progressSteps = [
   },
   {
     key: "duration",
-    label: "Length"
+    label: getDurationLabel()
   },
   {
     key: "date",
