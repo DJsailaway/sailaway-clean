@@ -35,9 +35,9 @@ useEffect(() => {
           paddingBottom: "8px"
         }}
       >
-        {steps.map((step, index) => {
-          const current = index === currentStep;
-          const completed = index < currentStep;
+        {progressSteps.map((step, index) => {
+          const current = index === progressStep;
+          const completed = index < progressStep;
 
           return (
             <div
@@ -72,7 +72,7 @@ useEffect(() => {
                  transition: "all 0.25s ease"
                }}
               >
-                {step}
+                {step.label}
               </div>
 
               <div
