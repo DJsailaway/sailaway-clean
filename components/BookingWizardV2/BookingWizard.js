@@ -79,19 +79,10 @@ const inputStyle = {
   
   return (
     <>
-      <StepHeader
-        title="Book Your Boat"
-        currentStep={currentStep}
-        steps={[
-          "Activity",
-          "Boat",
-          "Length",
-          "Date",
-          ...(requiresDeliveryStep ? ["Place"] : []),
-          "You"
-        ]}
-        isMobile={false}
-      />
+<StepHeader
+  currentStep={currentStep}
+  steps={progressSteps.map(step => step.label)}
+/>
 
       <WizardLayout
   summary={<PriceSummary />}
