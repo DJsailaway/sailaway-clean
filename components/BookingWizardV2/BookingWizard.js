@@ -19,6 +19,7 @@ const [currentStep, setCurrentStep] = useState(0);
 
 const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
+const [hasSelectedDuration, setHasSelectedDuration] = useState(false);
 const [days, setDays] = useState(7);
 
 const [bookingDate, setBookingDate] = useState("");
@@ -35,6 +36,9 @@ const requiresDeliveryStep =
   days >= 2;
 
 const getDurationLabel = () => {
+  if (!hasSelectedDuration) {
+  return "Length";
+}
   if (durationMode === "multiday") {
     return `${days} Days`;
   }
@@ -232,19 +236,22 @@ const inputStyle = {
     durationKey,
     days
   }}
-  onChange={(patch) => {
-    if (patch.durationMode !== undefined) {
-      setDurationMode(patch.durationMode);
-    }
+onChange={(patch) => {
+  if (patch.durationMode !== undefined) {
+    setDurationMode(patch.durationMode);
+    setHasSelectedDuration(true);
+  }
 
-    if (patch.durationKey !== undefined) {
-      setDurationKey(patch.durationKey);
-    }
+  if (patch.durationKey !== undefined) {
+    setDurationKey(patch.durationKey);
+    setHasSelectedDuration(true);
+  }
 
-    if (patch.days !== undefined) {
-      setDays(patch.days);
-    }
-  }}
+  if (patch.days !== undefined) {
+    setDays(patch.days);
+    setHasSelectedDuration(true);
+  }
+}}
 />
 )}
 
