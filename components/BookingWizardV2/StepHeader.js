@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { colours, spacing } from "./styles";
 
 export default function StepHeader({
-  currentStep = 0,
-  steps = []
+  progressStep = 0,
+  progressSteps = [],
+  onStepClick
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -40,13 +41,19 @@ useEffect(() => {
 
           return (
             <div
-              key={step}
+             key={step.key}
+             onClick={() => {
+               if (completed && onStepClick) {
+                 onStepClick(step.key);
+               }
+             }}
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 flex: isMobile ? "0 0 auto" : 1,
                 minWidth: isMobile ? "56px" : 0,
+                cursor: completed ? "pointer" : "default",
                 padding: isMobile ? "0 4px" : 0
               }}
             >
