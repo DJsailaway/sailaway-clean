@@ -28,6 +28,7 @@ const [startTime, setStartTime] = useState("");
 const [place, setPlace] = useState({
   mode: "boatyard",
   location: "St Anthony",
+  shortTitle: "St Anthony",
   deliveryCharge: 0
 });
 
