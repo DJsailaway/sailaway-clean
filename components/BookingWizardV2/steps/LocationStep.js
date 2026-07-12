@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const locations = [
   { 
     name: "Helford Village",
-    shortTitle: "Hlfrd Vlg",
+    shortTitle: "Helford Village",
     price: 36
   },
   { 
@@ -18,12 +18,12 @@ const locations = [
   },
   { 
     name: "Helford Passage",
-    shortTitle: "Hlfrd Psg",
+    shortTitle: "Helford Passage",
     price: 36
   },
   { 
     name: "Port Navas",
-    shortTitle: "Pt Navas",
+    shortTitle: "Port Navas",
     price: 36
   },
   { 
