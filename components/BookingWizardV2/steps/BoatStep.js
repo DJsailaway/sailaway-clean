@@ -68,8 +68,8 @@ export default function BoatStep({
             capacity={boat.capacity}
             image={boat.image}
             compact={isMobile}
-            selected={selectedBoat === boat.id}
-            onClick={() => onSelect(boat.id)}
+            selected={selectedBoat?.id === boat.id}
+            onClick={() => onSelect(boat)}
             variant={activity}
           />
         ))}
