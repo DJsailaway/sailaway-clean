@@ -91,7 +91,7 @@ const inputStyle = {
   return (
     <>
 <StepHeader
-  currentStep={currentStep}
+  currentStep={progressStep}
   steps={progressSteps.map(step => step.label)}
 />
 
