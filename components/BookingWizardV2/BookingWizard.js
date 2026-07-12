@@ -167,6 +167,27 @@ const inputStyle = {
 <StepHeader
   currentStep={progressStep}
   steps={progressSteps.map(step => step.label)}
+  onStepClick={(step) => {
+  if (step === "boat") {
+    setCurrentStep(0);
+  }
+
+  if (step === "duration") {
+    setCurrentStep(2);
+  }
+
+  if (step === "date") {
+    setCurrentStep(3);
+  }
+
+  if (step === "location") {
+    setCurrentStep(4);
+  }
+
+  if (step === "details") {
+    setCurrentStep(5);
+  }
+}}
 />
 
       <WizardLayout
