@@ -74,10 +74,10 @@ const getPlaceLabel = () => {
   }
 
   if (place.location === "Other") {
-    return place.customLocation || "Place";
+    return truncateLabel(place.customLocation || "Place");
   }
 
-  return place.shortTitle || place.location;
+  return truncateLabel(place.shortTitle || place.location);
 };
 
 const truncateLabel = (text, maxLength = 15) => {
