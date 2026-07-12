@@ -1,14 +1,46 @@
 import { useState, useEffect } from "react";
 
 const locations = [
-  { name: "Helford Village", price: 36 },
-  { name: "Gillan", price: 0 },
-  { name: "Durgan", price: 36 },
-  { name: "Helford Passage", price: 36 },
-  { name: "Port Navas", price: 36 },
-  { name: "Flushing", price: 0 },
-  { name: "Calamansac", price: 36 },
-  { name: "Lorelei", price: 36 }
+  { 
+    name: "Helford Village",
+    shortTitle: "Hlfrd Vlg",
+    price: 36
+  },
+  { 
+    name: "Gillan",
+    shortTitle: "Gillan",
+    price: 0
+  },
+  { 
+    name: "Durgan",
+    shortTitle: "Durgan",
+    price: 36
+  },
+  { 
+    name: "Helford Passage",
+    shortTitle: "Hlfrd Psg",
+    price: 36
+  },
+  { 
+    name: "Port Navas",
+    shortTitle: "Pt Navas",
+    price: 36
+  },
+  { 
+    name: "Flushing",
+    shortTitle: "Flushing",
+    price: 0
+  },
+  { 
+    name: "Calamansac",
+    shortTitle: "Calamansac",
+    price: 36
+  },
+  { 
+    name: "Lorelei",
+    shortTitle: "Lorelei",
+    price: 36
+  }
 ];
 
 export default function LocationStep({
