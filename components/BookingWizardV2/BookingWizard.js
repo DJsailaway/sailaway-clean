@@ -34,6 +34,33 @@ const requiresDeliveryStep =
   durationMode === "multiday" &&
   days >= 2;
 
+const progressSteps = [
+  {
+    key: "boat",
+    label: selectedBoat || "Boat"
+  },
+  {
+    key: "duration",
+    label: "Length"
+  },
+  {
+    key: "date",
+    label: "Date"
+  },
+  ...(requiresDeliveryStep
+    ? [
+        {
+          key: "location",
+          label: "Place"
+        }
+      ]
+    : []),
+  {
+    key: "details",
+    label: "You"
+  }
+];
+
 const [customer, setCustomer] = useState({
   name: "",
   email: "",
