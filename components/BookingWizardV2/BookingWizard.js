@@ -38,8 +38,9 @@ const requiresDeliveryStep =
 
 const getDurationLabel = () => {
   if (!hasSelectedDuration) {
-  return "Length";
-}
+    return "Length";
+  }
+
   if (durationMode === "multiday") {
     return `${days} Days`;
   }
@@ -63,10 +64,26 @@ const getDurationLabel = () => {
   return "Length";
 };
 
+const truncateLabel = (text, maxLength = 15) => {
+  if (!text) return "";
+
+  return text.length > maxLength
+    ? `${text.slice(0, maxLength)}…`
+    : text;
+};
+
 const getDateLabel = () => {
   if (!bookingDate) {
     return "Date";
   }
+
+  const date = new Date(bookingDate);
+
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short"
+  });
+};
 
 const getPlaceLabel = () => {
   if (!place.location) {
@@ -78,22 +95,6 @@ const getPlaceLabel = () => {
   }
 
   return truncateLabel(place.shortTitle || place.location);
-};
-
-const truncateLabel = (text, maxLength = 15) => {
-  if (!text) return "";
-
-  return text.length > maxLength
-    ? `${text.slice(0, maxLength)}…`
-    : text;
-};
-  
-  const date = new Date(bookingDate);
-
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short"
-  });
 };
 
 const progressSteps = [
