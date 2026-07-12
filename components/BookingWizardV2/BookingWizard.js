@@ -93,7 +93,7 @@ const progressSteps = [
     ? [
         {
           key: "location",
-          label: "Place"
+          label: place.shortTitle || "Place"
         }
       ]
     : []),
