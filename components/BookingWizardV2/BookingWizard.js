@@ -20,6 +20,7 @@ const [currentStep, setCurrentStep] = useState(0);
 const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
 const [hasSelectedDuration, setHasSelectedDuration] = useState(false);
+const [hasSelectedPlace, setHasSelectedPlace] = useState(false);
 const [days, setDays] = useState(7);
 
 const [bookingDate, setBookingDate] = useState("");
@@ -86,6 +87,9 @@ const getDateLabel = () => {
 };
 
 const getPlaceLabel = () => {
+  if (!hasSelectedPlace) {
+  return "Place";
+}
   if (!place.location) {
     return "Place";
   }
@@ -323,6 +327,7 @@ onChange={(patch) => {
   <LocationStep
     value={place}
     onChange={(patch) => {
+      setHasSelectedPlace(true);
       setPlace((prev) => ({
         ...prev,
         ...patch
