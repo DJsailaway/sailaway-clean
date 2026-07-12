@@ -61,6 +61,17 @@ const progressSteps = [
   }
 ];
 
+const progressStep =
+  currentStep <= 1
+    ? 0
+    : currentStep === 2
+    ? 1
+    : currentStep === 3
+    ? 2
+    : currentStep === 4
+    ? 3
+    : 4;
+  
 const [customer, setCustomer] = useState({
   name: "",
   email: "",
