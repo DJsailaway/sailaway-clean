@@ -61,16 +61,28 @@ const progressSteps = [
   }
 ];
 
-const progressStep =
-  currentStep <= 1
-    ? 0
-    : currentStep === 2
-    ? 1
-    : currentStep === 3
-    ? 2
-    : currentStep === 4
-    ? 3
-    : 4;
+let progressStep;
+
+if (currentStep <= 1) {
+  // Activity + Boat screens = Boat decision
+  progressStep = 0;
+
+} else if (currentStep === 2) {
+  // Length
+  progressStep = 1;
+
+} else if (currentStep === 3) {
+  // Date
+  progressStep = 2;
+
+} else if (requiresDeliveryStep) {
+  // Multi-day journey
+  progressStep = currentStep === 4 ? 3 : 4;
+
+} else {
+  // Hourly journey (Place skipped)
+  progressStep = 3;
+}
   
 const [customer, setCustomer] = useState({
   name: "",
