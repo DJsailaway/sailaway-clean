@@ -342,16 +342,12 @@ export default function LocationStep({
                   key={location.name}
 
                   onClick={() =>
-                    onChange({
-
-                      mode: "delivery",
-
-                      location: location.name,
-
-                      deliveryCharge:
-                        location.price
-
-                    })
+                   onChange({
+                    mode: "delivery",
+                    location: location.name,
+                    shortTitle: location.shortTitle,
+                    deliveryCharge: location.price
+                  })
                   }
 
                   style={{
