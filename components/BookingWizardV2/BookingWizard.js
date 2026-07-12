@@ -68,6 +68,18 @@ const getDateLabel = () => {
     return "Date";
   }
 
+const getPlaceLabel = () => {
+  if (!place.location) {
+    return "Place";
+  }
+
+  if (place.location === "Other") {
+    return place.customLocation || "Place";
+  }
+
+  return place.shortTitle || place.location;
+};
+  
   const date = new Date(bookingDate);
 
   return date.toLocaleDateString("en-GB", {
@@ -93,7 +105,7 @@ const progressSteps = [
     ? [
         {
           key: "location",
-          label: place.shortTitle || "Place"
+          label: getPlaceLabel()
         }
       ]
     : []),
