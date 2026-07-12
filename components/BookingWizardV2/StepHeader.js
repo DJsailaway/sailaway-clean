@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { colours, spacing } from "./styles";
 
 export default function StepHeader({
-  currentStep = 0,
-  steps = []
+  progressStep = 0,
+  progressSteps = []
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -34,13 +34,13 @@ useEffect(() => {
           paddingBottom: "8px"
         }}
       >
-        {steps.map((step, index) => {
-          const current = index === currentStep;
-          const completed = index < currentStep;
+        {progressSteps.map((step, index) => {
+          const current = index === progressStep;
+          const completed = index < progressStep;
 
           return (
             <div
-              key={step}
+              key={step.key}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -65,7 +65,7 @@ useEffect(() => {
                  transition: "all 0.25s ease"
                }}
               >
-                {step}
+                {step.label}
               </div>
 
               <div
