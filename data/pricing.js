@@ -1,61 +1,111 @@
 export const PRICING = {
   "Plymouth Pilot (8 people)": {
     hourly: {
-      1: 120,
-      2: 200,
-      3: 270,
-      4: 320,
+      1: 88,
+      2: 127,
+      3: 151,
+      4: 175,
     },
-    daily: 600,
+    daily: 228,
   },
 
   "Bass Boat (5 people)": {
     hourly: {
-      1: 100,
-      2: 180,
-      3: 240,
-      4: 300,
+      1: 66,
+      2: 86,
+      3: 107,
+      4: 128,
     },
-    daily: 500,
+    daily: 166,
   },
 
   "Drascombe Longboat (6 people)": {
     hourly: {
-      1: 90,
-      2: 160,
-      3: 220,
-      4: 280,
+      1: 88,
+      2: 127,
+      3: 151,
+      4: 175,
     },
-    daily: 450,
+    daily: 228,
   },
 
   "Wayfarer Dinghy (4 people)": {
     hourly: {
-      1: 80,
-      2: 140,
-      3: 200,
-      4: 260,
+      1: 66,
+      2: 86,
+      3: 107,
+      4: 128,
     },
-    daily: 400,
+    daily: 166,
   },
 
-  "Kayak (2 people)": {
-    hourly: {
-      1: 20,
-      2: 35,
-      3: 50,
-      4: 60,
+    "Topaz": {
+      hourly: {
+        1: 31,
+        2: 54,
+        3: 62,
+        4: 69,
+      },
+      daily: 95,
     },
-    daily: 90,
+  
+    "Pico": {
+      hourly: {
+        1: 31,
+        2: 54,
+        3: 62,
+        4: 69,
+      },
+      daily: 95,
+    },
+  
+    "Topper": {
+      hourly: {
+        1: 31,
+        2: 54,
+        3: 62,
+        4: 69,
+      },
+      daily: 95,
+    },
+  
+  "Anarth": {
+    hourly: {
+      1: 26,
+      2: 38,
+      3: 47,
+      4: 55,
+    },
+    daily: 73,
+  },
+  
+  "Double Kayak": {
+    hourly: {
+      1: 25,
+      2: 37,
+      3: 45,
+      4: 53,
+    },
+    daily: 69,
+  },
+
+    "Single Kayak": {
+    hourly: {
+      1: 23,
+      2: 30,
+      3: 38,
+      4: 46,
+    },
+    daily: 60,
   },
 
   "SUP (1 person)": {
     hourly: {
-      1: 20,
-      2: 35,
-      3: 50,
-      4: 60,
+      1: 23,
+      2: 30,
+      3: 38,
+      4: 46,
     },
-    daily: 90,
+    daily: 60,
   },
 };
