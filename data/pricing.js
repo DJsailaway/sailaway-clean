@@ -21,7 +21,7 @@ export const PRICING = {
 
   "bass-boat": {
     hourly: {
-    "1h:" 66,
+    "1h": 66,
     "2h": 86,
     half: 128,
     full: 166
@@ -60,7 +60,7 @@ export const PRICING = {
 
   "wayfarer": {
     hourly: {
-    "1h:" 66,
+    "1h": 66,
     "2h": 86,
     half: 128,
     full: 166
