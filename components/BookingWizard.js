@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { PRICING } from "../lib/pricing";
+import { calculatePrice } from "../lib/pricing";
 
 // ---------------- INTENT → CATEGORY ----------------
 const INTENT_MAP = {
