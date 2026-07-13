@@ -137,8 +137,8 @@ export const PRICING = {
   
   "anarth": {
     hourly: {
-    "1": 26,
-    "2": 38,
+    "1h": 26,
+    "2h": 38,
     half: 55,
     full: 73,
   },
