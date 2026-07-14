@@ -2,8 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
-import BookingWizard from "../components/BookingWizard";
-
+import BookingWizard from "../components/BookingWizardV2/BookingWizard";
 export default function BookingPage() {
 
 const [activeImage, setActiveImage] = useState(null);
