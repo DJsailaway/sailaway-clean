@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { PRICING } from "../data/pricing";
 import { calculatePrice } from "../lib/pricing";
 
 // ---------------- INTENT → CATEGORY ----------------
