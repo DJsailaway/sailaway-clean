@@ -210,4 +210,13 @@ export const PRICING = {
 
   extraDay: 30  
   },
+  locations: {
+  "St Anthony": 0,
+  "Helford Village": 36,
+  "Helford Passage": 36,
+  "Durgan": 36,
+  "Port Navas": 48,
+  "Gillan Creek": 48,
+  "Flushing": 60
+}
 };
