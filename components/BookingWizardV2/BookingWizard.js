@@ -10,7 +10,7 @@ import DurationStep from "./steps/DurationStep";
 import DateStep from "./steps/DateStep";
 import LocationStep from "./steps/LocationStep";
 import ContactStep from "./steps/ContactStep";
-
+import { calculatePrice } from "../lib/pricing";
 
 export default function BookingWizard() {
 const [activity, setActivity] = useState(null);
