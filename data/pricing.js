@@ -215,8 +215,8 @@ export const PRICING = {
   "Helford Village": 36,
   "Helford Passage": 36,
   "Durgan": 36,
-  "Port Navas": 48,
-  "Gillan Creek": 48,
-  "Flushing": 60
+  "Port Navas": 36,
+  "Gillan": 0,
+  "Flushing": 0
 }
 };
