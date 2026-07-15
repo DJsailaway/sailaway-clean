@@ -167,6 +167,18 @@ const inputStyle = {
   color: "#123B5D"
 };
 
+console.log({
+  title: selectedBoat?.title,
+  capacity: selectedBoat?.capacity,
+  boatName: selectedBoat
+    ? `${selectedBoat.title} (${selectedBoat.capacity})`
+    : "",
+  durationMode,
+  durationKey,
+  days,
+  location: place.location
+});
+  
 const price = calculatePrice({
   boatName: selectedBoat
     ? `${selectedBoat.title} (${selectedBoat.capacity})`
