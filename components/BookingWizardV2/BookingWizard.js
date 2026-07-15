@@ -168,7 +168,9 @@ const inputStyle = {
 };
 
 const price = calculatePrice({
-  boatId: selectedBoat?.id,
+  boatName: selectedBoat
+    ? `${selectedBoat.title} (${selectedBoat.capacity})`
+    : "",
   durationType: durationMode,
   durationKey,
   days,
