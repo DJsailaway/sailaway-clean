@@ -384,7 +384,11 @@ onChange={(patch) => {
 
   }
 }}
-       total="£0"
+         total={
+          price.hasPrice
+            ? `£${price.total}`
+            : "£0"
+        }
      />
     </>
   );
