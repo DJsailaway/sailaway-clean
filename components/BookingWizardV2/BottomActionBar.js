@@ -6,7 +6,11 @@ export default function BottomActionBar({
   onNext,
   backLabel = "Back",
   nextLabel = "Next",
-  total = "£0",
+  total={
+  price.hasPrice
+    ? `£${price.total}`
+    : "£0"
+}
   showTotal = true,
   disableNext = false
 }) {
