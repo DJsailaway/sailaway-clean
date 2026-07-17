@@ -178,7 +178,12 @@ const price = calculatePrice({
 console.log(price);
   
   return (
-    <>
+  <div
+    id="booking-wizard"
+    style={{
+      scrollMarginTop: "90px"
+    }}
+  >
 <StepHeader
   progressStep={progressStep}
   progressSteps={progressSteps}
@@ -390,6 +395,6 @@ onChange={(patch) => {
             : "£0"
         }
      />
-    </>
+    </div>
   );
 }
