@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-export default function Navbar() {
+export default function Navbar({ hide = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isMobile, setIsMobile] = useState(undefined);
@@ -95,7 +95,10 @@ useEffect(() => {
         background: "rgba(255,255,255,0.94)",
         borderBottom: "1px solid rgba(0,0,0,0.05)",
         zIndex: 1000,
-      }}
+
+  transform: hide ? "translateY(-100%)" : "translateY(0)",
+  transition: "transform 250ms ease",
+}}
     >
       <div
         style={{
