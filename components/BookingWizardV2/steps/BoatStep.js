@@ -20,9 +20,6 @@ export default function BoatStep({
       window.removeEventListener("resize", check);
   }, []);
 
-console.log("BoatStep activity:", activity);
-console.log("Boats:", boats);
-  
   const filteredBoats = boats.filter(
     (boat) => boat.activity === activity
   );
