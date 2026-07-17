@@ -174,6 +174,8 @@ const price = calculatePrice({
   days,
   location: place.location
 });
+
+console.log(price);
   
   return (
     <>
