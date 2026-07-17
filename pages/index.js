@@ -37,7 +37,7 @@ const isMobile =
       </Head>
 
       {/* NAVBAR (ONLY ONE INSTANCE) */}
-      <Navbar />
+      <Navbar hide={bookingMode} />
 
       {/* 🌊 HERO (RESTORED) */}
       <SplitOverlayHero
