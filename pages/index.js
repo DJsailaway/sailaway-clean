@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SplitOverlayHero from "../components/SplitOverlayHero";
@@ -6,6 +6,26 @@ import BookingWizard from "../components/BookingWizardV2/BookingWizard";
 export default function BookingPage() {
 
 const [activeImage, setActiveImage] = useState(null);
+
+const wizardRef = useRef(null);
+const [bookingMode, setBookingMode] = useState(false);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      setBookingMode(entry.isIntersecting);
+    },
+    {
+      threshold: 0.4
+    }
+  );
+
+  if (wizardRef.current) {
+    observer.observe(wizardRef.current);
+  }
+
+  return () => observer.disconnect();
+}, []);
 
 const isMobile =
   typeof window !== "undefined" && window.innerWidth < 768;
@@ -133,9 +153,13 @@ const isMobile =
       </div>
 
       {/* 🚢 BOOKING WIZARD (NOW RESTORED) */}
-      <div style={{ paddingBottom: "80px" }}>
-        <BookingWizard />
-      </div>
+      <div
+        id="booking-wizard"
+        ref={wizardRef}
+        style={{ paddingBottom: "80px" }}
+      >
+  <BookingWizard />
+</div>
 
       {/* 🌊 CTA NAV BUTTONS */}
       <div
