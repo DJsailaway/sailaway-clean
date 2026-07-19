@@ -33,3 +33,4 @@ export default function WizardLayout({
     {footer}
   </div>
 );
+}
