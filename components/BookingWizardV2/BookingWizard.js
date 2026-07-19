@@ -210,8 +210,39 @@ console.log(price);
   }}
 />
 
-      <WizardLayout
-  summary={<PriceSummary />}
+<WizardLayout
+  footer={
+    <BottomActionBar
+      onBack={() =>
+        setCurrentStep(Math.max(0, currentStep - 1))
+      }
+      onNext={() => {
+        if (currentStep === 3 && !requiresDeliveryStep) {
+
+          setPlace({
+            mode: "boatyard",
+            location: "St Anthony",
+            deliveryCharge: 0
+          });
+
+          setCurrentStep(5);
+
+        } else {
+
+          setCurrentStep((prev) => {
+            const maxStep = requiresDeliveryStep ? 5 : 4;
+            return Math.min(maxStep, prev + 1);
+          });
+
+        }
+      }}
+      total={
+        price.hasPrice
+          ? `£${price.total}`
+          : "£0"
+      }
+    />
+  }
 >
   {currentStep === 0 && (
     <div
@@ -365,36 +396,6 @@ onChange={(patch) => {
     
 </WizardLayout>
 
-      <BottomActionBar
-        onBack={() =>
-        setCurrentStep(Math.max(0, currentStep - 1))
-       }
-       onNext={() => {
-  if (currentStep === 3 && !requiresDeliveryStep) {
-
-    setPlace({
-      mode: "boatyard",
-      location: "St Anthony",
-      deliveryCharge: 0
-    });
-
-    setCurrentStep(5);
-
-  } else {
-
-    setCurrentStep((prev) => {
-  const maxStep = requiresDeliveryStep ? 5 : 4;
-  return Math.min(maxStep, prev + 1);
-});
-
-  }
-}}
-         total={
-          price.hasPrice
-            ? `£${price.total}`
-            : "£0"
-        }
-     />
     </div>
   );
 }
