@@ -177,13 +177,19 @@ const price = calculatePrice({
 
 console.log(price);
   
-  return (
+return (
   <div
     id="booking-wizard"
     style={{
-      scrollMarginTop: "90px"
+      scrollMarginTop: "90px",
+
+      minHeight: "100vh",
+
+      display: "flex",
+      flexDirection: "column"
     }}
   >
+    
 <StepHeader
   progressStep={progressStep}
   progressSteps={progressSteps}
