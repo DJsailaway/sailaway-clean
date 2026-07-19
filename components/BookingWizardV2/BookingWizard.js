@@ -181,13 +181,15 @@ return (
   <div
     id="booking-wizard"
     style={{
-      scrollMarginTop: "90px",
+  scrollMarginTop: "90px",
 
-      minHeight: "100vh",
+  height: "100vh",
 
-      display: "flex",
-      flexDirection: "column"
-    }}
+  display: "flex",
+  flexDirection: "column",
+
+  overflow: "hidden"
+}}
   >
     
 <StepHeader
