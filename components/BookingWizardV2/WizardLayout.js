@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function WizardLayout({
   children,
   footer
-})
+}) {
   const [showSummary, setShowSummary] = useState(false);
 
   useEffect(() => {
