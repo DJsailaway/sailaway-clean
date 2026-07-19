@@ -6,6 +6,7 @@ export default function WizardLayout({
     <div
       style={{
         flex: 1,
+        minHeight: 0,
 
         width: "100%",
         maxWidth: "960px",
