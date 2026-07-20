@@ -5,27 +5,31 @@ export default function WizardLayout({
 }) {
 return (
   <div
-    style={{
-      height: "100%",
-      width: "100%",
-      maxWidth: "960px",
-      margin: "0 auto",
+style={{
+  height: "100%",
+  width: "100%",
+  maxWidth: "960px",
+  margin: "0 auto",
 
-      display: "grid",
-      gridTemplateRows: "auto 1fr auto",
+  display: "flex",
+  flexDirection: "column",
 
-      minHeight: 0
-    }}
+  minHeight: 0,
+
+  border: "2px solid red"
+}}
   >
     {header}
 
     <div
-      style={{
-        minHeight: 0
-      }}
-    >
-      {children}
-    </div>
+  style={{
+    flex: 1,
+    minHeight: 0,
+    border: "2px solid blue"
+  }}
+>
+  {children}
+</div>
 
     {footer}
   </div>
