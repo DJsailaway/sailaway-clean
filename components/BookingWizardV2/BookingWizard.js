@@ -26,6 +26,20 @@ const [days, setDays] = useState(7);
 const [bookingDate, setBookingDate] = useState("");
 const [startTime, setStartTime] = useState("");
 
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
+
 const [place, setPlace] = useState({
   mode: "boatyard",
   location: "St Anthony",
@@ -183,7 +197,9 @@ return (
     style={{
   scrollMarginTop: "90px",
 
-  height: "calc(100vh - 80px)",
+  height: isMobile
+    ? "calc(100vh - 60px)"
+    : "calc(100vh - 140px)",
 
   display: "flex",
   flexDirection: "column",
