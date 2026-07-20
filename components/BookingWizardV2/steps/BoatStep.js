@@ -30,6 +30,7 @@ export default function BoatStep({
         display: "flex",
         flexDirection: "column",
         gap: isMobile ? "8px" : "20px",
+        height: "100%",
       }}
     >
       <div>
