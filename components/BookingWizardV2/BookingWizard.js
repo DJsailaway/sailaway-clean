@@ -183,7 +183,7 @@ return (
     style={{
   scrollMarginTop: "90px",
 
-  height: "100vh",
+  height: "calc(100vh - 80px)",
 
   display: "flex",
   flexDirection: "column",
