@@ -191,34 +191,22 @@ return (
   overflow: "hidden"
 }}
   >
-    
-<StepHeader
-  progressStep={progressStep}
-  progressSteps={progressSteps}
-  onStepClick={(step) => {
-    if (step === "boat") {
-      setCurrentStep(0);
-    }
-
-    if (step === "duration") {
-      setCurrentStep(2);
-    }
-
-    if (step === "date") {
-      setCurrentStep(3);
-    }
-
-    if (step === "location") {
-      setCurrentStep(4);
-    }
-
-    if (step === "details") {
-      setCurrentStep(5);
-    }
-  }}
-/>
 
 <WizardLayout
+  header={
+    <StepHeader
+      progressStep={progressStep}
+      progressSteps={progressSteps}
+      onStepClick={(step) => {
+        if (step === "boat") setCurrentStep(0);
+        if (step === "duration") setCurrentStep(2);
+        if (step === "date") setCurrentStep(3);
+        if (step === "location") setCurrentStep(4);
+        if (step === "details") setCurrentStep(5);
+      }}
+    />
+  }
+
   footer={
     <BottomActionBar
       onBack={() =>
