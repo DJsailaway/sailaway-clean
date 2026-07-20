@@ -18,7 +18,9 @@ export default function WizardLayout({
     >
       <div
         style={{
-          flex: 1
+          flex: 1,
+          minHeight: 0,
+          overflow: "hidden"
         }}
       >
         {children}
