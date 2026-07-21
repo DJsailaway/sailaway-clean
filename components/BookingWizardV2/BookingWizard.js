@@ -232,6 +232,12 @@ return (
         setCurrentStep(Math.max(0, currentStep - 1))
       }
       onNext={() => {
+
+      if (currentStep === 5) {
+        setMode("review");
+        return;
+      }
+        
         if (currentStep === 3 && !requiresDeliveryStep) {
 
           setPlace({
