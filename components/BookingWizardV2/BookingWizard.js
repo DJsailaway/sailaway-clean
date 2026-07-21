@@ -11,6 +11,7 @@ import DateStep from "./steps/DateStep";
 import LocationStep from "./steps/LocationStep";
 import ContactStep from "./steps/ContactStep";
 import { calculatePrice } from "../../lib/pricing";
+import ReviewBooking from "./ReviewBooking";
 
 export default function BookingWizard() {
 const [activity, setActivity] = useState(null);
@@ -258,6 +259,11 @@ return (
     />
   }
 >
+{mode === "review" ? (
+  <ReviewBooking />
+) : (
+  <>
+
   {currentStep === 0 && (
     <div
       style={{
@@ -407,7 +413,9 @@ onChange={(patch) => {
     }}
   />
 )}
-    
+  </>
+)}
+
 </WizardLayout>
 
     </div>
