@@ -17,6 +17,8 @@ const [activity, setActivity] = useState(null);
 const [selectedBoat, setSelectedBoat] = useState(null);
 const [currentStep, setCurrentStep] = useState(0);
 
+const [mode, setMode] = useState("wizard");
+
 const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
 const [hasSelectedDuration, setHasSelectedDuration] = useState(false);
