@@ -13,22 +13,7 @@ export default function ReviewBooking({
           overflow: "auto"
         }}
       >
-        {JSON.stringify(
-          {
-            activity,
-            selectedBoat,
-            durationMode,
-            durationKey,
-            days,
-            bookingDate,
-            startTime,
-            place,
-            customer,
-            price
-          },
-          null,
-          2
-        )}
+        {JSON.stringify(reviewData, null, 2)}
       </pre>
     </div>
   );
