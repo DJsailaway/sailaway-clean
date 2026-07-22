@@ -193,6 +193,23 @@ const price = calculatePrice({
 });
 
 console.log(price);
+
+const reviewData = {
+  boat: selectedBoat?.title || "",
+  duration: getDurationLabel(),
+  date: getDateLabel(),
+  startTime,
+  meetingPlace: getPlaceLabel(),
+
+  customer: {
+    name: customer.name,
+    email: customer.email,
+    phone: customer.phone,
+    notes: customer.notes
+  },
+
+  price
+};
   
 return (
   <div
@@ -268,16 +285,8 @@ header={
   }
 >
 {mode === "review" ? (
-  <ReviewBooking
-  selectedBoat={selectedBoat}
-  durationMode={durationMode}
-  durationKey={durationKey}
-  days={days}
-  bookingDate={bookingDate}
-  startTime={startTime}
-  place={place}
-  customer={customer}
-  price={price}
+<ReviewBooking
+  reviewData={reviewData}
 />
 ) : (
   <>
