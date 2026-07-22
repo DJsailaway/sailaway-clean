@@ -1,14 +1,5 @@
 export default function ReviewBooking({
-  activity,
-  selectedBoat,
-  durationMode,
-  durationKey,
-  days,
-  bookingDate,
-  startTime,
-  place,
-  customer,
-  price
+  reviewData
 }) {
   return (
     <div style={{ padding: "24px" }}>
