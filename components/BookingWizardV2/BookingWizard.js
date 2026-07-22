@@ -268,7 +268,17 @@ header={
   }
 >
 {mode === "review" ? (
-  <ReviewBooking />
+  <ReviewBooking
+  selectedBoat={selectedBoat}
+  durationMode={durationMode}
+  durationKey={durationKey}
+  days={days}
+  bookingDate={bookingDate}
+  startTime={startTime}
+  place={place}
+  customer={customer}
+  price={price}
+/>
 ) : (
   <>
 
