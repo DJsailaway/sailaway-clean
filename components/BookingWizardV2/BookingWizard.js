@@ -212,7 +212,8 @@ return (
   >
 
 <WizardLayout
-  header={
+header={
+  mode === "wizard" && (
     <StepHeader
       progressStep={progressStep}
       progressSteps={progressSteps}
@@ -224,7 +225,8 @@ return (
         if (step === "details") setCurrentStep(5);
       }}
     />
-  }
+  )
+}
 
   footer={
     <BottomActionBar
