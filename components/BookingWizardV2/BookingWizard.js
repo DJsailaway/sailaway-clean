@@ -289,22 +289,12 @@ return (
 {mode === "review" ? (
   <div
   style={{
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    minHeight: 0,
-    overflow: "hidden",
+    height: "100%",
+    overflowY: "auto",
+    WebkitOverflowScrolling: "touch",
   }}
 >
-  <div
-    style={{
-      flex: 1,
-      overflowY: "auto",
-      WebkitOverflowScrolling: "touch",
-    }}
-  >
-        <ReviewBooking reviewData={reviewData} />
-      </div>
+       <ReviewBooking reviewData={reviewData} />
     </div>
   ) : (
 <>
