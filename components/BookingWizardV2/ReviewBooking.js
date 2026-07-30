@@ -40,16 +40,6 @@ export default function ReviewBooking({ reviewData }) {
           Review your booking
         </h1>
 
-        <p
-          style={{
-            margin: "0 0 16px",
-            color: "#64748B",
-          }}
-        >
-          Please check the details below before sending your request.
-        </p>
-
-
 <Section title="Booking details">
   <Row
     label="Boat"
