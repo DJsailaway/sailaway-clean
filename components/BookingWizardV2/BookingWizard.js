@@ -230,7 +230,7 @@ return (
 
 <WizardLayout
 header={
-  mode === "wizard" && (
+  mode === "wizard" ? (
     <StepHeader
       progressStep={progressStep}
       progressSteps={progressSteps}
@@ -242,6 +242,8 @@ header={
         if (step === "details") setCurrentStep(5);
       }}
     />
+  ) : (
+    <div style={{ height: 0 }} />
   )
 }
 
