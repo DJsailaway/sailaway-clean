@@ -288,14 +288,24 @@ header={
   <div
   style={{
     flex: 1,
-    overflowY: "auto",
-    WebkitOverflowScrolling: "touch",
+    display: "flex",
+    flexDirection: "column",
+    minHeight: 0,
+    overflow: "hidden",
   }}
 >
-  <ReviewBooking reviewData={reviewData} />
-  </div>
+  <div
+    style={{
+      flex: 1,
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
+    }}
+  >
+        <ReviewBooking reviewData={reviewData} />
+      </div>
+    </div>
   ) : (
-  <>
+<>
 
   {currentStep === 0 && (
     <div
