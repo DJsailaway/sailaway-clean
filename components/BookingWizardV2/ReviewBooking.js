@@ -97,7 +97,7 @@ export default function ReviewBooking({ reviewData }) {
       <row
         label="Notes"
         value={customer.notes}
-        noborder
+        noBorder
       />
     </>
   )}
