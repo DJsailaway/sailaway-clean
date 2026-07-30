@@ -231,7 +231,7 @@ return (
 
   height:
     mode === "review"
-      ? "calc(100dvh - 120px)"
+      ? "calc(100dvh - 80px)"
       : "100dvh",
 
   display: "flex",
