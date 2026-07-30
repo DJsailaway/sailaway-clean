@@ -19,15 +19,13 @@ export default function WizardLayout({
     >
       {header}
 
-<div
-  style={{
-    minHeight: 0,
-    overflow: "hidden",
-    display: "flex",
-  }}
->
-  {children}
-</div>
+      <div
+        style={{
+          minHeight: 0
+        }}
+      >
+        {children}
+      </div>
 
       {footer}
     </div>
