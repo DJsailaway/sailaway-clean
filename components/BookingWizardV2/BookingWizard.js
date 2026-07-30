@@ -229,7 +229,10 @@ return (
     style={{
   scrollMarginTop: "90px",
 
-  height: "100dvh",
+  height:
+    mode === "review"
+      ? "calc(100dvh - 120px)"
+      : "100dvh",
 
   display: "flex",
   flexDirection: "column",
