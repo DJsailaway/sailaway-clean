@@ -285,10 +285,16 @@ header={
   }
 >
 {mode === "review" ? (
-<ReviewBooking
-  reviewData={reviewData}
-/>
-) : (
+  <div
+  style={{
+    flex: 1,
+    overflowY: "auto",
+    WebkitOverflowScrolling: "touch",
+  }}
+>
+  <ReviewBooking reviewData={reviewData} />
+  </div>
+  ) : (
   <>
 
   {currentStep === 0 && (
