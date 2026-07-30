@@ -40,11 +40,15 @@ export default function ReviewBooking({ reviewData }) {
           Review your booking
         </h1>
 
-<Section title="Booking details">
-  <Row
-    label="Boat"
-    value={boat}
-  />
+<div
+  style={{
+    background: "white",
+    border: "1px solid #E5E7EB",
+    borderRadius: "12px",
+    padding: "16px",
+  }}
+>
+  <Row label="Boat" value={boat} />
 
   <Row
     label="Duration"
@@ -56,47 +60,76 @@ export default function ReviewBooking({ reviewData }) {
     }
   />
 
+  <Row label="Date" value={date} />
+
+  <Row label="Start time" value={startTime} />
+
+  <Row label="Meet at" value={meetingPlace} />
+
+
+  <Divider />
+
+
   <Row
-    label="Date"
-    value={date}
+    label="Name"
+    value={customer?.name}
   />
 
   <Row
-    label="Start time"
-    value={startTime}
+    label="Email"
+    value={customer?.email}
   />
 
   <Row
-    label="Meet at"
-    value={meetingPlace}
+    label="Phone"
+    value={customer?.phone}
   />
-</Section>
 
 
-        {customer?.notes && (
-          <Section title="Notes">
-            <p
-              style={{
-                margin: 0,
-                color: "#334155",
-                lineHeight: 1.5,
-              }}
-            >
-              {customer.notes}
-            </p>
-          </Section>
-        )}
+  {customer?.notes && (
+    <>
+      <Divider />
+
+      <div
+        style={{
+          padding: "8px 0",
+        }}
+      >
+        <div
+          style={{
+            color: "#64748B",
+            marginBottom: "4px",
+          }}
+        >
+          Notes
+        </div>
+
+        <div
+          style={{
+            color: "#334155",
+            lineHeight: 1.4,
+          }}
+        >
+          {customer.notes}
+        </div>
+      </div>
+    </>
+  )}
 
 
-        {price?.hasPrice && (
-          <Section title="Price">
-            <Row
-              label="Total"
-              value={`£${price.total}`}
-              highlight
-            />
-          </Section>
-        )}
+  {price?.hasPrice && (
+    <>
+      <Divider />
+
+      <Row
+        label="Total"
+        value={`£${price.total}`}
+        highlight
+      />
+    </>
+  )}
+
+</div>
 
       </div>
     </div>
@@ -160,5 +193,16 @@ function Row({ label, value, highlight }) {
         {value || "-"}
       </span>
     </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div
+      style={{
+        borderTop: "1px solid #E5E7EB",
+        margin: "8px 0",
+      }}
+    />
   );
 }
