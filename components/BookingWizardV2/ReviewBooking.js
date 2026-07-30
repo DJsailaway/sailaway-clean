@@ -64,8 +64,11 @@ export default function ReviewBooking({ reviewData }) {
 
   <Row label="Start time" value={startTime} />
 
-  <Row label="Meet at" value={meetingPlace} />
-
+<Row
+  label="Meet at"
+  value={meetingPlace}
+  noBorder
+/>
 
   <Divider />
 
@@ -83,7 +86,8 @@ export default function ReviewBooking({ reviewData }) {
   <Row
     label="Phone"
     value={customer?.phone}
-  />
+  noBorder 
+/>
 
 
   {customer?.notes && (
