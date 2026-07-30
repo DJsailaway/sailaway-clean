@@ -184,13 +184,18 @@ const inputStyle = {
   color: "#123B5D"
 };
   
-const price = calculatePrice({
-  boatId: selectedBoat?.id,
-  durationType: durationMode,
-  durationKey,
-  days,
-  location: place.location
-});
+const price = hasSelectedDuration
+  ? calculatePrice({
+      boatId: selectedBoat?.id,
+      durationType: durationMode,
+      durationKey,
+      days,
+      location: place.location
+    })
+  : {
+      hasPrice: false,
+      total: 0
+    };
 
 console.log(price);
 
