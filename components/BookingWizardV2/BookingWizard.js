@@ -19,6 +19,9 @@ const [selectedBoat, setSelectedBoat] = useState(null);
 const [currentStep, setCurrentStep] = useState(0);
 
 const [mode, setMode] = useState("wizard");
+const [returnToReview, setReturnToReview] = useState(false);
+
+const editStep = (step) => {   setReturnToReview(true);   setMode("wizard");   setCurrentStep(step); };
 
 const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
@@ -312,6 +315,7 @@ header={
 {mode === "review" ? (
   <ReviewBooking
     reviewData={reviewData}
+    onEditStep={editStep}
   />
 ) : (
 <>
