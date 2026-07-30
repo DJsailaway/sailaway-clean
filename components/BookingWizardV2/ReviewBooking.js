@@ -19,7 +19,7 @@ export default function ReviewBooking({ reviewData }) {
    <div
     style={{
       background: "#F8FAFC",
-      padding: "12px 20px",
+      padding: "8px 20px",
     }}
   >
       <div
@@ -96,7 +96,7 @@ export default function ReviewBooking({ reviewData }) {
 
       <div
         style={{
-          padding: "8px 0",
+          padding: "5px 0",
         }}
       >
         <div
