@@ -19,11 +19,8 @@ export default function ReviewBooking({ reviewData }) {
    <div
     style={{
       flex: 1,
-      display: "flex",
-      flexDirection: "column",
       background: "#F8FAFC",
       padding: "12px 20px",
-      overflowY: "auto",
     }}
   >
       <div
