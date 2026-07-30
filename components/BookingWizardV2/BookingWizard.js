@@ -230,7 +230,7 @@ return (
 
 <WizardLayout
   header={
-    mode === "wizard" ? (
+    mode === "wizard" && (
       <StepHeader
         progressStep={progressStep}
         progressSteps={progressSteps}
