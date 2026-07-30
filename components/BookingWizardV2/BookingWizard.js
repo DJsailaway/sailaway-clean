@@ -229,9 +229,7 @@ return (
     style={{
   scrollMarginTop: "90px",
 
-  height: isMobile
-    ? "calc(100dvh - 120px)"
-    : "100dvh",
+  height: "100dvh",
 
   display: "flex",
   flexDirection: "column",
