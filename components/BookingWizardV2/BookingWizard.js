@@ -275,8 +275,9 @@ header={
               .getElementById("booking-wizard")
               ?.scrollIntoView({
               block: "start",
+              behavior: "instant"
             });
-  }, 0);
+          }, 0);
         
         return;
       }
