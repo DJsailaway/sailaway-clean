@@ -198,7 +198,14 @@ const reviewData = {
   boat: selectedBoat?.title || "",
   duration: getDurationLabel(),
   date: getDateLabel(),
-  startTime,
+  startTime:
+  durationKey === "full"
+    ? "09:00"
+    : durationKey === "half"
+      ? startTime === "13:00"
+        ? "13:00"
+        : "09:00"
+      : startTime,
   meetingPlace: getPlaceLabel(),
 
   customer: {
