@@ -218,8 +218,8 @@ return (
   scrollMarginTop: "90px",
 
   height: isMobile
-    ? "calc(100vh - 120px)"
-    : "100vh",
+    ? "calc(100dvh - 120px)"
+    : "100dvh",
 
   display: "flex",
   flexDirection: "column",
