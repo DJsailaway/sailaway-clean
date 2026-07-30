@@ -18,7 +18,7 @@ export default function ReviewBooking({ reviewData }) {
   return (
     <div
       style={{
-        padding: "24px 20px",
+        padding: "8px 20px 12px",
         background: "#F8FAFC",
         minHeight: "100%",
       }}
