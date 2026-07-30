@@ -18,13 +18,14 @@ export default function ReviewBooking({ reviewData }) {
   return (
     <div
       style={{
-        flex: 1,
         padding: "24px 20px",
         background: "#F8FAFC",
+        minHeight: "100%",
       }}
     >
       <div
         style={{
+          width: "100%",
           maxWidth: "700px",
           margin: "0 auto",
         }}
