@@ -31,7 +31,7 @@ export default function ReviewBooking({ reviewData }) {
       >
         <h1
           style={{
-            margin: "0 0 8px",
+            margin: "0 0 6px",
             color: "#123B5D",
             fontSize: "24px",
             fontWeight: 700,
