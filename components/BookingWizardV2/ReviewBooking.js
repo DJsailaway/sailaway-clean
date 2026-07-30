@@ -33,7 +33,7 @@ export default function ReviewBooking({ reviewData }) {
           style={{
             margin: "0 0 8px",
             color: "#123B5D",
-            fontSize: "28px",
+            fontSize: "24px",
             fontWeight: 700,
           }}
         >
@@ -42,7 +42,7 @@ export default function ReviewBooking({ reviewData }) {
 
         <p
           style={{
-            margin: "0 0 24px",
+            margin: "0 0 16px",
             color: "#64748B",
           }}
         >
@@ -50,46 +50,37 @@ export default function ReviewBooking({ reviewData }) {
         </p>
 
 
-        <Section title="Boat">
-          <Row label="Boat" value={boat} />
-        </Section>
+<Section title="Booking details">
+  <Row
+    label="Boat"
+    value={boat}
+  />
 
+  <Row
+    label="Duration"
+    value={
+      duration ||
+      (durationKey === "multi"
+        ? `${days} Days`
+        : durationKey)
+    }
+  />
 
-        <Section title="Hire details">
-          <Row
-            label="Duration"
-            value={
-              duration ||
-              (durationKey === "multi"
-                ? `${days} Days`
-                : durationKey)
-            }
-          />
+  <Row
+    label="Date"
+    value={date}
+  />
 
-          <Row label="Date" value={date} />
+  <Row
+    label="Start time"
+    value={startTime}
+  />
 
-          <Row label="Start time" value={startTime} />
-
-          <Row label="Meeting place" value={meetingPlace} />
-        </Section>
-
-
-        <Section title="Your details">
-          <Row
-            label="Name"
-            value={customer?.name}
-          />
-
-          <Row
-            label="Email"
-            value={customer?.email}
-          />
-
-          <Row
-            label="Phone"
-            value={customer?.phone}
-          />
-        </Section>
+  <Row
+    label="Meet at"
+    value={meetingPlace}
+  />
+</Section>
 
 
         {customer?.notes && (
@@ -130,8 +121,8 @@ function Section({ title, children }) {
         background: "white",
         border: "1px solid #E5E7EB",
         borderRadius: "12px",
-        padding: "18px",
-        marginBottom: "16px",
+        padding: "14px",
+        marginBottom: "12px",
       }}
     >
       <h2
@@ -157,7 +148,7 @@ function Row({ label, value, highlight }) {
         display: "flex",
         justifyContent: "space-between",
         gap: "20px",
-        padding: "8px 0",
+        padding: "6px 0",
         borderBottom: "1px solid #F1F5F9",
       }}
     >
