@@ -168,15 +168,17 @@ function Section({ title, children }) {
 }
 
 
-function Row({ label, value, highlight }) {
-  return (
+function Row({ label, value, highlight, noBorder }) 
+{  return (
     <div
       style={{
         display: "flex",
         justifyContent: "space-between",
         gap: "20px",
         padding: "6px 0",
-        borderBottom: "1px solid #F1F5F9",
+        borderBottom: noBorder
+          ? "none"
+          : "1px solid #F1F5F9",
       }}
     >
       <span
