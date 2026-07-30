@@ -292,6 +292,8 @@ return (
     height: "100%",
     overflowY: "auto",
     WebkitOverflowScrolling: "touch",
+    marginTop: "-8px",
+    paddingBottom: "8px",
   }}
 >
        <ReviewBooking reviewData={reviewData} />
