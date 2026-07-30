@@ -104,16 +104,13 @@ export default function ReviewBooking({ reviewData }) {
 
 
   {price?.hasPrice && (
-    <>
-      <Divider />
-
       <Row
         label="Total"
         value={`£${price.total}`}
         highlight
+        noBorder
       />
-    </>
-  )}
+    )}
 
 </div>
 
