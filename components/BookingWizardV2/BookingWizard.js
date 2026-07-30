@@ -229,21 +229,19 @@ return (
   >
 
 <WizardLayout
-  header={
-    mode === "wizard" && (
-      <StepHeader
-        progressStep={progressStep}
-        progressSteps={progressSteps}
-        onStepClick={(step) => {
-          if (step === "boat") setCurrentStep(0);
-          if (step === "duration") setCurrentStep(2);
-          if (step === "date") setCurrentStep(3);
-          if (step === "location") setCurrentStep(4);
-          if (step === "details") setCurrentStep(5);
-        }}
-      />
-    ) : (
-    <div style={{ height: 72 }} />
+header={
+  mode === "wizard" && (
+    <StepHeader
+      progressStep={progressStep}
+      progressSteps={progressSteps}
+      onStepClick={(step) => {
+        if (step === "boat") setCurrentStep(0);
+        if (step === "duration") setCurrentStep(2);
+        if (step === "date") setCurrentStep(3);
+        if (step === "location") setCurrentStep(4);
+        if (step === "details") setCurrentStep(5);
+      }}
+    />
   )
 }
 
