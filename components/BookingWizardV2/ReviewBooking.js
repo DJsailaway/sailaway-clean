@@ -90,17 +90,44 @@ export default function ReviewBooking({ reviewData }) {
 />
 
 
-  {customer?.notes && (
-    <>
-      <Divider />
+{customer?.notes && (
+  <>
+    <Divider />
 
-      <row
-        label="Notes"
-        value={customer.notes}
-        noBorder
-      />
-    </>
-  )}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: "20px",
+        padding: "6px 0",
+      }}
+    >
+      <span
+        style={{
+          color: "#64748B",
+          flexShrink: 0,
+        }}
+      >
+        Notes
+      </span>
+
+      <span
+        style={{
+          color: "#334155",
+          fontWeight: 500,
+          textAlign: "right",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          maxWidth: "65%",
+        }}
+        title={customer.notes}
+      >
+        {customer.notes}
+      </span>
+    </div>
+  </>
+)}
 
 
   {price?.hasPrice && (
