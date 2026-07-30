@@ -94,29 +94,11 @@ export default function ReviewBooking({ reviewData }) {
     <>
       <Divider />
 
-      <div
-        style={{
-          padding: "5px 0",
-        }}
-      >
-        <div
-          style={{
-            color: "#64748B",
-            marginBottom: "4px",
-          }}
-        >
-          Notes
-        </div>
-
-        <div
-          style={{
-            color: "#334155",
-            lineHeight: 1.4,
-          }}
-        >
-          {customer.notes}
-        </div>
-      </div>
+      <row
+        label="Notes"
+        value={customer.notes}
+        noborder
+      />
     </>
   )}
 
