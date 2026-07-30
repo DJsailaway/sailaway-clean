@@ -256,6 +256,15 @@ header={
 
       if (currentStep === 5) {
         setMode("review");
+
+          setTimeout(() => {
+            document
+              .getElementById("booking-wizard")
+              ?.scrollIntoView({
+              block: "start",
+            });
+  }, 0);
+        
         return;
       }
         
