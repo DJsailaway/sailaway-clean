@@ -542,6 +542,16 @@ onChange={(patch) => {
   if (patch.days !== undefined) {
     setDays(patch.days);
     setHasSelectedDuration(true);
+
+  if (patch.durationMode !== undefined) {
+  setDurationMode(patch.durationMode);
+
+  if (patch.durationMode !== "multiday") {
+    setDays(0);
+  }
+
+  setHasSelectedDuration(true);
+}
   }
 }}
 />
