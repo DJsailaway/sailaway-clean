@@ -443,16 +443,40 @@ header={
     </div>
   )}
 
-  {currentStep === 1 && (
-    <BoatStep
-      activity={activity}
-      selectedBoat={selectedBoat}
-      onSelect={(boat) => {
-        setSelectedBoat(boat);
-        setCurrentStep(2);
-      }}
-    />
-  )}
+{currentStep === 1 && (
+  <BoatStep
+    activity={activity}
+    selectedBoat={selectedBoat}
+    onSelect={(boat) => {
+      setSelectedBoat(boat);
+
+      if (returnToReview) {
+        setReturnToReview(false);
+        setMode("review");
+
+        setTimeout(() => {
+          if (isMobile) {
+            window.scrollTo({
+              top: document.getElementById("booking-wizard")?.offsetTop,
+              behavior: "instant"
+            });
+          } else {
+            document
+              .getElementById("booking-wizard")
+              ?.scrollIntoView({
+                block: "start",
+                behavior: "instant"
+              });
+          }
+        }, 0);
+
+        return;
+      }
+
+      setCurrentStep(2);
+    }}
+  />
+)}
 
 {currentStep === 2 && (
 <DurationStep
