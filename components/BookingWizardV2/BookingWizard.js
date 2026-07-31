@@ -232,7 +232,7 @@ return (
     style={{
   scrollMarginTop: "90px",
 
-  height: "100dvh"
+  height: "100dvh",
 
   display: "flex",
   flexDirection: "column",
@@ -311,10 +311,16 @@ header={
   }
 >
 {mode === "review" ? (
+<div
+  style={{
+    height: "100%"
+  }}
+>
   <ReviewBooking
     reviewData={reviewData}
     onEditStep={editStep}
   />
+</div>
 ) : (
 <>
 
