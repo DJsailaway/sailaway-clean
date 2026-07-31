@@ -272,13 +272,20 @@ header={
         setMode("review");
 
           setTimeout(() => {
-            document
-              .getElementById("booking-wizard")
-              ?.scrollIntoView({
-              block: "nearest",
-              behavior: "instant"
-            });
-          }, 0);
+            if (isMobile) {
+              window.scrollTo({
+                top: document.getElementById("booking-wizard")?.offsetTop,
+                behavior: "instant"
+              });
+            } else {
+              document
+                .getElementById("booking-wizard")
+                ?.scrollIntoView({
+                  block: "start",
+                  behavior: "instant"
+                });
+              }
+            }, 0);
         
         return;
       }
