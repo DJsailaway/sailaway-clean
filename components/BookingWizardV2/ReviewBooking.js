@@ -230,12 +230,16 @@ function Row({ label, value, highlight, noBorder, onChange })
     onClick={onChange}
     style={{
       marginLeft: "12px",
-      border: "none",
-      background: "none",
+      border: "1px solid #123B5D",
+      background: "#FFFFFF",
       color: "#123B5D",
       fontWeight: 600,
+      fontSize: "13px",
       cursor: "pointer",
-      padding: 0
+      padding: "4px 10px",
+      borderRadius: "999px",
+      transition: "all .2s ease",
+      whiteSpace: "nowrap"
     }}
   >
     Change
