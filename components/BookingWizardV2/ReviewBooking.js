@@ -87,19 +87,22 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   <Divider />
 
 
-  <Row
-    label="Name"
-    value={customer?.name}
-  />
+<Row
+  label="Name"
+  value={customer?.name}
+  onChange={() => onEditStep(5)}
+/>
 
-  <Row
-    label="Email"
-    value={customer?.email}
-  />
+<Row
+  label="Email"
+  value={customer?.email}
+  onChange={() => onEditStep(5)}
+/>
 
-  <Row
-    label="Phone"
-    value={customer?.phone}
+<Row
+  label="Phone"
+  value={customer?.phone}
+  onChange={() => onEditStep(5)}
   noBorder 
 />
 
