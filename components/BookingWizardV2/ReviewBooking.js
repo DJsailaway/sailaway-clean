@@ -71,7 +71,11 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   onChange={() => onEditStep(3)}
 />
     
-  <Row label="Start time" value={startTime} />
+<Row
+  label="Start time"
+  value={startTime}
+  onChange={() => onEditStep(3)}
+/>
 
 <Row
   label="Meet at"
