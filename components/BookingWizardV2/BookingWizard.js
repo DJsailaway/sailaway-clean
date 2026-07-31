@@ -285,49 +285,72 @@ header={
       onBack={() =>
         setCurrentStep(Math.max(0, currentStep - 1))
       }
-      onNext={() => {
+onNext={() => {
 
-      if (currentStep === 5) {
-        setMode("review");
+  if (returnToReview) {
+    setReturnToReview(false);
+    setMode("review");
 
-          setTimeout(() => {
-            if (isMobile) {
-              window.scrollTo({
-                top: document.getElementById("booking-wizard")?.offsetTop,
-                behavior: "instant"
-              });
-            } else {
-              document
-                .getElementById("booking-wizard")
-                ?.scrollIntoView({
-                  block: "start",
-                  behavior: "instant"
-                });
-              }
-            }, 0);
-        
-        return;
+    setTimeout(() => {
+      if (isMobile) {
+        window.scrollTo({
+          top: document.getElementById("booking-wizard")?.offsetTop,
+          behavior: "instant"
+        });
+      } else {
+        document
+          .getElementById("booking-wizard")
+          ?.scrollIntoView({
+            block: "start",
+            behavior: "instant"
+          });
       }
-        
-        if (currentStep === 3 && !requiresDeliveryStep) {
+    }, 0);
 
-          setPlace({
-            mode: "boatyard",
-            location: "St Anthony",
-            deliveryCharge: 0
+    return;
+  }
+
+  if (currentStep === 5) {
+    setMode("review");
+
+    setTimeout(() => {
+      if (isMobile) {
+        window.scrollTo({
+          top: document.getElementById("booking-wizard")?.offsetTop,
+          behavior: "instant"
+        });
+      } else {
+        document
+          .getElementById("booking-wizard")
+          ?.scrollIntoView({
+            block: "start",
+            behavior: "instant"
           });
+      }
+    }, 0);
 
-          setCurrentStep(5);
+    return;
+  }
 
-        } else {
+  if (currentStep === 3 && !requiresDeliveryStep) {
 
-          setCurrentStep((prev) => {
-            const maxStep = requiresDeliveryStep ? 5 : 4;
-            return Math.min(maxStep, prev + 1);
-          });
+    setPlace({
+      mode: "boatyard",
+      location: "St Anthony",
+      deliveryCharge: 0
+    });
 
-        }
-      }}
+    setCurrentStep(5);
+
+  } else {
+
+    setCurrentStep((prev) => {
+      const maxStep = requiresDeliveryStep ? 5 : 4;
+      return Math.min(maxStep, prev + 1);
+    });
+
+  }
+}}
       total={
         price.hasPrice
           ? `£${price.total}`
