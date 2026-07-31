@@ -21,6 +21,8 @@ const [currentStep, setCurrentStep] = useState(0);
 const [mode, setMode] = useState("wizard");
 const [returnToReview, setReturnToReview] = useState(false);
 
+const [stepDirection, setStepDirection] = useState("forward");
+
 const editStep = (step) => {
   setReturnToReview(true);
   setMode("wizard");
@@ -308,9 +310,10 @@ header={
 
   footer={
     <BottomActionBar
-      onBack={() =>
-        setCurrentStep(Math.max(0, currentStep - 1))
-      }
+      onBack={() => {
+        setStepDirection("back");
+        setCurrentStep(Math.max(0, currentStep - 1));
+      }}
       nextLabel={returnToReview ? "Return to Review" : "Next"}
       onNext={() => {
 
@@ -380,6 +383,8 @@ if (currentStep === 5) {
     setCurrentStep(5);
 
   } else {
+
+    setStepDirection("forward");
 
     setCurrentStep((prev) => {
       const maxStep = requiresDeliveryStep ? 5 : 4;
@@ -509,6 +514,7 @@ if (currentStep === 5) {
         return;
       }
 
+      setStepDirection("forward");
       setCurrentStep(2);
     }}
   />
