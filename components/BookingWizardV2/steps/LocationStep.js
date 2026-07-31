@@ -140,7 +140,7 @@ onChange({
 
   location: "St Anthony",
 
-  shortTitle: "St Anthony in Meneage",
+  shortTitle: "St Anthony",
 
   deliveryCharge: 0
 
