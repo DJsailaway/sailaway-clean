@@ -9,6 +9,7 @@ export default function WizardLayout({
       style={{
         flex: 1,
         minHeight: 0,
+        height: "100%",
 
         width: "100%",
         maxWidth: "960px",
