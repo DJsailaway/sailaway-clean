@@ -66,14 +66,8 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
 />
 
 <Row
-  label="Date"
-  value={date}
-  onChange={() => onEditStep(3)}
-/>
-    
-<Row
-  label="Start time"
-  value={startTime}
+  label="Meeting time"
+  value={`${date} · ${startTime}`}
   onChange={() => onEditStep(3)}
 />
 
