@@ -174,8 +174,8 @@ function Section({ title, children }) {
 }
 
 
-function Row({ label, value, highlight, noBorder }) 
-{  return (
+function Row({ label, value, highlight, noBorder, onChange }) {
+  {  return (
     <div
       style={{
         display: "flex",
@@ -203,6 +203,9 @@ function Row({ label, value, highlight, noBorder })
         }}
       >
         {value || "-"}
+      {{onChange && (   
+        Change
+         )}}
       </span>
     </div>
   );
