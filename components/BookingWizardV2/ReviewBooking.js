@@ -77,6 +77,7 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   label="Meet at"
   value={meetingPlace}
   noBorder
+  onChange={() => onEditStep(4)}
 />
 
   <Divider />
