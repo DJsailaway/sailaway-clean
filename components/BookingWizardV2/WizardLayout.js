@@ -22,6 +22,7 @@ export default function WizardLayout({
       <div
         style={{
           minHeight: 0
+          height: "100%"
         }}
       >
         {children}
