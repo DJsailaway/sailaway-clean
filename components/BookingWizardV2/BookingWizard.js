@@ -245,6 +245,7 @@ return (
   >
 
 <WizardLayout
+  reviewMode={mode === "review"}
 header={
   mode === "wizard" ? (
     <StepHeader
