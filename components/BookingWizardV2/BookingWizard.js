@@ -197,6 +197,30 @@ const [customer, setCustomer] = useState({
   notes: ""
 });
 
+const [customerErrors, setCustomerErrors] = useState({});
+
+const validateCustomer = () => {
+  const errors = {};
+
+  if (!customer.name.trim()) {
+    errors.name = "Please enter your name";
+  }
+
+  if (!customer.email.match(/^\S+@\S+\.\S+$/)) {
+    errors.email = "Please enter a valid email address";
+  }
+
+  const phoneDigits = customer.phone.replace(/\D/g, "");
+
+  if (phoneDigits.length < 10) {
+    errors.phone = "Please enter a valid telephone number";
+  }
+
+  setCustomerErrors(errors);
+
+  return Object.keys(errors).length === 0;
+};
+
 const inputStyle = {
   padding: "16px",
   borderRadius: "14px",
@@ -313,8 +337,13 @@ header={
     return;
   }
 
-  if (currentStep === 5) {
-    setMode("review");
+if (currentStep === 5) {
+
+  if (!validateCustomer()) {
+    return;
+  }
+
+  setMode("review");
 
     setTimeout(() => {
       if (isMobile) {
