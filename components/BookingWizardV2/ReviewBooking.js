@@ -76,8 +76,12 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
 <Row
   label="Meet at"
   value={meetingPlace}
+  onChange={
+    days >= 2
+      ? () => onEditStep(4)
+      : undefined
+  }
   noBorder
-  onChange={() => onEditStep(4)}
 />
 
   <Divider />
