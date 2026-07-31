@@ -48,7 +48,11 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
     padding: "16px",
   }}
 >
-  <Row label="Boat" value={boat} />
+  <Row
+  label="Boat"
+  value={boat}
+  onChange={() => onEditStep(1)}
+/>
 
   <Row
     label="Duration"
@@ -202,9 +206,24 @@ function Row({ label, value, highlight, noBorder, onChange }) {
           textAlign: "right",
         }}
       >
-        {       {value || "-"}               {onChange && (         
-          Change
-               )}     }
+{value || "-"}
+
+{onChange && (
+  <button
+    onClick={onChange}
+    style={{
+      marginLeft: "12px",
+      border: "none",
+      background: "none",
+      color: "#123B5D",
+      fontWeight: 600,
+      cursor: "pointer",
+      padding: 0
+    }}
+  >
+    Change
+  </button>
+)}
       </span>
     </div>
   );
