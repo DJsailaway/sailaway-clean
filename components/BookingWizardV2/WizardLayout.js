@@ -1,7 +1,8 @@
 export default function WizardLayout({
   header,
   children,
-  footer
+  footer,
+  reviewMode
 }) {
   return (
     <div
