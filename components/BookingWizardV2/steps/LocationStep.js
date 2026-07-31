@@ -134,15 +134,17 @@ export default function LocationStep({
 
             setDeliveryOpen(false);
 
-            onChange({
+onChange({
 
-              mode: "boatyard",
+  mode: "boatyard",
 
-              location: "St Anthony",
+  location: "St Anthony",
 
-              deliveryCharge: 0
+  shortTitle: "St Anthony in Meneage",
 
-            });
+  deliveryCharge: 0
+
+});
 
           }}
 
