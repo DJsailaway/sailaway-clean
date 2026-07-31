@@ -371,6 +371,7 @@ header={
         image="/images/wizard/motorboat.jpg"
         onClick={() => {
           setActivity("motor");
+          setSelectedBoat(null);
           setCurrentStep(1);
         }}
       />
@@ -381,6 +382,7 @@ header={
         image="/images/wizard/sailing.jpg"
         onClick={() => {
           setActivity("sailing");
+          setSelectedBoat(null);
           setCurrentStep(1);
         }}
       />
@@ -391,6 +393,7 @@ header={
         image="/images/wizard/paddle.jpg"
         onClick={() => {
           setActivity("paddle");
+          setSelectedBoat(null);
           setCurrentStep(1);
         }}
       />
