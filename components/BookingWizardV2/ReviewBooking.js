@@ -54,15 +54,16 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   onChange={() => onEditStep(0)}
 />
 
-  <Row
-    label="Duration"
-    value={
-      duration ||
-      (durationKey === "multi"
-        ? `${days} Days`
-        : durationKey)
-    }
-  />
+<Row
+  label="Duration"
+  value={
+    duration ||
+    (durationKey === "multi"
+      ? `${days} Days`
+      : durationKey)
+  }
+  onChange={() => onEditStep(2)}
+/>
 
 <Row
   label="Date"
