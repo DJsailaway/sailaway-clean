@@ -127,7 +127,7 @@ const getDateLabel = () => {
 
 const getPlaceLabel = () => {
   if (!hasSelectedPlace) {
-  return "Place";
+  return "St Anthony in Meneage";
 }
   if (!place.location) {
     return "Place";
