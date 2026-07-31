@@ -202,10 +202,9 @@ function Row({ label, value, highlight, noBorder, onChange }) {
           textAlign: "right",
         }}
       >
-        {value || "-"}
-      {{onChange && (   
-        Change
-         )}}
+        {       {value || "-"}               {onChange && (         
+          Change
+               )}     }
       </span>
     </div>
   );
