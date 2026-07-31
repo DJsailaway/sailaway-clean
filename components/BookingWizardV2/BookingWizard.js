@@ -315,6 +315,11 @@ header={
       onNext={() => {
 
   if (returnToReview) {
+
+    if (currentStep === 5 && !validateCustomer()) {
+      return;
+    }
+
     setReturnToReview(false);
     setMode("review");
 
