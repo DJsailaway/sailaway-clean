@@ -51,7 +51,7 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   <Row
   label="Boat"
   value={boat}
-  onChange={() => onEditStep(1)}
+  onChange={() => onEditStep(0)}
 />
 
   <Row
