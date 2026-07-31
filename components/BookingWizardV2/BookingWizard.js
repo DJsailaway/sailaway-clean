@@ -21,8 +21,27 @@ const [currentStep, setCurrentStep] = useState(0);
 const [mode, setMode] = useState("wizard");
 const [returnToReview, setReturnToReview] = useState(false);
 
-const editStep = (step) => {   setReturnToReview(true);   setMode("wizard");   setCurrentStep(step); };
+const editStep = (step) => {
+  setReturnToReview(true);
+  setMode("wizard");
+  setCurrentStep(step);
 
+  setTimeout(() => {
+    if (isMobile) {
+      window.scrollTo({
+        top: document.getElementById("booking-wizard")?.offsetTop,
+        behavior: "instant",
+      });
+    } else {
+      document
+        .getElementById("booking-wizard")
+        ?.scrollIntoView({
+          block: "start",
+          behavior: "instant",
+        });
+    }
+  }, 0);
+};
 const [durationMode, setDurationMode] = useState(null);
 const [durationKey, setDurationKey] = useState("2h");
 const [hasSelectedDuration, setHasSelectedDuration] = useState(false);
