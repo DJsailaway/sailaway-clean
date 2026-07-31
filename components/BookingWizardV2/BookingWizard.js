@@ -573,6 +573,7 @@ onChange={(patch) => {
 {currentStep === 5 && (
   <ContactStep
     value={customer}
+    errors={customerErrors}
     onChange={(patch) => {
       setCustomer((prev) => ({
         ...prev,
