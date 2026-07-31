@@ -1,4 +1,4 @@
-export default function ReviewBooking({ reviewData }) {
+export default function ReviewBooking({ reviewData, onEditStep }) {
   if (!reviewData) {
     return null;
   }
