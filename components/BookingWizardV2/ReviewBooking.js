@@ -178,8 +178,8 @@ function Section({ title, children }) {
 }
 
 
-function Row({ label, value, highlight, noBorder, onChange }) {
-  {  return (
+function Row({ label, value, highlight, noBorder, onChange }) 
+{ return (  
     <div
       style={{
         display: "flex",
