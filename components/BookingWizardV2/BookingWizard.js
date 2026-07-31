@@ -285,7 +285,8 @@ header={
       onBack={() =>
         setCurrentStep(Math.max(0, currentStep - 1))
       }
-onNext={() => {
+      nextLabel={returnToReview ? "Return to Review" : "Next"}
+      onNext={() => {
 
   if (returnToReview) {
     setReturnToReview(false);
