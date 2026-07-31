@@ -19,7 +19,7 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
    <div
     style={{
       background: "#F8FAFC",
-      padding: "8px 20px 96px",
+      padding: "8px 20px",
     }}
   >
       <div
