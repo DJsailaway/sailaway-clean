@@ -293,7 +293,7 @@ return (
   @keyframes slideForward {
     from {
       opacity: 0;
-      transform: translateX(28px);
+      transform: translateX(56px);
     }
     to {
       opacity: 1;
@@ -304,14 +304,14 @@ return (
   @keyframes slideBack {
     from {
       opacity: 0;
-      transform: translateX(-28px);
+      transform: translateX(-56px);
     }
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
-`}</style>    
+`}</style>
     
 <WizardLayout
   reviewMode={mode === "review"}
@@ -443,8 +443,8 @@ if (currentStep === 5) {
   style={{
     animation:
       stepDirection === "forward"
-        ? "slideForward 320ms ease"
-        : "slideBack 320ms ease",
+        ? "slideForward 420ms cubic-bezier(0.22, 1, 0.36, 1)"
+        : "slideBack 420ms cubic-bezier(0.22, 1, 0.36, 1)",
     height: "100%"
   }}
 >
