@@ -289,6 +289,30 @@ return (
 }}
   >
 
+<style jsx>{`
+  @keyframes slideForward {
+    from {
+      opacity: 0;
+      transform: translateX(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideBack {
+    from {
+      opacity: 0;
+      transform: translateX(-28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+`}</style>    
+    
 <WizardLayout
   reviewMode={mode === "review"}
 header={
@@ -414,7 +438,16 @@ if (currentStep === 5) {
   />
 </div>
 ) : (
-<>
+<div
+  key={`${currentStep}-${stepDirection}`}
+  style={{
+    animation:
+      stepDirection === "forward"
+        ? "slideForward 320ms ease"
+        : "slideBack 320ms ease",
+    height: "100%"
+  }}
+>
 
   {currentStep === 0 && (
     <div
@@ -614,7 +647,7 @@ onChange={(patch) => {
     }}
   />
 )}
-  </>
+  </div>
 )}
 
 </WizardLayout>
