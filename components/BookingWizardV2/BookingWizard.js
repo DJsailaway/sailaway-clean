@@ -443,8 +443,8 @@ if (currentStep === 5) {
   style={{
     animation:
       stepDirection === "forward"
-        ? "slideForward 420ms cubic-bezier(0.22, 1, 0.36, 1)"
-        : "slideBack 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+        ? "slideForward 480ms cubic-bezier(0.22, 1, 0.36, 1)"
+        : "slideBack 480ms cubic-bezier(0.22, 1, 0.36, 1)",
     height: "100%"
   }}
 >
