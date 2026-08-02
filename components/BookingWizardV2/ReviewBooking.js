@@ -6,6 +6,7 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   const {
     boat,
     duration,
+    durationMode,
     durationKey,
     days,
     date,
@@ -75,7 +76,7 @@ export default function ReviewBooking({ reviewData, onEditStep }) {
   label="Meet at"
   value={meetingPlace}
   onChange={
-    days >= 2
+    durationMode === "multiday" && days >= 2
       ? () => onEditStep(4)
       : undefined
   }
