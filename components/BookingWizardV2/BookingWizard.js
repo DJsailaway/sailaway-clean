@@ -435,6 +435,7 @@ if (currentStep === 5) {
   <ReviewBooking
     reviewData={reviewData}
     onEditStep={editStep}
+    onSubmitRequest={() => setMode("submitted")}
   />
 </div>
 ) : (
