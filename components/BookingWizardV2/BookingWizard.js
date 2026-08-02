@@ -250,6 +250,7 @@ console.log(price);
 const reviewData = {
   boat: selectedBoat?.title || "",
   duration: getDurationLabel(),
+  durationMode,
   durationKey,
   days,
   date: getDateLabel(),
