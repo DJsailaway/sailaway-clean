@@ -18,7 +18,7 @@ const [activity, setActivity] = useState(null);
 const [selectedBoat, setSelectedBoat] = useState(null);
 const [currentStep, setCurrentStep] = useState(0);
 
-const [mode, setMode] = useState("wizard");
+const [mode, setMode] = useState("wizard"); // "wizard" | "review" | "confirm"
 const [returnToReview, setReturnToReview] = useState(false);
 
 const [stepDirection, setStepDirection] = useState("forward");
