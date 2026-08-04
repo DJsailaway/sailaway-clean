@@ -54,7 +54,7 @@ export default function SailingBoatHire() {
         </h1>
 
         <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
-          Enjoy traditional sailing on the Helford River with our dinghy fleet.
+          Enjoy traditional sailing on the Helford River with our fleet of dayboats and dinghies.
         </p>
 
         <h2>Our Sailing Boats</h2>
