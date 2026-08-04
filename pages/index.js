@@ -121,7 +121,7 @@ const isMobile =
       marginBottom: "18px",
     }}
   >
-    No experience is needed for most boats.
+    No experience is needed for most of our boats, and we'll show you how to use them before you depart.
   </p>
 
   <p
@@ -131,7 +131,7 @@ const isMobile =
       color: "#555",
     }}
   >
-    Whether it’s your first time on the water or part of a long-standing family tradition, we’ll help you find the right boat for your day.
+    Whether it’s your first time on the water or part of a long-standing family tradition, we’ll help you find the right boat for your day. As members of British Marine, our boats are fully insured and licensed, and we have over a century of experience on the water to help you to have the most enjoyable and carefree time afloat.
   </p>
 </div>
 
