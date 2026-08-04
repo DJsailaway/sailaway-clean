@@ -47,7 +47,7 @@ export default function GillanCreekFerry() {
         <ul>
           <li>The crossing runs around three hours either side of high tide</li>
           <li>From the first of April to the end of October</li>
-          <li>The ferry runs on demand - simply call us or flip the sign down to call the ferryman</li>
+          <li>The ferry runs on demand - simply call us on 01326 231 357 or flip the sign down to call the ferryman</li>
           <li>Capacity is 6 people but we can simply return for larger parties</li>
           <li>The cost is £5 per person; dogs and luggage travel free</li> 
         </ul>
