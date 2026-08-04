@@ -32,14 +32,22 @@ export default function Moorings() {
         <h2>Our Moorings Services</h2>
         <ul>
           <li>Seasonal and short-term moorings</li>
-          <li>Direct access to Gillan Creek</li>
-          <li>Safe for small and medium boats</li>
+          <li>Direct access to Gillan Creek at the mouth of the Helford</li>
+          <li>Moorings for vessels up to around 36ft</li>
+          <li>Dinghy park available for tenders</li>
+          <li>Ferry service to customers' boats</li>
+          <li>Tidal pontoon at St Anthony for loading/unloading</li>
+          <li>Car parking available for mooring customers</li>
+          <li>Toilets and shower available on site</li>
+          <li>Deep water and drying moorings available</li>
+          <li>Comprehensive ancillary services if required</li>
         </ul>
 
         <h2>Why Choose Gillan Creek?</h2>
         <p>
           A quiet, sheltered location with easy access to the Helford River. Our moorings are fully licensend and insured, and
-          checked annually. We keep a close eye on the weather and prepare carefully for any incoming seas on our owners' behalf.
+          checked annually. We keep a close eye on the weather and prepare carefully for any incoming seas on our owners' behalf. 
+          We're also afloat every day, which lets us keep a closer eye on boats in our care than most marinas can.
         </p>
 
         {/* 🔻 SINGLE CLEAN CTA WITH HORIZONTAL BUTTONS */}
