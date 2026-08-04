@@ -82,7 +82,9 @@ export default function BoatStorage() {
           their boats ready to enjoy. With moorings available as well, we're
           able to offer a year-round solution for anyone wanting their boat
           launched, moored, hauled out and stored, as well as any sundry
-          services like overhauling or antifouling.
+          services like overhauling or antifouling. We have well over a 
+          century's experience caring for boats of all types and work hard
+          to ensure boats and equipment are safely and securely stored.
         </p>
 
         <h2>Location</h2>
