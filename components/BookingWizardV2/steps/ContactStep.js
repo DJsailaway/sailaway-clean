@@ -1,5 +1,38 @@
 import { useEffect, useState } from "react";
 
+function Field({ error, children }) {
+  return (
+    <div style={{ position: "relative" }}>
+      {children}
+
+      {error && (
+        <div
+          style={{
+            position: "absolute",
+            right: "12px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            background: "#FEF2F2",
+            color: "#B91C1C",
+            border: "1px solid #FCA5A5",
+            borderRadius: "999px",
+            padding: "4px 10px",
+            fontSize: "12px",
+            fontWeight: 600,
+            pointerEvents: "none",
+            maxWidth: "55%",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis"
+          }}
+        >
+          {error}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function ContactStep({
   value,
   errors = {},
@@ -29,37 +62,6 @@ export default function ContactStep({
     outline: "none",
     background: "#FFFFFF"
   };
-
-  const Field = ({ error, children }) => (
-  <div style={{ position: "relative" }}>
-    {children}
-
-    {error && (
-      <div
-        style={{
-          position: "absolute",
-          right: "12px",
-          top: "50%",
-          transform: "translateY(-50%)",
-          background: "#FEF2F2",
-          color: "#B91C1C",
-          border: "1px solid #FCA5A5",
-          borderRadius: "999px",
-          padding: "4px 10px",
-          fontSize: "12px",
-          fontWeight: 600,
-          pointerEvents: "none",
-          maxWidth: "55%",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
-        }}
-      >
-        {error}
-      </div>
-    )}
-  </div>
-);
   
   return (
     <div
