@@ -157,6 +157,24 @@ export default function ReviewBooking({  reviewData,  onEditStep,  onSubmitReque
 
 </div>
 
+                <button
+        onClick={onSubmitRequest}
+        style={{
+          width: "100%",
+          padding: "16px",
+          marginTop: "8px",
+          border: "none",
+          borderRadius: "14px",
+          background: "#123B5D",
+          color: "#FFFFFF",
+          fontSize: "16px",
+          fontWeight: 600,
+          cursor: "pointer"
+        }}
+      >
+        Send booking request
+      </button>
+          
       </div>
     </div>
   );
