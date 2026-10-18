@@ -333,8 +333,9 @@ header={
   )
 }
 
-  footer={
-    <BottomActionBar
+    footer={
+    mode !== "review" ? (
+      <BottomActionBar
       onBack={() => {
         setStepDirection("back");
         setCurrentStep(Math.max(0, currentStep - 1));
@@ -423,7 +424,8 @@ if (currentStep === 5) {
           ? `£${price.total}`
           : "£0"
       }
-    />
+      />
+    ) : null
   }
 >
 {mode === "review" ? (
