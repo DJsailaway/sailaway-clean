@@ -201,6 +201,49 @@ const [customer, setCustomer] = useState({
 
 const [customerErrors, setCustomerErrors] = useState({});
 
+const [submissionStatus, setSubmissionStatus] = useState("idle");
+
+const handleSubmitRequest = async () => {
+  setSubmissionStatus("sending");
+
+  try {
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+        bookings: [
+          {
+            boat: selectedBoat?.title || "",
+            category: activity || "",
+            isMultiDay: durationMode === "multiday",
+            days,
+            duration: getDurationLabel()
+          }
+        ],
+        date: bookingDate,
+        time: reviewData.startTime,
+        total: price.total,
+        location: getPlaceLabel()
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("Booking request failed");
+    }
+
+    setSubmissionStatus("success");
+
+  } catch (error) {
+    console.error("Booking submission error:", error);
+    setSubmissionStatus("error");
+  }
+};
+
 const validateCustomer = () => {
   const errors = {};
 
@@ -435,10 +478,113 @@ if (currentStep === 5) {
   }}
 >
   <ReviewBooking
-    reviewData={reviewData}
-    onEditStep={editStep}
-    onSubmitRequest={() => setMode("submitted")}
-  />
+  reviewData={reviewData}
+  onEditStep={editStep}
+  onSubmitRequest={handleSubmitRequest}
+  submissionStatus={submissionStatus}
+/>
+{submissionStatus === "success" && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(15, 23, 42, 0.65)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px",
+      zIndex: 9999
+    }}
+  >
+    <div
+      style={{
+        background: "#FFFFFF",
+        borderRadius: "20px",
+        padding: "32px 24px",
+        width: "100%",
+        maxWidth: "440px",
+        textAlign: "center",
+        boxShadow: "0 20px 50px rgba(0,0,0,0.2)"
+      }}
+    >
+      <div
+        style={{
+          width: "56px",
+          height: "56px",
+          borderRadius: "50%",
+          background: "#DCFCE7",
+          color: "#15803D",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "30px",
+          margin: "0 auto 20px"
+        }}
+      >
+        ✓
+      </div>
+
+      <h2
+        style={{
+          color: "#123B5D",
+          fontSize: "24px",
+          margin: "0 0 16px"
+        }}
+      >
+        Thank you for your request!
+      </h2>
+
+      <p
+        style={{
+          color: "#475569",
+          fontSize: "15px",
+          lineHeight: 1.7
+        }}
+      >
+        Your boat hire request has been sent to us, and we've also sent a confirmation email to your inbox with all the details for your records.
+      </p>
+
+      <p
+        style={{
+          color: "#475569",
+          fontSize: "15px",
+          lineHeight: 1.7
+        }}
+      >
+        We'll be in touch as soon as we can to check availability, confirm the details and get you afloat!
+      </p>
+
+      <p
+        style={{
+          color: "#123B5D",
+          fontWeight: 600,
+          margin: "20px 0"
+        }}
+      >
+        The Sailaway Team
+      </p>
+
+      <button
+        onClick={() => {
+  window.location.href = "/";
+}}
+        style={{
+          width: "100%",
+          padding: "15px",
+          border: "none",
+          borderRadius: "12px",
+          background: "#123B5D",
+          color: "#FFFFFF",
+          fontSize: "16px",
+          fontWeight: 600,
+          cursor: "pointer"
+        }}
+      >
+        Done
+      </button>
+    </div>
+  </div>
+)}
 </div>
 ) : (
 <div

@@ -1,4 +1,9 @@
-export default function ReviewBooking({  reviewData,  onEditStep,  onSubmitRequest,}) {
+export default function ReviewBooking({
+  reviewData,
+  onEditStep,
+  onSubmitRequest,
+  submissionStatus,
+}) {
   if (!reviewData) {
     return null;
   }
@@ -157,23 +162,40 @@ export default function ReviewBooking({  reviewData,  onEditStep,  onSubmitReque
 
 </div>
 
-                <button
-        onClick={onSubmitRequest}
-        style={{
-          width: "100%",
-          padding: "16px",
-          marginTop: "8px",
-          border: "none",
-          borderRadius: "14px",
-          background: "#123B5D",
-          color: "#FFFFFF",
-          fontSize: "16px",
-          fontWeight: 600,
-          cursor: "pointer"
-        }}
-      >
-        Send booking request
-      </button>
+<button
+  onClick={onSubmitRequest}
+  disabled={submissionStatus === "sending"}
+  style={{
+    width: "100%",
+    padding: "16px",
+    marginTop: "8px",
+    border: "none",
+    borderRadius: "14px",
+    background: submissionStatus === "sending" ? "#64748B" : "#123B5D",
+    color: "#FFFFFF",
+    fontSize: "16px",
+    fontWeight: 600,
+    cursor: submissionStatus === "sending" ? "wait" : "pointer",
+    opacity: submissionStatus === "sending" ? 0.8 : 1
+  }}
+>
+  {submissionStatus === "sending"
+    ? "Sending request..."
+    : "Send booking request"}
+</button>
+
+{submissionStatus === "error" && (
+  <p
+    style={{
+      color: "#B91C1C",
+      fontSize: "14px",
+      textAlign: "center",
+      marginTop: "12px"
+    }}
+  >
+    Sorry, we couldn't send your request just now. Please try again or call us on 01326 231 357.
+  </p>
+)}
           
       </div>
     </div>
